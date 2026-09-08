@@ -19,6 +19,12 @@ function keyProblem(): string | null {
 }
 
 export async function GET() {
+  // Alat bantu internal. Di versi online endpoint ini ditutup, karena
+  // membeberkan daftar model yang tersedia bagi akun pemilik aplikasi.
+  if (process.env.NODE_ENV === 'production') {
+    return new Response('Not Found', { status: 404 });
+  }
+
   const masalahKunci = keyProblem();
   if (masalahKunci) {
     return Response.json({ ok: false, error: masalahKunci }, { status: 500 });

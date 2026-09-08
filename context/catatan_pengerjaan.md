@@ -346,6 +346,62 @@ Sesuai urutan yang disepakati pada sesi ini: jalankan build dan e2e untuk menutu
 
 Deployment ke Vercel, lalu uji akurasi dengan buku asli dan pengumpulan kata dari Threads. Sisa Lanjutan 4, 5, dan 6 dikerjakan setelah portfolio dikirim.
 
+## 8 September 2026 — Claude: pesan kunci API dan penutupan alat internal di versi online
+
+**Permintaan pengguna:** deployment gagal membaca kunci API, lalu minta pengecekan situs live. Dikerjakan dua hal kecil yang menjadi syarat sebelum tautan disebarkan.
+
+**Status sesi:** selesai. Build produksi dan 37/37 pengujian lulus pada salinan Linux, ditambah pemeriksaan kode status langsung terhadap server produksi.
+
+### Perubahan perilaku
+
+- Pesan kesalahan kunci API tidak lagi menyebut `.env.local` saat aplikasi berjalan di hosting. Sekarang membedakan tiga keadaan: variabel tidak tersedia, masih berisi teks contoh, dan mengandung spasi tepi. Pesan untuk keadaan pertama menyebut bahwa variabel baru tidak berlaku pada deploy yang sudah jadi sehingga perlu deploy ulang.
+- `/lab` dan `/api/models` menjadi 404 di versi online, tetap hidup saat `npm run dev`. Alasannya tombol pembanding model memanggil model tiga kali sekali klik, dan endpoint daftar model membeberkan model yang tersedia bagi akun pemilik aplikasi. Sengaja dijaga, bukan dihapus, karena keduanya masih dipakai untuk uji akurasi.
+
+### File yang diubah
+
+- `app/api/lookup/route.ts` dan `app/api/models/route.ts`: fungsi `keyProblem` yang memeriksa tiga keadaan kunci.
+- `app/api/models/route.ts`: penjagaan 404 pada versi online.
+- `app/lab/page.tsx`: menjadi Server Component yang memanggil `notFound()` saat produksi.
+- `app/lab/lab-client.tsx` (baru): komponen klien lab dipindah apa adanya, tanpa perubahan isi.
+
+### Keputusan teknis dan rujukan
+
+- Membaca `node_modules/next/dist/docs/01-app/03-api-reference/04-functions/not-found.md` sesuai `AGENTS.md`. `notFound()` sah dipanggil pada Server Component dan Route Handler, dan harus berada di jalur render.
+- Pemeriksaan dilakukan di sisi server, bukan di komponen klien, supaya halaman lab tidak ikut terkirim ke browser pengunjung versi online.
+- Route handler daftar model membalas 404 biasa, bukan `notFound()`, karena halaman not-found tidak cocok sebagai balasan endpoint.
+
+### Verifikasi
+
+- `npm run build` pada salinan: lulus.
+- `PLAYWRIGHT_TEST_PRODUCTION=1 playwright test`: **37/37 lulus, 26,8 detik**. Tidak ada regresi.
+- Pemeriksaan kode status pada build produksi yang dijalankan: `/lab` **404**, `/api/models` **404**, sedangkan `/` **200**, `/kata` **200**, `/review` **200**.
+
+### Temuan tentang deployment
+
+- Situs live `lema-lemon.vercel.app` merespons dan metadata halaman benar, tetapi `/api/models` membalas 500 pada saat pemeriksaan. Kode 500 hanya dipakai untuk masalah kunci API.
+- Project Vercel berada di akun yang berbeda dari project pengguna sebelumnya, sehingga Environment Variables tidak terbawa. Pengisian `GEMINI_API_KEY` beserta deploy ulang masih menjadi pekerjaan pengguna dan **belum terverifikasi**.
+- Bentuk kunci pada `.env.local` diperiksa tanpa membaca isinya: panjang 53, tanpa spasi tepi, tanpa tanda kutip, bukan teks contoh, berawalan `AQ.` yaitu format kunci Google yang lebih baru. Kode tidak memeriksa awalan kunci.
+
+### Pekerjaan berikutnya
+
+Setelah versi online benar benar bisa memanggil model: uji kamera di Safari iPhone, uji akurasi dengan buku asli, dan pengumpulan kata dari Threads.
+
+## 8 September 2026 — Claude: versi online berhasil memanggil model
+
+**Status:** terverifikasi.
+
+- Alamat produksi: `lema-lemon.vercel.app`, project Vercel `lema` pada akun terpisah milik pengguna, tersambung ke repo `aristyonaufal/lema` cabang `main`.
+- `GET /api/models` pada alamat produksi membalas `{"ok":true,"count":40}`. Ini membuktikan `GEMINI_API_KEY` terbaca oleh fungsi di server produksi, bukan hanya di localhost.
+- Penyebab kegagalan sebelumnya: Environment Variables belum terpasang pada project ini, dan setelah dipasang tetap perlu deploy ulang karena variabel baru tidak berlaku pada deploy yang sudah jadi. Pesan kesalahan yang dibedakan tiga keadaan membantu memastikan bahwa masalahnya ketiadaan variabel, bukan salah isi.
+
+### Yang masih terbuka
+
+- Kode penutupan `/lab` dan `/api/models` **belum didorong** ke repo, jadi kedua alat internal itu masih terbuka untuk umum di versi online.
+- Alur lengkap foto ke makna **belum diuji pada alamat produksi**. Yang teruji baru endpoint daftar model.
+- Kamera Safari iPhone belum diuji.
+- Uji akurasi dengan buku asli belum dilakukan.
+- Kunci API yang sekarang aktif pernah terkirim di luar penyimpanan rahasia dan sebaiknya dicabut lalu dibuat ulang sebelum tautan disebarkan. Pencabutan menuntut pengisian ulang Environment Variable dan satu deploy lagi.
+
 ## Format catatan berikutnya
 
 Gunakan tanggal dan nama pelaksana, lalu jelaskan: permintaan/tujuan, keputusan, file yang diubah beserta alasannya, verifikasi dan hasilnya, masalah yang masih terbuka, serta pekerjaan berikutnya. Tulis "belum diuji" untuk hal yang belum benar-benar diperiksa.
