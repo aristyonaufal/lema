@@ -50,16 +50,28 @@ function validate(r: unknown): r is LookupResult {
   );
 }
 
+function keyProblem(): string | null {
+  const key = process.env.GEMINI_API_KEY;
+  if (!key || !key.trim()) {
+    return 'GEMINI_API_KEY belum tersedia di server. Saat lokal, isi di .env.local lalu nyalakan ulang server. Saat online, isi sebagai Environment Variable di hosting lalu deploy ulang, karena variabel baru tidak berlaku pada deploy yang sudah jadi.';
+  }
+  if (key.startsWith('PASTE_')) {
+    return 'GEMINI_API_KEY masih berisi teks contoh, belum diganti kunci sungguhan.';
+  }
+  if (key !== key.trim()) {
+    return 'GEMINI_API_KEY punya spasi di awal atau akhir. Hapus spasinya, lalu deploy ulang.';
+  }
+  return null;
+}
+
 export async function POST(req: Request) {
   const started = Date.now();
 
-  const key = process.env.GEMINI_API_KEY;
-  if (!key || key.startsWith('PASTE_')) {
-    return Response.json(
-      { ok: false, error: 'GEMINI_API_KEY belum diisi di .env.local' },
-      { status: 500 }
-    );
+  const masalahKunci = keyProblem();
+  if (masalahKunci) {
+    return Response.json({ ok: false, error: masalahKunci }, { status: 500 });
   }
+  const key = process.env.GEMINI_API_KEY as string;
 
   const ip = clientIp(req);
 
