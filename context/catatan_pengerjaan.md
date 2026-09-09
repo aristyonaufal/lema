@@ -548,6 +548,62 @@ Kompatibilitas data lama: entri tanpa penanda ini dihitung belum pernah lolos. R
 
 Tidak berubah dari sesi sebelumnya, dan urutannya justru makin mendesak: uji satu lingkaran penuh di Safari iPhone pada alamat produksi, lalu uji akurasi dengan buku asli.
 
+## 9 September 2026 — Claude: enam revisi setelah uji pertama di HP
+
+**Permintaan pengguna:** commit `9838b3d` didorong dan Vercel mendeploy dalam 20 detik, lalu pengguna mencoba versi online dan mengirim enam kekurangan. Nomor 6, yaitu slogan, baru sampai tahap usulan dan belum dipilih.
+
+**Status sesi:** selesai untuk nomor 1 sampai 5. Build produksi, pemeriksaan tipe, lint tanpa error, dan 47/47 pengujian browser lulus, seluruhnya dijalankan di Windows.
+
+### Keputusan pengguna pada sesi ini
+
+1. **Nomor 2, teks panjang: cukup frasa.** Frasa multi kata sebenarnya sudah didukung sejak awal, baik oleh kotak isian maupun oleh prompt (aturan 10 dan `is_phrase`). Yang tidak ada cuma keterangan bahwa itu boleh. Mode kalimat utuh ditolak karena butuh prompt kedua dan bentuk hasil kedua, terlalu besar untuk tiga hari sebelum submit.
+2. **Nomor 5, review di luar jadwal: mode latihan, bukan kuis.** PRD bagian 6 menaruh kuis pilihan ganda di daftar yang sengaja dikeluarkan dari v1, dan bagian 14 menyebut scope melebar ke kuis sebagai risiko tinggi. Keputusan itu disampaikan sebelum pengguna memilih.
+
+### Perubahan perilaku
+
+- **Nomor 1, ganti buku.** Buku aktif di layar foto sekarang dibungkus kartu, dan tombolnya jadi tombol sungguhan berlabel "Ganti buku" dengan ikon tukar, bukan lagi pil kecil bertuliskan "Ganti" di pojok kanan.
+- **Nomor 2, frasa.** Placeholder, label bagian, dan keterangannya diubah supaya frasa disebut terang terangan, lengkap dengan contoh. Ditambah batas 60 karakter: di atas itu tombol Tambah mati dan muncul penjelasan bahwa Lema memetakan makna kata atau frasa, belum bisa menjelaskan kalimat utuh. Lebih baik ditolak dengan alasan daripada dijawab asal oleh prompt yang tidak dirancang untuk itu.
+- **Nomor 3, koleksi ringkas.** Kata yang maknanya sudah ada kini tampil sebagai baris berisi kata dan arti singkatnya. Kartu makna penuh baru digambar setelah barisnya diketuk, jadi tidak ada lagi halaman sepanjang beberapa layar hanya untuk melihat daftar. Kata yang masih diproses atau gagal tidak dilipat, karena sudah pendek dan justru perlu segera dibaca. Baris juga membawa penanda "Ragu" untuk hasil ambigu dan "Tidak ketemu di halaman" bila modelnya tidak menemukan katanya.
+- **Nomor 4, rak buku di sidebar.** Kaki sidebar berubah dari sekadar menampilkan buku yang sedang dibaca menjadi daftar buku yang bisa diketuk. Satu ketukan membuka `/kata?buku=<id>`, yaitu koleksi buku itu saja. Halaman koleksi ikut mengerti parameter itu: judulnya jadi judul buku, penyaring dan ringkasannya ikut mengecil ke lingkup buku tersebut. Kartu buku di beranda juga diarahkan ke sana, karena di HP tidak ada sidebar dan itulah satu satunya jalan.
+- **Nomor 5, mode latihan.** `/review?latihan=1` mengambil kata mana pun yang sudah punya makna, tanpa menunggu jatuh tempo, dan bisa dipersempit ke satu buku lewat `&buku=<id>`. Sesi latihan **tidak menulis apa pun**: jadwal tangga 1/3/7/21 hari tidak bergeser dan `passedReview` tidak ikut menyala. Alasannya lurus: kalau latihan ikut menggeser jadwal, angka progres berubah jadi ukuran seberapa sering seseorang menekan tombol, bukan seberapa lama dia masih ingat. Jalan masuknya ada di beranda, di kolom kanan koleksi, dan di layar review saat belum ada yang jatuh tempo.
+
+### File yang diubah
+
+- `app/baca/page.tsx`: kartu buku aktif, tombol "Ganti buku", istilah frasa, batas 60 karakter.
+- `app/kata/page.tsx`: komponen `WordRow` yang bisa dibuka, penyaringan `?buku=`, ringkasan yang ikut lingkup buku, tombol latihan.
+- `components/Nav.tsx`: rak buku di kaki sidebar, dan `aria-label` pada daftar tab.
+- `app/review/page.tsx`: dua mode dalam satu layar, dibungkus `Suspense` karena sekarang membaca parameter alamat.
+- `app/page.tsx`: kartu buku menuju koleksi per buku, plus jalan masuk latihan.
+- `lib/store.ts`: `practicePool`.
+- `tests/koleksi.spec.ts` (baru): lima pengujian untuk daftar ringkas, rak buku sidebar, mode latihan, frasa, dan penolakan kalimat.
+- `tests/storage.spec.ts`, `tests/books.spec.ts`, `tests/dashboard.spec.ts`: menyesuaikan placeholder, nama tombol, dan kenyataan bahwa kartu makna tidak lagi terbuka sejak awal.
+
+### Jebakan yang ditemukan
+
+- **Nama tautan rak buku bertabrakan dengan tab navigasi.** Versi pertama memberi `aria-label` "Koleksi kata dari Sapiens", sementara tab koleksi bernama "Koleksi kata, N sedang diproses". Sebelas pengujian gagal sekaligus karena pencarian `/^Koleksi kata/` menemukan dua tautan. Diganti menjadi "Kata dari buku Sapiens". Ini kasus kedua dalam proyek ini di mana nama yang mirip menyulitkan pembaca layar sekaligus pengujian, jadi patut dijadikan kebiasaan memeriksa nama baru terhadap nama yang sudah ada.
+- **Melipat kartu mengubah banyak kontrak pengujian sekaligus.** Pengujian lama memakai `article` sebagai penanda satu kata, padahal `article` sekarang cuma ada ketika barisnya dibuka. Ditambahkan pembantu `row()` dan `openWord()`; sebagian pemeriksaan justru jadi lebih tepat, misalnya status "sudah tahu" kini diperiksa pada barisnya, bukan pada kalimat di dalam kartunya.
+
+### Verifikasi
+
+- `npx tsc --noEmit`: lulus.
+- `npm run build`: lulus.
+- `npm run lint`: **0 error**, dua peringatan `<img>` lama.
+- `PLAYWRIGHT_TEST_PRODUCTION=1 npx playwright test`: **47/47 lulus, Chromium**. Terdiri dari 42 pengujian sebelumnya ditambah lima pengujian revisi ini.
+- Pemeriksaan visual pada lebar 390 dan 1440 piksel, tema terang dan gelap, untuk beranda, layar foto, koleksi penuh, koleksi dengan satu baris terbuka, koleksi per buku, dan mode latihan. Dua pengulangan ditemukan dan diperbaiki: judul buku muncul dua kali saat koleksi disaring per buku, dan kartu buku di beranda yang sebelumnya menuju koleksi seluruh buku.
+
+### Masalah yang masih terbuka
+
+- **Slogan belum dipilih.** Enam usulan bahasa Inggris sudah diberikan; rekomendasi saya "Never look it up twice." Sampai dipilih, sidebar masih memakai "Baca terus, maknanya nyusul."
+- **Kuis interaktif ditunda**, bukan dibatalkan. Kalau nanti dikerjakan, PRD bagian 6 perlu ikut direvisi.
+- Perubahan sesi ini belum di-commit dan belum di-deploy.
+- Belum diuji ulang di Safari iPhone. Perubahan terbesar sesi ini justru di layar sempit, yaitu daftar koleksi yang dilipat.
+- PRD bagian 5 dan 7 masih berbeda dari perilaku aplikasi.
+- Uji akurasi model masih belum dilakukan sama sekali. Ini tetap penghalang portfolio yang paling besar.
+
+### Pekerjaan berikutnya
+
+Deploy revisi ini, uji ulang sebentar di HP, lalu **uji akurasi**. Sisa waktu sebelum 12 September paling baik dipakai untuk mengumpulkan angka, bukan menambah fitur.
+
 ## Format catatan berikutnya
 
 Gunakan tanggal dan nama pelaksana, lalu jelaskan: permintaan/tujuan, keputusan, file yang diubah beserta alasannya, verifikasi dan hasilnya, masalah yang masih terbuka, serta pekerjaan berikutnya. Tulis "belum diuji" untuk hal yang belum benar-benar diperiksa.

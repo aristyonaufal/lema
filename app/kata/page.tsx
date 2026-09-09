@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import SenseMap from '@/components/SenseMap';
 import BookSpine, { spineColor } from '@/components/BookSpine';
 import { useDb } from '@/lib/useDb';
-import { byBook, markKnown, remove, stats, type Entry } from '@/lib/store';
+import { byBook, due, markKnown, remove, type Entry } from '@/lib/store';
 
 export default function Kata() {
   return (
@@ -28,10 +28,73 @@ const FILTERS = [
 
 type FilterId = (typeof FILTERS)[number]['id'];
 
+// Baris ringkas untuk kata yang maknanya sudah ada.
+//
+// Sebelumnya tiap kata langsung menampilkan kartu makna penuh: kalimat asal,
+// pemicu, alasan, catatan hati hati, dan daftar makna lain. Koleksi berisi dua
+// puluh kata jadi halaman sepanjang beberapa layar, dan mencari satu kata
+// berarti menggulung lama. Sekarang isinya baru digambar ketika dibuka, jadi
+// yang panjang cuma yang memang sedang dibaca.
+function WordRow({ entry, open, onToggle, children }: {
+  entry: Entry;
+  open: boolean;
+  onToggle: () => void;
+  children: React.ReactNode;
+}) {
+  const r = entry.result!;
+  const main = r.candidates[0];
+
+  return (
+    <li className="flex flex-col">
+      <button
+        onClick={onToggle}
+        aria-expanded={open}
+        className={`card hover:border-muted flex w-full items-center gap-3 p-3.5 text-left transition-colors ${open ? 'border-accent/50' : ''}`}
+      >
+        <span className="flex min-w-0 flex-1 flex-col gap-1">
+          <span className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+            <span lang="en" className="font-display text-[1.35rem] leading-none tracking-tight">
+              {r.word}
+            </span>
+            {r.ambiguous && (
+              <span className="bg-warn-soft text-warn rounded-full px-2 py-0.5 text-[0.6875rem] font-medium">
+                Ragu
+              </span>
+            )}
+            {r.found === false && (
+              <span className="bg-warn-soft text-warn rounded-full px-2 py-0.5 text-[0.6875rem] font-medium">
+                Tidak ketemu di halaman
+              </span>
+            )}
+            {entry.known && (
+              <span className="bg-sunken text-muted rounded-full px-2 py-0.5 text-[0.6875rem]">
+                Sudah tahu
+              </span>
+            )}
+          </span>
+          {/* Saat terbuka, arti singkatnya dilepas: kartu di bawahnya sudah
+              menuliskannya dengan lengkap, jadi baris ini tinggal jadi kepala. */}
+          {!open && <span className="text-muted truncate text-sm">{main.meaning_id}</span>}
+        </span>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+          className={`text-faint h-5 w-5 shrink-0 transition-transform ${open ? 'rotate-90' : ''}`}
+        >
+          <path d="m9.5 6 6 6-6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+      {open && <div className="rise mt-2">{children}</div>}
+    </li>
+  );
+}
+
 function KataContent() {
   const searchParams = useSearchParams();
   const { db, update, ready } = useDb();
   const [filter, setFilter] = useState<FilterId>('semua');
+  const [open, setOpen] = useState<string[]>([]);
 
   // Parameter berisi ID lokal, bukan kata, agar dua lookup kata yang sama
   // tetap dapat dibuka secara terpisah tanpa membuat entri baru.
@@ -39,6 +102,7 @@ function KataContent() {
   const selectedIds = new Set(searchParams.getAll('entry').filter(Boolean));
   const selectedEntries = db.entries.filter((entry) => selectedIds.has(entry.id));
   const pendingCount = selectedEntries.filter((entry) => entry.status === 'pending').length;
+  const bookParam = searchParams.get('buku');
 
   if (!ready) {
     return (
@@ -66,27 +130,33 @@ function KataContent() {
     );
   }
 
-  const all = db.entries;
-  const s = stats(db);
-  const dueCount = s.due;
+  // Buku yang disaring lewat alamat. Id yang tidak dikenal diabaikan supaya
+  // tautan usang menampilkan seluruh koleksi, bukan halaman kosong.
+  const book = bookParam ? db.books.find((b) => b.id === bookParam) ?? null : null;
+  const shownBooks = book ? [book] : db.books;
+  const scoped = book ? db.entries.filter((e) => e.bookId === book.id) : db.entries;
+
+  const dueCount = due(db).length;
   const activeFilter = FILTERS.find((f) => f.id === filter) ?? FILTERS[0];
   // Penyaring yang tidak punya isi tidak ditampilkan, supaya barisnya tidak
   // penuh pilihan yang pasti kosong.
   const available = FILTERS.filter(
-    (f) => f.id === 'semua' || f.id === filter || all.some((entry) => f.match(entry)),
+    (f) => f.id === 'semua' || f.id === filter || scoped.some((entry) => f.match(entry)),
   );
-  const visibleBooks = db.books.filter((b) =>
-    byBook(db, b.id).some((entry) => (focused ? selectedIds.has(entry.id) : activeFilter.match(entry))),
-  );
+  const shown = scoped.filter(activeFilter.match);
+
+  function toggle(id: string) {
+    setOpen((current) => (current.includes(id) ? current.filter((x) => x !== id) : [...current, id]));
+  }
 
   return (
     <main className="page flex flex-1 flex-col gap-6 pt-6">
       <header className="flex flex-col gap-4">
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
-            <p className="eyebrow">{focused ? 'Hasil pencarian' : 'Kumpulan kamu'}</p>
-            <h1 className="font-display mt-1 text-[2rem] leading-tight tracking-tight sm:text-[2.25rem]">
-              {focused ? 'Peta makna' : 'Koleksi kata'}
+            <p className="eyebrow">{focused ? 'Hasil pencarian' : book ? 'Koleksi buku' : 'Kumpulan kamu'}</p>
+            <h1 className="font-display mt-1 truncate text-[2rem] leading-tight tracking-tight sm:text-[2.25rem]">
+              {focused ? 'Peta makna' : book ? book.title : 'Koleksi kata'}
             </h1>
           </div>
           <div className="flex shrink-0 items-center gap-2">
@@ -128,40 +198,47 @@ function KataContent() {
             )}
           </div>
         ) : (
-          all.length > 0 && (
-            <>
-              {dueCount > 0 && (
-                <Link href="/review" className="bg-accent text-accent-ink flex items-center gap-3 rounded-[1.25rem] px-4 py-3.5 shadow-[var(--shadow-sm)]">
-                  <span className="flex-1 text-sm leading-snug font-medium">
-                    {dueCount} kata udah waktunya diulang
-                    <span className="block font-normal opacity-80">Pakai kalimat baru, bukan kalimat dari bukumu.</span>
-                  </span>
-                  <span aria-hidden="true" className="text-sm font-semibold whitespace-nowrap">Mulai</span>
+          <>
+            {book && (
+              <div className="flex flex-wrap items-center gap-3">
+                <Link href="/kata" className="text-accent text-sm font-medium">
+                  Lihat semua buku
                 </Link>
-              )}
-              <div className="rail -mx-5 flex gap-2 px-5 sm:-mx-6 sm:px-6 lg:-mx-10 lg:px-10">
-                {available.map((f) => {
-                  const count = all.filter(f.match).length;
-                  const on = f.id === filter;
-                  return (
-                    <button key={f.id} onClick={() => setFilter(f.id)} aria-pressed={on} className={`chip ${on ? 'chip-on' : ''}`}>
-                      {f.label}
-                      <span className={`text-xs tabular-nums ${on ? 'opacity-70' : 'text-faint'}`}>{count}</span>
-                    </button>
-                  );
-                })}
+                <span className="text-faint text-sm tabular-nums">{scoped.length} kata di buku ini</span>
               </div>
-            </>
-          )
+            )}
+            {scoped.length > 0 && (
+              <>
+                {dueCount > 0 && (
+                  <Link href="/review" className="bg-accent text-accent-ink flex items-center gap-3 rounded-[1.25rem] px-4 py-3.5 shadow-[var(--shadow-sm)]">
+                    <span className="flex-1 text-sm leading-snug font-medium">
+                      {dueCount} kata udah waktunya diulang
+                      <span className="block font-normal opacity-80">Pakai kalimat baru, bukan kalimat dari bukumu.</span>
+                    </span>
+                    <span aria-hidden="true" className="text-sm font-semibold whitespace-nowrap">Mulai</span>
+                  </Link>
+                )}
+                <div className="rail -mx-5 flex gap-2 px-5 sm:-mx-6 sm:px-6 lg:-mx-10 lg:px-10">
+                  {available.map((f) => {
+                    const count = scoped.filter(f.match).length;
+                    const on = f.id === filter;
+                    return (
+                      <button key={f.id} onClick={() => setFilter(f.id)} aria-pressed={on} className={`chip ${on ? 'chip-on' : ''}`}>
+                        {f.label}
+                        <span className={`text-xs tabular-nums ${on ? 'opacity-70' : 'text-faint'}`}>{count}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </>
+            )}
+          </>
         )}
       </header>
 
-      {/* Dua kolom mulai lebar laptop. Kolom kanan sengaja tidak mengulang isi
-          kolom kiri: dia menjawab pertanyaan lain, yaitu di mana posisi koleksi
-          ini secara keseluruhan dan buku mana yang mau dituju. */}
       <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,1fr)_16rem] lg:gap-8">
         <div className="flex min-w-0 flex-col gap-6">
-          {db.books.map((b) => {
+          {shownBooks.map((b) => {
             const entries = byBook(db, b.id).filter((entry) =>
               focused ? selectedIds.has(entry.id) : activeFilter.match(entry),
             );
@@ -171,10 +248,16 @@ function KataContent() {
             return (
               <section key={b.id} id={`buku-${b.id}`} className="flex scroll-mt-6 flex-col gap-4">
                 <div className="flex flex-col gap-2.5">
+                  {/* Saat koleksi disaring ke satu buku, judulnya sudah menjadi
+                      kepala halaman. Mengulangnya di sini cuma menambah baris. */}
                   <div className="flex items-center gap-3">
-                    <BookSpine title={b.title} size="sm" />
-                    <h2 className="min-w-0 flex-1 truncate font-medium">{b.title}</h2>
-                    <span className="text-muted shrink-0 text-sm tabular-nums">
+                    {!book && (
+                      <>
+                        <BookSpine title={b.title} size="sm" />
+                        <h2 className="min-w-0 flex-1 truncate font-medium">{b.title}</h2>
+                      </>
+                    )}
+                    <span className={`text-muted shrink-0 text-sm tabular-nums ${book ? 'ml-auto' : ''}`}>
                       {done} dari {entries.length} kata siap
                     </span>
                   </div>
@@ -187,22 +270,36 @@ function KataContent() {
                     />
                   </div>
                 </div>
-                <div className="flex flex-col gap-4">
-                  {entries.map((e) => (
-                    <SenseMap
-                      key={e.id}
-                      entry={e}
-                      onKnown={() => update((current) => markKnown(current, e.id))}
-                      onRemove={() => update((current) => remove(current, e.id))}
-                      onRetry={() => update((current) => ({ ...current, activeBookId: e.bookId }))}
-                    />
-                  ))}
-                </div>
+                <ul className="flex flex-col gap-2.5">
+                  {entries.map((e) => {
+                    const card = (
+                      <SenseMap
+                        entry={e}
+                        onKnown={() => update((current) => markKnown(current, e.id))}
+                        onRemove={() => update((current) => remove(current, e.id))}
+                        onRetry={() => update((current) => ({ ...current, activeBookId: e.bookId }))}
+                      />
+                    );
+                    // Kata yang masih diproses atau gagal sudah pendek dengan
+                    // sendirinya, dan justru butuh dibaca segera. Yang dilipat
+                    // hanya kartu makna yang panjang. Tampilan terfokus selalu
+                    // terbuka, karena ke situlah pengguna baru saja diantar.
+                    if (e.status !== 'done' || !e.result?.candidates?.[0]) {
+                      return <li key={e.id}>{card}</li>;
+                    }
+                    if (focused) return <li key={e.id}>{card}</li>;
+                    return (
+                      <WordRow key={e.id} entry={e} open={open.includes(e.id)} onToggle={() => toggle(e.id)}>
+                        {card}
+                      </WordRow>
+                    );
+                  })}
+                </ul>
               </section>
             );
           })}
 
-          {!focused && all.length > 0 && all.filter(activeFilter.match).length === 0 && (
+          {!focused && scoped.length > 0 && shown.length === 0 && (
             <div className="card flex flex-col items-center gap-3 p-8 text-center">
               <p className="text-muted text-sm">Belum ada kata di saringan ini.</p>
               <button onClick={() => setFilter('semua')} className="btn btn-ghost">
@@ -211,9 +308,9 @@ function KataContent() {
             </div>
           )}
 
-          {!focused && all.length === 0 && (
+          {!focused && scoped.length === 0 && (
             <div className="card flex flex-col items-center gap-3 p-8 text-center">
-              <p className="font-medium">Koleksinya masih kosong</p>
+              <p className="font-medium">{book ? 'Buku ini belum punya kata' : 'Koleksinya masih kosong'}</p>
               <p className="text-muted text-sm leading-relaxed">
                 Foto satu halaman, tandai kata yang bikin kamu berhenti, terus lanjut baca.
               </p>
@@ -224,16 +321,16 @@ function KataContent() {
           )}
         </div>
 
-        {!focused && all.length > 0 && (
+        {!focused && scoped.length > 0 && (
           <aside aria-label="Ringkasan koleksi" className="top-6 hidden flex-col gap-5 lg:sticky lg:flex">
             <div className="card flex flex-col gap-3 p-4">
               <p className="eyebrow">Ringkasan</p>
               <dl className="flex flex-col gap-2 text-sm">
                 {[
-                  ['Total kata', s.words],
-                  ['Sudah ada maknanya', s.ready],
-                  ['Menunggu model', s.pending],
-                  ['Pernah lolos review', s.passed],
+                  ['Total kata', scoped.length],
+                  ['Sudah ada maknanya', scoped.filter((e) => e.status === 'done' && !e.known).length],
+                  ['Menunggu model', scoped.filter((e) => e.status === 'pending').length],
+                  ['Pernah lolos review', scoped.filter((e) => e.passedReview === true).length],
                 ].map(([label, value]) => (
                   <div key={label as string} className="flex items-baseline justify-between gap-3">
                     <dt className="text-muted">{label}</dt>
@@ -243,24 +340,12 @@ function KataContent() {
               </dl>
             </div>
 
-            {visibleBooks.length > 1 && (
-              <div className="flex flex-col gap-2">
-                <p className="eyebrow px-1">Loncat ke buku</p>
-                <ul className="flex flex-col gap-1">
-                  {visibleBooks.map((b) => (
-                    <li key={b.id}>
-                      <a
-                        href={`#buku-${b.id}`}
-                        className="hover:bg-foreground/[0.04] flex items-center gap-2.5 rounded-xl px-2 py-2 text-sm transition-colors"
-                      >
-                        <BookSpine title={b.title} size="sm" />
-                        <span className="min-w-0 flex-1 truncate">{b.title}</span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            <Link
+              href={book ? `/review?latihan=1&buku=${book.id}` : '/review?latihan=1'}
+              className="btn btn-ghost w-full"
+            >
+              Latihan kata di sini
+            </Link>
           </aside>
         )}
       </div>

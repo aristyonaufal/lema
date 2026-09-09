@@ -84,7 +84,7 @@ async function preparePhoto(page: Page, words: string[]) {
   await page.locator('input[type="file"]').setInputFiles(photo);
   await expect(page.getByRole('img', { name: 'halaman', exact: true })).toBeVisible();
   for (const word of words) {
-    await page.getByPlaceholder('Kata yang bikin kamu berhenti').fill(word);
+    await page.getByPlaceholder('Kata atau frasa yang bikin berhenti').fill(word);
     await page.getByRole('button', { name: 'Tambah', exact: true }).click();
   }
   await expect(page.getByRole('button', { name: 'Simpan, lanjut baca' })).toBeEnabled();
@@ -100,6 +100,18 @@ async function openCollection(page: Page) {
   await page.getByRole('link', { name: /^Koleksi kata/ }).click();
   await expect(page).toHaveURL('/kata');
   await expect(page.getByRole('heading', { name: 'Koleksi kata', exact: true })).toBeVisible();
+}
+
+// Koleksi menampilkan kata sebagai baris ringkas yang bisa dibuka. Kartu makna
+// penuh baru ada di DOM setelah barisnya diketuk, jadi pengujian yang butuh isi
+// kartunya harus membukanya dulu. Baris yang ringkas sendiri sudah memuat kata
+// dan arti singkatnya, jadi banyak pemeriksaan cukup memakai baris itu.
+function row(page: Page, word: string) {
+  return page.getByRole('button', { name: word });
+}
+
+async function openWord(page: Page, word: string) {
+  await row(page, word).click();
 }
 
 function card(page: Page, word: string) {
@@ -137,10 +149,10 @@ test('lookup finishes after client navigation and survives refresh', async ({ pa
   await expect(page.getByText('Sedang diproses: bank', { exact: true })).toBeVisible();
 
   await lookup.reply(0, [result('bank')]);
-  await expect(card(page, 'bank')).toContainText('Makna uji bank');
+  await expect(row(page, 'bank')).toContainText('Makna uji bank');
   await expect.poll(async () => (await savedDb(page)).entries[0]?.status).toBe('done');
   await page.reload();
-  await expect(card(page, 'bank')).toContainText('Makna uji bank');
+  await expect(row(page, 'bank')).toContainText('Makna uji bank');
   expect(lookup.calls).toHaveLength(1);
 });
 
@@ -160,6 +172,7 @@ test('reverse completion preserves both batches and edits made in collection', a
   await submit(page, ['bank']);
   await expect.poll(() => lookup.calls.length).toBe(1);
   await openCollection(page);
+  await openWord(page, 'steady');
   await card(page, 'steady').getByRole('button', { name: 'Aku udah tahu kata ini' }).click();
   await expect(card(page, 'steady')).toContainText('Ditandai sudah tahu');
 
@@ -171,11 +184,11 @@ test('reverse completion preserves both batches and edits made in collection', a
   await expect(page.getByText('Sedang diproses: bright', { exact: true })).toBeVisible();
 
   await lookup.reply(1, [result('bright')]);
-  await expect(card(page, 'bright')).toBeVisible();
+  await expect(row(page, 'bright')).toBeVisible();
   await expect(page.getByText('Sedang diproses: bank', { exact: true })).toBeVisible();
-  await expect(card(page, 'steady')).toContainText('Ditandai sudah tahu');
+  await expect(row(page, 'steady')).toContainText('Sudah tahu');
   await lookup.reply(0, [result('bank')]);
-  await expect(card(page, 'bank')).toBeVisible();
+  await expect(row(page, 'bank')).toBeVisible();
   await expect.poll(async () => (await savedDb(page)).entries.map(({ word, status, known }) =>
     ({ word, status, known }),
   )).toEqual([
@@ -185,9 +198,9 @@ test('reverse completion preserves both batches and edits made in collection', a
   ]);
 
   await page.reload();
-  await expect(card(page, 'bank')).toBeVisible();
-  await expect(card(page, 'bright')).toBeVisible();
-  await expect(card(page, 'steady')).toContainText('Ditandai sudah tahu');
+  await expect(row(page, 'bank')).toBeVisible();
+  await expect(row(page, 'bright')).toBeVisible();
+  await expect(row(page, 'steady')).toContainText('Sudah tahu');
   expect(lookup.calls).toHaveLength(2);
 });
 
@@ -212,7 +225,7 @@ test('partial lookup matches normalized words rather than response positions', a
   await openCollection(page);
   await lookup.reply(0, [result(' BRIGHT ')]);
 
-  await expect(page.getByRole('heading', { name: 'BRIGHT', exact: true })).toHaveCount(1);
+  await expect(row(page, 'BRIGHT')).toHaveCount(1);
   await expect.poll(async () => (await savedDb(page)).entries.map(({ word, status, result: value }) =>
     ({ word, status, resultWord: value?.word }),
   )).toEqual([
@@ -281,7 +294,7 @@ test('failure to save the queue keeps the selected photo and words without an AP
   await page.getByRole('button', { name: 'Simpan, lanjut baca' }).click();
   await lookup.reply(0, [result('bank')]);
   await openCollection(page);
-  await expect(card(page, 'bank')).toBeVisible();
+  await expect(row(page, 'bank')).toBeVisible();
   await expect.poll(async () => (await savedDb(page)).entries.length).toBe(1);
   expect(lookup.calls).toHaveLength(1);
 });
@@ -295,13 +308,13 @@ test('failed result persistence stays visible and retries saving without fetchin
   await failStorageWrites(page, true);
   await lookup.reply(0, [result('bank')]);
 
-  await expect(card(page, 'bank')).toContainText('Makna uji bank');
+  await expect(row(page, 'bank')).toContainText('Makna uji bank');
   await expect(page.getByRole('alert').filter({ hasText: /simpan|penyimpanan/i })).toBeVisible();
   expect((await savedDb(page)).entries[0]?.status).toBe('pending');
   await page.getByRole('link', { name: 'Lanjut baca', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Coba simpan lagi', exact: true })).toBeVisible();
   await openCollection(page);
-  await expect(card(page, 'bank')).toContainText('Makna uji bank');
+  await expect(row(page, 'bank')).toContainText('Makna uji bank');
 
   await failStorageWrites(page, false);
   await page.getByRole('button', { name: 'Coba simpan lagi', exact: true }).click();
@@ -309,7 +322,7 @@ test('failed result persistence stays visible and retries saving without fetchin
   await expect.poll(async () => (await savedDb(page)).entries[0]?.status).toBe('done');
   expect(lookup.calls).toHaveLength(1);
   await page.reload();
-  await expect(card(page, 'bank')).toContainText('Makna uji bank');
+  await expect(row(page, 'bank')).toContainText('Makna uji bank');
 });
 
 test('case variants are submitted once while keeping the first spelling', async ({ page, lookup }) => {
@@ -322,7 +335,7 @@ test('case variants are submitted once while keeping the first spelling', async 
   expect(lookup.calls[0].request().postData()).toContain('["Bank"]');
   await openCollection(page);
   await lookup.reply(0, [result('bank')]);
-  await expect(card(page, 'bank')).toBeVisible();
+  await expect(row(page, 'bank')).toBeVisible();
   await expect.poll(async () => (await savedDb(page)).entries.map(({ word, status }) =>
     ({ word, status }),
   )).toEqual([{ word: 'Bank', status: 'done' }]);
@@ -402,7 +415,9 @@ test('open now shows only the submitted batch and repeated clicks send it once',
   await expect(page.locator('article')).toHaveCount(2);
   await page.getByRole('link', { name: 'Lihat semua kata', exact: true }).click();
   await expect(page).toHaveURL('/kata');
-  await expect(page.locator('article')).toHaveCount(3);
+  await expect(row(page, 'bank')).toHaveCount(2);
+  await expect(row(page, 'bright')).toHaveCount(1);
+  await expect(page.locator('article')).toHaveCount(0);
   expect(lookup.calls).toHaveLength(1);
 });
 
@@ -480,7 +495,7 @@ test('missing selected entries show an explanation without opening unrelated res
   await expect(page.getByText(/Kata yang kamu buka tidak ada di koleksi/)).toBeVisible();
   await expect(page.locator('article')).toHaveCount(0);
   await page.getByRole('link', { name: 'Lihat semua kata', exact: true }).click();
-  await expect(card(page, 'bank')).toBeVisible();
+  await expect(row(page, 'bank')).toBeVisible();
 
   await page.goto('/kata?entry=existing-bank&entry=missing&entry=existing-bank');
   await expect(page.getByText(/Sebagian kata yang kamu buka sudah tidak ada/)).toBeVisible();

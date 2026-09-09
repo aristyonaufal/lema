@@ -11,6 +11,9 @@ import { StatusChip, SectionHeader, type EntryTone } from '@/components/ui';
 import { byBook, type Entry } from '@/lib/store';
 
 const MAX_WORDS = 5;
+// Panjang wajar untuk satu kata atau frasa. Di atas ini yang diketik hampir
+// pasti kalimat, dan kalimat bukan sesuatu yang bisa dijawab oleh prompt ini.
+const MAX_LEN = 60;
 
 function toneOf(entry: Entry): EntryTone {
   if (entry.status === 'pending') return 'pending';
@@ -55,7 +58,8 @@ export default function Capture() {
 
   function addWord() {
     const w = draft.trim();
-    if (!w || words.length >= MAX_WORDS || words.some((word) => word.toLowerCase() === w.toLowerCase())) return;
+    if (!w || w.length > MAX_LEN) return;
+    if (words.length >= MAX_WORDS || words.some((word) => word.toLowerCase() === w.toLowerCase())) return;
     setWords([...words, w]);
     setDraft('');
   }
@@ -99,17 +103,27 @@ export default function Capture() {
   }
 
   const canSubmit = Boolean(file) && words.length > 0;
+  const tooLong = draft.trim().length > MAX_LEN;
 
   return (
     <main className="page flex flex-1 flex-col gap-6 pt-6">
-      <header className="flex items-center gap-3">
+      {/* Buku aktif dibungkus kartu supaya terbaca sebagai satu bidang kendali,
+          dan tombol gantinya berukuran tombol sungguhan. Versi sebelumnya cuma
+          pil kecil bertuliskan "Ganti" di pojok, dan tidak ada yang menduga itu
+          jalan menuju rak buku. */}
+      <header className="card flex items-center gap-3 p-3">
         <BookSpine title={book.title} />
         <div className="min-w-0 flex-1">
           <p className="eyebrow">Lagi baca</p>
-          <h1 className="font-display truncate text-[1.75rem] leading-tight tracking-tight">{book.title}</h1>
+          <h1 className="font-display truncate text-[1.5rem] leading-tight tracking-tight sm:text-[1.75rem]">
+            {book.title}
+          </h1>
         </div>
-        <button onClick={() => setChoosing(true)} className="chip shrink-0">
-          Ganti
+        <button onClick={() => setChoosing(true)} className="btn btn-ghost shrink-0 gap-2 px-3.5">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-4 w-4">
+            <path d="M4 8h13l-3-3M20 16H7l3 3" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          Ganti buku
         </button>
       </header>
 
@@ -166,7 +180,7 @@ export default function Capture() {
         <div className="flex flex-col gap-6">
           <section aria-label="Kata yang ditandai" className="flex flex-col gap-3">
             <div className="flex items-baseline justify-between gap-3">
-              <p className="eyebrow">Tandai kata</p>
+              <p className="eyebrow">Tandai kata atau frasa</p>
               <p className="text-faint text-xs tabular-nums">{words.length} dari {MAX_WORDS}</p>
             </div>
 
@@ -175,18 +189,34 @@ export default function Capture() {
                 value={draft}
                 onChange={(e) => setDraft(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && addWord()}
-                placeholder="Kata yang bikin kamu berhenti"
-                aria-label="Kata yang bikin kamu berhenti"
+                placeholder="Kata atau frasa yang bikin berhenti"
+                aria-label="Kata atau frasa yang bikin berhenti"
                 autoComplete="off"
                 autoCapitalize="none"
                 spellCheck={false}
                 disabled={words.length >= MAX_WORDS}
                 className="border-line bg-surface focus:border-accent min-h-12 flex-1 rounded-xl border px-3.5 text-base outline-none disabled:opacity-50"
               />
-              <button onClick={addWord} disabled={!draft.trim() || words.length >= MAX_WORDS} className="btn btn-ghost px-4">
+              <button
+                onClick={addWord}
+                disabled={!draft.trim() || tooLong || words.length >= MAX_WORDS}
+                className="btn btn-ghost px-4"
+              >
                 Tambah
               </button>
             </div>
+
+            {/* Batas panjang bukan soal teknis. Prompt-nya dibangun untuk memilih
+                makna satu kata atau frasa dari beberapa kemungkinan, jadi kalimat
+                penuh akan menghasilkan kartu makna yang isinya tidak masuk akal.
+                Lebih baik dikatakan sekarang daripada dijawab asal. */}
+            {tooLong && (
+              <p role="status" className="text-warn text-xs leading-relaxed">
+                Kepanjangan buat satu tandaan. Lema memetakan makna kata atau frasa,
+                belum bisa menjelaskan kalimat utuh. Tandai bagian yang bikin kamu
+                berhenti aja.
+              </p>
+            )}
 
             {words.length > 0 && (
               <ul className="flex flex-wrap gap-2">
@@ -207,8 +237,10 @@ export default function Capture() {
               </ul>
             )}
 
-            <p className="text-muted text-xs">
-              Maksimal {MAX_WORDS} kata per halaman. Modelnya butuh beberapa detik buat baca halamannya.
+            <p className="text-muted text-xs leading-relaxed">
+              Boleh satu kata, boleh frasa utuh seperti <span lang="en">in the long run</span>.
+              Maksimal {MAX_WORDS} tandaan per halaman, dan modelnya butuh beberapa detik buat
+              baca halamannya.
             </p>
           </section>
 

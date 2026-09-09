@@ -1,11 +1,20 @@
 'use client';
 
-import { Fragment, useState } from 'react';
+import { Fragment, Suspense, useState } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { useDb } from '@/lib/useDb';
 import { findTextRanges, sentenceSegments } from '@/lib/text-matches';
 import { ProgressBar } from '@/components/ui';
-import { due, grade, markKnown, LADDER } from '@/lib/store';
+import { due, grade, markKnown, practicePool, LADDER } from '@/lib/store';
+
+export default function Review() {
+  return (
+    <Suspense fallback={<main className="page page-narrow text-muted flex-1 pt-10 text-sm">Menyiapkan review...</main>}>
+      <ReviewSession />
+    </Suspense>
+  );
+}
 
 function nextInterval(stage: number, remembered: boolean): string {
   const next = remembered ? Math.min(stage + 1, LADDER.length - 1) : 0;
@@ -13,10 +22,22 @@ function nextInterval(stage: number, remembered: boolean): string {
   return days === 1 ? 'besok' : `${days} hari lagi`;
 }
 
-export default function Review() {
+// Dua mode di satu layar.
+//
+// Review biasa hanya mengambil kata yang jatuh tempo, dan menggeser jadwalnya.
+// Latihan mengambil kata mana pun yang sudah punya makna, kapan saja, dan
+// sengaja TIDAK menyentuh jadwal maupun riwayat "pernah lolos review". Kalau
+// latihan ikut menggeser jadwal, angka progres berubah menjadi ukuran seberapa
+// sering seseorang menekan tombol, bukan seberapa lama dia masih ingat.
+function ReviewSession() {
+  const params = useSearchParams();
   const { db, update, ready } = useDb();
   const [shown, setShown] = useState(false);
-  const [count, setCount] = useState(0);
+  const [seen, setSeen] = useState<string[]>([]);
+
+  const practice = params.get('latihan') === '1';
+  const bookParam = params.get('buku');
+
   if (!ready) {
     return (
       <main className="page page-narrow flex-1 pt-10">
@@ -26,19 +47,24 @@ export default function Review() {
     );
   }
 
-  const queue = due(db);
+  const book = bookParam ? db.books.find((b) => b.id === bookParam) ?? null : null;
+  const pool = practice ? practicePool(db, book?.id ?? null) : due(db);
+  const queue = pool.filter((e) => !seen.includes(e.id));
   const entry = queue[0];
+  const count = seen.length;
 
   if (!entry) {
-    // Antreannya kosong, jadi semua kata yang tersisa memang belum jatuh tempo.
-    // Tanggalnya dibaca dari data yang tersimpan, bukan dari jam saat render,
-    // supaya hasilnya sama setiap kali komponen digambar ulang.
+    // Antreannya kosong. Untuk review biasa itu berarti belum ada yang jatuh
+    // tempo, jadi tanggal terdekatnya disebutkan. Tanggal itu dibaca dari data
+    // yang tersimpan, bukan dari jam saat render, supaya hasilnya sama setiap
+    // kali komponen digambar ulang.
     const upcoming = db.entries
       .filter((e) => e.status === 'done' && !e.known && e.result?.new_sentence)
       .sort((a, b) => a.dueAt - b.dueAt)[0];
     const when = upcoming
       ? new Date(upcoming.dueAt).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long' })
       : '';
+    const canPractice = practicePool(db).length > 0;
 
     return (
       <main className="page page-narrow flex flex-1 flex-col items-center gap-4 pt-20 text-center">
@@ -48,25 +74,40 @@ export default function Review() {
           </svg>
         </span>
         <h1 className="font-display text-[2rem] leading-tight tracking-tight">
-          {count > 0 ? 'Review beres' : 'Belum ada yang jatuh tempo'}
+          {count > 0
+            ? practice ? 'Latihan beres' : 'Review beres'
+            : practice ? 'Belum ada yang bisa dilatih' : 'Belum ada yang jatuh tempo'}
         </h1>
         <p className="text-muted text-sm leading-relaxed">
           {count > 0
-            ? `${count} kata selesai hari ini. Sisanya nanti sesuai jadwalnya.`
-            : upcoming
-              ? `Kata berikutnya nunggu sampai ${when}. Sekarang lanjut baca aja dulu.`
-              : 'Simpan beberapa kata dulu, nanti Lema yang mengingatkan kamu.'}
+            ? practice
+              ? `${count} kata dilatih. Jadwal review aslinya nggak berubah.`
+              : `${count} kata selesai hari ini. Sisanya nanti sesuai jadwalnya.`
+            : practice
+              ? book
+                ? `Buku ${book.title} belum punya kata yang siap dilatih.`
+                : 'Simpan beberapa kata dulu, baru ada yang bisa dilatih.'
+              : upcoming
+                ? `Kata berikutnya nunggu sampai ${when}. Kalau nggak sabar, kamu bisa latihan sekarang tanpa nunggu jadwal.`
+                : 'Simpan beberapa kata dulu, nanti Lema yang mengingatkan kamu.'}
         </p>
-        <Link href="/baca" className="btn btn-primary mt-2">
-          Lanjut baca
-        </Link>
+        <div className="mt-2 flex flex-wrap items-center justify-center gap-2">
+          {!practice && canPractice && (
+            <Link href="/review?latihan=1" className="btn btn-primary">
+              Latihan sekarang
+            </Link>
+          )}
+          <Link href="/baca" className={!practice && canPractice ? 'btn btn-ghost' : 'btn btn-primary'}>
+            Lanjut baca
+          </Link>
+        </div>
       </main>
     );
   }
 
   const r = entry.result!;
   const main = r.candidates[0];
-  const book = db.books.find((b) => b.id === entry.bookId);
+  const entryBook = db.books.find((b) => b.id === entry.bookId);
   const total = queue.length + count;
   const target = r.lemma || r.word;
 
@@ -81,9 +122,11 @@ export default function Review() {
   const segments = sentenceSegments(r.new_sentence, ranges, []);
 
   function answer(remembered: boolean) {
-    if (!update((current) => grade(current, entry.id, remembered))) return;
+    // Latihan tidak menulis apa pun ke penyimpanan, jadi tidak ada yang bisa
+    // gagal disimpan dan tidak ada jadwal yang bergeser.
+    if (!practice && !update((current) => grade(current, entry.id, remembered))) return;
     setShown(false);
-    setCount((c) => c + 1);
+    setSeen((current) => [...current, entry.id]);
   }
 
   return (
@@ -91,7 +134,7 @@ export default function Review() {
       <header className="flex flex-col gap-3">
         <div className="flex items-center justify-between gap-3">
           <p className="eyebrow">
-            Review{book ? ` · ${book.title}` : ''}
+            {practice ? 'Latihan' : 'Review'}{entryBook ? ` · ${entryBook.title}` : ''}
           </p>
           <Link href="/" className="text-muted shrink-0 text-sm">
             Nanti aja
@@ -106,6 +149,12 @@ export default function Review() {
             {count} / {total}
           </span>
         </div>
+        {practice && (
+          <p className="text-faint text-xs leading-relaxed">
+            Latihan bebas, nggak nunggu jatuh tempo. Jawabanmu di sini nggak menggeser
+            jadwal review dan nggak dihitung sebagai lolos review.
+          </p>
+        )}
       </header>
 
       <section aria-label="Kalimat review" className="card mt-auto flex flex-col gap-4 p-5">
@@ -149,11 +198,15 @@ export default function Review() {
           <div className="grid grid-cols-2 gap-2.5">
             <button onClick={() => answer(false)} className="btn btn-ghost h-14 flex-col gap-0.5">
               Lupa
-              <span className="text-faint text-[0.6875rem] font-normal">ulang {nextInterval(entry.stage, false)}</span>
+              <span className="text-faint text-[0.6875rem] font-normal">
+                {practice ? 'cuma latihan' : `ulang ${nextInterval(entry.stage, false)}`}
+              </span>
             </button>
             <button onClick={() => answer(true)} className="btn btn-primary h-14 flex-col gap-0.5">
               Inget
-              <span className="text-[0.6875rem] font-normal opacity-70">ulang {nextInterval(entry.stage, true)}</span>
+              <span className="text-[0.6875rem] font-normal opacity-70">
+                {practice ? 'cuma latihan' : `ulang ${nextInterval(entry.stage, true)}`}
+              </span>
             </button>
           </div>
 
@@ -161,6 +214,7 @@ export default function Review() {
             onClick={() => {
               if (!update((current) => markKnown(current, entry.id))) return;
               setShown(false);
+              setSeen((current) => [...current, entry.id]);
             }}
             className="btn btn-quiet mx-auto text-sm"
           >

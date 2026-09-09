@@ -4,7 +4,8 @@ Apa yang sudah ditulis, apa yang lagi dikerjakan, dan alat apa saja yang dipakai
 
 > **Posisi sekarang (9 September 2026):** Lanjutan 1–3 selesai, Lanjutan 4 selesai, dan sebagian besar Lanjutan 7 selesai. Aplikasi sudah hidup di `lema-lemon.vercel.app` dan terbukti bisa memanggil model. Pada 9 September alurnya berubah atas permintaan pengguna: makna sekarang **langsung dibuka** saat tombol utama ditekan, dan mode tunda turun menjadi pilihan kedua. Rutenya ikut berubah, `/` menjadi beranda berisi ringkasan progres dan `/baca` menjadi layar foto. Tampilan dibuat responsif: bilah bawah di HP, sidebar kiri dan isi dua kolom mulai lebar laptop. Build, lint, dan 42/42 pengujian browser lulus.  
 > **Perhatian:** perilaku bawaan itu berbeda dari prinsip nomor 1 dan bagian 7 pada PRD. PRD belum diselaraskan; keputusannya ada pada pengguna.  
-> Yang masih terbuka: uji Safari iPhone, deploy perubahan terbaru, kamera langsung, uji akurasi model, serta Lanjutan 5 dan 6.  
+> Revisi lanjutan pada 9 September setelah uji pertama di HP: tombol ganti buku diperbesar, frasa multi kata disebut terang terangan beserta batas panjangnya, koleksi kata jadi daftar ringkas yang baru terbuka saat diketuk, rak buku muncul di sidebar dan menyaring koleksi per buku, serta mode latihan yang tidak menunggu jatuh tempo dan tidak menggeser jadwal. Build, lint, dan 47/47 pengujian lulus.  
+> Yang masih terbuka: slogan belum dipilih, deploy revisi terbaru, uji Safari iPhone, kamera langsung, uji akurasi model, serta Lanjutan 6 dan sisa Lanjutan 5.  
 > Urutan dan kriteria selesai: [Rencana Lanjutan](rencana_lanjutan.md). Riwayat perubahan dan serah terima: [Catatan Pengerjaan](catatan_pengerjaan.md).
 
 Tahap 0–6 di bawah adalah catatan pengerjaan awal. Label selesai pada tahap fondasi mencatat implementasi awal, bukan bukti seluruh persyaratan PRD sudah terpenuhi atau diuji. Untuk pekerjaan berikutnya, ikuti rencana lanjutan di atas.

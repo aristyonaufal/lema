@@ -1,7 +1,7 @@
 # Rencana Lanjutan Lema
 
 Disusun: 7 September 2026. Pelaksana sementara: Codex, melanjutkan pekerjaan Claude.
-Status per 9 September 2026: Lanjutan 1–4 selesai, Lanjutan 7 sebagian besar selesai, bagian pemolesan tampilan pada Lanjutan 8 selesai. Lanjutan 5 dan 6 belum dimulai.
+Status per 9 September 2026: Lanjutan 1–4 selesai, Lanjutan 5 sebagian (mode latihan sudah ada, review otomatis saat aplikasi dibuka belum), Lanjutan 7 sebagian besar selesai, bagian pemolesan tampilan pada Lanjutan 8 selesai. Lanjutan 6 belum dimulai.
 
 ## Keputusan pengguna dan cara kerja
 
@@ -91,7 +91,9 @@ Belum dikerjakan: pembedaan kata terkumpul, masih diproses, dan pernah lolos rev
 
 ## Lanjutan 5 — Alur review harian
 
-Status: belum dimulai. Beranda dan halaman koleksi kini menampilkan pintasan ketika ada kata jatuh tempo, tetapi review masih harus dibuka sendiri oleh pengguna. Butir inti Lanjutan 5, yaitu review yang ditawarkan otomatis saat aplikasi dibuka beserta pilihan "nanti aja", belum dikerjakan.
+Status: **sebagian**. Pada 9 September ditambahkan mode latihan atas permintaan pengguna: `/review?latihan=1`, bisa dipersempit per buku, mengambil kata mana pun tanpa menunggu jatuh tempo dan sengaja tidak menulis apa pun sehingga jadwal tangga 1/3/7/21 hari serta riwayat lolos review tetap utuh. Beranda dan halaman koleksi juga menampilkan pintasan ketika ada kata jatuh tempo.
+
+Butir inti Lanjutan 5 masih belum dikerjakan: review yang ditawarkan **otomatis** saat aplikasi dibuka, beserta pilihan "nanti aja" dan penjagaan agar pengguna tidak terus dialihkan kembali ke review.
 
 **Hasil yang dituju:** kata jatuh tempo ditawarkan otomatis saat aplikasi dibuka, dan pengguna dapat menilai ingatannya sesuai alur PRD.
 

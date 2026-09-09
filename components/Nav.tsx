@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useDb } from '@/lib/useDb';
 import BookSpine from '@/components/BookSpine';
-import { due } from '@/lib/store';
+import { booksByRecent, due } from '@/lib/store';
 
 // Navigasi utama.
 //
@@ -94,8 +94,7 @@ export default function Nav() {
 
   const pending = db.entries.filter((e) => e.status === 'pending').length;
   const dueCount = due(db).length;
-  const active = db.books.find((b) => b.id === db.activeBookId) ?? null;
-  const activeWords = active ? db.entries.filter((e) => e.bookId === active.id).length : 0;
+  const shelf = booksByRecent(db);
 
   const tabs = [
     {
@@ -148,7 +147,10 @@ export default function Nav() {
         </p>
       </div>
 
-      <ul className="mx-auto flex max-w-md items-stretch justify-around px-2 py-1.5 lg:mx-0 lg:max-w-none lg:flex-col lg:gap-1 lg:px-0 lg:py-0">
+      <ul
+        aria-label="Tujuan utama"
+        className="mx-auto flex max-w-md items-stretch justify-around px-2 py-1.5 lg:mx-0 lg:max-w-none lg:flex-col lg:gap-1 lg:px-0 lg:py-0"
+      >
         {tabs.map(({ href, label, name, badge, Icon }) => {
           const on = pathname === href;
           return (
@@ -192,19 +194,38 @@ export default function Nav() {
         })}
       </ul>
 
-      {/* Kaki sidebar: buku yang sedang dibaca, supaya konteksnya selalu terlihat
-          dari layar mana pun. Sengaja bukan tautan, karena mengganti buku sudah
-          punya tempatnya sendiri di beranda dan di layar foto. */}
-      {active && (
-        <div className="border-line mt-auto hidden items-center gap-3 border-t px-2 pt-5 lg:flex">
-          <BookSpine title={active.title} size="sm" />
-          <div className="min-w-0 flex-1">
-            <p className="eyebrow">Lagi baca</p>
-            <p className="mt-0.5 truncate text-sm font-medium">{active.title}</p>
-            <p className="text-faint text-xs tabular-nums">
-              {activeWords === 0 ? 'Belum ada kata' : `${activeWords} kata`}
-            </p>
-          </div>
+      {/* Kaki sidebar: rak buku.
+          Sebelumnya bagian ini cuma menampilkan buku yang sedang dibaca, dan itu
+          mengulang judul yang sudah jadi kepala halaman di layar foto. Sekarang
+          dia jadi jalan pintas: satu ketukan membuka koleksi kata buku itu saja,
+          tanpa perlu masuk ke koleksi lalu mencari bukunya di antara yang lain. */}
+      {shelf.length > 0 && (
+        <div className="border-line mt-auto hidden flex-col gap-2 border-t pt-5 lg:flex">
+          <p className="eyebrow px-2">Rak buku</p>
+          <ul className="flex max-h-64 flex-col gap-0.5 overflow-y-auto">
+            {shelf.map((b) => {
+              const words = db.entries.filter((e) => e.bookId === b.id).length;
+              const reading = b.id === db.activeBookId;
+              return (
+                <li key={b.id}>
+                  <Link
+                    href={{ pathname: '/kata', query: { buku: b.id } }}
+                    aria-label={`Kata dari buku ${b.title}`}
+                    className="hover:bg-foreground/[0.04] flex items-center gap-2.5 rounded-xl px-2 py-2 transition-colors"
+                  >
+                    <BookSpine title={b.title} size="sm" />
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate text-sm font-medium">{b.title}</span>
+                      <span className="text-faint block text-xs">
+                        {words === 0 ? 'Belum ada kata' : `${words} kata`}
+                        {reading ? ' · lagi dibaca' : ''}
+                      </span>
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       )}
     </nav>

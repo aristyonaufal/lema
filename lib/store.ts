@@ -243,3 +243,17 @@ export function due(db: Db, at = Date.now()): Entry[] {
 export function byBook(db: Db, bookId: string): Entry[] {
   return db.entries.filter((e) => e.bookId === bookId).sort((a, b) => b.createdAt - a.createdAt);
 }
+
+// Kata yang boleh dilatih kapan saja. Bedanya dengan due() cuma satu: jatuh
+// tempo diabaikan. Syarat lainnya tetap sama, karena kata yang belum punya
+// makna atau belum punya kalimat contoh memang tidak bisa ditanyakan.
+//
+// Urutannya dari yang paling lama tidak disentuh, bukan diacak. Acak berarti
+// memanggil Math.random saat render, dan hasilnya berubah tiap komponen
+// digambar ulang.
+export function practicePool(db: Db, bookId?: string | null): Entry[] {
+  return db.entries
+    .filter((e) => e.status === 'done' && !e.known && e.result?.new_sentence)
+    .filter((e) => !bookId || e.bookId === bookId)
+    .sort((a, b) => a.dueAt - b.dueAt);
+}

@@ -6,7 +6,7 @@ import { useDb } from '@/lib/useDb';
 import BookSpine, { spineColor } from '@/components/BookSpine';
 import BookPicker from '@/components/BookPicker';
 import { StatusChip, SectionHeader, type EntryTone } from '@/components/ui';
-import { booksByRecent, bookSummary, stats, type Entry } from '@/lib/store';
+import { booksByRecent, bookSummary, practicePool, stats, type Entry } from '@/lib/store';
 
 // Beranda. Sebelumnya alamat ini langsung berupa layar foto, sehingga seluruh
 // aplikasi hanya terlihat sebagai satu kotak unggah dan tidak ada tempat yang
@@ -67,6 +67,7 @@ export default function Beranda() {
   const s = stats(db);
   const active = db.books.find((b) => b.id === db.activeBookId) ?? null;
   const shelf = booksByRecent(db);
+  const canPractice = practicePool(db).length > 0;
   const recent = [...db.entries].sort((a, b) => b.createdAt - a.createdAt).slice(0, 5);
 
   return (
@@ -146,6 +147,14 @@ export default function Beranda() {
                 {s.failed} kata gagal diproses. Lihat dan kirim ulang.
               </Link>
             )}
+
+            {/* Latihan tidak menunggu jatuh tempo, jadi tempatnya bukan di kartu
+                review yang hijau itu. Dia jalan lain, dan sengaja lebih tenang. */}
+            {canPractice && (
+              <Link href="/review?latihan=1" className="btn btn-ghost w-full">
+                Latihan kata kapan aja
+              </Link>
+            )}
           </section>
 
           <section aria-label="Rak buku" className="flex flex-col gap-3">
@@ -167,8 +176,10 @@ export default function Beranda() {
                 const percent = sum.total > 0 ? Math.round((sum.passed / sum.total) * 100) : 0;
                 return (
                   <li key={b.id}>
+                    {/* Menuju koleksi buku ini saja. Di HP tidak ada sidebar,
+                        jadi kartu inilah satu satunya jalan ke sana. */}
                     <Link
-                      href="/kata"
+                      href={{ pathname: '/kata', query: { buku: b.id } }}
                       className="card hover:border-muted flex flex-col gap-2.5 p-3.5 transition-colors"
                     >
                       <span className="flex items-center gap-3.5">

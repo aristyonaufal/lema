@@ -100,7 +100,7 @@ test('pengguna baru langsung ditanya bukunya di beranda', async ({ page }) => {
 
   await expect(page.getByRole('heading', { name: 'Progres bacamu', exact: true })).toBeVisible();
   const nav = page.getByRole('navigation', { name: 'Navigasi utama' });
-  await expect(nav.getByRole('link')).toHaveCount(4);
+  await expect(nav.getByRole('list', { name: 'Tujuan utama' }).getByRole('link')).toHaveCount(4);
   expect((await page.evaluate((key) => JSON.parse(localStorage.getItem(key) ?? 'null'), KEY) as Db).books)
     .toHaveLength(1);
 });
@@ -130,7 +130,7 @@ test('simpan dan lihat makna membawa langsung ke peta makna kata itu', async ({ 
       'base64',
     ),
   });
-  await page.getByPlaceholder('Kata yang bikin kamu berhenti').fill('bank');
+  await page.getByPlaceholder('Kata atau frasa yang bikin berhenti').fill('bank');
   await page.getByRole('button', { name: 'Tambah', exact: true }).click();
 
   await page.getByRole('button', { name: 'Simpan & lihat makna', exact: true }).click();

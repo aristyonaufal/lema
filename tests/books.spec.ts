@@ -51,7 +51,7 @@ test.beforeEach(async ({ page }) => {
 test('memilih buku lama tidak membuat buku kedua', async ({ page }) => {
   await expect(heading(page)).toHaveText('Educated');
 
-  await page.getByRole('button', { name: 'Ganti' }).click();
+  await page.getByRole('button', { name: 'Ganti buku' }).click();
   await expect(page.getByRole('heading', { name: 'Mau lanjut buku yang mana?' })).toBeVisible();
 
   const shelf = page.getByRole('list', { name: 'Buku kamu' });
@@ -65,7 +65,7 @@ test('memilih buku lama tidak membuat buku kedua', async ({ page }) => {
 });
 
 test('judul yang sudah ada melanjutkan buku itu, walau beda huruf besar dan spasi', async ({ page }) => {
-  await page.getByRole('button', { name: 'Ganti' }).click();
+  await page.getByRole('button', { name: 'Ganti buku' }).click();
   await page.getByLabel('Buku baru').fill('  sApIeNs   ');
 
   await expect(page.getByText('Judul ini sudah ada')).toBeVisible();
@@ -78,7 +78,7 @@ test('judul yang sudah ada melanjutkan buku itu, walau beda huruf besar dan spas
 });
 
 test('judul baru membuat buku baru', async ({ page }) => {
-  await page.getByRole('button', { name: 'Ganti' }).click();
+  await page.getByRole('button', { name: 'Ganti buku' }).click();
   await page.getByLabel('Buku baru').fill('Dune');
   await page.getByRole('button', { name: 'Mulai' }).click();
 
@@ -91,7 +91,7 @@ test('judul baru membuat buku baru', async ({ page }) => {
 test('batal kembali ke buku aktif tanpa mengubah koleksi', async ({ page }) => {
   const before = await savedDb(page);
 
-  await page.getByRole('button', { name: 'Ganti' }).click();
+  await page.getByRole('button', { name: 'Ganti buku' }).click();
   await page.getByRole('button', { name: /^Batal, balik ke/ }).click();
 
   await expect(heading(page)).toHaveText('Educated');
@@ -99,7 +99,7 @@ test('batal kembali ke buku aktif tanpa mengubah koleksi', async ({ page }) => {
 });
 
 test('daftar buku menampilkan jumlah kata dan menandai buku yang sedang dibaca', async ({ page }) => {
-  await page.getByRole('button', { name: 'Ganti' }).click();
+  await page.getByRole('button', { name: 'Ganti buku' }).click();
   const shelf = page.getByRole('list', { name: 'Buku kamu' });
 
   await expect(shelf.getByRole('button', { name: /Sapiens/ })).toContainText('2 kata');
