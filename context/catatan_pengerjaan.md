@@ -402,6 +402,73 @@ Setelah versi online benar benar bisa memanggil model: uji kamera di Safari iPho
 - Uji akurasi dengan buku asli belum dilakukan.
 - Kunci API yang sekarang aktif pernah terkirim di luar penyimpanan rahasia dan sebaiknya dicabut lalu dibuat ulang sebelum tautan disebarkan. Pencabutan menuntut pengisian ulang Environment Variable dan satu deploy lagi.
 
+## 8 September 2026 — Claude: perombakan tampilan seluruh layar
+
+**Permintaan pengguna:** perbaiki desain mengikuti dua gambar rujukan aplikasi buku, dan terapkan aturan UI/UX yang baik pada tiap halaman dan alur.
+
+**Status sesi:** selesai. Build produksi, pemeriksaan tipe, lint tanpa error, dan 37/37 pengujian browser lulus, seluruhnya dijalankan di Windows.
+
+### Arah desain
+
+Dari rujukan diambil empat hal: judul serif berkontras tinggi seperti sampul buku, kartu putih di atas kertas hangat, pil hitam sebagai aksi utama, dan sampul berwarna sebagai penanda buku. Lema tidak punya gambar sampul dan tidak mengambilnya dari layanan lain, jadi warna punggung buku diturunkan dari judulnya sendiri; judul yang sama selalu mendapat warna yang sama.
+
+### Perubahan perilaku
+
+- **Navigasi bawah yang menetap.** Sebelumnya tiga tujuan aplikasi hanya berupa tautan teks di tengah halaman, jadi pengguna harus menggulung untuk berpindah dan tidak pernah tahu ada berapa kata yang menunggu. Sekarang ada tiga tab dalam jangkauan jempol, menandai halaman aktif, dan membawa penghitung kata yang sedang diproses serta kata yang jatuh tempo. Bilah ini disembunyikan sebelum ada buku, karena pengguna baru tidak punya isi di dua tab lainnya.
+- **Penyaring koleksi.** Halaman kata punya baris pil: semua, siap dibaca, diproses, gagal, sudah tahu, lengkap dengan jumlahnya. Penyaring yang tidak punya isi tidak ditampilkan.
+- **Pintasan review.** Ketika ada kata jatuh tempo, halaman koleksi menampilkan satu bidang hijau menuju review. Ini belum menggantikan Lanjutan 5, yang meminta review ditawarkan otomatis saat aplikasi dibuka.
+- **Aksi utama di dekat jempol.** Tombol simpan dan buka sekarang berada dalam panel yang menempel di bawah layar pengambilan foto, dan tetap terlihat saat halaman digulung. Saat tombol belum bisa ditekan, ada keterangan apa yang masih kurang, bukan sekadar tombol redup.
+- **Keadaan kosong dan keadaan memuat** punya tampilan sendiri di tiap layar: rangka berkedip saat koleksi dibaca, ajakan yang jelas saat koleksi kosong, dan pada layar review disebutkan tanggal kata berikutnya jatuh tempo.
+- **Keyakinan model ditampilkan sebagai angka** pada kartu makna. Saat model ragu, angka itu hanya muncul pada masing-masing kandidat, tidak di kepala kartu, supaya tidak terbaca sebagai keyakinan keseluruhan.
+- **Kartu gagal diturunkan bobotnya.** Pil hitam disediakan untuk aksi utama satu halaman; sepuluh kata gagal tidak boleh berarti sepuluh pil hitam.
+- **Bahasa halaman diubah dari `en` menjadi `id`.** Isi antarmuka memang Bahasa Indonesia, dan potongan bahasa Inggris di dalamnya sudah menandai dirinya sendiri dengan `lang="en"`.
+
+### Perbaikan bug yang ikut ditemukan
+
+`app/review/page.tsx` membangun `RegExp` langsung dari lemma tanpa meng-escape tanda baca. Lemma seperti `make (out)` akan melempar galat dan mematikan halaman review. Sekarang halaman itu memakai `findTextRanges` dan `sentenceSegments`, pembantu yang sudah dipakai peta makna, sehingga tanda baca aman dan batas kata terjaga. Ini menutup sebagian butir Lanjutan 5 tentang penandaan kata di kalimat review, bukan keseluruhannya.
+
+### File yang diubah
+
+- `app/globals.css`: token warna, bayangan, lengkung, dan blok pakai ulang (kartu, tombol, pil, rak, rangka memuat, baris geser). Ditulis ulang seluruhnya.
+- `app/layout.tsx`: font judul Instrument Serif, `viewport` dengan `viewportFit: cover` supaya `env(safe-area-inset-bottom)` punya nilai di iPhone, pemasangan bilah navigasi, dan `lang="id"`. Geist Mono dilepas karena tidak pernah dipakai.
+- `components/TabBar.tsx` (baru): bilah navigasi bawah beserta penghitungnya.
+- `components/BookSpine.tsx` (baru): punggung buku berwarna dan inisial judul.
+- `components/ui.tsx` (baru): lencana status, judul bagian, batang kemajuan.
+- `app/page.tsx`, `app/kata/page.tsx`, `app/review/page.tsx`, `components/SenseMap.tsx`, `components/DbProvider.tsx`: tata letak, hierarki, dan keadaan kosong. Alur, kontrak data, penyimpanan `lema.v1`, endpoint, dan prompt tidak disentuh.
+- Tidak ada dependensi npm baru. Ikon digambar sebagai SVG sebaris.
+
+### Keputusan teknis dan jebakan yang ditemukan
+
+- **Kelas komponen wajib berada di dalam `@layer components`.** Versi pertama menaruhnya di luar layer mana pun. Aturan tanpa layer mengalahkan seluruh utility Tailwind, sehingga `border-accent` pada buku aktif dan `text-accent` pada label diam-diam tidak berlaku. Ini terlihat hanya setelah tangkapan layar diperiksa, bukan dari build atau tes.
+- **Nama tab tidak boleh memuat kata "foto" atau "ulang".** Nama pertama yang dipakai, "Baca, ambil foto halaman", bertabrakan dengan tautan "Pilih ulang foto" pada kartu gagal: dua tautan dengan nama mirip menyulitkan pembaca layar sekaligus melanggar mode ketat pengujian. Sekarang namanya "Baca, tandai kata baru".
+- **Label status pada daftar kata terbaru adalah bagian dari kontrak pengujian.** "Siap dibuka" dan "Gagal diproses" tidak boleh dipendekkan.
+- Aturan React 19 melarang memanggil `Date.now()` saat render dan melarang `setState` di dalam efek. Keterangan jatuh tempo berikutnya karena itu membaca tanggal dari data yang tersimpan, bukan dari jam.
+- Kartu makna tetap memakai struktur DOM yang sama: satu `article` per hasil, satu `blockquote` per kalimat asal, `mark` dengan atribut `title` untuk pemicu, dan `q` untuk kutipan. Perubahan tampilan sengaja tidak menyentuh sandaran itu.
+- Membaca panduan Next.js lokal `01-app/03-api-reference/04-functions/generate-viewport.md` dan `01-app/01-getting-started/13-fonts.md` sesuai `AGENTS.md`.
+
+### Verifikasi
+
+- `npx tsc --noEmit`: lulus.
+- `npm run build`: lulus pada Next.js 16.3.4. Pengambilan font Instrument Serif dan Geist berhasil, jadi jalur font yang pada dua sesi sebelumnya belum terverifikasi kini terbukti bekerja di Windows.
+- `npm run lint`: **0 error**, dua peringatan `<img>` lama pada `app/page.tsx` dan `app/lab/lab-client.tsx`.
+- `PLAYWRIGHT_TEST_PRODUCTION=1 npx playwright test`: **37/37 lulus, Chromium, 28,9 detik**. Tidak ada berkas pengujian yang diubah.
+- Pemeriksaan visual pada lebar 390 piksel, tema terang dan gelap, untuk sembilan keadaan: pertama kali pakai, pemilih buku, pengambilan foto, koleksi, peta makna satu makna, peta makna dua kandidat, kata gagal, review, dan review kosong. Tiga masalah ditemukan dan diperbaiki dari pemeriksaan ini: dua batang mendatar bertumpuk pada kepala buku, angka keyakinan yang muncul dua kali pada hasil ambigu, dan kelas komponen yang berada di luar layer.
+
+### Masalah yang masih terbuka
+
+- **Belum diuji di Safari iPhone.** Seluruh pemeriksaan visual memakai Chromium yang meniru lebar telepon. `viewportFit: cover` dan `env(safe-area-inset-bottom)` sudah dipasang untuk bilah navigasi, tetapi hasilnya di perangkat sungguhan belum dilihat.
+- Kamera langsung aktif tetap belum ditambahkan, sesuai keputusan pengguna sebelumnya. Pemilih berkas dipertahankan.
+- Tampilan ini tidak menyentuh akurasi model. Uji akurasi dengan buku asli dan kata dari Threads masih terbuka.
+- Sisa Lanjutan 4, 5, dan 6 tidak dikerjakan pada sesi ini.
+
+### Catatan tentang sesi sebelumnya
+
+Catatan 8 September menyebut penutupan `/lab` dan `/api/models` belum didorong ke repo. Pemeriksaan pada sesi ini menunjukkan commit `5e5d30e` sudah menjadi HEAD dan `main` sejajar dengan `origin/main`, jadi butir itu sudah selesai.
+
+### Pekerjaan berikutnya
+
+Uji tampilan baru di Safari iPhone pada alamat produksi, lalu uji akurasi dengan buku asli. Perubahan sesi ini belum di-commit; keputusan itu ada pada pengguna.
+
 ## Format catatan berikutnya
 
 Gunakan tanggal dan nama pelaksana, lalu jelaskan: permintaan/tujuan, keputusan, file yang diubah beserta alasannya, verifikasi dan hasilnya, masalah yang masih terbuka, serta pekerjaan berikutnya. Tulis "belum diuji" untuk hal yang belum benar-benar diperiksa.

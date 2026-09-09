@@ -139,7 +139,9 @@ Sisa yang belum: menguji jalur Upstash terhadap layanan sungguhan, termasuk saat
 
 ## Lanjutan 8 — Uji kualitas, pemolesan, dan persiapan rilis
 
-Status: belum dimulai. Dikerjakan dalam beberapa sesi kecil bila diperlukan.
+Status: **bagian pemolesan tampilan selesai** pada 8 September 2026 oleh Claude. Seluruh layar dirombak mengikuti rujukan desain yang diberikan pengguna: navigasi bawah dengan penghitung, penyaring koleksi, judul serif, punggung buku berwarna, aksi utama dalam jangkauan jempol, serta keadaan kosong dan keadaan memuat. Build, lint tanpa error, dan 37/37 pengujian lulus; rinciannya di `catatan_pengerjaan.md`.
+
+Sisa Lanjutan 8 belum dikerjakan: uji akurasi, pencatatan metrik, pengukuran waktu proses, uji Safari iPhone, dan bahan demo. Pemeriksaan tampilan sejauh ini memakai Chromium yang meniru lebar telepon, bukan perangkat sungguhan.
 
 - Uji minimal 15 kata sulit dari buku asli dengan target minimal 12 benar, serta minimal 15 kata dari Threads sesuai PRD. Rencana pengumpulan 40 kata di peta awal dapat menjadi kumpulan bahan uji tambahan.
 - Catat hasil benar/salah dan penilaian ambigu secara jujur; uji tiruan tidak menggantikan uji kualitas model.

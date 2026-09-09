@@ -2,9 +2,9 @@
 
 Apa yang sudah ditulis, apa yang lagi dikerjakan, dan alat apa saja yang dipakai. Halaman ini diperbarui tiap ada kemajuan, jadi kamu gak perlu nebak posisi kita di mana.
 
-> **Posisi sekarang (7 September 2026):** Lanjutan 1–3 selesai: penyimpanan saat berpindah halaman, "buka sekarang", dan detail peta makna. Seluruh 25 pengujian browser pada build produksi lulus. Uji akurasi model dan kesiapan rilis masih terbuka.  
-> Pekerjaan berikutnya adalah Lanjutan 4, buku dan progres belajar. Tahap selanjutnya tetap dikerjakan terpisah. Kamera langsung aktif sengaja ditunda pada tahap awal.  
-> Urutan dan kriteria selesai: [Rencana Lanjutan](rencana_lanjutan.md). Riwayat perubahan dan serah terima ke Claude: [Catatan Pengerjaan](catatan_pengerjaan.md).
+> **Posisi sekarang (8 September 2026):** Lanjutan 1–3 selesai, bagian pemilih buku pada Lanjutan 4 selesai, dan sebagian besar Lanjutan 7 selesai. Aplikasi sudah hidup di `lema-lemon.vercel.app` dan terbukti bisa memanggil model. Tampilan seluruh layar dirombak pada 8 September: navigasi bawah, penyaring koleksi, judul serif, punggung buku berwarna, serta keadaan kosong dan memuat. Build, lint, dan 37/37 pengujian browser lulus.  
+> Yang masih terbuka: uji Safari iPhone, kamera langsung, uji akurasi model, sisa Lanjutan 4, serta Lanjutan 5 dan 6.  
+> Urutan dan kriteria selesai: [Rencana Lanjutan](rencana_lanjutan.md). Riwayat perubahan dan serah terima: [Catatan Pengerjaan](catatan_pengerjaan.md).
 
 Tahap 0–6 di bawah adalah catatan pengerjaan awal. Label selesai pada tahap fondasi mencatat implementasi awal, bukan bukti seluruh persyaratan PRD sudah terpenuhi atau diuji. Untuk pekerjaan berikutnya, ikuti rencana lanjutan di atas.
 
@@ -203,7 +203,19 @@ Warna dasar, dan penyesuaian tema terang serta gelap.
 ### `components/` — Bagian Tampilan yang Dipakai Berulang
 
 #### `SenseMap.tsx`
-Kartu peta makna. Kalimat asal, kata pemicu yang disorot, makna terpakai, kotak hati-hati, dan daftar makna lain.
+Kartu peta makna. Kalimat asal, kata pemicu yang disorot, makna terpakai, angka keyakinan, kotak hati-hati, dan daftar makna lain.
+
+#### `TabBar.tsx`
+Navigasi bawah tiga tab, lengkap dengan penghitung kata yang diproses dan yang jatuh tempo.
+
+#### `BookSpine.tsx`
+Punggung buku berwarna. Warnanya diturunkan dari judul, jadi satu buku selalu punya warna yang sama.
+
+#### `ui.tsx`
+Lencana status, judul bagian, dan batang kemajuan yang dipakai lebih dari satu layar.
+
+#### `DbProvider.tsx`
+Pengelola koleksi untuk seluruh halaman, sekaligus pemberitahuan saat penyimpanan browser bermasalah.
 
 ---
 

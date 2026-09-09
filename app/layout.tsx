@@ -1,16 +1,20 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Geist, Instrument_Serif } from "next/font/google";
 import DbProvider from "@/components/DbProvider";
+import TabBar from "@/components/TabBar";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sans = Geist({
+  variable: "--font-sans-face",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Huruf serif berkontras tinggi untuk judul, supaya layarnya terasa seperti
+// halaman buku dan bukan seperti panel aplikasi biasa.
+const display = Instrument_Serif({
+  variable: "--font-display-face",
   subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -18,13 +22,28 @@ export const metadata: Metadata = {
   description: "Baca buku Inggris tanpa berhenti tiap ketemu kata yang maknanya ambigu.",
 };
 
+// viewportFit cover diperlukan agar env(safe-area-inset-bottom) punya nilai di
+// iPhone, sehingga bilah navigasi bawah tidak tertutup garis beranda.
+export const viewport: Viewport = {
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f1efe9" },
+    { media: "(prefers-color-scheme: dark)", color: "#121110" },
+  ],
+};
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      lang="id"
+      className={`${sans.variable} ${display.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col"><DbProvider>{children}</DbProvider></body>
+      <body className="flex min-h-full flex-col">
+        <DbProvider>
+          {children}
+          <TabBar />
+        </DbProvider>
+      </body>
     </html>
   );
 }
