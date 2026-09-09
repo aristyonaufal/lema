@@ -469,6 +469,85 @@ Catatan 8 September menyebut penutupan `/lab` dan `/api/models` belum didorong k
 
 Uji tampilan baru di Safari iPhone pada alamat produksi, lalu uji akurasi dengan buku asli. Perubahan sesi ini belum di-commit; keputusan itu ada pada pengguna.
 
+## 9 September 2026 — Claude: alur langsung, beranda baru, dan tampilan responsif
+
+**Permintaan pengguna:** tiga hal sekaligus. Pertama, makna ditampilkan langsung saat tombol simpan ditekan, sementara review tetap seperti semula. Kedua, tampilan dibuat responsif, karena versi yang ada terasa seperti aplikasi HP yang dipaksa dibuka di laptop. Ketiga, belum ada dashboard utama, sehingga aplikasinya tampil terlalu sederhana.
+
+**Status sesi:** selesai. Build produksi, pemeriksaan tipe, lint tanpa error, dan 42/42 pengujian browser lulus, seluruhnya dijalankan di Windows.
+
+### Keputusan pengguna pada sesi ini
+
+Tiga pertanyaan diajukan sebelum menulis kode, karena jawabannya mengubah bentuk pekerjaan:
+
+1. **Mode tunda dipertahankan sebagai pilihan kedua.** Tombol utama menjadi "Simpan & lihat makna", tombol "Simpan, lanjut baca" turun menjadi tombol sekunder. Pengguna memilih ini di atas pilihan menghapus mode tunda sepenuhnya.
+2. **Beranda menjadi dashboard, layar foto pindah ke `/baca`.**
+3. **Sidebar kiri di laptop**, isi dua kolom. Bilah bawah dipertahankan di HP.
+
+### Penyimpangan dari PRD yang perlu dicatat
+
+Prinsip nomor 1 pada PRD berbunyi "baca dulu, jawab belakangan", dan bagian 7 menyebut aplikasi memproses di latar **tanpa menampilkan jawaban**. Setelah perubahan ini, perilaku bawaannya kebalikan dari itu. Mode tunda masih ada dan masih diuji, tetapi bukan lagi jalur utama. PRD sengaja tidak ikut diubah pada sesi ini; keputusan menyelaraskannya ada pada pengguna, dan sebaiknya diputuskan sebelum portfolio dikirim supaya dokumen dan aplikasi tidak bercerita berbeda.
+
+Catatan teknis yang menyertai: makna tidak pernah benar benar instan, karena modelnya butuh beberapa detik membaca foto. Yang "langsung" adalah perpindahan layarnya. Peta makna terbuka seketika dengan keadaan sedang diproses, lalu terisi sendiri.
+
+### Perubahan perilaku
+
+- **Rute baru.** `/` menjadi beranda, `/baca` menjadi layar foto. Pengguna yang belum punya buku tetap langsung bertemu pertanyaan judul buku, sekarang di beranda.
+- **Beranda.** Empat angka ringkasan (kata terkumpul, siap dibaca, jatuh tempo, lolos review), tombol besar menuju layar foto, pintasan review saat ada yang jatuh tempo, keterangan kata yang sedang diproses atau gagal, rak buku dengan persen kemajuan, dan daftar kata terbaru.
+- **Kemajuan buku diukur dari kata yang pernah lolos review**, bukan dari kata yang maknanya sudah ada. Punya arti belum berarti hafal.
+- **Navigasi punya empat tujuan** dan berubah bentuk: bilah bawah di HP, sidebar kiri mulai lebar 1024 piksel. Sidebar membawa nama aplikasi dan buku yang sedang dibaca.
+- **Wadah halaman tumbuh bertahap**, 32rem di HP, 44rem mulai 640 piksel, 64rem mulai 1024 piksel. Sebelumnya tiap layar mengunci dirinya di 28rem atau 42rem, dan itu penyebab utama tampilan terasa seperti aplikasi HP yang dilebarkan.
+- **Layar foto jadi dua kolom di laptop:** foto di kiri, penandaan kata dan aksi di kanan. Panel aksi berhenti melayang begitu tidak lagi menempel di tepi bawah.
+- **Koleksi jadi dua kolom di laptop.** Kolom kanan berisi ringkasan angka dan pintasan loncat ke buku; sengaja tidak mengulang isi kolom kiri.
+- **Tautan "Kembali" pada koleksi diganti "Lanjut baca"** dan mengarah ke `/baca`. Dengan navigasi empat tujuan, label "Kembali" tidak lagi punya arti yang jelas.
+
+### Fondasi data yang ikut ditambahkan
+
+`Entry` mendapat `passedReview?: boolean`, dan `grade()` hanya pernah mengubahnya dari false ke true. Menjawab "lupa" menurunkan jadwal ke anak tangga pertama tetapi tidak menghapus riwayat bahwa kata itu pernah lolos. Ini butir Lanjutan 4 yang sebelumnya belum dikerjakan, dan dikerjakan sekarang karena tanpa itu dashboard tidak punya angka kemajuan yang jujur; satu satunya alternatif adalah memakai penanda "sudah tahu" yang diisi manual oleh pengguna.
+
+Kompatibilitas data lama: entri tanpa penanda ini dihitung belum pernah lolos. Riwayat itu memang tidak pernah disimpan, jadi tidak ditebak dari tanggal atau dari `stage`.
+
+### File yang diubah
+
+- `app/page.tsx`: ditulis ulang menjadi beranda.
+- `app/baca/page.tsx` (baru): layar foto, dipindah dari `app/page.tsx`, ditambah tombol utama baru dan tata letak dua kolom.
+- `components/BookPicker.tsx` (baru): pemilih buku dipisah dari layar foto, karena sekarang dipakai juga oleh beranda.
+- `components/Nav.tsx` (baru, menggantikan `TabBar.tsx`): satu elemen `nav` yang berubah bentuk, bukan dua yang saling disembunyikan.
+- `components/Shell.tsx` (baru): memutuskan kapan navigasi muncul, lalu menyediakan penahan tinggi di HP atau jarak kiri di laptop.
+- `app/layout.tsx`: memakai `Shell`.
+- `app/globals.css`: kelas `.page` dan `.page-narrow`, plus `--tab-h` yang dinolkan mulai lebar laptop.
+- `app/kata/page.tsx`, `app/review/page.tsx`, `components/SenseMap.tsx`: wadah baru, dua kolom, dan tautan yang mengikuti rute baru.
+- `lib/store.ts`: `passedReview`, `BookSummary.passed`, dan `stats()` sebagai satu satunya sumber angka beranda.
+- `tests/dashboard.spec.ts` (baru): lima pengujian.
+- `tests/storage.spec.ts`, `tests/books.spec.ts`: menyesuaikan rute dan nama tombol.
+
+### Keputusan teknis dan jebakan yang ditemukan
+
+- **Satu elemen nav, bukan dua.** Menyembunyikan salah satu dengan CSS tetap meninggalkan keduanya di DOM: dua landmark bagi pembaca layar, dan dua tautan bernama sama yang membuat pengujian ambigu.
+- **Baris grid ikut meregang.** Pada layar foto, grid dengan `flex-1` membuat barisnya memanjang mengisi sisa tinggi layar, dan di lebar tablet muncul lubang kosong sekitar 150 piksel antara catatan privasi dan bagian penandaan kata. Ditutup dengan `content-start`. Ini tidak terlihat di HP maupun laptop, hanya di lebar antara keduanya.
+- **Entri berstatus "diproses" yang tersimpan selalu dipulihkan menjadi galat** saat aplikasi dimuat, karena fotonya tidak ikut disimpan. Pengujian beranda yang pertama ditulis mengabaikan hal ini dan menuntut penghitung "sedang diproses" yang tidak akan pernah muncul. Pengujiannya yang diperbaiki, bukan aplikasinya.
+- **Judul buku aktif kini muncul dua kali di layar foto** pada lebar laptop: sekali sebagai judul halaman, sekali di kaki sidebar. Ini membuat satu pengujian lama gagal karena pencarian teks polos menemukan dua elemen. Pengujiannya diarahkan ke judul halaman. Pengulangannya sendiri dibiarkan, karena sidebar memang bertugas menunjukkan konteks dari layar mana pun, dan pengulangan itu hanya terjadi di satu rute.
+- Kartu makna tidak disusun dua kolom. Setelah sidebar dan kolom kanan mengambil bagiannya, satu kartu tinggal sekitar 350 piksel, dan itu terlalu sempit untuk kalimat asal beserta sorotannya.
+
+### Verifikasi
+
+- `npx tsc --noEmit`: lulus.
+- `npm run build`: lulus, delapan rute termasuk `/baca` yang baru.
+- `npm run lint`: **0 error**, dua peringatan `<img>` lama yang sudah ada sebelum sesi ini.
+- `PLAYWRIGHT_TEST_PRODUCTION=1 npx playwright test`: **42/42 lulus, Chromium, 26,8 detik**. Terdiri dari 37 pengujian sebelumnya ditambah lima pengujian beranda dan alur baru.
+- Pemeriksaan visual pada tiga lebar (390, 820, 1440 piksel), tema terang dan gelap, untuk beranda, layar foto, koleksi, review, dan layar pertama pengguna baru. Empat masalah ditemukan dan diperbaiki dari pemeriksaan ini: lubang kosong di lebar tablet, panel aksi yang masih berbingkai padahal sudah tidak melayang, kartu review yang terpisah jauh dari tombolnya di laptop, dan pemilih buku yang menempel ke atas layar sehingga menyisakan bidang kosong yang sangat lebar.
+
+### Masalah yang masih terbuka
+
+- **Belum diuji di Safari iPhone.** Semua pemeriksaan visual memakai Chromium yang meniru ukuran layar, bukan perangkat sungguhan. Sidebar tidak muncul di HP, jadi yang perlu diperiksa di sana tetap bilah bawah dan `env(safe-area-inset-bottom)`.
+- **Belum diuji di alamat produksi.** Perubahan ini belum di-deploy dan belum di-commit.
+- PRD bagian 5 dan 7 sekarang berbeda dari perilaku aplikasi. Lihat catatan penyimpangan di atas.
+- Sisa Lanjutan 5 dan 6 tidak dikerjakan. Review masih harus dibuka sendiri oleh pengguna, belum ditawarkan otomatis saat aplikasi dibuka.
+- Uji akurasi model masih belum dilakukan sama sekali.
+
+### Pekerjaan berikutnya
+
+Tidak berubah dari sesi sebelumnya, dan urutannya justru makin mendesak: uji satu lingkaran penuh di Safari iPhone pada alamat produksi, lalu uji akurasi dengan buku asli.
+
 ## Format catatan berikutnya
 
 Gunakan tanggal dan nama pelaksana, lalu jelaskan: permintaan/tujuan, keputusan, file yang diubah beserta alasannya, verifikasi dan hasilnya, masalah yang masih terbuka, serta pekerjaan berikutnya. Tulis "belum diuji" untuk hal yang belum benar-benar diperiksa.

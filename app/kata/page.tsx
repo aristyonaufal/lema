@@ -6,11 +6,11 @@ import { useSearchParams } from 'next/navigation';
 import SenseMap from '@/components/SenseMap';
 import BookSpine, { spineColor } from '@/components/BookSpine';
 import { useDb } from '@/lib/useDb';
-import { byBook, due, markKnown, remove, type Entry } from '@/lib/store';
+import { byBook, markKnown, remove, stats, type Entry } from '@/lib/store';
 
 export default function Kata() {
   return (
-    <Suspense fallback={<main className="text-muted flex-1 p-6 text-sm">Membuka koleksi...</main>}>
+    <Suspense fallback={<main className="page text-muted flex-1 pt-6 text-sm">Membuka koleksi...</main>}>
       <KataContent />
     </Suspense>
   );
@@ -42,7 +42,7 @@ function KataContent() {
 
   if (!ready) {
     return (
-      <main className="mx-auto w-full max-w-2xl flex-1 px-5 pt-8">
+      <main className="page flex-1 pt-8">
         <div className="shimmer h-9 w-44 rounded-lg" />
         <div className="shimmer mt-6 h-32 w-full rounded-[1.25rem]" />
       </main>
@@ -51,7 +51,7 @@ function KataContent() {
 
   if (db.books.length === 0 && !focused) {
     return (
-      <main className="mx-auto flex w-full max-w-md flex-1 flex-col items-center gap-4 px-5 pt-20 text-center">
+      <main className="page page-narrow flex flex-1 flex-col items-center gap-4 pt-20 text-center">
         <span className="bg-sunken text-faint flex h-16 w-16 items-center justify-center rounded-full">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-8 w-8">
             <rect x="3.5" y="7.5" width="17" height="12" rx="2.6" stroke="currentColor" strokeWidth="1.5" />
@@ -67,21 +67,25 @@ function KataContent() {
   }
 
   const all = db.entries;
-  const dueCount = due(db).length;
+  const s = stats(db);
+  const dueCount = s.due;
   const activeFilter = FILTERS.find((f) => f.id === filter) ?? FILTERS[0];
   // Penyaring yang tidak punya isi tidak ditampilkan, supaya barisnya tidak
   // penuh pilihan yang pasti kosong.
   const available = FILTERS.filter(
     (f) => f.id === 'semua' || f.id === filter || all.some((entry) => f.match(entry)),
   );
+  const visibleBooks = db.books.filter((b) =>
+    byBook(db, b.id).some((entry) => (focused ? selectedIds.has(entry.id) : activeFilter.match(entry))),
+  );
 
   return (
-    <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-6 px-5 pt-6">
+    <main className="page flex flex-1 flex-col gap-6 pt-6">
       <header className="flex flex-col gap-4">
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
             <p className="eyebrow">{focused ? 'Hasil pencarian' : 'Kumpulan kamu'}</p>
-            <h1 className="font-display mt-1 text-[2rem] leading-tight tracking-tight">
+            <h1 className="font-display mt-1 text-[2rem] leading-tight tracking-tight sm:text-[2.25rem]">
               {focused ? 'Peta makna' : 'Koleksi kata'}
             </h1>
           </div>
@@ -100,8 +104,8 @@ function KataContent() {
                 Paksa jatuh tempo
               </button>
             )}
-            <Link href="/" className="chip">
-              {focused ? 'Lanjut baca' : 'Kembali'}
+            <Link href="/baca" className="chip">
+              Lanjut baca
             </Link>
           </div>
         </div>
@@ -135,7 +139,7 @@ function KataContent() {
                   <span aria-hidden="true" className="text-sm font-semibold whitespace-nowrap">Mulai</span>
                 </Link>
               )}
-              <div className="rail -mx-5 flex gap-2 px-5">
+              <div className="rail -mx-5 flex gap-2 px-5 sm:-mx-6 sm:px-6 lg:-mx-10 lg:px-10">
                 {available.map((f) => {
                   const count = all.filter(f.match).length;
                   const on = f.id === filter;
@@ -152,67 +156,114 @@ function KataContent() {
         )}
       </header>
 
-      {db.books.map((b) => {
-        const entries = byBook(db, b.id).filter((entry) =>
-          focused ? selectedIds.has(entry.id) : activeFilter.match(entry),
-        );
-        if (entries.length === 0) return null;
-        const done = entries.filter((e) => e.status === 'done').length;
-        const color = spineColor(b.title);
-        return (
-          <section key={b.id} className="flex flex-col gap-4">
-            <div className="flex flex-col gap-2.5">
-              <div className="flex items-center gap-3">
-                <BookSpine title={b.title} size="sm" />
-                <h2 className="min-w-0 flex-1 truncate font-medium">{b.title}</h2>
-                <span className="text-muted shrink-0 text-sm tabular-nums">
-                  {done} dari {entries.length} kata siap
-                </span>
-              </div>
-              {/* Rak berwarna sesuai punggung bukunya, sekaligus lintasan kemajuan.
-                  Satu batang saja: dua garis bertumpuk hanya terbaca sebagai hiasan. */}
-              <div aria-hidden="true" className="shelf h-2 w-full overflow-hidden" style={{ background: `${color}24`, color }}>
-                <div
-                  className="h-full rounded-lg transition-[width] duration-500"
-                  style={{ width: `${entries.length > 0 ? (done / entries.length) * 100 : 0}%`, background: color }}
-                />
-              </div>
-            </div>
-            <div className="flex flex-col gap-4">
-              {entries.map((e) => (
-                <SenseMap
-                  key={e.id}
-                  entry={e}
-                  onKnown={() => update((current) => markKnown(current, e.id))}
-                  onRemove={() => update((current) => remove(current, e.id))}
-                  onRetry={() => update((current) => ({ ...current, activeBookId: e.bookId }))}
-                />
-              ))}
-            </div>
-          </section>
-        );
-      })}
+      {/* Dua kolom mulai lebar laptop. Kolom kanan sengaja tidak mengulang isi
+          kolom kiri: dia menjawab pertanyaan lain, yaitu di mana posisi koleksi
+          ini secara keseluruhan dan buku mana yang mau dituju. */}
+      <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,1fr)_16rem] lg:gap-8">
+        <div className="flex min-w-0 flex-col gap-6">
+          {db.books.map((b) => {
+            const entries = byBook(db, b.id).filter((entry) =>
+              focused ? selectedIds.has(entry.id) : activeFilter.match(entry),
+            );
+            if (entries.length === 0) return null;
+            const done = entries.filter((e) => e.status === 'done').length;
+            const color = spineColor(b.title);
+            return (
+              <section key={b.id} id={`buku-${b.id}`} className="flex scroll-mt-6 flex-col gap-4">
+                <div className="flex flex-col gap-2.5">
+                  <div className="flex items-center gap-3">
+                    <BookSpine title={b.title} size="sm" />
+                    <h2 className="min-w-0 flex-1 truncate font-medium">{b.title}</h2>
+                    <span className="text-muted shrink-0 text-sm tabular-nums">
+                      {done} dari {entries.length} kata siap
+                    </span>
+                  </div>
+                  {/* Rak berwarna sesuai punggung bukunya, sekaligus lintasan kemajuan.
+                      Satu batang saja: dua garis bertumpuk hanya terbaca sebagai hiasan. */}
+                  <div aria-hidden="true" className="shelf h-2 w-full overflow-hidden" style={{ background: `${color}24`, color }}>
+                    <div
+                      className="h-full rounded-lg transition-[width] duration-500"
+                      style={{ width: `${entries.length > 0 ? (done / entries.length) * 100 : 0}%`, background: color }}
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col gap-4">
+                  {entries.map((e) => (
+                    <SenseMap
+                      key={e.id}
+                      entry={e}
+                      onKnown={() => update((current) => markKnown(current, e.id))}
+                      onRemove={() => update((current) => remove(current, e.id))}
+                      onRetry={() => update((current) => ({ ...current, activeBookId: e.bookId }))}
+                    />
+                  ))}
+                </div>
+              </section>
+            );
+          })}
 
-      {!focused && all.length > 0 && all.filter(activeFilter.match).length === 0 && (
-        <div className="card flex flex-col items-center gap-3 p-8 text-center">
-          <p className="text-muted text-sm">Belum ada kata di saringan ini.</p>
-          <button onClick={() => setFilter('semua')} className="btn btn-ghost">
-            Tampilkan semua
-          </button>
-        </div>
-      )}
+          {!focused && all.length > 0 && all.filter(activeFilter.match).length === 0 && (
+            <div className="card flex flex-col items-center gap-3 p-8 text-center">
+              <p className="text-muted text-sm">Belum ada kata di saringan ini.</p>
+              <button onClick={() => setFilter('semua')} className="btn btn-ghost">
+                Tampilkan semua
+              </button>
+            </div>
+          )}
 
-      {!focused && all.length === 0 && (
-        <div className="card flex flex-col items-center gap-3 p-8 text-center">
-          <p className="font-medium">Koleksinya masih kosong</p>
-          <p className="text-muted text-sm leading-relaxed">
-            Foto satu halaman, tandai kata yang bikin kamu berhenti, terus lanjut baca.
-          </p>
-          <Link href="/" className="btn btn-primary mt-1">
-            Mulai dari foto
-          </Link>
+          {!focused && all.length === 0 && (
+            <div className="card flex flex-col items-center gap-3 p-8 text-center">
+              <p className="font-medium">Koleksinya masih kosong</p>
+              <p className="text-muted text-sm leading-relaxed">
+                Foto satu halaman, tandai kata yang bikin kamu berhenti, terus lanjut baca.
+              </p>
+              <Link href="/baca" className="btn btn-primary mt-1">
+                Mulai dari foto
+              </Link>
+            </div>
+          )}
         </div>
-      )}
+
+        {!focused && all.length > 0 && (
+          <aside aria-label="Ringkasan koleksi" className="top-6 hidden flex-col gap-5 lg:sticky lg:flex">
+            <div className="card flex flex-col gap-3 p-4">
+              <p className="eyebrow">Ringkasan</p>
+              <dl className="flex flex-col gap-2 text-sm">
+                {[
+                  ['Total kata', s.words],
+                  ['Sudah ada maknanya', s.ready],
+                  ['Menunggu model', s.pending],
+                  ['Pernah lolos review', s.passed],
+                ].map(([label, value]) => (
+                  <div key={label as string} className="flex items-baseline justify-between gap-3">
+                    <dt className="text-muted">{label}</dt>
+                    <dd className="font-medium tabular-nums">{value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+
+            {visibleBooks.length > 1 && (
+              <div className="flex flex-col gap-2">
+                <p className="eyebrow px-1">Loncat ke buku</p>
+                <ul className="flex flex-col gap-1">
+                  {visibleBooks.map((b) => (
+                    <li key={b.id}>
+                      <a
+                        href={`#buku-${b.id}`}
+                        className="hover:bg-foreground/[0.04] flex items-center gap-2.5 rounded-xl px-2 py-2 text-sm transition-colors"
+                      >
+                        <BookSpine title={b.title} size="sm" />
+                        <span className="min-w-0 flex-1 truncate">{b.title}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </aside>
+        )}
+      </div>
     </main>
   );
 }

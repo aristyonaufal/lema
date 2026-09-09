@@ -103,7 +103,7 @@ export default function SenseMap({ entry, onKnown, onRemove, onRetry }: {
         <div className="flex flex-wrap items-center gap-2 pt-1">
           {onRetry && (
             <Link
-              href="/"
+              href="/baca"
               onClick={(event) => { if (!onRetry()) event.preventDefault(); }}
               className="btn btn-ghost border-accent/40 text-accent text-sm"
             >

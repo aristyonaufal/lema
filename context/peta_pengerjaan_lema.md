@@ -2,8 +2,9 @@
 
 Apa yang sudah ditulis, apa yang lagi dikerjakan, dan alat apa saja yang dipakai. Halaman ini diperbarui tiap ada kemajuan, jadi kamu gak perlu nebak posisi kita di mana.
 
-> **Posisi sekarang (8 September 2026):** Lanjutan 1–3 selesai, bagian pemilih buku pada Lanjutan 4 selesai, dan sebagian besar Lanjutan 7 selesai. Aplikasi sudah hidup di `lema-lemon.vercel.app` dan terbukti bisa memanggil model. Tampilan seluruh layar dirombak pada 8 September: navigasi bawah, penyaring koleksi, judul serif, punggung buku berwarna, serta keadaan kosong dan memuat. Build, lint, dan 37/37 pengujian browser lulus.  
-> Yang masih terbuka: uji Safari iPhone, kamera langsung, uji akurasi model, sisa Lanjutan 4, serta Lanjutan 5 dan 6.  
+> **Posisi sekarang (9 September 2026):** Lanjutan 1–3 selesai, Lanjutan 4 selesai, dan sebagian besar Lanjutan 7 selesai. Aplikasi sudah hidup di `lema-lemon.vercel.app` dan terbukti bisa memanggil model. Pada 9 September alurnya berubah atas permintaan pengguna: makna sekarang **langsung dibuka** saat tombol utama ditekan, dan mode tunda turun menjadi pilihan kedua. Rutenya ikut berubah, `/` menjadi beranda berisi ringkasan progres dan `/baca` menjadi layar foto. Tampilan dibuat responsif: bilah bawah di HP, sidebar kiri dan isi dua kolom mulai lebar laptop. Build, lint, dan 42/42 pengujian browser lulus.  
+> **Perhatian:** perilaku bawaan itu berbeda dari prinsip nomor 1 dan bagian 7 pada PRD. PRD belum diselaraskan; keputusannya ada pada pengguna.  
+> Yang masih terbuka: uji Safari iPhone, deploy perubahan terbaru, kamera langsung, uji akurasi model, serta Lanjutan 5 dan 6.  
 > Urutan dan kriteria selesai: [Rencana Lanjutan](rencana_lanjutan.md). Riwayat perubahan dan serah terima: [Catatan Pengerjaan](catatan_pengerjaan.md).
 
 Tahap 0–6 di bawah adalah catatan pengerjaan awal. Label selesai pada tahap fondasi mencatat implementasi awal, bukan bukti seluruh persyaratan PRD sudah terpenuhi atau diuji. Untuk pekerjaan berikutnya, ikuti rencana lanjutan di atas.
@@ -167,7 +168,7 @@ Instruksi lengkap ke model plus skema JSON yang wajib dipatuhi balasannya.
 Mengecilkan foto di browser sebelum dikirim, sisi terpanjang jadi 1600 piksel.
 
 #### `store.ts`
-Penyimpanan buku dan kata di browser, plus aturan tangga jadwal review.
+Penyimpanan buku dan kata di browser, aturan tangga jadwal review, penanda riwayat kata yang pernah lolos review, dan angka ringkasan untuk beranda.
 
 #### `useDb.ts`
 Penghubung supaya layar React bisa membaca dan menulis ke penyimpanan itu.
@@ -183,7 +184,10 @@ Alat bantu untuk melihat model apa saja yang tersedia bagi API key kamu.
 ### `app/` — Layar yang Dilihat Pengguna
 
 #### `page.tsx`
-Layar utama. Pilih buku, foto halaman, tandai kata, simpan lalu lanjut baca.
+Beranda. Ringkasan progres, aksi cepat, rak buku, dan kata terbaru. Kalau belum ada buku sama sekali, halaman ini langsung menanyakan judul bukunya.
+
+#### `baca/page.tsx`
+Layar foto. Pilih buku, foto halaman, tandai kata, lalu pilih langsung lihat makna atau simpan dan lanjut baca.
 
 #### `kata/page.tsx`
 Koleksi kata dikelompokkan per buku.
@@ -205,8 +209,14 @@ Warna dasar, dan penyesuaian tema terang serta gelap.
 #### `SenseMap.tsx`
 Kartu peta makna. Kalimat asal, kata pemicu yang disorot, makna terpakai, angka keyakinan, kotak hati-hati, dan daftar makna lain.
 
-#### `TabBar.tsx`
-Navigasi bawah tiga tab, lengkap dengan penghitung kata yang diproses dan yang jatuh tempo.
+#### `Nav.tsx`
+Navigasi utama empat tujuan, lengkap dengan penghitung kata yang diproses dan yang jatuh tempo. Satu elemen yang berubah bentuk: bilah bawah di HP, sidebar kiri di laptop.
+
+#### `Shell.tsx`
+Memutuskan kapan navigasi pantas muncul, lalu memberi isi halaman ruang yang sesuai: penahan tinggi di HP, jarak kiri di laptop.
+
+#### `BookPicker.tsx`
+Pemilih buku. Dipakai beranda saat pengguna belum punya buku, dan layar foto saat menekan Ganti.
 
 #### `BookSpine.tsx`
 Punggung buku berwarna. Warnanya diturunkan dari judul, jadi satu buku selalu punya warna yang sama.

@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Instrument_Serif } from "next/font/google";
 import DbProvider from "@/components/DbProvider";
-import TabBar from "@/components/TabBar";
+import Shell from "@/components/Shell";
 import "./globals.css";
 
 const sans = Geist({
@@ -40,8 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="flex min-h-full flex-col">
         <DbProvider>
-          {children}
-          <TabBar />
+          <Shell>{children}</Shell>
         </DbProvider>
       </body>
     </html>

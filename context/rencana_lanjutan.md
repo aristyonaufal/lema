@@ -1,9 +1,12 @@
 # Rencana Lanjutan Lema
 
 Disusun: 7 September 2026. Pelaksana sementara: Codex, melanjutkan pekerjaan Claude.
-Status: Lanjutan 1–3 selesai dan teruji pada 7 September 2026. Lanjutan 4–8 belum dimulai.
+Status per 9 September 2026: Lanjutan 1–4 selesai, Lanjutan 7 sebagian besar selesai, bagian pemolesan tampilan pada Lanjutan 8 selesai. Lanjutan 5 dan 6 belum dimulai.
 
 ## Keputusan pengguna dan cara kerja
+
+- **9 September 2026, perubahan alur.** Makna sekarang langsung dibuka ketika tombol utama ditekan. Mode tunda tidak dihapus, tetapi turun menjadi tombol sekunder. Ini membalik prinsip nomor 1 pada PRD, dan PRD belum diselaraskan; keputusan itu ada pada pengguna.
+- **9 September 2026, rute dan tampilan.** `/` menjadi beranda berisi ringkasan progres, layar foto pindah ke `/baca`. Tampilan dibuat responsif dengan sidebar kiri dan isi dua kolom mulai lebar laptop, sementara HP tetap memakai bilah bawah.
 
 - Kamera langsung aktif sengaja ditunda pada tahap awal. Pemilih foto yang sekarang dipertahankan. Penambahan kamera dijadwalkan kemudian, sesuai arahan pengguna.
 - Prioritas pertama: memperbaiki proses "simpan, lanjut baca" ketika berpindah halaman, menambahkan "buka sekarang", kemudian melengkapi detail peta makna.
@@ -66,7 +69,7 @@ Status: selesai. Kata/frasa target ditebalkan, pemicu dan alasan kedua kandidat 
 
 ## Lanjutan 4 — Buku dan progres belajar
 
-Status: **dipecah dua**. Bagian pemilih buku selesai pada 8 September 2026 oleh Claude; build dan 30/30 pengujian browser lulus pada salinan Linux, dengan catatan jalur font belum terverifikasi. Bagian progres belajar belum dimulai.
+Status: **selesai**. Bagian pemilih buku selesai pada 8 September 2026. Bagian progres belajar selesai pada 9 September 2026 bersama pekerjaan beranda: `Entry` mendapat `passedReview`, `grade()` hanya menaikkannya dari false ke true sehingga jawaban "lupa" tidak menghapus riwayat, `bookSummary` menghitungnya, dan angkanya dipakai beranda serta rak buku. Data lama tanpa penanda itu dihitung belum pernah lolos, karena riwayatnya memang tidak pernah disimpan. Dua pengujian baru menutup kedua arah aturan itu.
 
 Alasan pemecahan: batas pendaftaran Apple Developer Academy 14 September dengan target submit portfolio 12 September. Hanya bagian yang menghalangi demo, yaitu buku duplikat saat menekan "Ganti", yang dikerjakan lebih dulu. Deployment dan uji akurasi didahulukan di atas sisa Lanjutan 4 sampai 7.
 
@@ -88,7 +91,7 @@ Belum dikerjakan: pembedaan kata terkumpul, masih diproses, dan pernah lolos rev
 
 ## Lanjutan 5 — Alur review harian
 
-Status: belum dimulai. Setelah pencatatan progres pada Lanjutan 4.
+Status: belum dimulai. Beranda dan halaman koleksi kini menampilkan pintasan ketika ada kata jatuh tempo, tetapi review masih harus dibuka sendiri oleh pengguna. Butir inti Lanjutan 5, yaitu review yang ditawarkan otomatis saat aplikasi dibuka beserta pilihan "nanti aja", belum dikerjakan.
 
 **Hasil yang dituju:** kata jatuh tempo ditawarkan otomatis saat aplikasi dibuka, dan pengguna dapat menilai ingatannya sesuai alur PRD.
 

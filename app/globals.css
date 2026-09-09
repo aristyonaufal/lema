@@ -37,6 +37,15 @@
   --tab-h: 4.25rem;
 }
 
+/* Mulai lebar laptop navigasi pindah ke kiri, jadi tidak ada lagi bilah bawah
+   yang perlu dihindari. Nilainya dinolkan di satu tempat supaya tiap layar yang
+   memakai posisi menempel tidak perlu tahu di mana navigasinya berada. */
+@media (min-width: 64rem) {
+  :root {
+    --tab-h: 0rem;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
@@ -108,6 +117,49 @@
 
 @layer components {
   /* ---------- Blok yang dipakai berulang di banyak layar ---------- */
+
+  /* Wadah isi halaman.
+     Sebelumnya tiap layar menuliskan sendiri max-w-md dan px-5, jadi di laptop
+     semuanya jadi satu lajur sempit di tengah layar kosong, persis seperti
+     aplikasi HP yang dilebarkan. Sekarang lebarnya tumbuh mengikuti layar dan
+     diputuskan sekali di sini. */
+  .page {
+    width: 100%;
+    max-width: 32rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  /* Layar yang isinya untuk dibaca, bukan untuk dipindai. Tetap sempit walau
+     layarnya luas, supaya barisnya tidak melebar sampai susah diikuti mata. */
+  .page-narrow {
+    max-width: 32rem;
+  }
+
+  /* Tablet dan laptop kecil. Lebar dinaikkan lebih dulu di sini, karena di
+     rentang inilah tampilan lama paling terasa seperti aplikasi HP yang
+     ditempel di tengah layar kosong. */
+  @media (min-width: 40rem) {
+    .page {
+      max-width: 44rem;
+      padding-inline: 1.5rem;
+    }
+
+    .page-narrow {
+      max-width: 36rem;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .page {
+      max-width: 64rem;
+      padding-inline: 2.5rem;
+    }
+
+    .page-narrow {
+      max-width: 40rem;
+    }
+  }
 
   .card {
     background: var(--surface);

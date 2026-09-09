@@ -45,7 +45,7 @@ const heading = (page: Page) => page.getByRole('heading', { level: 1 });
 
 test.beforeEach(async ({ page }) => {
   await seed(page);
-  await page.goto('/');
+  await page.goto('/baca');
 });
 
 test('memilih buku lama tidak membuat buku kedua', async ({ page }) => {

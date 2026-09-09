@@ -20,6 +20,12 @@ export type Entry = {
   stage: number;    // indeks di LADDER
   dueAt: number;    // timestamp jatuh tempo review berikutnya
   createdAt: number;
+  // Pernah dijawab "inget" minimal sekali. Sengaja terpisah dari `stage`,
+  // karena stage kembali ke nol setiap kali pengguna lupa, sedangkan riwayat
+  // "pernah lolos" tidak boleh hilang. Opsional supaya koleksi lama tetap
+  // terbaca: entri tanpa penanda ini memang tidak pernah dicatat, jadi
+  // dihitung belum lolos, bukan ditebak dari tanggal.
+  passedReview?: boolean;
 };
 
 export type Book = {
@@ -108,6 +114,7 @@ export type BookSummary = {
   done: number;
   failed: number;
   known: number;
+  passed: number; // pernah lolos review, tidak turun lagi setelah lupa
   lastAt: number; // 0 bila buku belum punya kata
 };
 
@@ -119,7 +126,35 @@ export function bookSummary(db: Db, bookId: string): BookSummary {
     done: entries.filter((e) => e.status === 'done').length,
     failed: entries.filter((e) => e.status === 'error').length,
     known: entries.filter((e) => e.known).length,
+    passed: entries.filter((e) => e.passedReview === true).length,
     lastAt: entries.reduce((max, e) => Math.max(max, e.createdAt), 0),
+  };
+}
+
+export type Stats = {
+  books: number;
+  words: number;
+  ready: number;   // sudah punya makna dan masih ikut review
+  pending: number;
+  failed: number;
+  known: number;
+  passed: number;
+  due: number;
+};
+
+// Angka untuk beranda. Dihitung sekali di satu tempat supaya kartu ringkasan,
+// bilah navigasi, dan daftar buku tidak menghitung hal yang sama dengan cara
+// yang sedikit berbeda lalu menampilkan dua angka yang saling bertentangan.
+export function stats(db: Db, at = Date.now()): Stats {
+  return {
+    books: db.books.length,
+    words: db.entries.length,
+    ready: db.entries.filter((e) => e.status === 'done' && !e.known).length,
+    pending: db.entries.filter((e) => e.status === 'pending').length,
+    failed: db.entries.filter((e) => e.status === 'error').length,
+    known: db.entries.filter((e) => e.known).length,
+    passed: db.entries.filter((e) => e.passedReview === true).length,
+    due: due(db, at).length,
   };
 }
 
@@ -181,13 +216,20 @@ export function remove(db: Db, entryId: string): Db {
 }
 
 // Naik satu anak tangga kalau ingat, balik ke awal kalau lupa.
+// `passedReview` hanya pernah berubah dari false ke true. Lupa menurunkan
+// jadwalnya, tetapi tidak menghapus fakta bahwa kata ini pernah lolos sekali.
 export function grade(db: Db, entryId: string, remembered: boolean): Db {
   return {
     ...db,
     entries: db.entries.map((e) => {
       if (e.id !== entryId) return e;
       const stage = remembered ? Math.min(e.stage + 1, LADDER.length - 1) : 0;
-      return { ...e, stage, dueAt: Date.now() + LADDER[stage] * 86400000 };
+      return {
+        ...e,
+        stage,
+        dueAt: Date.now() + LADDER[stage] * 86400000,
+        passedReview: e.passedReview || remembered,
+      };
     }),
   };
 }

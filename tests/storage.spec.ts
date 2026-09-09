@@ -130,7 +130,7 @@ async function failStorageWrites(page: Page, fail: boolean) {
 
 test('lookup finishes after client navigation and survives refresh', async ({ page, lookup }) => {
   await seed(page);
-  await page.goto('/');
+  await page.goto('/baca');
   await submit(page, ['bank']);
   await expect.poll(() => lookup.calls.length).toBe(1);
   await openCollection(page);
@@ -156,14 +156,14 @@ test('reverse completion preserves both batches and edits made in collection', a
     dueAt: Date.now() + 86_400_000,
     createdAt: 2,
   }]);
-  await page.goto('/');
+  await page.goto('/baca');
   await submit(page, ['bank']);
   await expect.poll(() => lookup.calls.length).toBe(1);
   await openCollection(page);
   await card(page, 'steady').getByRole('button', { name: 'Aku udah tahu kata ini' }).click();
   await expect(card(page, 'steady')).toContainText('Ditandai sudah tahu');
 
-  await page.getByRole('link', { name: 'Kembali', exact: true }).click();
+  await page.getByRole('link', { name: 'Lanjut baca', exact: true }).click();
   await submit(page, ['bright']);
   await expect.poll(() => lookup.calls.length).toBe(2);
   await openCollection(page);
@@ -193,7 +193,7 @@ test('reverse completion preserves both batches and edits made in collection', a
 
 test('network failure becomes a saved error after navigation', async ({ page, lookup }) => {
   await seed(page);
-  await page.goto('/');
+  await page.goto('/baca');
   await submit(page, ['bank']);
   await openCollection(page);
   await lookup.fail(0);
@@ -207,7 +207,7 @@ test('network failure becomes a saved error after navigation', async ({ page, lo
 
 test('partial lookup matches normalized words rather than response positions', async ({ page, lookup }) => {
   await seed(page);
-  await page.goto('/');
+  await page.goto('/baca');
   await submit(page, ['bank', 'bright']);
   await openCollection(page);
   await lookup.reply(0, [result(' BRIGHT ')]);
@@ -225,7 +225,7 @@ test('partial lookup matches normalized words rather than response positions', a
 
 test('refresh marks interrupted requests as retryable errors without resending the photo', async ({ page, lookup }) => {
   await seed(page);
-  await page.goto('/');
+  await page.goto('/baca');
   await submit(page, ['bank']);
   await expect.poll(() => lookup.calls.length).toBe(1);
   await openCollection(page);
@@ -235,7 +235,7 @@ test('refresh marks interrupted requests as retryable errors without resending t
   // A graceful reload can let fetch reject and save its network error before
   // the document unloads. Either path must leave a retryable error, not pending.
   await expect(page.getByText(/terputus|Gagal menghubungi server/i)).toBeVisible();
-  await expect(page.getByRole('link', { name: /foto|ulang/i })).toHaveAttribute('href', '/');
+  await expect(page.getByRole('link', { name: /foto|ulang/i })).toHaveAttribute('href', '/baca');
   await expect.poll(async () => (await savedDb(page)).entries[0]?.status).toBe('error');
   expect(lookup.calls).toHaveLength(1);
   await page.getByRole('link', { name: /foto|ulang/i }).click();
@@ -256,7 +256,7 @@ test('opening saved pending entries recovers a browser interruption without an A
   }]);
   await page.goto('/kata');
   await expect(page.getByText(/terputus/i)).toBeVisible();
-  await expect(page.getByRole('link', { name: /foto|ulang/i })).toHaveAttribute('href', '/');
+  await expect(page.getByRole('link', { name: /foto|ulang/i })).toHaveAttribute('href', '/baca');
   await expect.poll(async () => (await savedDb(page)).entries[0]?.status).toBe('error');
   await page.reload();
   await expect(page.getByText(/terputus/i)).toBeVisible();
@@ -265,7 +265,7 @@ test('opening saved pending entries recovers a browser interruption without an A
 
 test('failure to save the queue keeps the selected photo and words without an API request', async ({ page, lookup }) => {
   await seed(page);
-  await page.goto('/');
+  await page.goto('/baca');
   await preparePhoto(page, ['bank']);
   await failStorageWrites(page, true);
   await page.getByRole('button', { name: 'Simpan, lanjut baca' }).click();
@@ -288,7 +288,7 @@ test('failure to save the queue keeps the selected photo and words without an AP
 
 test('failed result persistence stays visible and retries saving without fetching again', async ({ page, lookup }) => {
   await seed(page);
-  await page.goto('/');
+  await page.goto('/baca');
   await submit(page, ['bank']);
   await expect.poll(() => lookup.calls.length).toBe(1);
   await openCollection(page);
@@ -298,7 +298,7 @@ test('failed result persistence stays visible and retries saving without fetchin
   await expect(card(page, 'bank')).toContainText('Makna uji bank');
   await expect(page.getByRole('alert').filter({ hasText: /simpan|penyimpanan/i })).toBeVisible();
   expect((await savedDb(page)).entries[0]?.status).toBe('pending');
-  await page.getByRole('link', { name: 'Kembali', exact: true }).click();
+  await page.getByRole('link', { name: 'Lanjut baca', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Coba simpan lagi', exact: true })).toBeVisible();
   await openCollection(page);
   await expect(card(page, 'bank')).toContainText('Makna uji bank');
@@ -314,7 +314,7 @@ test('failed result persistence stays visible and retries saving without fetchin
 
 test('case variants are submitted once while keeping the first spelling', async ({ page, lookup }) => {
   await seed(page);
-  await page.goto('/');
+  await page.goto('/baca');
   await preparePhoto(page, ['Bank', 'bank']);
   await expect(page.getByRole('button', { name: /^bank/i })).toHaveCount(1);
   await page.getByRole('button', { name: 'Simpan, lanjut baca' }).click();
@@ -333,7 +333,7 @@ test('unreadable storage is not overwritten and can be loaded again', async ({ p
   await page.addInitScript(({ key, value }) => {
     localStorage.setItem(key, value);
   }, { key: KEY, value: broken });
-  await page.goto('/');
+  await page.goto('/baca');
   await expect(page.getByRole('alert').filter({ hasText: /belum bisa dibaca/i })).toBeVisible();
   expect(await page.evaluate((key) => localStorage.getItem(key), KEY)).toBe(broken);
   expect(lookup.calls).toHaveLength(0);
@@ -347,7 +347,7 @@ test('unreadable storage is not overwritten and can be loaded again', async ({ p
     localStorage.setItem(key, JSON.stringify(value));
   }, { key: KEY, value: recovered });
   await page.getByRole('button', { name: 'Coba baca lagi', exact: true }).click();
-  await expect(page.getByText('Buku yang dipulihkan', { exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Buku yang dipulihkan', exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Coba baca lagi', exact: true })).toHaveCount(0);
   expect(await savedDb(page)).toEqual(recovered);
 });
@@ -355,7 +355,7 @@ test('unreadable storage is not overwritten and can be loaded again', async ({ p
 test('a stalled request times out and leaves a saved retryable error', async ({ page, lookup }) => {
   await page.clock.install();
   await seed(page);
-  await page.goto('/');
+  await page.goto('/baca');
   await submit(page, ['bank']);
   await expect.poll(() => lookup.calls.length).toBe(1);
   await openCollection(page);
@@ -374,11 +374,11 @@ test('open now shows only the submitted batch and repeated clicks send it once',
     id: 'old-bank', bookId: BOOK_ID, word: 'bank', status: 'done', result: previous,
     known: false, stage: 0, dueAt: Date.now() + 86_400_000, createdAt: 2,
   }]);
-  await page.goto('/');
-  await expect(page.getByRole('button', { name: 'Buka sekarang', exact: true })).toBeDisabled();
+  await page.goto('/baca');
+  await expect(page.getByRole('button', { name: 'Simpan & lihat makna', exact: true })).toBeDisabled();
   await preparePhoto(page, ['bank', 'bright']);
   // Two clicks in the same event turn also exercise the synchronous submit guard.
-  await page.getByRole('button', { name: 'Buka sekarang', exact: true }).evaluate((button: HTMLButtonElement) => {
+  await page.getByRole('button', { name: 'Simpan & lihat makna', exact: true }).evaluate((button: HTMLButtonElement) => {
     button.click();
     button.click();
   });
@@ -408,20 +408,20 @@ test('open now shows only the submitted batch and repeated clicks send it once',
 
 test('deferred save keeps meanings hidden and its ready link reuses the saved entry', async ({ page, lookup }) => {
   await seed(page);
-  await page.goto('/');
+  await page.goto('/baca');
   await submit(page, ['bank']);
-  await expect(page).toHaveURL('/');
+  await expect(page).toHaveURL('/baca');
   const recent = page.getByRole('region', { name: 'Kata terbaru', exact: true });
   await expect(recent).toContainText('Diproses');
   await lookup.reply(0, [result('bank')]);
   await expect(recent).toContainText('Siap dibuka');
-  await expect(page).toHaveURL('/');
+  await expect(page).toHaveURL('/baca');
   await expect(page.getByText('Makna uji bank', { exact: true })).toHaveCount(0);
 
   await recent.getByRole('link', { name: 'Buka sekarang: bank', exact: true }).click();
   await expect(card(page, 'bank')).toContainText('Makna uji bank');
   await page.getByRole('link', { name: 'Lanjut baca', exact: true }).click();
-  await expect(page).toHaveURL('/');
+  await expect(page).toHaveURL('/baca');
   // The link also survives a full reload because it is derived from the collection.
   await page.reload();
   await page.getByRole('link', { name: 'Buka sekarang: bank', exact: true }).click();
@@ -432,7 +432,7 @@ test('deferred save keeps meanings hidden and its ready link reuses the saved en
 
 test('a deferred pending word can be opened and displays failures without resubmission', async ({ page, lookup }) => {
   await seed(page);
-  await page.goto('/');
+  await page.goto('/baca');
   await submit(page, ['bank', 'bright']);
   await page.getByRole('link', { name: 'Buka sekarang: bright', exact: true }).click();
   await expect(page.getByText('Sedang diproses: bright', { exact: true })).toBeVisible();
@@ -451,19 +451,19 @@ test('a deferred pending word can be opened and displays failures without resubm
 
 test('open now stays on capture if the queue cannot be saved', async ({ page, lookup }) => {
   await seed(page);
-  await page.goto('/');
+  await page.goto('/baca');
   await preparePhoto(page, ['bank']);
   await failStorageWrites(page, true);
-  await page.getByRole('button', { name: 'Buka sekarang', exact: true }).click();
+  await page.getByRole('button', { name: 'Simpan & lihat makna', exact: true }).click();
   await expect(page.getByRole('alert').filter({ hasText: /Perubahan belum disimpan/ })).toBeVisible();
-  await expect(page).toHaveURL('/');
+  await expect(page).toHaveURL('/baca');
   await expect(page.getByRole('img', { name: 'halaman', exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: /^bank/ })).toBeVisible();
   expect(lookup.calls).toHaveLength(0);
   expect((await savedDb(page)).entries).toHaveLength(0);
 
   await failStorageWrites(page, false);
-  await page.getByRole('button', { name: 'Buka sekarang', exact: true }).click();
+  await page.getByRole('button', { name: 'Simpan & lihat makna', exact: true }).click();
   await expect(page).toHaveURL(/\/kata\?entry=/);
   await lookup.reply(0, [result('bank')]);
   await expect(card(page, 'bank')).toBeVisible();

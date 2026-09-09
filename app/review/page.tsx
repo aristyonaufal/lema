@@ -19,7 +19,7 @@ export default function Review() {
   const [count, setCount] = useState(0);
   if (!ready) {
     return (
-      <main className="mx-auto w-full max-w-md flex-1 px-5 pt-10">
+      <main className="page page-narrow flex-1 pt-10">
         <div className="shimmer h-4 w-24 rounded-full" />
         <div className="shimmer mt-6 h-28 w-full rounded-[1.25rem]" />
       </main>
@@ -41,7 +41,7 @@ export default function Review() {
       : '';
 
     return (
-      <main className="mx-auto flex w-full max-w-md flex-1 flex-col items-center gap-4 px-5 pt-20 text-center">
+      <main className="page page-narrow flex flex-1 flex-col items-center gap-4 pt-20 text-center">
         <span className="bg-accent-soft text-accent flex h-16 w-16 items-center justify-center rounded-full">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-8 w-8">
             <path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -57,7 +57,7 @@ export default function Review() {
               ? `Kata berikutnya nunggu sampai ${when}. Sekarang lanjut baca aja dulu.`
               : 'Simpan beberapa kata dulu, nanti Lema yang mengingatkan kamu.'}
         </p>
-        <Link href="/" className="btn btn-primary mt-2">
+        <Link href="/baca" className="btn btn-primary mt-2">
           Lanjut baca
         </Link>
       </main>
@@ -87,7 +87,7 @@ export default function Review() {
   }
 
   return (
-    <main className="mx-auto flex w-full max-w-md flex-1 flex-col gap-6 px-5 pt-6">
+    <main className="page page-narrow flex flex-1 flex-col gap-6 pt-6">
       <header className="flex flex-col gap-3">
         <div className="flex items-center justify-between gap-3">
           <p className="eyebrow">
@@ -129,7 +129,7 @@ export default function Review() {
       </section>
 
       {shown ? (
-        <section aria-label="Jawaban" className="rise flex flex-col gap-4">
+        <section aria-label="Jawaban" className="rise flex flex-col gap-4 lg:mb-auto">
           <div className="card flex flex-col gap-3 p-5">
             <p className="eyebrow">Artinya</p>
             <p className="text-xl leading-snug font-semibold">{main.meaning_id}</p>
@@ -168,7 +168,7 @@ export default function Review() {
           </button>
         </section>
       ) : (
-        <div className="mt-auto pb-2">
+        <div className="mt-auto pb-2 lg:mt-4 lg:mb-auto">
           <button onClick={() => setShown(true)} className="btn btn-primary w-full">
             Buka artinya
           </button>
