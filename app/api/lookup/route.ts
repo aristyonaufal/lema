@@ -1,6 +1,7 @@
 import { MARKED_SYSTEM_PROMPT, markedUserPrompt, SYSTEM_PROMPT, userPrompt, RESPONSE_SCHEMA } from '@/lib/prompt';
 import type { LookupResult } from '@/lib/types';
 import { clientIp, consume, refund } from '@/lib/rate-limit';
+import { runChain, type Attempt } from '@/lib/model-chain';
 
 export const runtime = 'nodejs';
 export const maxDuration = 60;
@@ -22,6 +23,34 @@ const FALLBACK_CHAIN = [
   'gemini-3.5-flash',
   'gemini-3.1-flash-lite',
 ];
+
+// Batas waktu rantai model. maxDuration di atas memutus fungsi pada detik ke-60;
+// sisa sepuluh detiknya disediakan untuk membaca foto, memeriksa jatah di awal,
+// mengembalikan jatah di akhir, dan mengirim balasan.
+const CHAIN_BUDGET_MS = 50_000;
+// Satu model paling lama 20 detik sebelum ditinggal. Angkanya dari pengukuran
+// 10 September: dengan tingkat berpikir "low", jawaban sehat datang dalam 10
+// sampai 12 detik, sedangkan model utama yang kelebihan beban menggantung 57,8
+// detik sebelum membalas 503. Dua puluh detik memberi ruang hampir dua kali
+// lipat untuk jawaban sehat, dan tetap menyisakan waktu untuk model cadangan.
+const ATTEMPT_MS = 20_000;
+
+// Seberapa lama model "berpikir" sebelum menjawab. Bawaan model Flash generasi
+// ini adalah "medium", dan pada pengukuran yang sama 83% token keluarannya
+// habis untuk berpikir: 3.234 token berpikir untuk 677 token jawaban, 21 detik.
+// Dengan "low" waktunya turun ke 10 detik dan kata yang ditemukan tetap sama.
+//
+// Bisa diatur lewat GEMINI_THINKING_LEVEL tanpa mengubah kode. Kalau uji
+// akurasi menunjukkan makna yang dipilih jadi kurang tepat, naikkan ke
+// "medium" di Environment Variables hosting lalu deploy ulang.
+const THINKING_LEVELS = new Set(['low', 'medium', 'high']);
+function thinkingLevel(): string {
+  const asked = (process.env.GEMINI_THINKING_LEVEL ?? '').trim().toLowerCase();
+  return THINKING_LEVELS.has(asked) ? asked : 'low';
+}
+// Model yang sisa waktunya kurang dari ini tidak dicoba. Membaca foto dan
+// menyusun JSON jarang selesai lebih cepat dari itu.
+const MIN_ATTEMPT_MS = 6_000;
 
 // Batas kata per foto pada mode tandai. Sama dengan batas mode ketik, supaya
 // satu foto tidak pernah lebih mahal dari yang sudah dijanjikan ke pengguna.
@@ -157,57 +186,61 @@ export async function POST(req: Request) {
       temperature: 0.2,
       responseMimeType: 'application/json',
       responseSchema: RESPONSE_SCHEMA,
+      thinkingConfig: { thinkingLevel: thinkingLevel() },
     },
   };
 
   // Rantai cadangan. Model terbaru paling sering kena 503 karena permintaannya
   // membludak. Daripada pengguna lihat error, pindah ke model berikutnya.
   const chain = [model, ...FALLBACK_CHAIN.filter((m) => m !== model)];
+  const payload = JSON.stringify(body);
 
-  let lastError = 'Semua model sedang tidak bisa dihubungi.';
-  let lastStatus = 0;
-
-  for (const attempt of chain) {
-    let res: Response;
-    try {
-      res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${attempt}:generateContent`,
-        {
-          method: 'POST',
-          headers: { 'content-type': 'application/json', 'x-goog-api-key': key },
-          body: JSON.stringify({ ...body }),
-        }
-      );
-    } catch {
-      lastError = 'Gagal menghubungi model.';
-      continue;
-    }
+  // Satu percobaan ke satu model. Galat jaringan dan pembatalan sengaja tidak
+  // ditangkap di sini, supaya runChain bisa membedakan model yang terlalu lama
+  // dari jaringan yang putus.
+  async function tryModel(attempt: string, signal: AbortSignal): Promise<Attempt<LookupResult[]>> {
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${attempt}:generateContent`,
+      {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', 'x-goog-api-key': key },
+        body: payload,
+        signal,
+      }
+    );
 
     if (!res.ok) {
-      lastStatus = res.status;
-      lastError = friendly(res.status);
       // 400 dan 403 itu salah kita atau soal izin, ganti model tidak menolong.
-      if (res.status === 400 || res.status === 403) break;
-      continue;
+      // Satu pengecualian: 400 yang menyebut pengaturan berpikir berarti model
+      // ini saja yang tidak mengenal thinkingLevel. Model lain di rantai sudah
+      // terbukti menerimanya, jadi yang ini dilewati, bukan menghentikan semua.
+      const detail = res.status === 400 ? await res.text().catch(() => '') : '';
+      const stop = (res.status === 400 && !/thinking/i.test(detail)) || res.status === 403;
+      return { kind: stop ? 'stop' : 'next', error: friendly(res.status), status: res.status };
     }
 
-    const data = await res.json();
-    const text: string | undefined = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-    if (!text) {
-      lastError = 'Model tidak mengembalikan teks.';
-      continue;
+    let data: { candidates?: { content?: { parts?: { text?: string }[] } }[] };
+    try {
+      data = await res.json();
+    } catch (err) {
+      // Terputus di tengah membaca balasan karena batas waktu: biarkan
+      // runChain yang mencatatnya sebagai batas waktu.
+      if (signal.aborted) throw err;
+      return { kind: 'next', error: 'Balasan model bukan JSON yang valid.' };
     }
+
+    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!text) return { kind: 'next', error: 'Model tidak mengembalikan teks.' };
 
     let parsed: { results?: unknown[] };
     try {
       parsed = JSON.parse(text);
     } catch {
-      lastError = 'Balasan model bukan JSON yang valid.';
-      continue;
+      return { kind: 'next', error: 'Balasan model bukan JSON yang valid.' };
     }
 
     const raw = Array.isArray(parsed.results) ? parsed.results : [];
-    let results = raw
+    const results = raw
       .filter(validate)
       .map((r) => ({
         ...(r as LookupResult),
@@ -219,10 +252,30 @@ export async function POST(req: Request) {
     // terbaca". Itu jawaban jujur, jadi tidak dilempar ke model cadangan. Yang
     // tetap dianggap gagal hanya daftar berisi tetapi seluruhnya rusak.
     if (results.length === 0 && !(marked && raw.length === 0)) {
-      lastError = 'Tidak ada hasil yang lolos validasi.';
-      continue;
+      return { kind: 'next', error: 'Tidak ada hasil yang lolos validasi.' };
     }
+    return { kind: 'ok', value: results };
+  }
 
+  const outcome = await runChain({
+    chain,
+    attempt: tryModel,
+    budgetMs: CHAIN_BUDGET_MS,
+    perAttemptMs: ATTEMPT_MS,
+    minAttemptMs: MIN_ATTEMPT_MS,
+  });
+
+  // Satu baris per permintaan di log server: model mana yang dicoba, berapa
+  // lama, dan bagaimana hasilnya. Tanpa foto, tanpa kata, tanpa kunci. Inilah
+  // yang dipakai untuk tahu apakah model utama sedang menggantung atau gagal.
+  console.log(JSON.stringify({
+    lookup: marked ? 'marked' : 'typed',
+    total_ms: Date.now() - started,
+    attempts: outcome.log,
+  }));
+
+  if (outcome.ok) {
+    let results = outcome.value;
     let used = quota.used;
     if (marked) {
       // Model diminta paling banyak lima, tetapi batas itu dijaga di sini juga.
@@ -246,8 +299,8 @@ export async function POST(req: Request) {
     // Yang dikembalikan hanya kegagalan total di bawah.
     return Response.json({
       ok: true,
-      model: attempt,
-      fellBack: attempt !== model,
+      model: outcome.model,
+      fellBack: outcome.model !== model,
       results,
       used,
       limit: quota.limit,
@@ -257,5 +310,5 @@ export async function POST(req: Request) {
 
   // Tidak ada hasil yang sampai ke pengguna, jadi jatah hariannya dikembalikan.
   await refund(ip, cost);
-  return Response.json({ ok: false, error: lastError, status: lastStatus }, { status: 502 });
+  return Response.json({ ok: false, error: outcome.error, status: outcome.status }, { status: 502 });
 }

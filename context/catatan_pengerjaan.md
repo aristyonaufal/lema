@@ -686,6 +686,60 @@ Batas uji ini: satu foto tiruan dengan huruf besar dan cahaya sempurna. Belum ad
 
 Dorong cabang untuk mendapat alamat pratinjau, uji di HP dengan buku sungguhan: satu halaman bercoret pensil, satu halaman yang ditandai lewat ketukan. Kalau hasilnya baik, gabungkan ke `main`. Kalau tidak, ikuti `cara_kembali_ke_versi_lama.md`.
 
+## 10 September 2026 — Claude: waktu tunggu model, dari 58,8 detik ke 28,8 detik
+
+**Permintaan pengguna:** "lakukan semuanya", yaitu mengerjakan batas waktu per percobaan di rantai model cadangan, lalu mendorong cabang `fitur/tandai-di-foto` untuk alamat pratinjau.
+
+**Status sesi:** selesai. 58/58 pengujian lulus. Diukur dengan model sungguhan sebelum dan sesudah perbaikan.
+
+### Perbaikan pertama yang ternyata salah
+
+Batas 25 detik per percobaan dipasang lebih dulu, lalu diukur. Hasilnya **gagal total pada detik ke-50**: model utama dan model cadangan sama sama menyentuh batas 25 detik. Padahal tanpa batas itu, model cadangan tadi berhasil pada detik ke-58,8. Artinya perbaikan pertama membuat kasus ini lebih buruk. Kesimpulannya: setiap panggilan memang lambat, bukan hanya satu model yang menggantung, dan angka batas waktu tidak boleh ditebak.
+
+### Penyebab yang ditemukan
+
+Satu panggilan langsung ke `gemini-3.6-flash` dengan pengaturan bawaan: 21,2 detik, **3.234 token berpikir untuk 677 token jawaban**. Sekitar 83% keluarannya habis untuk berpikir sebelum menjawab. Dokumentasi Gemini menyebut tingkat berpikir bawaan model Flash generasi ini adalah `medium`.
+
+Lalu keempat model di rantai dicoba dengan `thinkingConfig.thinkingLevel = "low"`, satu per satu:
+
+| Model | Hasil |
+|---|---|
+| `gemini-3.8-flash` | HTTP 503 setelah **57,8 detik**, "high demand" |
+| `gemini-3.6-flash` | 10,0 detik, 1.183 token berpikir, kata yang ditemukan tetap benar |
+| `gemini-3.5-flash` | HTTP 503 dalam 1,7 detik |
+| `gemini-3.1-flash-lite` | 12,3 detik, 134 token berpikir, kata yang ditemukan tetap benar |
+
+Jadi ada dua penyebab. Model utama sedang kelebihan beban dan **menggantung hampir semenit sebelum menolak**, dan itulah asal 58,8 detik pertama. Selain itu tingkat berpikir bawaan membuat setiap jawaban sehat pun lambat.
+
+### Perubahan
+
+- **`lib/model-chain.ts` (baru).** Logika rantai cadangan dipisah dari route supaya bisa diuji tanpa jaringan. Setiap model paling lama 20 detik, seluruh rantai paling lama 50 detik, dan model yang sisa waktunya kurang dari 6 detik tidak dimulai sama sekali. Batas waktu dibedakan dari jaringan putus, dan 400/403 tetap menghentikan rantai.
+- **Tingkat berpikir `low`** dikirim ke semua model, bisa diatur lewat `GEMINI_THINKING_LEVEL` (`low`, `medium`, `high`; nilai lain kembali ke `low`). Berlaku untuk mode ketik juga, karena penyebab lambatnya sama.
+- **400 yang menyebut pengaturan berpikir tidak menghentikan rantai.** `gemini-3.8-flash` dan `gemini-3.5-flash` belum terbukti menerima parameter itu secara langsung karena keduanya sedang membalas 503; dokumentasi menyebut keduanya mendukung. Kalau ternyata salah satunya menolak, model itu dilewati dan rantai jalan terus.
+- **Satu baris log per permintaan** di server: model yang dicoba, lamanya, dan hasilnya. Tanpa foto, kata, atau kunci. Dari baris inilah penyebab di atas bisa dilihat.
+- `.env.example` menjelaskan `GEMINI_THINKING_LEVEL`.
+
+### Hasil setelah perbaikan
+
+Satu panggilan lewat rantai lengkap dengan foto yang sama: **berhasil dalam 28,8 detik** (sebelumnya 58,8 detik, nyaris terputus). `gemini-3.8-flash` ditinggal pada detik ke-20, `gemini-3.6-flash` menjawab dalam 8,8 detik. Kata yang ditemukan tetap "made out" sebagai frasa dan "curiosity". Jatah tercatat 3 dari 60.
+
+**20 dari 28,8 detik itu murni menunggu model utama yang sedang penuh.** Model cadangannya sendiri sudah di bawah target PRD 10 detik.
+
+### Keputusan yang diserahkan ke pengguna
+
+- **Model utama.** Mengganti `GEMINI_MODEL` menjadi `gemini-3.6-flash` di Environment Variables Vercel, untuk Production dan Preview, diperkirakan menurunkan waktu tunggu ke sekitar 9 detik. `gemini-3.8-flash` tetap ada di rantai sebagai cadangan. Pada 10 September model itu gagal di setiap pengukuran; Google menyebut lonjakan seperti ini biasanya sementara. Belum diubah, karena itu konfigurasi milik pengguna.
+- **Tingkat berpikir vs ketepatan.** `low` belum pernah diuji terhadap ketepatan makna. Pada foto uji, kata yang ditemukan dan makna utamanya sama dengan `medium`, tetapi satu foto bukan uji akurasi. Uji akurasi berikutnya sebaiknya dijalankan dengan pengaturan ini, dan dinaikkan ke `medium` bila hasilnya turun.
+
+### Temuan sampingan
+
+Garis pensil tiruan di foto uji dibaca "Still" pada dua panggilan dan "heather" pada satu panggilan. Garisnya memang ambigu, membentang dari ujung "heather." sampai habis "Still,". Ini tanda bahwa coretan yang menyentuh dua kata tidak akan dibaca konsisten, dan patut diperhatikan saat menguji dengan coretan sungguhan.
+
+### Verifikasi
+
+- `npx tsc --noEmit`: lulus. `npm run lint`: 0 error. `npm run build`: lulus.
+- `PLAYWRIGHT_TEST_PRODUCTION=1 npx playwright test`: **58/58 lulus**, termasuk enam pengujian baru di `tests/model-chain.spec.ts`: model yang menggantung ditinggal lalu cadangan menjawab, rantai berhenti sebelum melewati anggaran walau enam model menggantung, percobaan terakhir dipotong ke sisa anggaran, 403 tidak dicoba ke model lain, 503 dan jaringan putus sama sama pindah, dan jawaban yang tepat waktu tidak ikut terpotong.
+- Enam panggilan model sungguhan dipakai untuk pengukuran di sesi ini, semuanya dengan foto halaman tiruan tanpa data pribadi.
+
 ## Format catatan berikutnya
 
 Gunakan tanggal dan nama pelaksana, lalu jelaskan: permintaan/tujuan, keputusan, file yang diubah beserta alasannya, verifikasi dan hasilnya, masalah yang masih terbuka, serta pekerjaan berikutnya. Tulis "belum diuji" untuk hal yang belum benar-benar diperiksa.
