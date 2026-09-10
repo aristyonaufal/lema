@@ -163,6 +163,7 @@ test('frasa multi kata dikirim utuh sebagai satu tandaan', async ({ page }) => {
   });
   await page.goto('/baca');
 
+  await page.getByRole('radio', { name: 'Ketik kata' }).click();
   await page.locator('input[type="file"]').setInputFiles(photo);
   await page.getByPlaceholder('Kata atau frasa yang bikin berhenti').fill('in the long run');
   await page.getByRole('button', { name: 'Tambah', exact: true }).click();
@@ -184,6 +185,7 @@ test('teks sepanjang kalimat ditolak dengan penjelasan, bukan dijawab asal', asy
   });
   await page.goto('/baca');
 
+  await page.getByRole('radio', { name: 'Ketik kata' }).click();
   const input = page.getByPlaceholder('Kata atau frasa yang bikin berhenti');
   await input.fill('She made out the shape of a house in the fog and kept walking north');
 

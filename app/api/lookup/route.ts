@@ -1,4 +1,4 @@
-import { SYSTEM_PROMPT, userPrompt, RESPONSE_SCHEMA } from '@/lib/prompt';
+import { MARKED_SYSTEM_PROMPT, markedUserPrompt, SYSTEM_PROMPT, userPrompt, RESPONSE_SCHEMA } from '@/lib/prompt';
 import type { LookupResult } from '@/lib/types';
 import { clientIp, consume, refund } from '@/lib/rate-limit';
 
@@ -22,6 +22,10 @@ const FALLBACK_CHAIN = [
   'gemini-3.5-flash',
   'gemini-3.1-flash-lite',
 ];
+
+// Batas kata per foto pada mode tandai. Sama dengan batas mode ketik, supaya
+// satu foto tidak pernah lebih mahal dari yang sudah dijanjikan ke pengguna.
+const MARKED_MAX = 5;
 
 // Pesan yang dibaca pengguna, bukan JSON mentah dari Google.
 function friendly(status: number): string {
@@ -84,21 +88,28 @@ export async function POST(req: Request) {
 
   const image = form.get('image');
   const rawWords = form.get('words');
+  // Dua mode. "typed" adalah alur lama: pembaca mengetik katanya. "marked"
+  // adalah alur tandai: tidak ada daftar kata, model mencari sendiri coretan
+  // pembaca dan penanda magenta yang digambar aplikasi di foto.
+  const marked = form.get('mode') === 'marked';
+  const markers = Math.max(0, Math.min(MARKED_MAX, Math.floor(Number(form.get('markers')) || 0)));
 
   if (!(image instanceof File)) {
     return Response.json({ ok: false, error: 'Foto halaman belum ada.' }, { status: 400 });
   }
 
-  let words: string[];
-  try {
-    words = JSON.parse(String(rawWords ?? '[]'));
-  } catch {
-    return Response.json({ ok: false, error: 'Daftar kata tidak valid.' }, { status: 400 });
-  }
+  let words: string[] = [];
+  if (!marked) {
+    try {
+      words = JSON.parse(String(rawWords ?? '[]'));
+    } catch {
+      return Response.json({ ok: false, error: 'Daftar kata tidak valid.' }, { status: 400 });
+    }
 
-  words = words.map((w) => String(w).trim()).filter(Boolean).slice(0, 5);
-  if (words.length === 0) {
-    return Response.json({ ok: false, error: 'Belum ada kata yang ditandai.' }, { status: 400 });
+    words = words.map((w) => String(w).trim()).filter(Boolean).slice(0, 5);
+    if (words.length === 0) {
+      return Response.json({ ok: false, error: 'Belum ada kata yang ditandai.' }, { status: 400 });
+    }
   }
 
   if (image.size > 4 * 1024 * 1024) {
@@ -110,7 +121,12 @@ export async function POST(req: Request) {
 
   // Batas dihitung per kata dan baru diperiksa setelah jumlah kata diketahui.
   // Permintaan yang ditolak sebelum titik ini tidak memakan jatah siapa pun.
-  const quota = await consume(ip, words.length);
+  //
+  // Mode tandai belum tahu jumlah katanya sebelum model menjawab, jadi jatah
+  // penuh dipesan dulu dan sisanya dikembalikan di bawah. Memesan belakangan
+  // berarti memanggil model tanpa tahu apakah pengguna masih punya jatah.
+  const cost = marked ? MARKED_MAX : words.length;
+  const quota = await consume(ip, cost);
   if (!quota.allowed) {
     return Response.json(
       { ok: false, error: quota.reason, used: quota.used, limit: quota.limit },
@@ -127,13 +143,13 @@ export async function POST(req: Request) {
       : process.env.GEMINI_MODEL ?? 'gemini-3.8-flash';
 
   const body = {
-    systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+    systemInstruction: { parts: [{ text: marked ? MARKED_SYSTEM_PROMPT : SYSTEM_PROMPT }] },
     contents: [
       {
         role: 'user',
         parts: [
           { inlineData: { mimeType: image.type || 'image/jpeg', data: base64 } },
-          { text: userPrompt(words) },
+          { text: marked ? markedUserPrompt(markers) : userPrompt(words) },
         ],
       },
     ],
@@ -190,16 +206,40 @@ export async function POST(req: Request) {
       continue;
     }
 
-    const results = (parsed.results ?? [])
+    const raw = Array.isArray(parsed.results) ? parsed.results : [];
+    let results = raw
       .filter(validate)
       .map((r) => ({
         ...(r as LookupResult),
         found: (r as LookupResult).found ?? true,
         page_excerpt: (r as LookupResult).page_excerpt ?? '',
       })) as LookupResult[];
-    if (results.length === 0) {
+
+    // Pada mode tandai, daftar kosong dari model artinya "tidak ada tanda yang
+    // terbaca". Itu jawaban jujur, jadi tidak dilempar ke model cadangan. Yang
+    // tetap dianggap gagal hanya daftar berisi tetapi seluruhnya rusak.
+    if (results.length === 0 && !(marked && raw.length === 0)) {
       lastError = 'Tidak ada hasil yang lolos validasi.';
       continue;
+    }
+
+    let used = quota.used;
+    if (marked) {
+      // Model diminta paling banyak lima, tetapi batas itu dijaga di sini juga.
+      // Kata yang sama ditandai dua kali dihitung sekali.
+      const seen = new Set<string>();
+      results = results.filter((r) => {
+        const key = r.word.trim().toLowerCase();
+        if (!key || seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      }).slice(0, MARKED_MAX);
+      // Jatah yang dipesan penuh dikembalikan sisanya. Foto tanpa tanda tetap
+      // dihitung satu, karena model sudah dipanggil untuk membacanya; tanpa
+      // itu foto kosong bisa dikirim berulang kali tanpa batas.
+      const unused = cost - Math.max(1, results.length);
+      await refund(ip, unused);
+      used -= unused;
     }
 
     // Kata yang gagal terbaca tetap memakai kuota model, jadi tidak dikembalikan.
@@ -209,13 +249,13 @@ export async function POST(req: Request) {
       model: attempt,
       fellBack: attempt !== model,
       results,
-      used: quota.used,
+      used,
       limit: quota.limit,
       ms: Date.now() - started,
     });
   }
 
   // Tidak ada hasil yang sampai ke pengguna, jadi jatah hariannya dikembalikan.
-  await refund(ip, words.length);
+  await refund(ip, cost);
   return Response.json({ ok: false, error: lastError, status: lastStatus }, { status: 502 });
 }

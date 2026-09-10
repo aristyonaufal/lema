@@ -81,6 +81,9 @@ async function savedDb(page: Page): Promise<Db> {
 }
 
 async function preparePhoto(page: Page, words: string[]) {
+  // Mode tandai adalah bawaan layar foto. Pengujian di berkas ini menguji alur
+  // ketik, jadi mode itu dipilih dulu secara terang terangan.
+  await page.getByRole('radio', { name: 'Ketik kata' }).click();
   await page.locator('input[type="file"]').setInputFiles(photo);
   await expect(page.getByRole('img', { name: 'halaman', exact: true })).toBeVisible();
   for (const word of words) {

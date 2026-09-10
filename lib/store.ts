@@ -26,6 +26,13 @@ export type Entry = {
   // terbaca: entri tanpa penanda ini memang tidak pernah dicatat, jadi
   // dihitung belum lolos, bukan ditebak dari tanggal.
   passedReview?: boolean;
+  // Mode tandai. Kata yang ditemukan dari satu foto berbagi `batch` yang sama,
+  // yaitu id entri penampung yang dibuat saat foto dikirim. Dengan begitu
+  // tautan ke penampung tetap membuka kata kata hasilnya setelah model menjawab.
+  // `marked` mencatat asal kata ini, supaya uji akurasi bisa membedakan kata
+  // yang ditandai di foto dari kata yang diketik.
+  batch?: string;
+  marked?: boolean;
 };
 
 export type Book = {
@@ -201,6 +208,80 @@ export function resolveEntry(
             dueAt: Date.now() + LADDER[0] * 86400000,
           }
     ),
+  };
+}
+
+// Nama sementara entri penampung, dipakai sampai model memberi tahu kata apa
+// saja yang sebenarnya ditandai.
+export const MARKED_PLACEHOLDER = 'Kata yang kamu tandai';
+
+export const MARKED_EMPTY =
+  'Lema belum menemukan kata yang kamu tandai di foto ini. Coba ketuk katanya langsung di foto, atau ketik katanya.';
+
+export function addMarkedPending(db: Db, bookId: string): { db: Db; id: string } {
+  const now = Date.now();
+  const entryId = id();
+  const placeholder: Entry = {
+    id: entryId,
+    bookId,
+    word: MARKED_PLACEHOLDER,
+    status: 'pending',
+    known: false,
+    stage: 0,
+    dueAt: now,
+    createdAt: now,
+    batch: entryId,
+    marked: true,
+  };
+  return { db: { ...db, entries: [...db.entries, placeholder] }, id: entryId };
+}
+
+// Mengganti entri penampung dengan kata kata yang ditemukan model, di tempat
+// yang sama dalam daftar. Kalau tidak ada yang ditemukan, penampungnya tidak
+// dihapus melainkan dijadikan galat yang bisa dibaca, supaya pengguna tahu
+// fotonya sampai tetapi tandanya tidak terbaca.
+export function resolveMarked(
+  db: Db,
+  placeholderId: string,
+  outcome: { results?: LookupResult[]; error?: string },
+): Db {
+  const placeholder = db.entries.find((e) => e.id === placeholderId);
+  // Penampung sudah dihapus pengguna selama menunggu. Jangan memunculkan lagi
+  // kata yang sudah dia buang.
+  if (!placeholder) return db;
+
+  const results = outcome.results ?? [];
+  if (results.length === 0) {
+    return {
+      ...db,
+      entries: db.entries.map((e) =>
+        e.id === placeholderId
+          ? { ...e, status: 'error', error: outcome.error ?? MARKED_EMPTY }
+          : e,
+      ),
+    };
+  }
+
+  const dueAt = Date.now() + LADDER[0] * 86400000;
+  // Waktu dibuat disamakan dengan penampungnya. Pengurutan koleksi bersifat
+  // stabil, jadi kata kata dari satu foto tetap tampil dalam urutan baca.
+  const found: Entry[] = results.map((result) => ({
+    id: id(),
+    bookId: placeholder.bookId,
+    word: result.word.trim(),
+    status: 'done',
+    result,
+    known: false,
+    stage: 0,
+    dueAt,
+    createdAt: placeholder.createdAt,
+    batch: placeholderId,
+    marked: true,
+  }));
+
+  return {
+    ...db,
+    entries: db.entries.flatMap((e) => (e.id === placeholderId ? found : [e])),
   };
 }
 

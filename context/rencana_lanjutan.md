@@ -6,6 +6,7 @@ Status per 9 September 2026: Lanjutan 1–4 selesai, Lanjutan 5 sebagian (mode l
 ## Keputusan pengguna dan cara kerja
 
 - **9 September 2026, perubahan alur.** Makna sekarang langsung dibuka ketika tombol utama ditekan. Mode tunda tidak dihapus, tetapi turun menjadi tombol sekunder. Ini membalik prinsip nomor 1 pada PRD, dan PRD belum diselaraskan; keputusan itu ada pada pengguna.
+- **10 September 2026, tandai tanpa mengetik.** Pengguna meminta gabungan menandai kata di foto dan coretan pensil yang dicari otomatis, dan meminta jalan kembali disiapkan. Dikerjakan di cabang `fitur/tandai-di-foto` dengan titik pulih `v1-sebelum-tandai-foto`; lihat `cara_kembali_ke_versi_lama.md`. Aplikasi yang bisa dipasang di layar HP dan kamera langsung sengaja dilewati atas pilihan pengguna.
 - **9 September 2026, rute dan tampilan.** `/` menjadi beranda berisi ringkasan progres, layar foto pindah ke `/baca`. Tampilan dibuat responsif dengan sidebar kiri dan isi dua kolom mulai lebar laptop, sementara HP tetap memakai bilah bawah.
 
 - Kamera langsung aktif sengaja ditunda pada tahap awal. Pemilih foto yang sekarang dipertahankan. Penambahan kamera dijadwalkan kemudian, sesuai arahan pengguna.

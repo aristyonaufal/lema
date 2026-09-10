@@ -122,6 +122,7 @@ test('simpan dan lihat makna membawa langsung ke peta makna kata itu', async ({ 
   });
 
   await page.goto('/baca');
+  await page.getByRole('radio', { name: 'Ketik kata' }).click();
   await page.locator('input[type="file"]').setInputFiles({
     name: 'page.png',
     mimeType: 'image/png',
