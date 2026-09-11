@@ -81,7 +81,11 @@ export default function SenseMap({ entry, onKnown, onRemove, onRetry }: {
           <span className="bg-warn h-2 w-2 animate-pulse rounded-full" />
         </span>
         <div className="min-w-0 flex-1">
-          <p className="text-muted text-sm">Sedang diproses: {entry.word}</p>
+          <p className="text-muted text-sm">
+            {/* Penampung mode tandai belum punya kata sungguhan, jadi yang
+                ditulis adalah apa yang sedang dikerjakan, bukan nama sementaranya. */}
+            {entry.marked ? 'Lagi mencari kata yang kamu tandai di foto…' : `Sedang diproses: ${entry.word}`}
+          </p>
           <div className="shimmer mt-2 h-2 w-4/5 rounded-full" />
         </div>
       </div>

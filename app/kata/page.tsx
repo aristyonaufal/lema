@@ -100,7 +100,14 @@ function KataContent() {
   // tetap dapat dibuka secara terpisah tanpa membuat entri baru.
   const focused = searchParams.has('entry');
   const selectedIds = new Set(searchParams.getAll('entry').filter(Boolean));
-  const selectedEntries = db.entries.filter((entry) => selectedIds.has(entry.id));
+  // Pada mode tandai, id di alamat adalah milik entri penampung. Setelah model
+  // menjawab, penampung itu diganti kata kata hasilnya, dan semuanya membawa
+  // batch yang sama dengan id tersebut. Tanpa pencocokan ini, pengguna yang
+  // menunggu di peta makna akan melihat "kata tidak ada di koleksi" persis saat
+  // hasilnya tiba.
+  const isSelected = (entry: Entry) =>
+    selectedIds.has(entry.id) || (entry.batch !== undefined && selectedIds.has(entry.batch));
+  const selectedEntries = db.entries.filter(isSelected);
   const pendingCount = selectedEntries.filter((entry) => entry.status === 'pending').length;
   const bookParam = searchParams.get('buku');
 
@@ -193,7 +200,7 @@ function KataContent() {
             )}
             {selectedEntries.length === 0 ? (
               <p className="text-muted">Kata yang kamu buka tidak ada di koleksi ini. Mungkin sudah dihapus atau tersimpan di browser lain.</p>
-            ) : selectedEntries.length < selectedIds.size && (
+            ) : [...selectedIds].some((id) => !db.entries.some((e) => e.id === id || e.batch === id)) && (
               <p className="text-muted">Sebagian kata yang kamu buka sudah tidak ada di koleksi ini.</p>
             )}
           </div>
@@ -240,7 +247,7 @@ function KataContent() {
         <div className="flex min-w-0 flex-col gap-6">
           {shownBooks.map((b) => {
             const entries = byBook(db, b.id).filter((entry) =>
-              focused ? selectedIds.has(entry.id) : activeFilter.match(entry),
+              focused ? isSelected(entry) : activeFilter.match(entry),
             );
             if (entries.length === 0) return null;
             const done = entries.filter((e) => e.status === 'done').length;

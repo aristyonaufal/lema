@@ -604,6 +604,142 @@ Tidak berubah dari sesi sebelumnya, dan urutannya justru makin mendesak: uji sat
 
 Deploy revisi ini, uji ulang sebentar di HP, lalu **uji akurasi**. Sisa waktu sebelum 12 September paling baik dipakai untuk mengumpulkan angka, bukan menambah fitur.
 
+## 10 September 2026 — Claude: tandai kata tanpa mengetik
+
+**Permintaan pengguna:** setelah sesi curah gagasan tentang keribetan saat membaca, pengguna meminta gabungan dua gagasan: menandai kata langsung di foto, dan membiarkan Lema menemukan sendiri coretan pensil di buku. Lapis pertama, yaitu aplikasi yang bisa dipasang di layar HP dan kamera langsung, sengaja dilewati. Pengguna juga meminta kode sebelum perubahan disiapkan sebagai jalan kembali kalau fiturnya tidak jalan.
+
+**Status sesi:** selesai di cabang `fitur/tandai-di-foto`, **belum digabung ke `main` dan belum di-deploy**. Build produksi, pemeriksaan tipe, lint tanpa error, dan 52/52 pengujian browser lulus. Satu panggilan ke model sungguhan dilakukan untuk membuktikan prompt barunya.
+
+### Jaring pengaman yang dipasang lebih dulu
+
+1. Tag `v1-sebelum-tandai-foto` pada commit `0c33808`, versi yang sedang hidup di produksi.
+2. Seluruh pekerjaan di cabang terpisah. `main` dan produksi tidak tersentuh.
+3. Alur ketik lama dipertahankan utuh sebagai mode kedua, dan cara bawaannya diatur oleh satu konstanta `DEFAULT_MODE`.
+
+Langkah kembali untuk setiap keadaan ditulis di `cara_kembali_ke_versi_lama.md`.
+
+### Perubahan perilaku
+
+- **Layar foto punya dua cara menandai:** "Tandai di foto" sebagai bawaan, dan "Ketik kata" yang merupakan alur lama tanpa perubahan. Pilihan terakhir diingat di browser.
+- **Ketuk kata di foto.** Setiap ketukan menaruh oval magenta bernomor, paling banyak lima. Ketuk ovalnya lagi untuk menghapus, dan nomornya dirapatkan ulang. Oval itu digambar ke foto sebelum dikirim, jadi model membaca penanda yang sama persis dengan yang dilihat pengguna.
+- **Tanpa ketukan, Lema mencari coretan pensil.** Kalau fotonya dikirim tanpa satu pun oval, model diminta mencari garis bawah, lingkaran, atau stabilo yang dibuat pembaca sendiri. Keterangan ini tertulis di layar sebelum pengguna menekan simpan.
+- **Satu penampung, lalu diganti.** Karena kata sebenarnya baru diketahui setelah model menjawab, yang disimpan seketika adalah satu entri penampung bertuliskan "Kata yang kamu tandai". Begitu jawabannya tiba, penampung itu diganti kata kata temuan di tempat yang sama. Kalau tidak ada yang ditemukan, penampungnya berubah menjadi galat yang menjelaskan dan menawarkan pilih ulang foto.
+- **Peta makna tetap terbuka saat hasil tiba.** Alamat `/kata?entry=<id penampung>` ikut mengenali kata kata hasil satu foto lewat kolom `batch`, jadi pengguna yang menunggu tidak disambut "kata tidak ada di koleksi" persis ketika hasilnya datang.
+
+### Keputusan teknis
+
+- **Prompt dipecah menjadi bagian bersama**, lalu disusun ulang. `SYSTEM_PROMPT` untuk mode ketik dibuktikan identik sampai karakter terakhir dengan versi di titik pulih (2.778 karakter, dibandingkan langsung), begitu juga `userPrompt` dan skema balasannya. Perilaku mode ketik yang sudah teruji tidak ikut bergeser.
+- **Oval mendatar, bukan lingkaran.** Versi pertama memakai lingkaran. Pemeriksaan foto yang benar benar dikirim ke model menunjukkan lingkaran selebar satu kata memotong dua baris sekaligus, dan di foto buku sungguhan jarak barisnya jauh lebih rapat. Oval 10% × 4,4% lebar foto duduk di satu baris.
+- **Ukuran penanda di layar dan di foto memakai rumus yang sama**, yaitu persen lebar foto, tanpa mengukur apa pun lewat JavaScript. Pembungkus foto mengikuti ukuran gambar persis, karena dengan `object-contain` titik ketukan tidak lagi sama dengan titik di foto.
+- **Warna magenta** dipilih karena hampir tidak pernah muncul di halaman buku. Konstanta warnanya ditaruh di `lib/image.ts`, bukan di `lib/prompt.ts`, supaya layar foto tidak ikut menarik teks prompt ke bundle browser.
+- **Jatah pemakaian mode tandai dipesan penuh lima kata**, lalu sisanya dikembalikan setelah jawaban tiba. Foto tanpa tanda tetap dihitung satu kata, karena model sudah dipanggil untuk membacanya; tanpa itu foto kosong bisa dikirim berulang tanpa batas. Akibat sampingannya: pengguna yang sisa jatahnya kurang dari lima ditolak di mode tandai walaupun sebenarnya cuma menandai satu kata.
+- **Daftar kosong dari model di mode tandai adalah jawaban sah**, bukan kegagalan. Kalau diperlakukan sebagai gagal, endpoint akan mencoba empat model cadangan berturut turut hanya untuk mendapat jawaban "tidak ada tanda" yang sama.
+
+### Uji dengan model sungguhan
+
+Satu panggilan lewat server produksi lokal, memakai foto halaman tiruan dengan dua oval (di "made" dan "curiosity") dan satu garis pensil tiruan:
+
+| Tanda | Yang ditemukan model | Catatan |
+|---|---|---|
+| Oval 1 di "made" | **"made out"**, frasa, yakin 98% | Benar, dan lebih baik dari yang diminta: model mengenali frasanya walau yang ada di dalam oval cuma "made". Maknanya tepat. |
+| Oval 2 di "curiosity" | **"curiosity"**, yakin 98% | Benar. |
+| Garis pensil tiruan | **"Still"**, yakin 95% | Garisnya ternyata lebih banyak berada di bawah "Still," daripada di bawah "heather", jadi pilihan model justru bacaan yang lebih masuk akal. Yang meleset penempatan garis ujinya. |
+
+Jatah terpakai tercatat 3 dari 60, sesuai aturan pesan lima lalu kembalikan dua.
+
+**Temuan yang perlu diperhatikan: waktunya 58,8 detik.** Model utama `gemini-3.8-flash` gagal dan permintaan pindah ke `gemini-3.6-flash`. Batas waktu endpoint 60 detik, jadi satu permintaan seperti ini di Vercel nyaris terputus. Masalah ini milik rantai cadangan, bukan milik mode tandai, dan berlaku juga untuk mode ketik. Satu sampel belum cukup untuk tahu apakah ini gangguan sesaat di model utama atau pola yang menetap. Usulan perbaikannya: batas waktu per percobaan di dalam rantai cadangan, supaya model yang menggantung tidak menghabiskan seluruh jatah 60 detik. Belum dikerjakan.
+
+Batas uji ini: satu foto tiruan dengan huruf besar dan cahaya sempurna. Belum ada uji dengan foto buku sungguhan, coretan pensil sungguhan, cahaya redup, atau halaman miring.
+
+### File yang diubah
+
+- `lib/prompt.ts`: dipecah menjadi bagian bersama; `MARKED_SYSTEM_PROMPT` dan `markedUserPrompt` baru.
+- `app/api/lookup/route.ts`: kolom `mode` dan `markers`, pemesanan dan pengembalian jatah, daftar kosong yang sah, batas lima dan penghapusan kata ganda.
+- `lib/image.ts`: `drawMarkers`, `MARKER_COLOR`, dan ukuran oval.
+- `lib/store.ts`: kolom `batch` dan `marked`, `addMarkedPending`, `resolveMarked`.
+- `lib/lookup-client.ts`: `startMarkedLookup`; pengiriman dan batas waktunya dipindah ke `send()` yang dipakai kedua mode.
+- `lib/useDb.ts`: `lookupMarked`.
+- `app/baca/page.tsx`: pilihan mode, foto yang bisa diketuk, satu masukan berkas untuk seluruh layar.
+- `app/kata/page.tsx`: tampilan terfokus mengenali `batch`.
+- `components/SenseMap.tsx`: pesan khusus untuk penampung yang sedang diproses.
+- `tests/tandai.spec.ts` (baru): lima pengujian.
+- `tests/storage.spec.ts`, `tests/koleksi.spec.ts`, `tests/dashboard.spec.ts`: memilih "Ketik kata" dulu, karena mode tandai sekarang bawaan.
+- `context/cara_kembali_ke_versi_lama.md` (baru).
+
+### Verifikasi
+
+- `npx tsc --noEmit`: lulus.
+- `npm run build`: lulus.
+- `npm run lint`: **0 error**, tiga peringatan `<img>`.
+- `PLAYWRIGHT_TEST_PRODUCTION=1 npx playwright test`: **52/52 lulus**, terdiri dari 47 pengujian sebelumnya ditambah lima pengujian mode tandai. Tidak satu pun pengujian lama dilemahkan; yang berubah hanya langkah memilih mode ketik.
+- Pemeriksaan visual pada lebar 390 dan 1440 piksel, termasuk membuka foto yang benar benar dikirim ke model. Dua masalah ditemukan dan diperbaiki dari situ: lingkaran yang memotong dua baris, dan nomor penanda di layar yang menutupi kata sesudahnya.
+
+### Masalah yang masih terbuka
+
+- **Mengetuk kata di foto satu halaman penuh sulit di HP.** Pada lebar 390 piksel, huruf di foto satu halaman tinggal sekitar 5 sampai 10 piksel. Petunjuk di layar menyarankan memotret dari dekat. Kalau di HP ternyata tetap sulit, langkah berikutnya adalah perbesaran di atas foto. Jalur coretan pensil tidak punya masalah ini.
+- Waktu tunggu 58,8 detik pada satu sampel. Lihat bagian uji dengan model sungguhan.
+- Belum diuji dengan foto buku sungguhan dan belum diuji di Safari iPhone.
+- Cabang belum didorong. Vercel akan membuat alamat pratinjau begitu cabangnya didorong; `GEMINI_API_KEY` harus aktif untuk lingkungan Preview di Vercel, dan pratinjau di paket Hobby biasanya meminta masuk ke akun Vercel dulu.
+- PRD bagian 6 mengeluarkan "tap langsung di atas gambar memakai bounding box OCR". Cara di sini berbeda karena tidak memakai OCR maupun bounding box, tetapi pengalaman penggunanya mirip. Keputusan menyelaraskan PRD ada pada pengguna.
+
+### Pekerjaan berikutnya
+
+Dorong cabang untuk mendapat alamat pratinjau, uji di HP dengan buku sungguhan: satu halaman bercoret pensil, satu halaman yang ditandai lewat ketukan. Kalau hasilnya baik, gabungkan ke `main`. Kalau tidak, ikuti `cara_kembali_ke_versi_lama.md`.
+
+## 10 September 2026 — Claude: waktu tunggu model, dari 58,8 detik ke 28,8 detik
+
+**Permintaan pengguna:** "lakukan semuanya", yaitu mengerjakan batas waktu per percobaan di rantai model cadangan, lalu mendorong cabang `fitur/tandai-di-foto` untuk alamat pratinjau.
+
+**Status sesi:** selesai. 58/58 pengujian lulus. Diukur dengan model sungguhan sebelum dan sesudah perbaikan.
+
+### Perbaikan pertama yang ternyata salah
+
+Batas 25 detik per percobaan dipasang lebih dulu, lalu diukur. Hasilnya **gagal total pada detik ke-50**: model utama dan model cadangan sama sama menyentuh batas 25 detik. Padahal tanpa batas itu, model cadangan tadi berhasil pada detik ke-58,8. Artinya perbaikan pertama membuat kasus ini lebih buruk. Kesimpulannya: setiap panggilan memang lambat, bukan hanya satu model yang menggantung, dan angka batas waktu tidak boleh ditebak.
+
+### Penyebab yang ditemukan
+
+Satu panggilan langsung ke `gemini-3.6-flash` dengan pengaturan bawaan: 21,2 detik, **3.234 token berpikir untuk 677 token jawaban**. Sekitar 83% keluarannya habis untuk berpikir sebelum menjawab. Dokumentasi Gemini menyebut tingkat berpikir bawaan model Flash generasi ini adalah `medium`.
+
+Lalu keempat model di rantai dicoba dengan `thinkingConfig.thinkingLevel = "low"`, satu per satu:
+
+| Model | Hasil |
+|---|---|
+| `gemini-3.8-flash` | HTTP 503 setelah **57,8 detik**, "high demand" |
+| `gemini-3.6-flash` | 10,0 detik, 1.183 token berpikir, kata yang ditemukan tetap benar |
+| `gemini-3.5-flash` | HTTP 503 dalam 1,7 detik |
+| `gemini-3.1-flash-lite` | 12,3 detik, 134 token berpikir, kata yang ditemukan tetap benar |
+
+Jadi ada dua penyebab. Model utama sedang kelebihan beban dan **menggantung hampir semenit sebelum menolak**, dan itulah asal 58,8 detik pertama. Selain itu tingkat berpikir bawaan membuat setiap jawaban sehat pun lambat.
+
+### Perubahan
+
+- **`lib/model-chain.ts` (baru).** Logika rantai cadangan dipisah dari route supaya bisa diuji tanpa jaringan. Setiap model paling lama 20 detik, seluruh rantai paling lama 50 detik, dan model yang sisa waktunya kurang dari 6 detik tidak dimulai sama sekali. Batas waktu dibedakan dari jaringan putus, dan 400/403 tetap menghentikan rantai.
+- **Tingkat berpikir `low`** dikirim ke semua model, bisa diatur lewat `GEMINI_THINKING_LEVEL` (`low`, `medium`, `high`; nilai lain kembali ke `low`). Berlaku untuk mode ketik juga, karena penyebab lambatnya sama.
+- **400 yang menyebut pengaturan berpikir tidak menghentikan rantai.** `gemini-3.8-flash` dan `gemini-3.5-flash` belum terbukti menerima parameter itu secara langsung karena keduanya sedang membalas 503; dokumentasi menyebut keduanya mendukung. Kalau ternyata salah satunya menolak, model itu dilewati dan rantai jalan terus.
+- **Satu baris log per permintaan** di server: model yang dicoba, lamanya, dan hasilnya. Tanpa foto, kata, atau kunci. Dari baris inilah penyebab di atas bisa dilihat.
+- `.env.example` menjelaskan `GEMINI_THINKING_LEVEL`.
+
+### Hasil setelah perbaikan
+
+Satu panggilan lewat rantai lengkap dengan foto yang sama: **berhasil dalam 28,8 detik** (sebelumnya 58,8 detik, nyaris terputus). `gemini-3.8-flash` ditinggal pada detik ke-20, `gemini-3.6-flash` menjawab dalam 8,8 detik. Kata yang ditemukan tetap "made out" sebagai frasa dan "curiosity". Jatah tercatat 3 dari 60.
+
+**20 dari 28,8 detik itu murni menunggu model utama yang sedang penuh.** Model cadangannya sendiri sudah di bawah target PRD 10 detik.
+
+### Keputusan yang diserahkan ke pengguna
+
+- **Model utama.** Mengganti `GEMINI_MODEL` menjadi `gemini-3.6-flash` di Environment Variables Vercel, untuk Production dan Preview, diperkirakan menurunkan waktu tunggu ke sekitar 9 detik. `gemini-3.8-flash` tetap ada di rantai sebagai cadangan. Pada 10 September model itu gagal di setiap pengukuran; Google menyebut lonjakan seperti ini biasanya sementara. Belum diubah, karena itu konfigurasi milik pengguna.
+- **Tingkat berpikir vs ketepatan.** `low` belum pernah diuji terhadap ketepatan makna. Pada foto uji, kata yang ditemukan dan makna utamanya sama dengan `medium`, tetapi satu foto bukan uji akurasi. Uji akurasi berikutnya sebaiknya dijalankan dengan pengaturan ini, dan dinaikkan ke `medium` bila hasilnya turun.
+
+### Temuan sampingan
+
+Garis pensil tiruan di foto uji dibaca "Still" pada dua panggilan dan "heather" pada satu panggilan. Garisnya memang ambigu, membentang dari ujung "heather." sampai habis "Still,". Ini tanda bahwa coretan yang menyentuh dua kata tidak akan dibaca konsisten, dan patut diperhatikan saat menguji dengan coretan sungguhan.
+
+### Verifikasi
+
+- `npx tsc --noEmit`: lulus. `npm run lint`: 0 error. `npm run build`: lulus.
+- `PLAYWRIGHT_TEST_PRODUCTION=1 npx playwright test`: **58/58 lulus**, termasuk enam pengujian baru di `tests/model-chain.spec.ts`: model yang menggantung ditinggal lalu cadangan menjawab, rantai berhenti sebelum melewati anggaran walau enam model menggantung, percobaan terakhir dipotong ke sisa anggaran, 403 tidak dicoba ke model lain, 503 dan jaringan putus sama sama pindah, dan jawaban yang tepat waktu tidak ikut terpotong.
+- Enam panggilan model sungguhan dipakai untuk pengukuran di sesi ini, semuanya dengan foto halaman tiruan tanpa data pribadi.
+
 ## Format catatan berikutnya
 
 Gunakan tanggal dan nama pelaksana, lalu jelaskan: permintaan/tujuan, keputusan, file yang diubah beserta alasannya, verifikasi dan hasilnya, masalah yang masih terbuka, serta pekerjaan berikutnya. Tulis "belum diuji" untuk hal yang belum benar-benar diperiksa.
