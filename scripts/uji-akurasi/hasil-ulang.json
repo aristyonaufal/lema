@@ -1,0 +1,616 @@
+{
+  "dijalankan": "2026-09-11T12:36:38.713Z",
+  "server": "http://127.0.0.1:3300",
+  "halaman": [
+    {
+      "id": "A-presently",
+      "mode": "ketik",
+      "http": 200,
+      "ms": 41042,
+      "ok": true,
+      "model": "gemini-3.5-flash",
+      "fellBack": true,
+      "hasil": [
+        {
+          "word": "presently",
+          "lemma": "presently",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "For a long time he remained there, turning over the leaves and dried sticks,",
+          "sentence": "You may walk to the cab, and I shall be with you presently.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "sebentar lagi",
+              "meaning_en": "in a short time; soon",
+              "confidence": 1,
+              "trigger": "I shall be with you",
+              "why_id": "Di sini, Sherlock Holmes menyuruh temannya berjalan dulu ke kereta (cab) dan dia akan segera menyusul atau menemui mereka dalam waktu dekat (sebentar lagi)."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "saat ini",
+              "meaning_en": "at the present time; now"
+            }
+          ],
+          "caution_id": "Hati-hati karena di bahasa Inggris modern, presently lebih sering dipakai untuk mengartikan saat ini atau sekarang (seperti currently), sedangkan di buku-buku klasik artinya hampir selalu segera atau sebentar lagi (soon).",
+          "new_sentence": "Please take a seat in the waiting room, and the doctor will be with you presently."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "A-countenance",
+      "mode": "ketik",
+      "http": 200,
+      "ms": 39147,
+      "ok": true,
+      "model": "gemini-3.5-flash",
+      "fellBack": true,
+      "hasil": [
+        {
+          "word": "countenance",
+          "lemma": "countenance",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "But he is generally melancholy and despairing, and sometimes he gnashes his teeth,",
+          "sentence": "His countenance instantly assumed an aspect of the deepest gloom, and he replied, “To seek one who fled from me.”",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "ekspresi wajah atau rupa muka seseorang",
+              "meaning_en": "a person's face or facial expression",
+              "confidence": 1,
+              "trigger": "assumed an aspect of the deepest gloom",
+              "why_id": "Kata ini merujuk pada wajah atau ekspresi wajah si tamu yang langsung berubah menjadi sangat muram (gloom) ketika ditanya alasan dia datang."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "dukungan atau persetujuan",
+              "meaning_en": "support or approval"
+            },
+            {
+              "meaning_id": "menyetujui atau membiarkan sesuatu terjadi",
+              "meaning_en": "admit as acceptable or possible; tolerate"
+            }
+          ],
+          "caution_id": "Di percakapan sehari-hari, kata ini jarang sekali dipakai. Orang biasanya memakai kata face atau expression karena countenance terdengar sangat formal dan kuno.",
+          "new_sentence": "Her calm countenance didn't betray the intense nervousness she felt before the presentation."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "B-exam",
+      "mode": "ketik",
+      "http": 200,
+      "ms": 18581,
+      "ok": true,
+      "model": "gemini-3.5-flash",
+      "fellBack": true,
+      "hasil": [
+        {
+          "word": "figured",
+          "lemma": "figure",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "I figured the test would be easy, but the mean score in our class",
+          "sentence": "I figured the test would be easy, but the mean score in our class was only sixty.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "menduga atau mengira",
+              "meaning_en": "thought, expected, or calculated that something would be the case",
+              "confidence": 0.95,
+              "trigger": "the test would be easy",
+              "why_id": "Penulis mengira atau berasumsi bahwa ujiannya akan mudah sebelum tahu hasil aslinya."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "menghitung angka",
+              "meaning_en": "to calculate an amount or number"
+            },
+            {
+              "meaning_id": "menjadi bagian penting dari sesuatu",
+              "meaning_en": "to play an important part in a situation"
+            }
+          ],
+          "caution_id": "Hati-hati, kata ini juga sering dipakai dalam frasa 'figure out' yang artinya memahami atau memecahkan masalah.",
+          "new_sentence": "I figured you would be late, so I started eating without you."
+        },
+        {
+          "word": "mean",
+          "lemma": "mean",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "I figured the test would be easy, but the mean score in our class",
+          "sentence": "I figured the test would be easy, but the mean score in our class was only sixty.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "rata-rata",
+              "meaning_en": "the average value of a set of numbers",
+              "confidence": 0.98,
+              "trigger": "score in our class was only sixty",
+              "why_id": "Kata ini berpasangan dengan 'score' (nilai) dan angka 'sixty' (enam puluh), yang menunjukkan perhitungan statistik nilai rata-rata kelas."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "bermaksud atau berarti",
+              "meaning_en": "to intend to convey or refer to something"
+            },
+            {
+              "meaning_id": "jahat atau tidak ramah",
+              "meaning_en": "unkind, spiteful, or nasty"
+            },
+            {
+              "meaning_id": "pelit",
+              "meaning_en": "unwilling to share or spend money"
+            }
+          ],
+          "caution_id": "Dalam percakapan sehari-hari, 'mean' paling sering dipakai untuk mengartikan 'maksudnya apa' (What do you mean?) atau menggambarkan orang yang jahat atau galak.",
+          "new_sentence": "The mean temperature in this region during July is around 30 degrees Celsius."
+        },
+        {
+          "word": "sound",
+          "lemma": "sound",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "I figured the test would be easy, but the mean score in our class",
+          "sentence": "My teacher looked at my answers and said my reasoning was sound, even if my arithmetic was not.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "logis, benar, atau masuk akal",
+              "meaning_en": "sensible, logical, or based on good judgment",
+              "confidence": 0.95,
+              "trigger": "reasoning was sound",
+              "why_id": "Kata ini menerangkan 'reasoning' (jalan pikiran atau penalaran) yang dinilai baik atau logis oleh gurunya."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "suara",
+              "meaning_en": "something that can be heard"
+            },
+            {
+              "meaning_id": "nyenyak (tentang tidur)",
+              "meaning_en": "deep and undisturbed (of sleep)"
+            },
+            {
+              "meaning_id": "sehat atau kokoh secara fisik",
+              "meaning_en": "in good condition; robust"
+            }
+          ],
+          "caution_id": "Biasanya kita tahu 'sound' itu artinya 'suara'. Tapi di sini artinya sangat berbeda, yaitu logis atau kuat.",
+          "new_sentence": "The financial advisor gave us some sound advice on how to save money."
+        },
+        {
+          "word": "put up with",
+          "lemma": "put up with",
+          "is_phrase": true,
+          "found": true,
+          "page_excerpt": "I figured the test would be easy, but the mean score in our class",
+          "sentence": "She told me to put up with the pressure for one more week.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "bertahan menghadapi atau menoleransi",
+              "meaning_en": "to accept or continue to accept an unpleasant situation or experience",
+              "confidence": 0.98,
+              "trigger": "the pressure for one more week",
+              "why_id": "Frasa ini diikuti oleh 'pressure' (tekanan), yang berarti dia diminta untuk bersabar atau bertahan menghadapi situasi sulit tersebut."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "menampung seseorang untuk menginap",
+              "meaning_en": "to provide someone with accommodation (usually just 'put up')"
+            }
+          ],
+          "caution_id": "",
+          "new_sentence": "I don't know how she puts up with his constant complaining."
+        },
+        {
+          "word": "bear",
+          "lemma": "bear",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "I figured the test would be easy, but the mean score in our class",
+          "sentence": "Honestly, I can not bear another exam before the holidays.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "menahan atau menanggung beban atau penderitaan",
+              "meaning_en": "to endure or tolerate a difficult situation or pain",
+              "confidence": 0.98,
+              "trigger": "can not bear another exam",
+              "why_id": "Kata ini diawali dengan 'can not' dan diikuti 'another exam', menunjukkan ketidaksanggupan mental untuk menghadapi ujian lagi."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "beruang (hewan)",
+              "meaning_en": "a large, heavy mammal with thick fur"
+            },
+            {
+              "meaning_id": "melahirkan atau menghasilkan",
+              "meaning_en": "to give birth to a child or produce fruit"
+            },
+            {
+              "meaning_id": "membawa",
+              "meaning_en": "to carry or support something"
+            }
+          ],
+          "caution_id": "Hati-hati, jangan terkecoh dengan hewan beruang yang ejaannya sama persis (bear).",
+          "new_sentence": "The pain was almost too much to bear, but he managed to stay quiet."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "B-trip",
+      "mode": "ketik",
+      "http": 200,
+      "ms": 25989,
+      "ok": true,
+      "model": "gemini-3.5-flash",
+      "fellBack": true,
+      "hasil": [
+        {
+          "word": "fine",
+          "lemma": "fine",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "Dad had to pay a fine for parking outside the county fair. Getting to",
+          "sentence": "Dad had to pay a fine for parking outside the county fair.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "denda",
+              "meaning_en": "An amount of money that has to be paid as a punishment for not obeying a rule or law.",
+              "confidence": 1,
+              "trigger": "pay a fine for parking outside",
+              "why_id": "Kata pay (membayar) dan konteks parkir di luar area (parking outside) menunjukkan bahwa fine di sini berarti denda uang akibat melanggar aturan parkir."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "baik/sehat",
+              "meaning_en": "Well, healthy, or in a satisfactory state."
+            },
+            {
+              "meaning_id": "halus/tipis",
+              "meaning_en": "Very thin, small, or delicate."
+            },
+            {
+              "meaning_id": "berkualitas tinggi",
+              "meaning_en": "Of very good quality; excellent."
+            }
+          ],
+          "caution_id": "Hati-hati, kata ini jauh lebih sering dipakai sehari-hari untuk menjawab kabar yang berarti baik-baik saja (I am fine).",
+          "new_sentence": "She had to pay a heavy fine for speeding on the highway."
+        },
+        {
+          "word": "fair",
+          "lemma": "fair",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "Dad had to pay a fine for parking outside the county fair. Getting to",
+          "sentence": "Dad had to pay a fine for parking outside the county fair.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "pekan raya / pasar malam",
+              "meaning_en": "An outdoor event with rides, games, and exhibitions, often held annually.",
+              "confidence": 1,
+              "trigger": "county fair",
+              "why_id": "Gabungan kata county fair merujuk pada acara festival atau pekan raya daerah yang biasanya diadakan di area terbuka."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "adil",
+              "meaning_en": "Treating people equally without favoritism or discrimination."
+            },
+            {
+              "meaning_id": "lumayan/cukup baik",
+              "meaning_en": "Moderate in quality or quantity; acceptable."
+            },
+            {
+              "meaning_id": "berkulit terang / pirang",
+              "meaning_en": "Pale or light in color (skin or hair)."
+            }
+          ],
+          "caution_id": "Dalam percakapan sehari-hari, fair hampir selalu berarti adil (it's not fair!).",
+          "new_sentence": "The kids enjoyed riding the Ferris wheel at the summer fair."
+        },
+        {
+          "word": "close call",
+          "lemma": "close call",
+          "is_phrase": true,
+          "found": true,
+          "page_excerpt": "Dad had to pay a fine for parking outside the county fair. Getting to",
+          "sentence": "Getting to the station afterwards was a close call; he almost missed his train.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "nyaris celaka / hampir terlambat",
+              "meaning_en": "A narrow escape from danger or disaster; a situation in which something bad almost happened.",
+              "confidence": 1,
+              "trigger": "he almost missed his train",
+              "why_id": "Kalimat berikutnya langsung menjelaskan bahwa dia hampir saja ketinggalan kereta (almost missed his train), yang mengonfirmasi arti nyaris terlambat."
+            }
+          ],
+          "other_senses": [],
+          "caution_id": "",
+          "new_sentence": "It was a close call when the car skidded on the icy road, but the driver managed to stop in time."
+        },
+        {
+          "word": "picked up",
+          "lemma": "pick up",
+          "is_phrase": true,
+          "found": true,
+          "page_excerpt": "Dad had to pay a fine for parking outside the county fair. Getting to",
+          "sentence": "On the way home he picked up a little Spanish from the other passengers, but he would rather not talk about the whole trip.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "belajar secara tidak sengaja / otodidak",
+              "meaning_en": "To learn a new skill or language by practicing it or being exposed to it, rather than being taught.",
+              "confidence": 1,
+              "trigger": "a little Spanish from the other passengers",
+              "why_id": "Karena objeknya adalah bahasa (Spanish) yang didengar dari penumpang lain selama perjalanan, artinya dia menyerap atau belajar sedikit bahasa tersebut tanpa kelas formal."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "menjemput",
+              "meaning_en": "To go and get someone from a place."
+            },
+            {
+              "meaning_id": "mengambil / memungut",
+              "meaning_en": "To lift something up from a surface."
+            },
+            {
+              "meaning_id": "membaik / meningkat",
+              "meaning_en": "To improve or increase in activity."
+            }
+          ],
+          "caution_id": "Di kehidupan sehari-hari, pick up paling sering dipakai untuk arti menjemput seseorang atau mengangkat telepon.",
+          "new_sentence": "She picked up some French words while vacationing in Paris for a week."
+        },
+        {
+          "word": "rather",
+          "lemma": "rather",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "Dad had to pay a fine for parking outside the county fair. Getting to",
+          "sentence": "On the way home he picked up a little Spanish from the other passengers, but he would rather not talk about the whole trip.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "lebih memilih / lebih suka",
+              "meaning_en": "Used to indicate a preference for one thing over another.",
+              "confidence": 1,
+              "trigger": "would rather not talk",
+              "why_id": "Frasa would rather not menunjukkan pilihan atau preferensi subjek untuk tidak melakukan sesuatu (dalam hal ini, tidak mau membahas perjalanannya)."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "agak / cukup",
+              "meaning_en": "To a certain extent; quite."
+            },
+            {
+              "meaning_id": "sebaliknya / malah",
+              "meaning_en": "More accurately; on the contrary."
+            }
+          ],
+          "caution_id": "",
+          "new_sentence": "I would rather stay home and read a book than go to the crowded party."
+        }
+      ],
+      "error": null
+    }
+  ],
+  "tandai": [
+    {
+      "id": "M-darcy-oval",
+      "halaman": "A-darcy",
+      "tanda": [
+        [
+          "tolerable",
+          "oval"
+        ],
+        [
+          "humour",
+          "oval"
+        ],
+        [
+          "consequence",
+          "oval"
+        ]
+      ],
+      "oval": 3,
+      "http": 200,
+      "ms": 11114,
+      "ok": true,
+      "model": "gemini-3.5-flash",
+      "fellBack": true,
+      "hasil": [
+        {
+          "word": "tolerable",
+          "lemma": "tolerable",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "Upon my honour, I never met with so many pleasant girls in my life",
+          "sentence": "\"She is tolerable; but not handsome enough to tempt me; and I am in no humour at present to give consequence to young ladies who are slighted by other men.\"",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "lumayan atau biasa saja",
+              "meaning_en": "fairly good; passable but not outstanding",
+              "confidence": 1,
+              "trigger": "but not handsome enough",
+              "why_id": "Mr. Darcy menggunakan kata ini untuk menggambarkan penampilan Elizabeth yang menurutnya biasa saja atau lumayan, tapi tidak cukup cantik untuk menarik perhatiannya."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "bisa ditoleransi atau ditahan",
+              "meaning_en": "able to be endured or tolerated"
+            }
+          ],
+          "caution_id": "Di masa kini, kata ini lebih sering dipakai untuk sesuatu yang bisa ditoleransi (misalnya rasa sakit atau cuaca), bukan untuk menilai kecantikan seseorang.",
+          "new_sentence": "The hotel room was tolerable, but the service was quite disappointing."
+        },
+        {
+          "word": "humour",
+          "lemma": "humour",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "Upon my honour, I never met with so many pleasant girls in my life",
+          "sentence": "\"She is tolerable; but not handsome enough to tempt me; and I am in no humour at present to give consequence to young ladies who are slighted by other men.\"",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "suasana hati atau mood",
+              "meaning_en": "a temporary state of mind or mood",
+              "confidence": 1,
+              "trigger": "in no humour at present to give consequence",
+              "why_id": "Frasa 'in no humour' berarti sedang tidak dalam suasana hati atau tidak berminat untuk melakukan sesuatu."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "kejenakaan atau humor",
+              "meaning_en": "the quality of being amusing or comic"
+            },
+            {
+              "meaning_id": "cairan tubuh (istilah medis kuno)",
+              "meaning_en": "any of the four bodily fluids in ancient and medieval medicine"
+            }
+          ],
+          "caution_id": "Hati-hati, dalam bahasa Inggris modern, kata ini hampir selalu berarti kejenakaan atau kelucuan, bukan suasana hati.",
+          "new_sentence": "Please don't ask him for a favor right now; he is in no humour to help anyone."
+        },
+        {
+          "word": "consequence",
+          "lemma": "consequence",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "Upon my honour, I never met with so many pleasant girls in my life",
+          "sentence": "\"She is tolerable; but not handsome enough to tempt me; and I am in no humour at present to give consequence to young ladies who are slighted by other men.\"",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "perhatian atau pengakuan penting",
+              "meaning_en": "importance, social distinction, or attention given to someone",
+              "confidence": 0.95,
+              "trigger": "give consequence to young ladies who are slighted",
+              "why_id": "Dalam konteks sosial zaman dahulu, 'give consequence' berarti memberikan perhatian atau menaikkan derajat sosial seseorang dengan cara mendekatinya atau mengajaknya berdansa."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "akibat atau konsekuensi",
+              "meaning_en": "a result or effect of an action or condition"
+            }
+          ],
+          "caution_id": "Dalam percakapan modern, kata ini hampir selalu berarti 'akibat' atau 'konsekuensi' dari suatu perbuatan.",
+          "new_sentence": "The arrival of the wealthy duke gave great consequence to the small town's annual ball."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "M-trip-campur",
+      "halaman": "B-trip",
+      "tanda": [
+        [
+          "fine",
+          "pensil"
+        ],
+        [
+          "rather",
+          "oval"
+        ]
+      ],
+      "oval": 1,
+      "http": 200,
+      "ms": 15280,
+      "ok": true,
+      "model": "gemini-3.5-flash",
+      "fellBack": true,
+      "hasil": [
+        {
+          "word": "fine",
+          "lemma": "fine",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "Dad had to pay a fine for parking outside the county fair. Getting to the station",
+          "sentence": "Dad had to pay a fine for parking outside the county fair.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "denda (uang yang harus dibayar sebagai hukuman)",
+              "meaning_en": "an amount of money that has to be paid as a punishment for not obeying a rule or law",
+              "confidence": 1,
+              "trigger": "pay a fine for parking",
+              "why_id": "Kata 'fine' di sini berarti denda karena didahului kata 'pay' (membayar) dan diikuti alasan hukumannya yaitu parkir sembarangan ('parking outside...')."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "baik / sehat / memuaskan",
+              "meaning_en": "good enough; healthy and well"
+            },
+            {
+              "meaning_id": "sangat tipis / halus / berkualitas tinggi",
+              "meaning_en": "thin, sharp, or made of very small pieces; of high quality"
+            }
+          ],
+          "caution_id": "Dalam percakapan sehari-hari, 'fine' paling sering berarti 'baik-baik saja' atau 'oke'. Namun jika disandingkan dengan kata 'pay', artinya berubah menjadi denda.",
+          "new_sentence": "She had to pay a heavy fine for speeding on the highway."
+        },
+        {
+          "word": "rather",
+          "lemma": "rather",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "Dad had to pay a fine for parking outside the county fair. Getting to the station",
+          "sentence": "On the way home he picked up a little Spanish from the other passengers, but he would rather not talk about the whole trip.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "lebih memilih / lebih suka",
+              "meaning_en": "used to express preference in a particular situation",
+              "confidence": 1,
+              "trigger": "would rather not talk",
+              "why_id": "Pola 'would rather not' digunakan untuk menunjukkan bahwa subjek lebih memilih atau lebih suka untuk tidak melakukan sesuatu (dalam hal ini, tidak ingin membicarakan perjalanannya)."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "agak / lumayan",
+              "meaning_en": "to some degree; fairly"
+            },
+            {
+              "meaning_id": "sebaliknya / melainkan",
+              "meaning_en": "more accurately; on the contrary"
+            }
+          ],
+          "caution_id": "Jangan bingung dengan penggunaan 'rather' sebagai penguat arti seperti 'rather cold' yang berarti 'agak dingin'. Di sini, fungsinya berpasangan dengan 'would' untuk menyatakan pilihan.",
+          "new_sentence": "I would rather stay at home tonight and read a book than go to the crowded party."
+        }
+      ],
+      "error": null
+    }
+  ],
+  "selesai": "2026-09-11T12:39:12.957Z"
+}

@@ -8,6 +8,7 @@ Apa yang sudah ditulis, apa yang lagi dikerjakan, dan alat apa saja yang dipakai
 > **10 September, hidup di produksi sejak 11 September (commit `6dac711`):** kata bisa ditandai tanpa mengetik, lewat ketukan di foto atau coretan pensil di buku yang dicari sendiri oleh model. Alur ketik lama tetap ada sebagai mode kedua. Titik pulih: tag `v1-sebelum-tandai-foto`; langkah kembali ada di [Cara Kembali ke Versi Lama](cara_kembali_ke_versi_lama.md). 52/52 pengujian lulus, dan satu uji dengan model sungguhan menemukan kedua kata yang ditandai dengan benar.  
 > Waktu tunggu model turun dari 58,8 ke 28,8 detik lewat batas waktu per percobaan dan tingkat berpikir `low`; 20 detik di antaranya menunggu model utama yang sedang penuh, jadi mengganti `GEMINI_MODEL` ke `gemini-3.6-flash` diperkirakan membawanya ke sekitar 9 detik.  
 > **11 September, hidup di produksi (commit `944b2fd`):** kuis pilihan ganda dengan pengecoh dari makna lain kata yang sama. Dipakai sebagai gerbang sebelum tombol Inget, Udah hafal, dan Aku udah tahu kata ini, serta sebagai tab Kuis sendiri dari semua buku dan semua jadwal yang tidak mengubah jadwal. Alur review dibalik: pilih dulu, makna dibuka setelahnya. 71/71 pengujian lulus. Titik pulih: tag `v2-sebelum-kuis`.  
+> **11 September, uji akurasi otomatis:** 15/15 kata buku asli, 12/12 kata bertanda ditemukan, 70% permintaan terjawab pada percobaan pertama. PRD diperbarui ke v1.1 sesuai produk yang hidup. Rekomendasi model utama diralat ke `gemini-3.5-flash`.  
 > Yang masih terbuka: uji mode tandai dengan buku sungguhan di HP, pilihan model utama, slogan belum dipilih, uji Safari iPhone, uji akurasi model dengan tingkat berpikir `low`, serta Lanjutan 6 dan sisa Lanjutan 5.  
 > Urutan dan kriteria selesai: [Rencana Lanjutan](rencana_lanjutan.md). Riwayat perubahan dan serah terima: [Catatan Pengerjaan](catatan_pengerjaan.md).
 
@@ -129,10 +130,12 @@ Empat layar yang membentuk lingkaran utuh: foto, tandai, lihat makna, review.
 - Menulis kode untuk warna dan tema terang gelap.
 - Menulis kode untuk keadaan kata tidak ketemu, plus penampil potongan teks yang terbaca dari foto.
 
-### 🟡 Tahap 5. Uji Akurasi
-**Status:** Sekarang
+### ✅ Tahap 5. Uji Akurasi
+**Status:** Selesai sebagai uji otomatis, 11 September. Uji dengan foto buku modern dari HP masih terbuka.
 
-Ini giliranmu, bukan giliran saya. Tanpa angka dari sini, gak ada yang bisa ditulis di portfolio.
+Dijalankan otomatis atas permintaan pengguna: 15 dari 15 kata buku asli benar, 15 dari 15 kata umum yang menjebak, 12 dari 12 kata bertanda ditemukan tanpa tambahan. Temuan terpentingnya keandalan model: 14 dari 20 permintaan terjawab pada percobaan pertama. Laporan lengkap: `scripts/uji-akurasi/laporan.md`.
+
+Rencana awal di bawah dipertahankan sebagai catatan.
 
 - Uji dengan 15 kata sulit dari buku asli, catat yang benar dan yang salah.
 - Uji kata umum yang ambigu, lihat apakah penanda ragu menyala dengan tepat.

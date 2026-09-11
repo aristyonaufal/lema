@@ -1,0 +1,1060 @@
+{
+  "dijalankan": "2026-09-11T12:24:20.429Z",
+  "server": "http://127.0.0.1:3300",
+  "halaman": [
+    {
+      "id": "A-want",
+      "mode": "ketik",
+      "http": 200,
+      "ms": 30476,
+      "ok": true,
+      "model": "gemini-3.8-flash",
+      "fellBack": true,
+      "hasil": [
+        {
+          "word": "want",
+          "lemma": "want",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "2 The End 476 It is a truth universally acknowledged, that a single man",
+          "sentence": "It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "kebutuhan atau kekurangan akan sesuatu",
+              "meaning_en": "lack or need of something",
+              "confidence": 0.95,
+              "trigger": "in want of a wife",
+              "why_id": "Ungkapan 'in want of' dalam bahasa Inggris klasik berarti membutuhkan atau sedang kekurangan sesuatu, bukan sekadar 'ingin'."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "keinginan atau hasrat",
+              "meaning_en": "a desire or wish"
+            },
+            {
+              "meaning_id": "kondisi serba kekurangan atau kemiskinan parah",
+              "meaning_en": "a state of severe poverty or deprivation"
+            }
+          ],
+          "caution_id": "Di percakapan sehari-hari, 'want' hampir selalu dipakai sebagai kata kerja yang artinya 'ingin' atau 'mau'. Tapi di teks klasik dalam pola 'in want of', maknanya adalah 'membutuhkan'.",
+          "new_sentence": "During the harsh winter, the remote mountain village was in want of basic medical supplies."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "A-darcy",
+      "mode": "ketik",
+      "http": 200,
+      "ms": 9171,
+      "ok": true,
+      "model": "gemini-3.6-flash",
+      "fellBack": false,
+      "hasil": [
+        {
+          "word": "tolerable",
+          "lemma": "tolerable",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "Upon my honour, I never met with so many pleasant girls in my life",
+          "sentence": "She is tolerable: but not handsome enough to tempt me; and I am in no humour at present to give consequence to young ladies who are slighted by other men.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "lumayan / biasa saja",
+              "meaning_en": "fairly good, acceptable, but not attractive or special",
+              "confidence": 0.95,
+              "trigger": "but not handsome enough to tempt me",
+              "why_id": "Mr. Darcy menyebut Elizabeth lumayan saja tapi tidak cukup cantik untuk menarik perhatiannya."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "bisa ditoleransi / tertahankan",
+              "meaning_en": "able to be tolerated or endured"
+            }
+          ],
+          "caution_id": "Dalam bahasa Inggris modern, tolerable lebih sering dipakai untuk menggambarkan rasa sakit atau situasi yang masih bisa ditahan, bukan kecantikan seseorang.",
+          "new_sentence": "The coffee at this diner is tolerable, though I prefer the cafe down the street."
+        },
+        {
+          "word": "humour",
+          "lemma": "humour",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "Upon my honour, I never met with so many pleasant girls in my life",
+          "sentence": "She is tolerable: but not handsome enough to tempt me; and I am in no humour at present to give consequence to young ladies who are slighted by other men.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "suasana hati / mood",
+              "meaning_en": "a particular state of mind or mood",
+              "confidence": 0.95,
+              "trigger": "in no humour at present to give consequence",
+              "why_id": "Mr. Darcy sedang tidak berada dalam suasana hati atau mood yang baik untuk berdansa dengan wanita yang diabaikan pria lain."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "kelucuan / humor",
+              "meaning_en": "the quality of being amusing or comic"
+            }
+          ],
+          "caution_id": "Kata humour paling sering diartikan sebagai kelucuan dalam percakapan sehari-hari, tapi di buku-buku lama sering berarti suasana hati atau mood.",
+          "new_sentence": "Please don't ask the manager for a promotion today; she is not in a good humour."
+        },
+        {
+          "word": "consequence",
+          "lemma": "consequence",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "Upon my honour, I never met with so many pleasant girls in my life",
+          "sentence": "She is tolerable: but not handsome enough to tempt me; and I am in no humour at present to give consequence to young ladies who are slighted by other men.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "perhatian / kedudukan penting",
+              "meaning_en": "importance, distinction, or social standing",
+              "confidence": 0.92,
+              "trigger": "give consequence to young ladies who are slighted",
+              "why_id": "Di sini 'give consequence' berarti memberikan perhatian khusus atau mengangkat derajat wanita muda dengan mengajak berdansa."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "akibat / konsekuensi",
+              "meaning_en": "a result or effect of an action or condition"
+            }
+          ],
+          "caution_id": "Kata consequence sekarang hampir selalu berarti akibat atau dampak, bukan perhatian atau status sosial seperti di buku ini.",
+          "new_sentence": "She gained a position of great consequence in the company after leading the new project."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "A-sensible",
+      "mode": "ketik",
+      "http": 200,
+      "ms": 31268,
+      "ok": true,
+      "model": "gemini-3.8-flash",
+      "fellBack": true,
+      "hasil": [
+        {
+          "word": "sensible",
+          "lemma": "sensible",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "On that head, therefore, I shall be uniformly silent: and you may assure yourself",
+          "sentence": "I am very sensible of the honour of your proposals, but it is impossible for me to do otherwise than decline them.”",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "sadar atau menyadari sepenuhnya",
+              "meaning_en": "fully aware of or conscious of something",
+              "confidence": 0.98,
+              "trigger": "sensible of the honour",
+              "why_id": "Di sini diikuti kata depan 'of', yang merupakan pola klasik untuk mengungkapkan rasa sadar atau paham akan sesuatu (dalam hal ini, Elizabeth menyadari kehormatan lamaran tersebut sebelum menolaknya). Bukan berarti berakal sehat atau masuk akal seperti arti modernnya."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "masuk akal atau bijaksana",
+              "meaning_en": "having or showing good sense or judgment; reasonable"
+            },
+            {
+              "meaning_id": "dapat dirasakan oleh indra",
+              "meaning_en": "able to be perceived by a sense or by the mind"
+            }
+          ],
+          "caution_id": "Dalam bahasa Inggris masa kini, 'sensible' hampir selalu berarti 'masuk akal' atau 'bijak' (misal: 'a sensible decision'). Makna 'sadar akan' ('sensible of') sudah sangat jarang dipakai di percakapan sehari-hari.",
+          "new_sentence": "Although he appreciated the promotion, he was sensible of the immense responsibility that came with it."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "A-condescension",
+      "mode": "ketik",
+      "http": 200,
+      "ms": 45186,
+      "ok": true,
+      "model": "gemini-3.5-flash",
+      "fellBack": true,
+      "hasil": [
+        {
+          "word": "condescension",
+          "lemma": "condescension",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "Bennet scarcely spoke at all; but when the servants were withdrawn, he thought",
+          "sentence": "The subject elevated him to more than usual solemnity of manner; and with a most important aspect he protested that he had never in his life witnessed such behaviour in a person of rank--such affability and condescension, as he had himself experienced from Lady Catherine.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "keramahan dari orang yang kedudukannya lebih tinggi kepada bawahannya tanpa merasa gengsi",
+              "meaning_en": "patronizingly kind or gracious behavior; behavior that is gracious but shows a feeling of patronizing superiority, which in older contexts was viewed as a positive trait of the nobility",
+              "confidence": 0.95,
+              "trigger": "a person of rank--such affability and condescension",
+              "why_id": "Di konteks zaman dulu, kata ini bermakna positif ketika seorang bangsawan tinggi mau menurunkan derajatnya untuk bersikap ramah dan berbicara dengan orang biasa tanpa terlihat sombong."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "sikap merendahkan atau meremehkan orang lain",
+              "meaning_en": "an attitude of patronizing superiority; disdain"
+            }
+          ],
+          "caution_id": "Hati-hati, di zaman sekarang kata ini hampir selalu bermakna negatif, yaitu sikap merendahkan atau meremehkan orang lain seolah-olah kita lebih pintar atau lebih hebat dari mereka.",
+          "new_sentence": "The duchess was admired for her condescension, as she always took the time to speak kindly to the castle servants."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "A-engaged",
+      "mode": "ketik",
+      "http": 200,
+      "ms": 14066,
+      "ok": true,
+      "model": "gemini-3.8-flash",
+      "fellBack": true,
+      "hasil": [
+        {
+          "word": "engaged",
+          "lemma": "engage",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "Bennet, in equal silence, was enjoying the scene. Mr. Bingley and Jane were standing together",
+          "sentence": "Bingley was all grateful pleasure; and he readily engaged for taking the earliest opportunity of waiting on her after his return from London, whither he was obliged to go the next day for a short time.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "berjanji atau menyanggupi",
+              "meaning_en": "promised or undertook to do something",
+              "confidence": 0.95,
+              "trigger": "readily engaged for taking the earliest opportunity",
+              "why_id": "Di kalimat ini, Bingley menyanggupi atau berjanji untuk datang berkunjung begitu ada kesempatan setelah ia pulang dari London."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "bertunangan",
+              "meaning_en": "having agreed to marry someone"
+            },
+            {
+              "meaning_id": "sibuk atau sedang memakai waktu untuk sesuatu",
+              "meaning_en": "busy or occupied"
+            },
+            {
+              "meaning_id": "terlibat dalam pertempuran atau interaksi",
+              "meaning_en": "entered into conflict or actively involved"
+            }
+          ],
+          "caution_id": "Di percakapan sehari-hari, kata ini paling sering berarti 'bertunangan' (sudah resmi mau menikah). Jangan sampai tertukar di sini, karena Bingley baru sebatas berjanji untuk mampir bertamu.",
+          "new_sentence": "The contractor readily engaged to finish the kitchen renovation before the end of the month."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "A-holmes-harness",
+      "mode": "ketik",
+      "http": 200,
+      "ms": 11998,
+      "ok": true,
+      "model": "gemini-3.6-flash",
+      "fellBack": false,
+      "hasil": [
+        {
+          "word": "fancy",
+          "lemma": "fancy",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "I rang the bell and was shown up to the chamber which had formerly",
+          "sentence": "Just a trifle more, I fancy, Watson.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "dikira, diperkirakan, atau menurut dugaan saya",
+              "meaning_en": "to suppose, think, or imagine",
+              "confidence": 0.95,
+              "trigger": "Just a trifle more, I fancy",
+              "why_id": "Holmes sedang menerka berat badan Watson yang bertambah, jadi di sini fancy dipakai dalam arti membayangkan atau mengira."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "menyukai atau tertarik pada seseorang/sesuatu",
+              "meaning_en": "to feel a desire or liking for something"
+            },
+            {
+              "meaning_id": "mewah atau berhias indah",
+              "meaning_en": "elaborate, decorative, or sophisticated"
+            }
+          ],
+          "caution_id": "Di percakapan sehari-hari, fancy jauh lebih sering dipakai untuk bilang 'suka/pengen' (misal: Do you fancy a cup of tea?). Di teks klasik ini, artinya cuma 'mengira'.",
+          "new_sentence": "I fancy we will need an extra hour to complete the project before the meeting starts."
+        },
+        {
+          "word": "practice",
+          "lemma": "practice",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "I rang the bell and was shown up to the chamber which had formerly",
+          "sentence": "And in practice again, I observe.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "praktik kerja profesional (khususnya dokter atau pengacara)",
+              "meaning_en": "the professional work or business of a doctor or lawyer",
+              "confidence": 0.95,
+              "trigger": "in practice again",
+              "why_id": "Watson adalah seorang dokter. Holmes mengamati bahwa Watson sudah kembali membuka praktik medisnya."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "latihan untuk mengasah keahlian",
+              "meaning_en": "repeated exercise to improve skill"
+            },
+            {
+              "meaning_id": "kebiasaan atau tradisi umum",
+              "meaning_en": "a customary way of doing something"
+            }
+          ],
+          "caution_id": "Biasanya practice diartikan 'latihan' (seperti latihan olahraga/musik). Di konteks profesi seperti dokter atau pengacara, ini artinya tempat atau kegiatan praktik kerja.",
+          "new_sentence": "After working at the city hospital for five years, Dr. Sarah opened her own private practice."
+        },
+        {
+          "word": "harness",
+          "lemma": "go into harness",
+          "is_phrase": true,
+          "found": true,
+          "page_excerpt": "I rang the bell and was shown up to the chamber which had formerly",
+          "sentence": "You did not tell me that you intended to go into harness.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "kembali bekerja rutin atau bertugas lagi",
+              "meaning_en": "to return to work or daily routine",
+              "confidence": 0.95,
+              "trigger": "intended to go into harness",
+              "why_id": "Frasa 'go into harness' berasal dari kiasan kuda yang dipasangi tali harnes untuk mulai bekerja menarik kereta. Di sini artinya Watson kembali ke rutinitas kerjanya."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "tali pengaman atau peranti dada (seperti pengaman panjat jurang atau penahan bayi)",
+              "meaning_en": "a set of straps and fittings for holding or securing something"
+            },
+            {
+              "meaning_id": "memanfaatkan (energi/sumber daya)",
+              "meaning_en": "to control and use the power of something"
+            }
+          ],
+          "caution_id": "",
+          "new_sentence": "After a long summer vacation, it was tough for the team to go into harness again."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "A-singular",
+      "mode": "ketik",
+      "http": 200,
+      "ms": 23098,
+      "ok": true,
+      "model": "gemini-3.5-flash",
+      "fellBack": true,
+      "hasil": [
+        {
+          "word": "singular",
+          "lemma": "singular",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "I observed. \"You will remember that I remarked the other day, just before we",
+          "sentence": "Now, Mr. Jabez Wilson here has been good enough to call upon me this morning, and to begin a narrative which promises to be one of the most singular which I have listened to for some time.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "Sangat aneh, tidak biasa, atau luar biasa",
+              "meaning_en": "Unusual, strange, remarkable, or unique",
+              "confidence": 0.95,
+              "trigger": "promises to be one of the most singular which I have listened to",
+              "why_id": "Holmes sedang membandingkan cerita ini dengan kasus-kasus lain yang aneh dan unik, sehingga kata ini berarti luar biasa atau tidak biasa, bukan bermakna tunggal."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "Tunggal (lawan dari jamak)",
+              "meaning_en": "Referring to just one person or thing (grammar)"
+            }
+          ],
+          "caution_id": "Hati-hati, dalam percakapan sehari-hari, singular hampir selalu dipakai untuk tata bahasa (bentuk tunggal). Di buku klasik, kata ini sering dipakai untuk mengartikan sesuatu yang sangat aneh atau luar biasa unik.",
+          "new_sentence": "The detective found a singular clue that did not match any of the previous patterns."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "A-presently",
+      "mode": "ketik",
+      "http": 502,
+      "ms": 50040,
+      "ok": false,
+      "model": null,
+      "fellBack": null,
+      "hasil": [],
+      "error": "Model terlalu lama menjawab. Coba lagi sebentar lagi."
+    },
+    {
+      "id": "A-countenance",
+      "mode": "ketik",
+      "http": 502,
+      "ms": 50018,
+      "ok": false,
+      "model": null,
+      "fellBack": null,
+      "hasil": [],
+      "error": "Model terlalu lama menjawab. Coba lagi sebentar lagi."
+    },
+    {
+      "id": "A-curious",
+      "mode": "ketik",
+      "http": 200,
+      "ms": 10524,
+      "ok": true,
+      "model": "gemini-3.6-flash",
+      "fellBack": false,
+      "hasil": [
+        {
+          "word": "curious",
+          "lemma": "curious",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "However, this bottle was not marked \"poison,\" so Alice ventured to taste it,",
+          "sentence": "“What a curious feeling!” said Alice; “I must be shutting up like a telescope.”",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "aneh atau tidak biasa",
+              "meaning_en": "strange or unusual",
+              "confidence": 0.95,
+              "trigger": "shutting up like a telescope",
+              "why_id": "Di sini Alice merasa tubuhnya menyusut seperti teropong yang dipendekkan, jadi dia menyebut sensasi aneh ini sebagai rasa yang tidak biasa (curious). Maka artinya adalah aneh atau ganjil, bukan penasaran/ingin tahu seperti biasanya manusia penasaran terhadap sesuatu hal baru yang ia lihat atau dengar secara harfiah di tempat umum saat itu juga tanpa ada hal misterius secara personal terjadi pada tubuhnya sendiri terlebih dahulu dalam alur cerita ini secara mendadak begitu saja secara tiba tiba di halaman tersebut saat ini berlangsung dari alur naskah terjemahan aslinya tersebut secara langsung ini terjadi begitu saja di halaman naskah ini saat ini juga berlangsung secara harfiah tersebut dari isi naskah teks halaman ini sendiri yang dibaca oleh pembaca saat ini juga secara utuh dari buku aslinya ini sendiri tersebut saat ini juga dibaca dari isi halaman teks naskah buku ini sendiri secara utuh tersebut di atas tadi itu sendiri secara lengkap ini dari sumber gambar tersebut di atas ini tadi secara utuh tersebut dari naskah bukunya ini langsung di atas gambar teks ini sendiri secara utuh dan jelas dari atas naskah buku Alice in Wonderland tersebut di atas ini tadi dari gambar yang diunggah pengguna tersebut di atas ini sendiri dari naskah bukunya tersebut di atas gambar ini sendiri secara langsung dari halaman 103 tersebut di atas ini sendiri saat ini juga dibaca dari gambar tersebut di atas ini dari halaman naskah bukunya tersebut di atas ini sendiri secara utuh dari naskah teks bukunya ini langsung dari gambar yang diunggah pengguna tersebut di atas ini dari naskah halaman 103 bukunya tersebut di atas gambar ini sendiri secara utuh dari naskah teks bukunya tersebut di atas ini dari gambar tersebut di atas ini dari naskah teks halaman 103 ini sendiri saat ini juga dari naskah bukunya tersebut di atas ini dari gambar tersebut di atas ini dari naskah bukunya ini sendiri secara utuh dari naskah teks halaman 103 tersebut di atas gambar ini sendiri secara langsung dari naskah bukunya ini dari gambar yang diunggah pengguna tersebut di atas ini dari naskah bukunya tersebut di atas ini dari naskah bukunya ini sendiri secara utuh di sini."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "penasaran / ingin tahu",
+              "meaning_en": "eager to know or learn something"
+            }
+          ],
+          "caution_id": "Kata ini paling sering dipakai untuk arti penasaran atau ingin tahu dalam percakapan sehari-hari.",
+          "new_sentence": "It was a curious antique clock with only one hand."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "A-hands",
+      "mode": "ketik",
+      "http": 200,
+      "ms": 6577,
+      "ok": true,
+      "model": "gemini-3.6-flash",
+      "fellBack": false,
+      "hasil": [
+        {
+          "word": "hands",
+          "lemma": "hand",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "October 13. “There she blows,” was sung out from the mast-head.",
+          "sentence": "“Thunder and lightning! so near! Call all hands.”",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "awak/anggota kru kapal",
+              "meaning_en": "members of a ship's crew",
+              "confidence": 0.98,
+              "trigger": "Call all hands",
+              "why_id": "Di konteks pelayaran atau kapal laut, frasa 'call all hands' atau 'hands' mengacu pada seluruh anggota kru atau pelaut yang bertugas di kapal."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "tangan",
+              "meaning_en": "the end part of a person's arm beyond the wrist"
+            },
+            {
+              "meaning_id": "jarum jam",
+              "meaning_en": "a pointer on a clock or watch"
+            },
+            {
+              "meaning_id": "bantuan",
+              "meaning_en": "help or assistance"
+            }
+          ],
+          "caution_id": "Kata 'hand' biasanya paling sering dipakai untuk menyebut bagian tubuh 'tangan'. Namun dalam konteks kapal atau pelayaran, 'hands' berarti anggota kru atau pekerja.",
+          "new_sentence": "The captain ordered all hands on deck to secure the sails before the storm hit."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "B-lake",
+      "mode": "ketik",
+      "http": 200,
+      "ms": 42228,
+      "ok": true,
+      "model": "gemini-3.5-flash",
+      "fellBack": true,
+      "hasil": [
+        {
+          "word": "still",
+          "lemma": "still",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "The lake was perfectly still that morning. Maya had only a spare hour before",
+          "sentence": "The lake was perfectly still that morning.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "tenang atau tidak bergerak",
+              "meaning_en": "calm, quiet, or motionless",
+              "confidence": 1,
+              "trigger": "The lake was perfectly",
+              "why_id": "Kata ini menerangkan kondisi danau (lake) di pagi hari yang airnya sangat tenang tanpa riak atau gerakan."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "masih",
+              "meaning_en": "up to this time or up to that time"
+            },
+            {
+              "meaning_id": "meskipun begitu",
+              "meaning_en": "nevertheless or anyway"
+            }
+          ],
+          "caution_id": "Hati-hati, kata ini paling sering dipakai untuk mengartikan 'masih' (seperti dalam 'I am still waiting'). Di sini artinya tenang atau tidak bergerak.",
+          "new_sentence": "The air was so still that not a single leaf on the tree moved."
+        },
+        {
+          "word": "spare",
+          "lemma": "spare",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "The lake was perfectly still that morning. Maya had only a spare hour before",
+          "sentence": "Maya had only a spare hour before work, so she walked down to the shore with her coffee.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "luang atau sisa waktu",
+              "meaning_en": "free, extra, or unoccupied time",
+              "confidence": 1,
+              "trigger": "hour before work",
+              "why_id": "Maya memiliki waktu kosong selama satu jam yang bisa dia pakai sebelum dia mulai masuk kerja."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "cadangan",
+              "meaning_en": "kept in reserve for use when needed, like a spare tire"
+            },
+            {
+              "meaning_id": "menyisihkan atau menghemat",
+              "meaning_en": "to refrain from harming or destroying, or to give/lend"
+            }
+          ],
+          "caution_id": "Kita sering mendengar kata ini dalam 'spare part' (suku cadang). Namun jika dipasangkan dengan waktu (seperti 'spare time' atau 'spare hour'), artinya adalah waktu luang.",
+          "new_sentence": "Do you have any spare cash that I could borrow until tomorrow?"
+        },
+        {
+          "word": "make out",
+          "lemma": "make out",
+          "is_phrase": true,
+          "found": true,
+          "page_excerpt": "The lake was perfectly still that morning. Maya had only a spare hour before",
+          "sentence": "Through the thin mist she could barely make out the far bank, where a few boats were tied to the reeds.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "melihat atau mengenali sesuatu dengan samar",
+              "meaning_en": "to see, hear, or distinguish something with difficulty",
+              "confidence": 1,
+              "trigger": "Through the thin mist she could barely",
+              "why_id": "Karena terhalang kabut tipis (thin mist), Maya kesulitan untuk melihat dengan jelas tepi danau di seberang sana."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "bermesraan atau berciuman",
+              "meaning_en": "to kiss and touch someone in a sexual way"
+            },
+            {
+              "meaning_id": "menuliskan atau membuat dokumen",
+              "meaning_en": "to write out or fill in a check or form"
+            }
+          ],
+          "caution_id": "Dalam bahasa gaul sehari-hari, 'make out' sering diartikan berciuman mesra. Jangan salah paham, di buku ini artinya murni melihat sesuatu yang samar.",
+          "new_sentence": "With the heavy rain, I could hardly make out the road signs ahead."
+        },
+        {
+          "word": "bank",
+          "lemma": "bank",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "The lake was perfectly still that morning. Maya had only a spare hour before",
+          "sentence": "Through the thin mist she could barely make out the far bank, where a few boats were tied to the reeds.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "tepi sungai atau tepi danau",
+              "meaning_en": "the land alongside a river, lake, or canal",
+              "confidence": 1,
+              "trigger": "boats were tied to the reeds",
+              "why_id": "Konteks kalimat membahas tentang danau (lake) dan perahu yang diikat, sehingga 'bank' di sini berarti daratan di tepi air."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "lembaga keuangan",
+              "meaning_en": "an institution for receiving, keeping, and lending money"
+            },
+            {
+              "meaning_id": "tumpukan",
+              "meaning_en": "a heap or pile of something, like a bank of clouds or snow"
+            }
+          ],
+          "caution_id": "Kata ini jauh lebih sering dipakai untuk menyebut bank tempat menyimpan uang. Di sini artinya adalah tepi sungai atau tepi danau.",
+          "new_sentence": "We sat on the grassy bank of the river and watched the ducks swim by."
+        },
+        {
+          "word": "runs",
+          "lemma": "run",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "The lake was perfectly still that morning. Maya had only a spare hour before",
+          "sentence": "Her brother runs a small café near the water, and she had promised to stop by on her way back.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "mengelola atau menjalankan bisnis",
+              "meaning_en": "to manage, direct, or operate a business or organization",
+              "confidence": 1,
+              "trigger": "a small café",
+              "why_id": "Kata 'runs' di sini diikuti oleh objek 'a small café', yang berarti mengelola atau mengoperasikan tempat usaha tersebut."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "berlari",
+              "meaning_en": "to move fast on foot"
+            },
+            {
+              "meaning_id": "mengalir",
+              "meaning_en": "liquid flowing or moving freely"
+            }
+          ],
+          "caution_id": "Biasanya 'run' diartikan berlari. Tapi kalau objeknya adalah bisnis, organisasi, atau mesin, artinya adalah mengelola atau menjalankan.",
+          "new_sentence": "She runs a successful online clothing store from her bedroom."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "B-exam",
+      "mode": "ketik",
+      "http": 502,
+      "ms": 50031,
+      "ok": false,
+      "model": null,
+      "fellBack": null,
+      "hasil": [],
+      "error": "Model terlalu lama menjawab. Coba lagi sebentar lagi."
+    },
+    {
+      "id": "B-trip",
+      "mode": "ketik",
+      "http": 502,
+      "ms": 44916,
+      "ok": false,
+      "model": null,
+      "fellBack": null,
+      "hasil": [],
+      "error": "Model terlalu lama menjawab. Coba lagi sebentar lagi."
+    },
+    {
+      "id": "C-duck",
+      "mode": "ketik",
+      "http": 200,
+      "ms": 38537,
+      "ok": true,
+      "model": "gemini-3.5-flash",
+      "fellBack": true,
+      "hasil": [
+        {
+          "word": "duck",
+          "lemma": "duck",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "We walked along the path in silence. I saw her duck near the",
+          "sentence": "I saw her duck near the old pond, and then the rain started again.",
+          "ambiguous": true,
+          "candidates": [
+            {
+              "meaning_id": "merunduk atau menghindar dengan cepat",
+              "meaning_en": "to lower the head or body quickly to avoid being seen or hit",
+              "confidence": 0.5,
+              "trigger": "saw her duck",
+              "why_id": "Bisa berarti tindakan merunduk untuk menghindari sesuatu atau bersembunyi, yang masuk akal dalam konteks berjalan di luar ruangan saat hujan akan turun."
+            },
+            {
+              "meaning_id": "bebek (hewan)",
+              "meaning_en": "a waterbird with a broad blunt bill, short legs, and webbed feet",
+              "confidence": 0.5,
+              "trigger": "near the old pond",
+              "why_id": "Bisa juga merujuk pada burung bebek peliharaan atau milik perempuan tersebut, terutama karena lokasinya berada di dekat kolam tua."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "menghindar dari tanggung jawab",
+              "meaning_en": "to avoid a difficult situation, duty, or question"
+            }
+          ],
+          "caution_id": "Hati-hati karena kata ini paling sering digunakan untuk menyebut hewan bebek dalam percakapan sehari-hari, namun sering juga dipakai sebagai kata kerja yang berarti merunduk.",
+          "new_sentence": "She had to duck to get through the low doorway of the old cottage."
+        }
+      ],
+      "error": null
+    }
+  ],
+  "tandai": [
+    {
+      "id": "M-darcy-oval",
+      "halaman": "A-darcy",
+      "tanda": [
+        [
+          "tolerable",
+          "oval"
+        ],
+        [
+          "humour",
+          "oval"
+        ],
+        [
+          "consequence",
+          "oval"
+        ]
+      ],
+      "oval": 3,
+      "http": 502,
+      "ms": 50028,
+      "ok": false,
+      "model": null,
+      "fellBack": null,
+      "hasil": [],
+      "error": "Model terlalu lama menjawab. Coba lagi sebentar lagi."
+    },
+    {
+      "id": "M-holmes-oval",
+      "halaman": "A-holmes-harness",
+      "tanda": [
+        [
+          "fancy",
+          "oval"
+        ],
+        [
+          "practice",
+          "oval"
+        ],
+        [
+          "harness",
+          "oval"
+        ]
+      ],
+      "oval": 3,
+      "http": 200,
+      "ms": 46392,
+      "ok": true,
+      "model": "gemini-3.1-flash-lite",
+      "fellBack": true,
+      "hasil": [
+        {
+          "word": "fancy",
+          "lemma": "fancy",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "I rang the bell and was shown up to the chamber which had formerly been",
+          "sentence": "Just a trifle more, I fancy, Watson.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "berpendapat atau mengira",
+              "meaning_en": "to believe or think something is likely",
+              "confidence": 0.95,
+              "trigger": "Just a trifle more, I fancy, Watson.",
+              "why_id": "Holmes sedang menebak atau berpendapat tentang berat badan Watson."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "mewah atau dekoratif",
+              "meaning_en": "elaborate in structure or decoration"
+            },
+            {
+              "meaning_id": "menyukai",
+              "meaning_en": "to feel a desire or liking for"
+            }
+          ],
+          "caution_id": "Hati-hati, kata ini sering dipakai untuk menyebut sesuatu yang mewah atau dekoratif.",
+          "new_sentence": "I fancy that it will rain later this afternoon, so bring an umbrella."
+        },
+        {
+          "word": "practice",
+          "lemma": "practice",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "I rang the bell and was shown up to the chamber which had formerly been",
+          "sentence": "And in practice again, I observe.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "praktik kerja profesional",
+              "meaning_en": "the work or business of a professional person, such as a doctor or lawyer",
+              "confidence": 0.95,
+              "trigger": "And in practice again, I observe. You did not tell me that you intended to go into harness.",
+              "why_id": "Watson adalah seorang dokter, dan Holmes mengamati bahwa Watson kembali bekerja sebagai dokter."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "latihan",
+              "meaning_en": "repeated exercise in or performance of an activity to improve skill"
+            }
+          ],
+          "caution_id": "Sering disalahartikan sebagai sekadar 'latihan', padahal di sini konteksnya adalah pekerjaan profesional dokter.",
+          "new_sentence": "The lawyer has been running a successful private practice for over ten years."
+        },
+        {
+          "word": "go into harness",
+          "lemma": "go into harness",
+          "is_phrase": true,
+          "found": true,
+          "page_excerpt": "I rang the bell and was shown up to the chamber which had formerly been",
+          "sentence": "You did not tell me that you intended to go into harness.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "mulai bekerja kembali",
+              "meaning_en": "to start working, especially in a regular or routine job",
+              "confidence": 0.95,
+              "trigger": "And in practice again, I observe. You did not tell me that you intended to go into harness.",
+              "why_id": "Holmes merujuk pada kembalinya Watson ke rutinitas pekerjaan medisnya."
+            }
+          ],
+          "other_senses": [],
+          "caution_id": "",
+          "new_sentence": "After taking a long vacation, I am finally ready to go into harness and finish the project."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "M-lake-pensil",
+      "halaman": "B-lake",
+      "tanda": [
+        [
+          "still",
+          "pensil"
+        ],
+        [
+          "make out",
+          "pensil"
+        ],
+        [
+          "bank",
+          "pensil"
+        ]
+      ],
+      "oval": 0,
+      "http": 200,
+      "ms": 44369,
+      "ok": true,
+      "model": "gemini-3.5-flash",
+      "fellBack": true,
+      "hasil": [
+        {
+          "word": "still",
+          "lemma": "still",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "The lake was perfectly still that morning. Maya had only a spare hour before",
+          "sentence": "The lake was perfectly still that morning.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "tenang atau tidak bergerak",
+              "meaning_en": "not moving; calm and quiet",
+              "confidence": 1,
+              "trigger": "The lake was perfectly",
+              "why_id": "Kata 'still' di sini menerangkan kondisi danau (lake) yang tenang dan tidak beriak di pagi hari."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "masih",
+              "meaning_en": "up to and including the present or the time mentioned"
+            },
+            {
+              "meaning_id": "meskipun demikian",
+              "meaning_en": "nevertheless; all the same"
+            }
+          ],
+          "caution_id": "Hati-hati, dalam percakapan sehari-hari 'still' paling sering berarti 'masih' (misalnya: 'I am still here'). Di sini artinya tenang atau diam.",
+          "new_sentence": "The air was so still that not a single leaf on the tree moved."
+        },
+        {
+          "word": "make out",
+          "lemma": "make out",
+          "is_phrase": true,
+          "found": true,
+          "page_excerpt": "The lake was perfectly still that morning. Maya had only a spare hour before",
+          "sentence": "Through the thin mist she could barely make out the far bank, where a few boats were tied to the reeds.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "melihat atau mengenali dengan susah payah",
+              "meaning_en": "to manage with difficulty to see or hear something",
+              "confidence": 1,
+              "trigger": "Through the thin mist she could barely",
+              "why_id": "Frasa 'make out' di sini diikuti oleh objek 'the far bank' (tepi seberang) yang terhalang oleh kabut tipis (thin mist), sehingga artinya adalah melihat dengan samar atau susah payah."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "bermesraan",
+              "meaning_en": "to kiss and touch someone in a sexual way"
+            },
+            {
+              "meaning_id": "memahami",
+              "meaning_en": "to understand someone's character or written words"
+            }
+          ],
+          "caution_id": "Dalam bahasa gaul atau film, 'make out' sering kali berarti berciuman mesra. Jangan salah menggunakannya dalam konteks formal.",
+          "new_sentence": "In the darkness of the theater, I could barely make out the numbers on my ticket."
+        },
+        {
+          "word": "bank",
+          "lemma": "bank",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "The lake was perfectly still that morning. Maya had only a spare hour before",
+          "sentence": "Through the thin mist she could barely make out the far bank, where a few boats were tied to the reeds.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "tepi sungai atau tepi danau",
+              "meaning_en": "the land alongside or sloping down to a river or lake",
+              "confidence": 1,
+              "trigger": "boats were tied to the reeds",
+              "why_id": "Kata 'bank' di sini merujuk pada tepi danau (lake), diperkuat dengan adanya perahu yang ditambatkan di dekat sana."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "bank (lembaga keuangan)",
+              "meaning_en": "a financial establishment that uses and keeps money"
+            },
+            {
+              "meaning_id": "tumpukan",
+              "meaning_en": "a heap or pile of something"
+            }
+          ],
+          "caution_id": "Hampir selalu kita mengartikan 'bank' sebagai tempat menyimpan uang. Di sini artinya adalah tepi air atau daratan di pinggir danau.",
+          "new_sentence": "We sat on the grassy bank of the river and watched the ducks swim by."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "M-want-pensil",
+      "halaman": "A-want",
+      "tanda": [
+        [
+          "want",
+          "pensil"
+        ]
+      ],
+      "oval": 0,
+      "http": 200,
+      "ms": 39200,
+      "ok": true,
+      "model": "gemini-3.5-flash",
+      "fellBack": true,
+      "hasil": [
+        {
+          "word": "want",
+          "lemma": "want",
+          "is_phrase": false,
+          "found": true,
+          "page_excerpt": "2 The End 476 It is a truth universally acknowledged, that a single man in",
+          "sentence": "It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife.",
+          "ambiguous": false,
+          "candidates": [
+            {
+              "meaning_id": "kebutuhan atau kekurangan",
+              "meaning_en": "lack or need of something",
+              "confidence": 1,
+              "trigger": "in want of a wife",
+              "why_id": "Dalam konteks ini, 'want' digunakan sebagai kata benda dalam frasa 'in want of' yang berarti 'membutuhkan' atau 'kekurangan', bukan kata kerja yang berarti 'ingin'."
+            }
+          ],
+          "other_senses": [
+            {
+              "meaning_id": "menginginkan",
+              "meaning_en": "to have a desire for something; to wish for"
+            },
+            {
+              "meaning_id": "keinginan",
+              "meaning_en": "a desire or wish for something"
+            }
+          ],
+          "caution_id": "Dalam percakapan sehari-hari modern, 'want' hampir selalu digunakan sebagai kata kerja yang berarti 'ingin'. Namun, dalam sastra klasik, 'in want of' sering muncul dan artinya adalah 'butuh' atau 'kekurangan' (in need of).",
+          "new_sentence": "The old library was in want of repair after years of neglect."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "M-trip-campur",
+      "halaman": "B-trip",
+      "tanda": [
+        [
+          "fine",
+          "pensil"
+        ],
+        [
+          "rather",
+          "oval"
+        ]
+      ],
+      "oval": 1,
+      "http": 502,
+      "ms": 44289,
+      "ok": false,
+      "model": null,
+      "fellBack": null,
+      "hasil": [],
+      "error": "Model lagi penuh. Otomatis dicoba ke model cadangan."
+    }
+  ],
+  "selesai": "2026-09-11T12:35:54.627Z"
+}

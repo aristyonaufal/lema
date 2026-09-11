@@ -835,6 +835,90 @@ Aturan pengecualian:
 - Belum diuji dengan data dari model sungguhan. Mutu pengecoh bergantung pada daftar "Makna lain" yang dibuat model; kalau salah satu makna lain itu terlalu mirip dengan makna yang benar, soalnya jadi ambigu.
 - Uji akurasi 15 kata buku asli dan 15 kata Threads masih nol, dengan batas kirim portfolio 12 September.
 
+## 11 September 2026 — Claude: uji akurasi otomatis, rekomendasi model, dan PRD v1.1
+
+**Permintaan pengguna:** tiga hal. Uji akurasi dikerjakan sendiri, tidak manual. Bantuan mengganti model utama. PRD diperbarui sesuai kondisi sekarang.
+
+**Status sesi:** selesai. Uji akurasi dijalankan dan dilaporkan, PRD ditulis ulang menjadi v1.1, model utama di laptop diganti. Kode aplikasi tidak berubah.
+
+### Rancangan uji dan cara menjaganya tetap jujur
+
+- **Kelompok A, 15 kata dari buku Inggris asli.** Teks diambil program dari Project Gutenberg, kata demi kata: Pride and Prejudice, The Adventures of Sherlock Holmes, Frankenstein, Alice's Adventures in Wonderland, dan Moby Dick. Setiap kata dipilih karena makna di konteksnya berbeda dari arti kamus pertamanya, misalnya "in want of" yang berarti kekurangan, "humour" yang berarti suasana hati, dan "condescension" yang di masa itu bermakna positif.
+- **Kelompok B, 15 kata umum yang menjebak**, dalam kalimat yang ditulis sendiri sebagai pengganti kumpulan kata dari Threads yang tidak tersedia. Dilaporkan terpisah.
+- **Kelompok C, satu kalimat yang memang ambigu**, untuk melihat apakah model jujur mengaku ragu.
+- **Mode tandai**, lima halaman yang sama diberi oval magenta dan garis pensil tiruan.
+- Halaman dirender sebagai foto halaman buku: kertas kekuningan, sedikit miring, huruf serif, dikecilkan ke 1.600 piksel seperti di aplikasi.
+- **Kunci jawaban di-commit dan didorong ke GitHub sebelum model dijalankan**, commit `8842095`, supaya terbukti tidak disesuaikan setelah hasilnya terlihat.
+- Uji dijalankan lewat `/api/lookup` yang sama dengan produksi, dari server lokal dengan batas harian dilonggarkan.
+
+### Jebakan yang ditemukan sebelum uji dijalankan
+
+- Keterangan ilustrasi edisi Gutenberg (`[Illustration: ... Copyright 1894 ...]`) ikut masuk ke halaman. Dibuang.
+- Halaman bisa berakhir di "Mrs." karena titik singkatan dikira akhir kalimat. Diperbaiki.
+- **"want" muncul tiga kali di halaman A-want dengan dua makna berbeda**: "in want of a wife" (kekurangan) dan "Do not you want to know" (ingin). Kalau dibiarkan, model tidak salah bila menjelaskan kemunculan yang lain. Halamannya dipotong sebelum kemunculan kedua. Pemeriksaan kata ganda pertama sempat melaporkan "bersih" karena pola regexnya rusak oleh pelolosan karakter di perintah satu baris; pemeriksaan itu kemudian dipindah ke dalam penyusun kasus supaya selalu berjalan.
+- Penjalan uji gagal meluncurkan peramban sampai diberi kanal `chromium`, sama seperti `playwright.config.ts`.
+
+### Hasil
+
+| | Hasil |
+|---|---|
+| Kelompok A, buku asli | **15 dari 15 benar** |
+| Kelompok B | 15 dari 15 |
+| Kelompok C | 1 dari 1 ditandai ragu, dua kandidat masing masing 0,5 |
+| Mode tandai | **12 dari 12 kata ditemukan, 0 tambahan, 12 dari 12 makna benar** |
+| Terjawab pada percobaan pertama | **14 dari 20 (70%)**; enam sisanya berhasil saat diulang |
+| Waktu tunggu | median 28,2 detik; 2 dari 20 selesai dalam 10 detik |
+
+Satu jawaban dinilai di perbatasan: "consequence" dijawab "perhatian / kedudukan penting". Penjelasan Inggrisnya tepat, tetapi kata "perhatian" agak melenceng. Tetap dihitung benar, dengan catatan.
+
+Di halaman danau, "spare" dan "runs" ada di halaman yang sama dengan kata yang digaris bawahi, dan model tidak mengambilnya. Aturan "jangan menambahkan kata yang tidak ditandai" dipatuhi di kelima halaman.
+
+### Keterbatasan
+
+Angka 100% adalah batas atas. Teks kelompok A sangat terkenal dan kemungkinan besar ada di data latih model beserta penjelasan kata katanya. Halaman dirender tanpa buram, pantulan, atau lengkungan kertas, dan garis pensilnya lebih rapi dari coretan sungguhan. Kelompok B dan semua kunci ditulis oleh penilai yang sama. Jumlahnya kecil. Semua jawaban mentah model diterbitkan di laporan supaya penilaiannya bisa diperiksa ulang.
+
+### Temuan terpenting: keandalan model
+
+Ketepatan makna ternyata bukan masalahnya; ketersediaan model yang masalah. Dari log percobaan per model pada sore itu:
+
+| Model | Dicoba | Berhasil |
+|---|---|---|
+| gemini-3.6-flash | 26 | 4 |
+| gemini-3.8-flash | 22 | 3 |
+| gemini-3.5-flash | 19 | 12 |
+| gemini-3.1-flash-lite | 1 | 1 |
+
+`gemini-3.1-flash-lite` hanya sempat dicoba sekali, karena dua model pertama sering menghabiskan 20 + 20 detik dan anggaran 50 detik habis sebelum gilirannya; saat dicoba ia menjawab dalam 6 detik. Sebagian kegagalan disebabkan susunan rantai itu sendiri. Perbaikannya dicatat di peta jalan PRD, belum dikerjakan, dan perlu diukur dulu.
+
+### Rekomendasi model yang diralat
+
+Kemarin disarankan `gemini-3.6-flash` sebagai model utama, berdasarkan dua pengukuran. Uji ini menunjukkan 3.6 justru paling sering gagal sore itu. Rekomendasi diralat menjadi **`gemini-3.5-flash`**, dengan catatan bahwa beban model berubah ubah dan satu sore bukan kepastian. `.env.local` di laptop diganti ke `gemini-3.5-flash`; baris kunci tidak dibaca. Pengaturan di Vercel adalah langkah pengguna.
+
+### PRD v1.1
+
+`context/PRD-Lema.md` ditulis ulang menggambarkan produk yang hidup. Kerangka 16 bagian dipertahankan supaya mudah dibandingkan, ditambah bagian 17, riwayat perubahan dari rancangan awal beserta alasannya. Yang berubah antara lain: kalimat pembeda, prinsip 1 diubah, prinsip 5 dan 6 ditambah, lapis masalah ketiga (mengetik itu mahal), lingkup yang pindah dari keluar ke masuk, alur dan spesifikasi layar sesuai aplikasi, kontrak data sesuai `candidates[]` dan kolom `Entry` yang sebenarnya, prompt dua mode, status tiap kriteria selesai secara jujur (termasuk empat ketukan dan Safari iOS yang belum terpenuhi), hasil uji akurasi di bagian 13, dan risiko keandalan model. Rancangan awal tetap bisa dibaca lewat git.
+
+### File
+
+- `scripts/uji-akurasi/susun-kasus.mjs`, `kasus.json`: penyusun kasus dan kunci jawaban.
+- `scripts/uji-akurasi/jalankan.mjs`: merender halaman dan mengirimnya ke `/api/lookup`; `KERING=1` untuk merender saja, `ULANG=` untuk mengulang yang gagal.
+- `scripts/uji-akurasi/hasil.json`, `hasil-ulang.json`: jawaban mentah model, putaran pertama tidak pernah ditimpa.
+- `scripts/uji-akurasi/log-percobaan.jsonl`: satu baris per permintaan, model yang dicoba dan hasilnya, tanpa foto, kata, atau kunci.
+- `scripts/uji-akurasi/penilaian.json`, `nilai.mjs`, `laporan.md`: vonis per kata dan laporan yang dihitung program.
+- `context/PRD-Lema.md`: v1.1.
+
+### Verifikasi
+
+- Lint skrip uji bersih. Kode aplikasi tidak berubah, jadi 71/71 pengujian dari sesi sebelumnya tetap berlaku.
+- 26 panggilan ke model sungguhan dipakai untuk uji ini, semuanya dengan halaman buku bebas hak cipta atau kalimat buatan, tanpa data pribadi.
+
+### Yang masih terbuka
+
+- Uji dengan foto buku modern dari HP, dengan cahaya dan coretan sungguhan.
+- Susunan rantai model berdasarkan data keandalan.
+- Safari iOS dan target empat ketukan.
+- Slogan belum dipilih.
+
 ## Format catatan berikutnya
 
 Gunakan tanggal dan nama pelaksana, lalu jelaskan: permintaan/tujuan, keputusan, file yang diubah beserta alasannya, verifikasi dan hasilnya, masalah yang masih terbuka, serta pekerjaan berikutnya. Tulis "belum diuji" untuk hal yang belum benar-benar diperiksa.

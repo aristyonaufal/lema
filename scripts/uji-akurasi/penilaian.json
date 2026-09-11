@@ -1,0 +1,187 @@
+{
+  "penilai": "Claude, terhadap kunci di kasus.json yang di-commit sebelum model dijalankan (8842095)",
+  "aturan": {
+    "benar": "makna utama sama dengan kunci, tidak ditandai ragu",
+    "benar-ragu": "ditandai ragu, dan makna kunci ada di antara dua kandidat",
+    "salah": "makna utama berbeda dari kunci, dan kunci tidak ada di antara kandidat",
+    "ragu-tepat": "untuk kasus yang memang ambigu: model menandainya ragu dan menyebut kedua makna"
+  },
+  "halaman": {
+    "A-want": {
+      "want": {
+        "nilai": "benar",
+        "catatan": "kekurangan / kebutuhan, bukan ingin"
+      }
+    },
+    "A-darcy": {
+      "tolerable": {
+        "nilai": "benar",
+        "catatan": "lumayan / biasa saja"
+      },
+      "humour": {
+        "nilai": "benar",
+        "catatan": "suasana hati, bukan humor"
+      },
+      "consequence": {
+        "nilai": "benar",
+        "catatan": "PERBATASAN: bahasa Indonesianya 'perhatian / kedudukan penting'; 'perhatian' agak melenceng, tetapi 'kedudukan penting' dan penjelasan Inggrisnya ('importance, distinction, or social standing') tepat"
+      }
+    },
+    "A-sensible": {
+      "sensible": {
+        "nilai": "benar",
+        "catatan": "menyadari, bukan masuk akal"
+      }
+    },
+    "A-condescension": {
+      "condescension": {
+        "nilai": "benar",
+        "catatan": "keramahan orang berkedudukan tinggi kepada bawahannya; penjelasan Inggrisnya menyebut bahwa di masa itu sifat ini dipandang positif"
+      }
+    },
+    "A-engaged": {
+      "engaged": {
+        "nilai": "benar",
+        "catatan": "berjanji, bukan bertunangan"
+      }
+    },
+    "A-holmes-harness": {
+      "fancy": {
+        "nilai": "benar",
+        "catatan": "mengira, bukan suka"
+      },
+      "practice": {
+        "nilai": "benar",
+        "catatan": "praktik profesional dokter"
+      },
+      "harness": {
+        "nilai": "benar",
+        "catatan": "dikenali sebagai ungkapan 'go into harness': kembali bekerja rutin"
+      }
+    },
+    "A-singular": {
+      "singular": {
+        "nilai": "benar",
+        "catatan": "aneh, luar biasa, bukan tunggal"
+      }
+    },
+    "A-presently": {
+      "presently": {
+        "nilai": "benar",
+        "catatan": "sebentar lagi, bukan sekarang"
+      }
+    },
+    "A-countenance": {
+      "countenance": {
+        "nilai": "benar",
+        "catatan": "raut wajah, bukan dukungan"
+      }
+    },
+    "A-curious": {
+      "curious": {
+        "nilai": "benar",
+        "catatan": "aneh, bukan ingin tahu"
+      }
+    },
+    "A-hands": {
+      "hands": {
+        "nilai": "benar",
+        "catatan": "awak kapal, bukan tangan"
+      }
+    },
+    "B-lake": {
+      "still": {
+        "nilai": "benar",
+        "catatan": "tenang, bukan masih"
+      },
+      "spare": {
+        "nilai": "benar",
+        "catatan": "luang"
+      },
+      "make out": {
+        "nilai": "benar",
+        "catatan": "melihat samar samar"
+      },
+      "bank": {
+        "nilai": "benar",
+        "catatan": "tepi danau"
+      },
+      "runs": {
+        "nilai": "benar",
+        "catatan": "mengelola"
+      }
+    },
+    "B-exam": {
+      "figured": {
+        "nilai": "benar",
+        "catatan": "mengira"
+      },
+      "mean": {
+        "nilai": "benar",
+        "catatan": "rata rata"
+      },
+      "sound": {
+        "nilai": "benar",
+        "catatan": "masuk akal"
+      },
+      "put up with": {
+        "nilai": "benar",
+        "catatan": "menoleransi"
+      },
+      "bear": {
+        "nilai": "benar",
+        "catatan": "menanggung, menahan"
+      }
+    },
+    "B-trip": {
+      "fine": {
+        "nilai": "benar",
+        "catatan": "denda"
+      },
+      "fair": {
+        "nilai": "benar",
+        "catatan": "pekan raya / pasar malam"
+      },
+      "close call": {
+        "nilai": "benar",
+        "catatan": "nyaris celaka; tambahan 'hampir terlambat' sesuai konteks kereta"
+      },
+      "picked up": {
+        "nilai": "benar",
+        "catatan": "belajar tanpa sengaja"
+      },
+      "rather": {
+        "nilai": "benar",
+        "catatan": "lebih suka"
+      }
+    },
+    "C-duck": {
+      "duck": {
+        "nilai": "ragu-tepat",
+        "catatan": "ditandai ragu, dua kandidat masing masing 0,5: merunduk dan bebek"
+      }
+    }
+  },
+  "tandai": {
+    "M-darcy-oval": {
+      "catatan": "tiga oval, tiga kata tepat, tanpa tambahan, makna ketiganya benar",
+      "makna_benar": 3
+    },
+    "M-holmes-oval": {
+      "catatan": "oval di 'harness' dikembalikan sebagai frasa 'go into harness'; dihitung tepat karena frasa itulah yang dimaksud",
+      "makna_benar": 3
+    },
+    "M-lake-pensil": {
+      "catatan": "tiga garis pensil ditemukan; 'spare' dan 'runs' ada di halaman yang sama tetapi tidak digaris bawahi dan tidak ikut diambil",
+      "makna_benar": 3
+    },
+    "M-want-pensil": {
+      "catatan": "satu garis pensil, satu kata tepat",
+      "makna_benar": 1
+    },
+    "M-trip-campur": {
+      "catatan": "pensil di 'fine' dan oval di 'rather' sama sama ditemukan; 'fair', 'close call', dan 'picked up' tidak ditandai dan tidak diambil",
+      "makna_benar": 2
+    }
+  }
+}
