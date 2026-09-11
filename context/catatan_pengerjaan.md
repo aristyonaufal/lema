@@ -740,6 +740,39 @@ Garis pensil tiruan di foto uji dibaca "Still" pada dua panggilan dan "heather" 
 - `PLAYWRIGHT_TEST_PRODUCTION=1 npx playwright test`: **58/58 lulus**, termasuk enam pengujian baru di `tests/model-chain.spec.ts`: model yang menggantung ditinggal lalu cadangan menjawab, rantai berhenti sebelum melewati anggaran walau enam model menggantung, percobaan terakhir dipotong ke sisa anggaran, 403 tidak dicoba ke model lain, 503 dan jaringan putus sama sama pindah, dan jawaban yang tepat waktu tidak ikut terpotong.
 - Enam panggilan model sungguhan dipakai untuk pengukuran di sesi ini, semuanya dengan foto halaman tiruan tanpa data pribadi.
 
+## 11 September 2026 — Claude: mode tandai dan perbaikan waktu tunggu naik ke produksi
+
+**Permintaan pengguna:** "masukkan semua fitur langsung ke https://lema-lemon.vercel.app/". Pengguna memilih menggabungkan tanpa lebih dulu mencoba alamat pratinjau dengan buku sungguhan. Risiko itu disampaikan satu kali, lalu keputusannya diikuti.
+
+**Status sesi:** selesai dan **terverifikasi di produksi**.
+
+### Yang dilakukan
+
+- Cabang `fitur/tandai-di-foto` digabung ke `main` sebagai commit penggabungan tersendiri, `6dac711`, bukan maju lurus. Bentuk ini sengaja dipilih supaya kedua fitur bisa dibatalkan sekaligus dengan `git revert -m 1 6dac711`, sesuai `cara_kembali_ke_versi_lama.md`.
+- Sebelum didorong, `main` hasil gabungan diverifikasi ulang: pemeriksaan tipe lulus, lint 0 error, build lulus, **58/58 pengujian lulus**.
+- Didorong ke `origin/main` (`0c33808..6dac711`). Vercel melaporkan deployment produksi berhasil sekitar 45 detik kemudian, dipantau lewat catatan deployment di GitHub, bukan dengan memanggil server Vercel berulang kali.
+
+### Jebakan kecil
+
+Perintah penggabungan pertama gagal dengan "could not read file '-'": `git merge -F -` tidak membaca pesan dari masukan langsung, berbeda dengan `git commit -F -`. Yang sempat jalan hanya perpindahan ke `main`, sehingga berkas di laptop sementara kembali ke versi `main`. Tidak ada yang hilang; kedua commit fitur tetap aman di cabangnya. Pesan penggabungan kemudian ditulis ke berkas dan penggabungan kedua berjalan bersih.
+
+### Verifikasi di produksi
+
+Dibuka dengan browser sungguhan di `lema-lemon.vercel.app`, memakai profil browser terpisah dengan satu buku uji:
+
+- Layar foto menampilkan tombol "Ganti buku", pilihan "Tandai di foto" yang tercentang sebagai bawaan beserta "Ketik kata", petunjuk oval dan coretan pensil, serta rak buku di sidebar.
+- Satu foto halaman tiruan dengan dua oval magenta dikirim ke `/api/lookup` produksi dari dalam browser itu. Hasilnya **HTTP 200**, ditemukan tepat **"made out"** sebagai frasa dan **"curiosity"**, maknanya benar, dalam **29,9 detik**. Model utama masih ditinggal pada batas 20 detik lalu `gemini-3.6-flash` menjawab, sama dengan pengukuran lokal. Jatah tercatat 2 dari 60.
+- Foto itu sengaja tanpa garis pensil, dan model tidak mengarang kata ketiga. Aturan "jangan menambahkan kata yang tidak ditandai" berlaku di produksi.
+
+### Yang masih terbuka
+
+- **Belum diuji dengan buku sungguhan dan belum di Safari iPhone.** Semua bukti sejauh ini memakai foto halaman tiruan berhuruf besar dengan cahaya sempurna.
+- **Model utama.** Pada semua pengukuran 10 dan 11 September, `gemini-3.8-flash` gagal atau menggantung. Mengganti `GEMINI_MODEL` menjadi `gemini-3.6-flash` di Vercel diperkirakan menurunkan waktu tunggu dari sekitar 29 detik ke sekitar 9 detik. Belum diubah karena itu konfigurasi milik pengguna.
+- **Tingkat berpikir `low` belum diuji terhadap ketepatan makna.** Uji akurasi berikutnya sebaiknya memakai pengaturan ini.
+- Uji akurasi 15 kata buku asli dan 15 kata Threads masih nol. Batas kirim portfolio 12 September.
+- PRD bagian 5, 6, dan 7 berbeda dari perilaku aplikasi sekarang. Keputusan menyelaraskannya ada pada pengguna.
+- Slogan di sidebar masih "Baca terus, maknanya nyusul."; usulan penggantinya belum dipilih.
+
 ## Format catatan berikutnya
 
 Gunakan tanggal dan nama pelaksana, lalu jelaskan: permintaan/tujuan, keputusan, file yang diubah beserta alasannya, verifikasi dan hasilnya, masalah yang masih terbuka, serta pekerjaan berikutnya. Tulis "belum diuji" untuk hal yang belum benar-benar diperiksa.

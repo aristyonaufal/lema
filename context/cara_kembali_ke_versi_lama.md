@@ -7,8 +7,10 @@ Dibuat 10 September 2026, bersamaan dengan fitur tandai kata tanpa mengetik. Dok
 | Nama | Isinya |
 |---|---|
 | Tag `v1-sebelum-tandai-foto` | Commit `0c33808`. Versi yang sudah lulus 47/47 pengujian dan hidup di produksi sebelum fitur ini dibuat. |
-| Cabang `main` | Selama cabang fitur belum digabung, `main` tetap persis di titik itu. |
-| Cabang `fitur/tandai-di-foto` | Seluruh pekerjaan fitur baru. Tidak menyentuh `main` dan tidak menyentuh produksi. |
+| Commit `6dac711` | **Penggabungan fitur ke `main` pada 11 September 2026.** Inilah yang dibatalkan kalau mau kembali. |
+| Cabang `fitur/tandai-di-foto` | Seluruh pekerjaan fitur baru, dua commit: `1631bae` dan `9e97596`. |
+
+**Keadaan sekarang: fitur sudah digabung dan hidup di produksi.** Jadi yang berlaku adalah jalan nomor 2 atau 3 di bawah.
 
 Data koleksi pengguna aman di semua jalan di bawah. Kata yang dibuat lewat mode tandai hanya membawa dua kolom tambahan, `batch` dan `marked`, dan versi lama mengabaikan kolom yang tidak dikenalnya.
 
@@ -38,13 +40,14 @@ Catatan: pengguna yang pernah memilih salah satu mode sudah punya pilihan tersim
 
 **Paling cepat, tanpa menyentuh kode.** Buka Vercel, project `lema`, tab Deployments. Cari deployment dengan commit `0c33808`, lalu pilih *Promote to Production* (di beberapa tampilan disebut *Instant Rollback*). Selesai dalam hitungan detik. Kode di GitHub tidak berubah, jadi ini cocok sebagai langkah darurat.
 
-**Permanen, lewat git.** Batalkan commit penggabungannya dengan `git revert`, lalu dorong. Vercel mendeploy ulang secara otomatis. Cara ini tidak menghapus riwayat apa pun, jadi fiturnya bisa dikembalikan lagi kapan saja.
+**Permanen, lewat git.** Batalkan commit penggabungannya dengan `git revert`, lalu dorong. Vercel mendeploy ulang secara otomatis. Cara ini tidak menghapus riwayat apa pun, jadi fiturnya bisa dikembalikan lagi kapan saja. Id penggabungannya sudah diketahui:
 
 ```bash
-git log --oneline -5          # cari commit penggabungan cabang fitur
-git revert -m 1 <id-commit>   # membuat commit baru yang membatalkannya
+git revert -m 1 6dac711       # membatalkan kedua fitur sekaligus lewat commit baru
 git push origin main
 ```
+
+Kalau yang bermasalah cuma perbaikan waktu tunggu dan mode tandai mau dipertahankan, batalkan satu commit itu saja: `git revert 9e97596`.
 
 **Hanya ingin melihat versi lama di laptop**, tanpa mengubah apa pun:
 
