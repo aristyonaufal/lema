@@ -7,6 +7,7 @@ import SenseMap from '@/components/SenseMap';
 import BookSpine, { spineColor } from '@/components/BookSpine';
 import { useDb } from '@/lib/useDb';
 import { byBook, due, markKnown, remove, type Entry } from '@/lib/store';
+import { buildQuestion } from '@/lib/quiz';
 
 export default function Kata() {
   return (
@@ -283,6 +284,7 @@ function KataContent() {
                       <SenseMap
                         entry={e}
                         onKnown={() => update((current) => markKnown(current, e.id))}
+                        quizFor={() => buildQuestion(e, db.entries)}
                         onRemove={() => update((current) => remove(current, e.id))}
                         onRetry={() => update((current) => ({ ...current, activeBookId: e.bookId }))}
                       />

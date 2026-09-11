@@ -88,6 +88,28 @@ function ReviewIcon({ active }: IconProps) {
   );
 }
 
+function QuizIcon({ active }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-6 w-6">
+      <circle
+        cx="12" cy="12" r="8.5"
+        stroke="currentColor"
+        strokeWidth={active ? 1.9 : 1.5}
+        fill={active ? 'currentColor' : 'none'}
+        fillOpacity={active ? 0.16 : 0}
+      />
+      <path
+        d="M9.7 9.7a2.4 2.4 0 1 1 3.3 2.2c-.6.3-1 .8-1 1.4v.5"
+        stroke="currentColor"
+        strokeWidth={active ? 1.9 : 1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="16.7" r="0.95" fill="currentColor" />
+    </svg>
+  );
+}
+
 export default function Nav() {
   const pathname = usePathname();
   const { db } = useDb();
@@ -129,6 +151,16 @@ export default function Nav() {
       name: `Review${dueCount > 0 ? `, ${dueCount} kata jatuh tempo` : ''}`,
       badge: dueCount,
       Icon: ReviewIcon,
+    },
+    {
+      href: '/kuis',
+      label: 'Kuis',
+      // Tanpa angka: kuis tidak punya antrean yang menunggu. Namanya juga
+      // dijaga tidak diawali "Koleksi kata" atau memuat "foto"/"ulang", karena
+      // nama nama itu sudah dipakai tautan lain.
+      name: 'Kuis, uji kata dari semua buku',
+      badge: 0,
+      Icon: QuizIcon,
     },
   ];
 

@@ -139,9 +139,11 @@ test('latihan jalan tanpa menunggu jatuh tempo dan tidak menggeser jadwal', asyn
   await expect(page).toHaveURL('/review?latihan=1');
 
   await expect(page.getByText(/nggak menggeser\s+jadwal review/)).toBeVisible();
-  await page.getByRole('button', { name: 'Buka artinya', exact: true }).click();
-  await expect(page.getByRole('button', { name: /^Inget/ })).toContainText('cuma latihan');
+  // "Inget" sekarang harus dibuktikan lewat kuis, juga saat latihan.
   await page.getByRole('button', { name: /^Inget/ }).click();
+  await page.getByRole('button', { name: 'Makna uji keen', exact: true }).click();
+  await expect(page.getByText('Cuma latihan, jadwal review-nya nggak berubah.')).toBeVisible();
+  await page.getByRole('button', { name: 'Lanjut', exact: true }).click();
 
   await expect(page.getByRole('heading', { name: 'Latihan beres' })).toBeVisible();
 

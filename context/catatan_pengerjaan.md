@@ -773,6 +773,67 @@ Dibuka dengan browser sungguhan di `lema-lemon.vercel.app`, memakai profil brows
 - PRD bagian 5, 6, dan 7 berbeda dari perilaku aplikasi sekarang. Keputusan menyelaraskannya ada pada pengguna.
 - Slogan di sidebar masih "Baca terus, maknanya nyusul."; usulan penggantinya belum dipilih.
 
+## 11 September 2026 — Claude: kuis sebagai gerbang dan sebagai tab sendiri
+
+**Permintaan pengguna:** kuis dengan dua fungsi. Pertama, sebelum pengguna menekan tombol yang menyatakan sudah ingat, dia harus mengerjakan kuis dulu, dan baru benar benar tercatat kalau lolos. Kedua, tab baru di navigasi untuk kuis sendiri, dengan soal dari semua buku dan semua jadwal.
+
+**Status sesi:** selesai di cabang `fitur/kuis`, **belum digabung ke `main` dan belum di-deploy**. Pemeriksaan tipe, lint tanpa error, build, dan 71/71 pengujian lulus. Titik pulih: tag `v2-sebelum-kuis` pada `75827b8`.
+
+### Penafsiran yang dinyatakan ke pengguna
+
+Aplikasi punya dua jenis tombol "sudah ingat": **Inget** di review, yang menaikkan jadwal, serta **Aku udah tahu kata ini** di koleksi dan **Udah hafal, stop tanya** di review, yang mengeluarkan kata dari review selamanya. Gerbang kuis dipasang di ketiganya, supaya tidak ada klaim "aku tahu" yang lolos tanpa bukti. Kalau pengguna hanya bermaksud salah satunya, gerbang di tempat lain tinggal dilepas.
+
+Keputusan desain yang juga disampaikan sebelum menulis kode: **tab kuis tidak mengubah jadwal.** Kata yang dijawab benar tiga kali dalam sepuluh menit belum tentu diingat minggu depan, dan jadwal berjarak justru bergantung pada jeda itu. Kuis yang menentukan jadwal adalah gerbang di review.
+
+### Bentuk soal
+
+Kalimat baru dari kata itu, kata yang ditanyakan ditebalkan, lalu empat pilihan makna. **Pengecoh diambil lebih dulu dari makna lain kata yang sama**, yaitu daftar "Makna lain" yang sudah dibuat model saat kata pertama kali dicari. Jadi yang diuji bukan "kata ini artinya apa" tetapi "di kalimat ini, makna yang mana", kemampuan inti yang diajarkan Lema. Kalau makna lainnya kurang dari tiga, sisanya diisi arti kata lain dari koleksi. Tidak ada panggilan model tambahan: semua bahannya sudah tersimpan.
+
+Setelah menjawab, jawaban benar ditandai hijau, pilihan salah merah, lalu ditampilkan makna dalam bahasa Inggris dan kalimat asal dari buku, sesuai PRD bagian 8.4.
+
+Aturan pengecualian:
+- Kata yang ditandai **ragu** tidak dijadikan soal, karena model sendiri menyatakan tidak ada satu jawaban benar.
+- Kata **tanpa satu pun pengecoh** tidak bisa diuji, jadi klaimnya diterima apa adanya. Kasus ini butuh kata tanpa makna lain di koleksi yang hanya berisi kata itu, jadi jarang.
+
+### Perubahan perilaku
+
+- **Alur review dibalik.** Sebelumnya makna dibuka dulu, baru pengguna memilih Inget atau Lupa. Kuis setelah makna terlihat tidak menguji apa-apa, jadi sekarang pengguna memilih lebih dulu. **Lupa** langsung membuka makna dan kalimat asal tanpa kuis. **Inget** membuka kuis dengan makna disembunyikan; benar berarti jadwal naik dan tercatat lolos review, salah berarti dihitung lupa. Urutan ini justru lebih dekat ke PRD bagian 8.4, yang tidak pernah punya langkah "buka artinya".
+- **Udah hafal, stop tanya** hanya menandai kata sudah tahu kalau kuisnya benar. Kalau salah, pada review biasa dihitung lupa.
+- **Mode latihan** memakai gerbang yang sama tetapi tetap tidak menulis jadwal. Satu pengecualian yang disengaja: "Udah hafal" yang lolos kuis tetap menandai kata sudah tahu, karena itu pernyataan pengguna yang sudah dibuktikan, bukan efek samping jadwal.
+- **Aku udah tahu kata ini** di koleksi membuka kuis di tempat kartu itu. Selama kuis berjalan, makna, pemicu, dan catatan hati hati disembunyikan, karena semuanya adalah jawabannya.
+- **Tab Kuis** menjadi tujuan kelima di navigasi. Satu sesi paling banyak sepuluh soal, dari semua buku dan semua jadwal, termasuk kata yang sudah ditandai tahu. Soal diacak saat tombol "Mulai kuis" ditekan, bukan saat layar digambar. Di akhir sesi ada skor dan daftar kata yang salah dijawab, masing masing bertaut ke kartunya.
+
+### Jebakan yang ditemukan
+
+- **Kata yang sedang direview harus dipegang di tahap kuis.** Begitu jawaban dinilai, kata itu keluar dari antrean jatuh tempo. Kalau kata yang ditampilkan diambil ulang dari antrean, hasil kuis kata pertama akan tertempel di kata berikutnya. Kata yang sedang dikerjakan kini disimpan di dalam tahapnya sendiri.
+- **Kata yang bentuknya berubah tidak ditebalkan di kalimat soal.** Pemeriksaan visual menunjukkan "made out" di buku dan "make out" di kalimat soal; komponen kuis hanya mencari bentuk di buku. Sekarang bentuk dasarnya dicari juga, sama seperti layar review.
+- Satu pengujian yang pertama ditulis salah berharap: `grade()` menulis `passedReview: false` secara eksplisit saat kata dijawab lupa, bukan membiarkan kolomnya kosong. Artinya sama, jadi pengujiannya yang diluruskan.
+
+### File yang diubah
+
+- `lib/quiz.ts` (baru): `quizzable`, `buildQuestion`, `buildDeck`, `quizCount`. Pengacaknya bisa diganti supaya pengujian bisa diulang persis.
+- `components/QuizCard.tsx` (baru): satu soal, dipakai di ketiga tempat.
+- `app/kuis/page.tsx` (baru): tab kuis.
+- `app/review/page.tsx`: alur review dengan tahap tanya, kuis, dan buka makna.
+- `components/SenseMap.tsx`, `app/kata/page.tsx`: gerbang untuk "Aku udah tahu kata ini".
+- `components/Nav.tsx`: tab Kuis dan ikonnya. Namanya dijaga tidak diawali "Koleksi kata" dan tidak memuat "foto" atau "ulang", pelajaran dari tabrakan nama sebelumnya.
+- `tests/quiz.spec.ts` (baru): enam pengujian pembuat soal di sisi Node.
+- `tests/kuis.spec.ts` (baru): tujuh pengujian alur, termasuk jawaban salah di setiap gerbang.
+- `tests/dashboard.spec.ts`, `tests/koleksi.spec.ts`, `tests/sense-map.spec.ts`: menyesuaikan alur review yang dibalik, gerbang di kartu makna, dan tab kelima.
+
+### Verifikasi
+
+- `npx tsc --noEmit`: lulus. `npm run lint`: 0 error. `npm run build`: lulus, rute `/kuis` baru.
+- `PLAYWRIGHT_TEST_PRODUCTION=1 npx playwright test`: **71/71 lulus**, terdiri dari 58 pengujian sebelumnya ditambah 6 pengujian pembuat soal dan 7 pengujian alur kuis.
+- Pemeriksaan visual pada lebar 390 dan 1440 piksel, tema terang dan gelap: layar awal kuis, soal yang dijawab salah, layar tanya di review, kuis gerbang di review, dan gerbang di kartu makna. Satu cacat ditemukan dan diperbaiki dari situ, yaitu frasa yang tidak ditebalkan.
+
+### Yang masih terbuka
+
+- Belum digabung dan belum di-deploy.
+- **PRD bagian 6 masih menyebut kuis pilihan ganda sebagai hal yang dikeluarkan dari v1.** Dengan fitur ini, dokumen dan produk makin bercerita berbeda.
+- Belum diuji dengan data dari model sungguhan. Mutu pengecoh bergantung pada daftar "Makna lain" yang dibuat model; kalau salah satu makna lain itu terlalu mirip dengan makna yang benar, soalnya jadi ambigu.
+- Uji akurasi 15 kata buku asli dan 15 kata Threads masih nol, dengan batas kirim portfolio 12 September.
+
 ## Format catatan berikutnya
 
 Gunakan tanggal dan nama pelaksana, lalu jelaskan: permintaan/tujuan, keputusan, file yang diubah beserta alasannya, verifikasi dan hasilnya, masalah yang masih terbuka, serta pekerjaan berikutnya. Tulis "belum diuji" untuk hal yang belum benar-benar diperiksa.

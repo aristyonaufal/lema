@@ -1,10 +1,12 @@
 'use client';
 
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import Link from 'next/link';
 import type { Entry } from '@/lib/store';
 import type { Candidate } from '@/lib/types';
 import { findTextRanges, sentenceSegments } from '@/lib/text-matches';
+import QuizCard from '@/components/QuizCard';
+import type { Question } from '@/lib/quiz';
 
 const triggerColors = [
   'bg-accent/15 text-foreground',
@@ -68,12 +70,19 @@ function Explanation({ candidate, index, inSentence }: {
   );
 }
 
-export default function SenseMap({ entry, onKnown, onRemove, onRetry }: {
+export default function SenseMap({ entry, onKnown, onRemove, onRetry, quizFor }: {
   entry: Entry;
   onKnown?: () => void;
   onRemove?: () => void;
   onRetry?: () => boolean;
+  // Soal untuk membuktikan "Aku udah tahu kata ini". Kalau tidak diberikan,
+  // atau kata ini tidak punya pengecoh, tombolnya langsung menandai.
+  quizFor?: () => Question | null;
 }) {
+  // Kuis gerbang sebelum kata ditandai sudah tahu. Didaftarkan sebelum semua
+  // pengembalian awal di bawah, sesuai aturan urutan hook React.
+  const [quiz, setQuiz] = useState<Question | null>(null);
+
   if (entry.status === 'pending') {
     return (
       <div className="card flex items-center gap-3.5 p-5">
@@ -135,6 +144,45 @@ export default function SenseMap({ entry, onKnown, onRemove, onRetry }: {
   if (!notFound && targets.length === 0) targets = findTextRanges(sentence, r.lemma);
   const triggers = candidates.map((candidate) => notFound ? [] : findTextRanges(sentence, candidate.trigger));
   const segments = sentenceSegments(sentence, targets, triggers);
+
+  function tryKnown() {
+    const question = quizFor?.() ?? null;
+    if (!question) {
+      onKnown?.();
+      return;
+    }
+    setQuiz(question);
+  }
+
+  // Selama kuis berjalan, isi kartu disembunyikan. Makna, pemicu, dan catatan
+  // hati hati adalah jawabannya; kalau tetap terlihat di atas soal, kuisnya
+  // cuma menguji kemampuan membaca ke atas.
+  if (quiz) {
+    return (
+      <article className="flex min-w-0 flex-col gap-3 [overflow-wrap:anywhere]">
+        <h2 lang="en" className="font-display px-1 text-[1.5rem] leading-none tracking-tight">{r.word}</h2>
+        <QuizCard
+          key={quiz.entryId}
+          question={quiz}
+          label="Buktikan dulu sebelum ditandai sudah tahu"
+          onAnswer={(correct) => { if (correct) onKnown?.(); }}
+        >
+          {(correct) => (
+            <>
+              <p className="text-sm leading-relaxed">
+                {correct
+                  ? 'Ditandai sudah tahu. Kata ini nggak ikut review lagi.'
+                  : 'Belum ditandai sudah tahu. Kata ini tetap ikut review sampai kamu benar benar ingat.'}
+              </p>
+              <button onClick={() => setQuiz(null)} className="btn btn-ghost w-full">
+                Balik ke kartu
+              </button>
+            </>
+          )}
+        </QuizCard>
+      </article>
+    );
+  }
 
   return (
     <article className="card flex min-w-0 flex-col gap-5 p-5 [overflow-wrap:anywhere]">
@@ -279,7 +327,7 @@ export default function SenseMap({ entry, onKnown, onRemove, onRetry }: {
       )}
 
       {onKnown && !entry.known && (
-        <button onClick={onKnown} className="btn btn-ghost text-muted hover:text-foreground w-fit text-sm">
+        <button onClick={tryKnown} className="btn btn-ghost text-muted hover:text-foreground w-fit text-sm">
           Aku udah tahu kata ini
         </button>
       )}
