@@ -777,7 +777,9 @@ Dibuka dengan browser sungguhan di `lema-lemon.vercel.app`, memakai profil brows
 
 **Permintaan pengguna:** kuis dengan dua fungsi. Pertama, sebelum pengguna menekan tombol yang menyatakan sudah ingat, dia harus mengerjakan kuis dulu, dan baru benar benar tercatat kalau lolos. Kedua, tab baru di navigasi untuk kuis sendiri, dengan soal dari semua buku dan semua jadwal.
 
-**Status sesi:** selesai di cabang `fitur/kuis`, **belum digabung ke `main` dan belum di-deploy**. Pemeriksaan tipe, lint tanpa error, build, dan 71/71 pengujian lulus. Titik pulih: tag `v2-sebelum-kuis` pada `75827b8`.
+**Status sesi:** selesai dan **hidup di produksi** sejak 11 September lewat commit penggabungan `944b2fd`, atas permintaan pengguna tanpa lewat pratinjau. Pemeriksaan tipe, lint tanpa error, build, dan 71/71 pengujian lulus, diulang di `main` hasil gabungan sebelum didorong. Titik pulih: tag `v2-sebelum-kuis` pada `75827b8`.
+
+**Terverifikasi di produksi** dengan browser sungguhan dan satu kata uji di profil browser terpisah. Tab Kuis tampil di navigasi dan menampilkan "1 soal dari 1 kata"; soalnya "Apa arti bank di kalimat ini?" dengan keempat pilihan berupa makna kata "bank" sendiri; jawaban benar menghasilkan "Benar!" dan jadwal kata tidak berubah. Di review, makna tidak terlihat sebelum memilih; "Inget" membuka kuis berlabel "Buktikan dulu kalau kamu inget"; jawaban benar menghasilkan "Tercatat inget. Diulang lagi 7 hari lagi." dengan tahap naik ke 2 dan `passedReview` tercatat. Satu kali halaman sempat tampak pindah sendiri dari `/kuis` ke `/baca` selama pengujian; kode tidak punya perpindahan otomatis ke sana, dan pengamatan ulang selama empat detik tanpa sentuhan menunjukkan alamatnya tetap. Penyebabnya klik alat uji yang memakai rujukan elemen basi, bukan aplikasinya.
 
 ### Penafsiran yang dinyatakan ke pengguna
 
@@ -829,7 +831,6 @@ Aturan pengecualian:
 
 ### Yang masih terbuka
 
-- Belum digabung dan belum di-deploy.
 - **PRD bagian 6 masih menyebut kuis pilihan ganda sebagai hal yang dikeluarkan dari v1.** Dengan fitur ini, dokumen dan produk makin bercerita berbeda.
 - Belum diuji dengan data dari model sungguhan. Mutu pengecoh bergantung pada daftar "Makna lain" yang dibuat model; kalau salah satu makna lain itu terlalu mirip dengan makna yang benar, soalnya jadi ambigu.
 - Uji akurasi 15 kata buku asli dan 15 kata Threads masih nol, dengan batas kirim portfolio 12 September.

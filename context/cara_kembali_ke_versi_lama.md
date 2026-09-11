@@ -10,8 +10,11 @@ Dibuat 10 September 2026, bersamaan dengan fitur tandai kata tanpa mengetik. Dok
 | Commit `6dac711` | **Penggabungan fitur ke `main` pada 11 September 2026.** Inilah yang dibatalkan kalau mau kembali. |
 | Cabang `fitur/tandai-di-foto` | Seluruh pekerjaan fitur baru, dua commit: `1631bae` dan `9e97596`. |
 | Tag `v2-sebelum-kuis` | Commit `75827b8`. Mode tandai sudah hidup, kuis belum ada. Dipasang 11 September sebelum fitur kuis dikerjakan di cabang `fitur/kuis`. Kalau hanya kuisnya yang bermasalah, kembali ke sini, bukan ke `v1`. |
+| Commit `944b2fd` | **Penggabungan kuis ke `main` pada 11 September 2026.** Membatalkan kuis saja, mode tandai tetap: `git revert -m 1 944b2fd`. |
 
-**Keadaan sekarang: fitur sudah digabung dan hidup di produksi.** Jadi yang berlaku adalah jalan nomor 2 atau 3 di bawah.
+**Keadaan sekarang: mode tandai dan kuis sama sama sudah digabung dan hidup di produksi.** Jadi yang berlaku adalah jalan nomor 2 atau 3 di bawah.
+
+Pilih yang dibatalkan sesuai masalahnya. Kalau yang bermasalah cuma kuis, batalkan `944b2fd` saja. Kalau mode tandai juga, batalkan `944b2fd` lebih dulu, baru `6dac711`. Membatalkan dengan urutan terbalik bisa menimbulkan konflik, karena kuis dibangun di atas mode tandai.
 
 Data koleksi pengguna aman di semua jalan di bawah. Kata yang dibuat lewat mode tandai hanya membawa dua kolom tambahan, `batch` dan `marked`, dan versi lama mengabaikan kolom yang tidak dikenalnya.
 
