@@ -78,7 +78,13 @@ test('a phrase is bold at every occurrence while the original spacing and text s
   await expect(card.getByRole('region', { name: 'Makna di sini', exact: true }).locator('q')).toHaveText('in the fog');
   await expect(card.getByRole('region', { name: 'Makna lain', exact: true })).toContainText('mengisi dokumen');
   await card.getByRole('button', { name: 'Aku udah tahu kata ini', exact: true }).click();
+  // Sejak 11 September klaim ini harus dibuktikan. Makna disembunyikan selama
+  // kuis, karena makna itulah jawabannya.
+  await expect(card.getByRole('region', { name: 'Makna di sini', exact: true })).toHaveCount(0);
+  await card.getByRole('button', { name: 'berhasil melihat sesuatu yang samar', exact: true }).click();
   await expect(card).toContainText('Ditandai sudah tahu');
+  await card.getByRole('button', { name: 'Balik ke kartu', exact: true }).click();
+  await expect(card).toContainText('Ditandai sudah tahu, tidak akan direview.');
 });
 
 test('both ambiguous candidates show their own evidence and overlapping highlights preserve the sentence', async ({ page }) => {

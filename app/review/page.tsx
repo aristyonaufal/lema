@@ -6,7 +6,9 @@ import { useSearchParams } from 'next/navigation';
 import { useDb } from '@/lib/useDb';
 import { findTextRanges, sentenceSegments } from '@/lib/text-matches';
 import { ProgressBar } from '@/components/ui';
-import { due, grade, markKnown, practicePool, LADDER } from '@/lib/store';
+import QuizCard from '@/components/QuizCard';
+import { buildQuestion, type Question } from '@/lib/quiz';
+import { due, grade, markKnown, practicePool, LADDER, type Entry } from '@/lib/store';
 
 export default function Review() {
   return (
@@ -22,6 +24,21 @@ function nextInterval(stage: number, remembered: boolean): string {
   return days === 1 ? 'besok' : `${days} hari lagi`;
 }
 
+// Klaim yang harus dibuktikan dengan kuis. "Lupa" tidak termasuk: mengaku tidak
+// ingat tidak perlu diuji.
+type Claim = 'inget' | 'hafal';
+
+// Tahap untuk satu kata. Kata yang sedang dikerjakan disimpan di dalam tahap
+// itu sendiri, bukan diambil ulang dari antrean. Begitu jawaban dinilai, kata
+// tersebut langsung keluar dari antrean jatuh tempo; tanpa dipegang di sini,
+// hasil kuis kata pertama akan tampil di atas kata berikutnya.
+type Phase =
+  | { kind: 'ask' }
+  | { kind: 'quiz'; entry: Entry; question: Question; claim: Claim; outcome: boolean | null }
+  // Makna dibuka tanpa kuis: pengguna menjawab lupa, atau kata ini tidak punya
+  // pilihan pengecoh sehingga klaimnya tidak bisa diuji.
+  | { kind: 'reveal'; entry: Entry; claim: Claim | 'lupa' };
+
 // Dua mode di satu layar.
 //
 // Review biasa hanya mengambil kata yang jatuh tempo, dan menggeser jadwalnya.
@@ -29,10 +46,16 @@ function nextInterval(stage: number, remembered: boolean): string {
 // sengaja TIDAK menyentuh jadwal maupun riwayat "pernah lolos review". Kalau
 // latihan ikut menggeser jadwal, angka progres berubah menjadi ukuran seberapa
 // sering seseorang menekan tombol, bukan seberapa lama dia masih ingat.
+//
+// Sejak 11 September, "Inget" dan "Udah hafal" harus dibuktikan lewat kuis.
+// Karena itu urutannya dibalik dari versi sebelumnya: dulu makna dibuka dulu
+// baru pengguna memilih, dan kuis setelah makna terlihat tidak menguji apa-apa.
+// Sekarang pengguna memilih dulu, sesuai PRD bagian 8.4, dan makna baru
+// terlihat setelah pilihannya dinilai.
 function ReviewSession() {
   const params = useSearchParams();
   const { db, update, ready } = useDb();
-  const [shown, setShown] = useState(false);
+  const [phase, setPhase] = useState<Phase>({ kind: 'ask' });
   const [seen, setSeen] = useState<string[]>([]);
 
   const practice = params.get('latihan') === '1';
@@ -49,9 +72,11 @@ function ReviewSession() {
 
   const book = bookParam ? db.books.find((b) => b.id === bookParam) ?? null : null;
   const pool = practice ? practicePool(db, book?.id ?? null) : due(db);
-  const queue = pool.filter((e) => !seen.includes(e.id));
-  const entry = queue[0];
+  const activeId = phase.kind === 'ask' ? null : phase.entry.id;
+  const rest = pool.filter((e) => !seen.includes(e.id) && e.id !== activeId);
+  const entry = phase.kind === 'ask' ? rest[0] : phase.entry;
   const count = seen.length;
+  const total = count + (activeId ? 1 : 0) + rest.length;
 
   if (!entry) {
     // Antreannya kosong. Untuk review biasa itu berarti belum ada yang jatuh
@@ -108,7 +133,6 @@ function ReviewSession() {
   const r = entry.result!;
   const main = r.candidates[0];
   const entryBook = db.books.find((b) => b.id === entry.bookId);
-  const total = queue.length + count;
   const target = r.lemma || r.word;
 
   // Kalimat baru, bukan kalimat asal dari buku. Kalau yang direview kalimat yang sama,
@@ -121,12 +145,45 @@ function ReviewSession() {
   if (ranges.length === 0) ranges = findTextRanges(r.new_sentence, target);
   const segments = sentenceSegments(r.new_sentence, ranges, []);
 
-  function answer(remembered: boolean) {
-    // Latihan tidak menulis apa pun ke penyimpanan, jadi tidak ada yang bisa
-    // gagal disimpan dan tidak ada jadwal yang bergeser.
-    if (!practice && !update((current) => grade(current, entry.id, remembered))) return;
-    setShown(false);
+  // Akibat sebuah jawaban. Latihan tidak menulis apa pun, kecuali "Udah hafal"
+  // yang lolos kuis: itu pernyataan pengguna yang sudah dibuktikan, bukan efek
+  // samping dari jadwal. Jawaban salah pada review biasa dihitung lupa.
+  function apply(item: Entry, claim: Claim | 'lupa', correct: boolean): boolean {
+    if (claim === 'hafal' && correct) return update((current) => markKnown(current, item.id));
+    if (practice) return true;
+    return update((current) => grade(current, item.id, claim !== 'lupa' && correct));
+  }
+
+  function forgot() {
+    if (!apply(entry, 'lupa', false)) return;
+    setPhase({ kind: 'reveal', entry, claim: 'lupa' });
+  }
+
+  function claim(kind: Claim) {
+    const question = buildQuestion(entry, db.entries);
+    // Tanpa pengecoh tidak ada yang bisa diuji, jadi klaimnya diterima apa
+    // adanya. Ini jarang: butuh kata tanpa makna lain dan koleksi tanpa kata lain.
+    if (!question) {
+      if (!apply(entry, kind, true)) return;
+      setPhase({ kind: 'reveal', entry, claim: kind });
+      return;
+    }
+    setPhase({ kind: 'quiz', entry, question, claim: kind, outcome: null });
+  }
+
+  function next() {
     setSeen((current) => [...current, entry.id]);
+    setPhase({ kind: 'ask' });
+  }
+
+  function consequence(claimed: Claim | 'lupa', correct: boolean, stage: number): string {
+    if (claimed === 'hafal') {
+      if (correct) return 'Ditandai sudah hafal. Kata ini nggak akan ditanyakan lagi.';
+      return practice ? 'Belum ditandai hafal.' : 'Belum ditandai hafal, dan dihitung lupa. Diulang lagi besok.';
+    }
+    if (practice) return 'Cuma latihan, jadwal review-nya nggak berubah.';
+    if (claimed === 'inget' && correct) return `Tercatat inget. Diulang lagi ${nextInterval(stage, true)}.`;
+    return claimed === 'lupa' ? 'Nggak apa apa. Diulang lagi besok.' : 'Dihitung lupa, jadi diulang lagi besok.';
   }
 
   return (
@@ -157,27 +214,50 @@ function ReviewSession() {
         )}
       </header>
 
-      <section aria-label="Kalimat review" className="card mt-auto flex flex-col gap-4 p-5">
-        <p className="eyebrow">Kalimat baru</p>
-        <p lang="en" className="font-display text-[1.6rem] leading-[1.35] tracking-tight">
-          {segments.map((segment) => (
-            <Fragment key={segment.start}>
-              {segment.target ? (
-                <strong className="text-accent decoration-accent/40 font-semibold underline decoration-2 underline-offset-4">
-                  {segment.text}
-                </strong>
-              ) : (
-                segment.text
-              )}
-            </Fragment>
-          ))}
-        </p>
-        <p className="text-muted text-sm leading-relaxed">
-          Kalimat ini baru, bukan kalimat dari bukumu. Masih inget artinya?
-        </p>
-      </section>
+      {phase.kind === 'quiz' ? (
+        <div className="mt-auto lg:mb-auto">
+          <QuizCard
+            key={phase.entry.id}
+            question={phase.question}
+            label={phase.claim === 'hafal' ? 'Buktikan dulu sebelum berhenti ditanya' : 'Buktikan dulu kalau kamu inget'}
+            onAnswer={(correct) => {
+              apply(phase.entry, phase.claim, correct);
+              setPhase({ ...phase, outcome: correct });
+            }}
+          >
+            {(correct) => (
+              <>
+                <p className="text-sm leading-relaxed">{consequence(phase.claim, correct, phase.entry.stage)}</p>
+                <button onClick={next} className="btn btn-primary w-full">
+                  Lanjut
+                </button>
+              </>
+            )}
+          </QuizCard>
+        </div>
+      ) : (
+        <section aria-label="Kalimat review" className="card mt-auto flex flex-col gap-4 p-5">
+          <p className="eyebrow">Kalimat baru</p>
+          <p lang="en" className="font-display text-[1.6rem] leading-[1.35] tracking-tight">
+            {segments.map((segment) => (
+              <Fragment key={segment.start}>
+                {segment.target ? (
+                  <strong className="text-accent decoration-accent/40 font-semibold underline decoration-2 underline-offset-4">
+                    {segment.text}
+                  </strong>
+                ) : (
+                  segment.text
+                )}
+              </Fragment>
+            ))}
+          </p>
+          <p className="text-muted text-sm leading-relaxed">
+            Kalimat ini baru, bukan kalimat dari bukumu. Masih inget artinya?
+          </p>
+        </section>
+      )}
 
-      {shown ? (
+      {phase.kind === 'reveal' && (
         <section aria-label="Jawaban" className="rise flex flex-col gap-4 lg:mb-auto">
           <div className="card flex flex-col gap-3 p-5">
             <p className="eyebrow">Artinya</p>
@@ -192,39 +272,33 @@ function ReviewSession() {
               </div>
             )}
           </div>
+          <p className="text-muted text-center text-sm leading-relaxed">
+            {consequence(phase.claim, phase.claim !== 'lupa', phase.entry.stage)}
+          </p>
+          <button onClick={next} className="btn btn-primary w-full">
+            Lanjut
+          </button>
+        </section>
+      )}
 
+      {phase.kind === 'ask' && (
+        <div className="mt-auto flex flex-col gap-2.5 pb-2 lg:mt-4 lg:mb-auto">
           {/* Dua jawaban berdampingan dan sama besar: tidak ada yang "benar",
               jadi tidak ada yang perlu dibuat lebih menonjol. */}
           <div className="grid grid-cols-2 gap-2.5">
-            <button onClick={() => answer(false)} className="btn btn-ghost h-14 flex-col gap-0.5">
+            <button onClick={forgot} className="btn btn-ghost h-14 flex-col gap-0.5">
               Lupa
               <span className="text-faint text-[0.6875rem] font-normal">
-                {practice ? 'cuma latihan' : `ulang ${nextInterval(entry.stage, false)}`}
+                {practice ? 'lihat artinya' : `ulang ${nextInterval(entry.stage, false)}`}
               </span>
             </button>
-            <button onClick={() => answer(true)} className="btn btn-primary h-14 flex-col gap-0.5">
+            <button onClick={() => claim('inget')} className="btn btn-primary h-14 flex-col gap-0.5">
               Inget
-              <span className="text-[0.6875rem] font-normal opacity-70">
-                {practice ? 'cuma latihan' : `ulang ${nextInterval(entry.stage, true)}`}
-              </span>
+              <span className="text-[0.6875rem] font-normal opacity-70">buktikan lewat kuis</span>
             </button>
           </div>
-
-          <button
-            onClick={() => {
-              if (!update((current) => markKnown(current, entry.id))) return;
-              setShown(false);
-              setSeen((current) => [...current, entry.id]);
-            }}
-            className="btn btn-quiet mx-auto text-sm"
-          >
+          <button onClick={() => claim('hafal')} className="btn btn-quiet mx-auto text-sm">
             Udah hafal, stop tanya
-          </button>
-        </section>
-      ) : (
-        <div className="mt-auto pb-2 lg:mt-4 lg:mb-auto">
-          <button onClick={() => setShown(true)} className="btn btn-primary w-full">
-            Buka artinya
           </button>
         </div>
       )}

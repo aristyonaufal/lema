@@ -100,7 +100,7 @@ test('pengguna baru langsung ditanya bukunya di beranda', async ({ page }) => {
 
   await expect(page.getByRole('heading', { name: 'Progres bacamu', exact: true })).toBeVisible();
   const nav = page.getByRole('navigation', { name: 'Navigasi utama' });
-  await expect(nav.getByRole('list', { name: 'Tujuan utama' }).getByRole('link')).toHaveCount(4);
+  await expect(nav.getByRole('list', { name: 'Tujuan utama' }).getByRole('link')).toHaveCount(5);
   expect((await page.evaluate((key) => JSON.parse(localStorage.getItem(key) ?? 'null'), KEY) as Db).books)
     .toHaveLength(1);
 });
@@ -156,7 +156,6 @@ test('riwayat lolos review bertahan walau kata itu kemudian terlupa', async ({ p
   });
   await page.goto('/review');
 
-  await page.getByRole('button', { name: 'Buka artinya', exact: true }).click();
   await page.getByRole('button', { name: /^Lupa/ }).click();
 
   const saved = await page.evaluate((key) => JSON.parse(localStorage.getItem(key) ?? 'null'), KEY) as Db;
@@ -178,7 +177,8 @@ test('jawaban inget mencatat kata itu pernah lolos review', async ({ page }) => 
   await expect(stat(page, 'Lolos review')).toContainText('0');
 
   await page.getByRole('link', { name: /kata udah waktunya diulang/ }).click();
-  await page.getByRole('button', { name: 'Buka artinya', exact: true }).click();
+  // Kata ini tidak punya pengecoh, jadi "Inget" diterima tanpa kuis. Gerbang
+  // kuisnya sendiri diuji di tests/kuis.spec.ts.
   await page.getByRole('button', { name: /^Inget/ }).click();
 
   const saved = await page.evaluate((key) => JSON.parse(localStorage.getItem(key) ?? 'null'), KEY) as Db;

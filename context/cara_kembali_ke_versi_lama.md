@@ -9,6 +9,7 @@ Dibuat 10 September 2026, bersamaan dengan fitur tandai kata tanpa mengetik. Dok
 | Tag `v1-sebelum-tandai-foto` | Commit `0c33808`. Versi yang sudah lulus 47/47 pengujian dan hidup di produksi sebelum fitur ini dibuat. |
 | Commit `6dac711` | **Penggabungan fitur ke `main` pada 11 September 2026.** Inilah yang dibatalkan kalau mau kembali. |
 | Cabang `fitur/tandai-di-foto` | Seluruh pekerjaan fitur baru, dua commit: `1631bae` dan `9e97596`. |
+| Tag `v2-sebelum-kuis` | Commit `75827b8`. Mode tandai sudah hidup, kuis belum ada. Dipasang 11 September sebelum fitur kuis dikerjakan di cabang `fitur/kuis`. Kalau hanya kuisnya yang bermasalah, kembali ke sini, bukan ke `v1`. |
 
 **Keadaan sekarang: fitur sudah digabung dan hidup di produksi.** Jadi yang berlaku adalah jalan nomor 2 atau 3 di bawah.
 
