@@ -1,0 +1,591 @@
+{
+  "dibuat": "2026-09-11T12:18:37.173Z",
+  "catatan": "Kunci jawaban ditetapkan sebelum model dijalankan. Kelompok A dari teks asli Project Gutenberg; kelompok B ditulis sendiri sebagai pengganti kata dari Threads.",
+  "halaman": [
+    {
+      "id": "A-want",
+      "kelompok": "A",
+      "sumber": {
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "gutenberg": 1342,
+        "anchor": "must be in want of a wife"
+      },
+      "teks": "2 The End 476 It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife. However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered as the rightful property of some one or other of their daughters. “My dear Mr. Bennet,” said his lady to him one day, “have you heard that Netherfield Park is let at last?” Mr. Bennet replied that he had not.",
+      "sasaran": [
+        {
+          "kata": "want",
+          "offset": 115,
+          "kunci": {
+            "en": "lack, be in need of",
+            "id": "kekurangan / membutuhkan",
+            "jebakan": "ingin, mau"
+          },
+          "kemunculan": 1
+        }
+      ]
+    },
+    {
+      "id": "A-darcy",
+      "kelompok": "A",
+      "sumber": {
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "gutenberg": 1342,
+        "anchor": "She is tolerable: but not handsome enough to tempt me; and I am in no humour at present to give consequence to young ladies"
+      },
+      "teks": "Upon my honour, I never met with so many pleasant girls in my life as I have this evening; and there are several of them, you see, uncommonly pretty.” “You are dancing with the only handsome girl in the room,” said Mr. Darcy, looking at the eldest Miss Bennet. “Oh, she is the most beautiful creature I ever beheld! But there is one of her sisters sitting down just behind you, who is very pretty, and I dare say very agreeable. Do let me ask my partner to introduce you.” “Which do you mean?” and turning round, he looked for a moment at Elizabeth, till, catching her eye, he withdrew his own, and coldly said, “She is tolerable: but not handsome enough to tempt me; and I am in no humour at present to give consequence to young ladies who are slighted by other men. You had better return to your partner and enjoy her smiles, for you are wasting your time with me.” Mr. Bingley followed his advice. Mr. Darcy walked off; and Elizabeth remained with no very cordial feelings towards him. She told the story, however, with great spirit among her friends; for she had a lively, playful disposition, which delighted in anything ridiculous. The evening altogether passed off pleasantly to the whole family.",
+      "sasaran": [
+        {
+          "kata": "tolerable",
+          "offset": 620,
+          "kunci": {
+            "en": "passable, just acceptable, not remarkable",
+            "id": "lumayan, biasa saja",
+            "jebakan": "dapat ditoleransi atau ditahan"
+          },
+          "kemunculan": 1
+        },
+        {
+          "kata": "humour",
+          "offset": 683,
+          "kunci": {
+            "en": "mood, state of mind",
+            "id": "suasana hati",
+            "jebakan": "humor, lelucon"
+          },
+          "kemunculan": 1
+        },
+        {
+          "kata": "consequence",
+          "offset": 709,
+          "kunci": {
+            "en": "importance, social standing",
+            "id": "arti penting, gengsi",
+            "jebakan": "akibat"
+          },
+          "kemunculan": 1
+        }
+      ]
+    },
+    {
+      "id": "A-sensible",
+      "kelompok": "A",
+      "sumber": {
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "gutenberg": 1342,
+        "anchor": "I am very sensible of the honour of your proposals"
+      },
+      "teks": "On that head, therefore, I shall be uniformly silent: and you may assure yourself that no ungenerous reproach shall ever pass my lips when we are married.” It was absolutely necessary to interrupt him now. “You are too hasty, sir,” she cried. “You forget that I have made no answer. Let me do it without further loss of time. Accept my thanks for the compliment you are paying me. I am very sensible of the honour of your proposals, but it is impossible for me to do otherwise than decline them.” “I am not now to learn,” replied Mr. Collins, with a formal wave of the hand, “that it is usual with young ladies to reject the addresses of the man whom they secretly mean to accept, when he first applies for their favour; and that sometimes the refusal is repeated a second or even a third time. I am, therefore, by no means discouraged by what you have just said, and shall hope to lead you to the altar ere long.” “Upon my word, sir,” cried Elizabeth, “your hope is rather an extraordinary one after my declaration.",
+      "sasaran": [
+        {
+          "kata": "sensible",
+          "offset": 391,
+          "kunci": {
+            "en": "aware of, appreciative of",
+            "id": "menyadari, menghargai",
+            "jebakan": "masuk akal, bijaksana"
+          },
+          "kemunculan": 1
+        }
+      ]
+    },
+    {
+      "id": "A-condescension",
+      "kelompok": "A",
+      "sumber": {
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "gutenberg": 1342,
+        "anchor": "such affability and condescension, as he had himself experienced from Lady Catherine"
+      },
+      "teks": "Bennet scarcely spoke at all; but when the servants were withdrawn, he thought it time to have some conversation with his guest, and therefore started a subject in which he expected him to shine, by observing that he seemed very fortunate in his patroness. Lady Catherine de Bourgh’s attention to his wishes, and consideration for his comfort, appeared very remarkable. Mr. Bennet could not have chosen better. Mr. Collins was eloquent in her praise. The subject elevated him to more than usual solemnity of manner; and with a most important aspect he protested that he had never in his life witnessed such behaviour in a person of rank--such affability and condescension, as he had himself experienced from Lady Catherine. She had been graciously pleased to approve of both the discourses which he had already had the honour of preaching before her. She had also asked him twice to dine at Rosings, and had sent for him only the Saturday before, to make up her pool of quadrille in the evening. Lady Catherine was reckoned proud by many people, he knew, but he had never seen anything but affability in her. She had always spoken to him as she would to any other gentleman; she made not the smallest objection to his joining in the society of the neighbourhood, nor to his leaving his parish occasionally for a week or two to visit his relations.",
+      "sasaran": [
+        {
+          "kata": "condescension",
+          "offset": 658,
+          "kunci": {
+            "en": "gracious kindness shown by a superior to social inferiors (approving)",
+            "id": "kemurahan hati orang berkedudukan tinggi",
+            "jebakan": "sikap merendahkan orang lain"
+          },
+          "kemunculan": 1
+        }
+      ]
+    },
+    {
+      "id": "A-engaged",
+      "kelompok": "A",
+      "sumber": {
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "gutenberg": 1342,
+        "anchor": "he readily engaged for taking the earliest opportunity of waiting on her"
+      },
+      "teks": "Bennet, in equal silence, was enjoying the scene. Mr. Bingley and Jane were standing together a little detached from the rest, and talked only to each other. Elizabeth preserved as steady a silence as either Mrs. Hurst or Miss Bingley; and even Lydia was too much fatigued to utter more than the occasional exclamation of “Lord, how tired I am!” accompanied by a violent yawn. When at length they arose to take leave, Mrs. Bennet was most pressingly civil in her hope of seeing the whole family soon at Longbourn; and addressed herself particularly to Mr. Bingley, to assure him how happy he would make them, by eating a family dinner with them at any time, without the ceremony of a formal invitation. Bingley was all grateful pleasure; and he readily engaged for taking the earliest opportunity of waiting on her after his return from London, whither he was obliged to go the next day for a short time. Mrs. Bennet was perfectly satisfied; and quitted the house under the delightful persuasion that, allowing for the necessary preparations of settlements, new carriages, and wedding clothes, she should undoubtedly see her daughter settled at Netherfield in the course of three or four months. Of having another daughter married to Mr. Collins she thought with equal certainty, and with considerable, though not equal, pleasure.",
+      "sasaran": [
+        {
+          "kata": "engaged",
+          "offset": 753,
+          "kunci": {
+            "en": "promised, committed himself",
+            "id": "berjanji, menyanggupi",
+            "jebakan": "bertunangan, sibuk"
+          },
+          "kemunculan": 1
+        }
+      ]
+    },
+    {
+      "id": "A-holmes-harness",
+      "kelompok": "A",
+      "sumber": {
+        "title": "The Adventures of Sherlock Holmes",
+        "author": "Arthur Conan Doyle",
+        "gutenberg": 1661,
+        "anchor": "Just a trifle more, I fancy, Watson. And in practice again, I observe. You did not tell me that you intended to go into harness."
+      },
+      "teks": "I rang the bell and was shown up to the chamber which had formerly been in part my own. His manner was not effusive. It seldom was; but he was glad, I think, to see me. With hardly a word spoken, but with a kindly eye, he waved me to an armchair, threw across his case of cigars, and indicated a spirit case and a gasogene in the corner. Then he stood before the fire and looked me over in his singular introspective fashion. “Wedlock suits you,” he remarked. “I think, Watson, that you have put on seven and a half pounds since I saw you.” “Seven!” I answered. “Indeed, I should have thought a little more. Just a trifle more, I fancy, Watson. And in practice again, I observe. You did not tell me that you intended to go into harness.” “Then, how do you know?” “I see it, I deduce it. How do I know that you have been getting yourself very wet lately, and that you have a most clumsy and careless servant girl?” “My dear Holmes,” said I, “this is too much. You would certainly have been burned, had you lived a few centuries ago. It is true that I had a country walk on Thursday and came home in a dreadful mess, but as I have changed my clothes I can’t imagine how you deduce it.",
+      "sasaran": [
+        {
+          "kata": "fancy",
+          "offset": 630,
+          "kunci": {
+            "en": "think, suppose",
+            "id": "kira, rasa",
+            "jebakan": "suka, mewah"
+          },
+          "kemunculan": 1
+        },
+        {
+          "kata": "practice",
+          "offset": 652,
+          "kunci": {
+            "en": "a doctor's professional work",
+            "id": "praktik dokter",
+            "jebakan": "latihan"
+          },
+          "kemunculan": 1
+        },
+        {
+          "kata": "harness",
+          "offset": 728,
+          "kunci": {
+            "en": "regular work (to go into harness: take up work again)",
+            "id": "kembali bekerja rutin",
+            "jebakan": "tali kekang kuda"
+          },
+          "kemunculan": 1
+        }
+      ]
+    },
+    {
+      "id": "A-singular",
+      "kelompok": "A",
+      "sumber": {
+        "title": "The Adventures of Sherlock Holmes",
+        "author": "Arthur Conan Doyle",
+        "gutenberg": 1661,
+        "anchor": "one of the most singular which I have listened to for some time"
+      },
+      "teks": "I observed. “You will remember that I remarked the other day, just before we went into the very simple problem presented by Miss Mary Sutherland, that for strange effects and extraordinary combinations we must go to life itself, which is always far more daring than any effort of the imagination.” “A proposition which I took the liberty of doubting.” “You did, Doctor, but none the less you must come round to my view, for otherwise I shall keep on piling fact upon fact on you until your reason breaks down under them and acknowledges me to be right. Now, Mr. Jabez Wilson here has been good enough to call upon me this morning, and to begin a narrative which promises to be one of the most singular which I have listened to for some time. You have heard me remark that the strangest and most unique things are very often connected not with the larger but with the smaller crimes, and occasionally, indeed, where there is room for doubt whether any positive crime has been committed. As far as I have heard, it is impossible for me to say whether the present case is an instance of crime or not, but the course of events is certainly among the most singular that I have ever listened to. Perhaps, Mr. Wilson, you would have the great kindness to recommence your narrative.",
+      "sasaran": [
+        {
+          "kata": "singular",
+          "offset": 693,
+          "kunci": {
+            "en": "strange, extraordinary",
+            "id": "aneh, luar biasa",
+            "jebakan": "tunggal"
+          },
+          "kemunculan": 2
+        }
+      ]
+    },
+    {
+      "id": "A-presently",
+      "kelompok": "A",
+      "sumber": {
+        "title": "The Adventures of Sherlock Holmes",
+        "author": "Arthur Conan Doyle",
+        "gutenberg": 1661,
+        "anchor": "I shall be with you presently"
+      },
+      "teks": "For a long time he remained there, turning over the leaves and dried sticks, gathering up what seemed to me to be dust into an envelope and examining with his lens not only the ground but even the bark of the tree as far as he could reach. A jagged stone was lying among the moss, and this also he carefully examined and retained. Then he followed a pathway through the wood until he came to the high road, where all traces were lost. “It has been a case of considerable interest,” he remarked, returning to his natural manner. “I fancy that this grey house on the right must be the lodge. I think that I will go in and have a word with Moran, and perhaps write a little note. Having done that, we may drive back to our luncheon. You may walk to the cab, and I shall be with you presently.” It was about ten minutes before we regained our cab and drove back into Ross, Holmes still carrying with him the stone which he had picked up in the wood. “This may interest you, Lestrade,” he remarked, holding it out. “The murder was done with it.” “I see no marks.” “There are none.” “How do you know, then?” “The grass was growing under it. It had only lain there a few days. There was no sign of a place whence it had been taken. It corresponds with the injuries.",
+      "sasaran": [
+        {
+          "kata": "presently",
+          "offset": 779,
+          "kunci": {
+            "en": "soon, in a short while",
+            "id": "sebentar lagi",
+            "jebakan": "sekarang, saat ini"
+          },
+          "kemunculan": 1
+        }
+      ]
+    },
+    {
+      "id": "A-countenance",
+      "kelompok": "A",
+      "sumber": {
+        "title": "Frankenstein",
+        "author": "Mary Shelley",
+        "gutenberg": 84,
+        "anchor": "His countenance instantly assumed an aspect of the deepest gloom"
+      },
+      "teks": "But he is generally melancholy and despairing, and sometimes he gnashes his teeth, as if impatient of the weight of woes that oppresses him. When my guest was a little recovered I had great trouble to keep off the men, who wished to ask him a thousand questions; but I would not allow him to be tormented by their idle curiosity, in a state of body and mind whose restoration evidently depended upon entire repose. Once, however, the lieutenant asked why he had come so far upon the ice in so strange a vehicle. His countenance instantly assumed an aspect of the deepest gloom, and he replied, “To seek one who fled from me.” “And did the man whom you pursued travel in the same fashion?” “Yes.” “Then I fancy we have seen him, for the day before we picked you up we saw some dogs drawing a sledge, with a man in it, across the ice.” This aroused the stranger’s attention, and he asked a multitude of questions concerning the route which the dæmon, as he called him, had pursued. Soon after, when he was alone with me, he said, “I have, doubtless, excited your curiosity, as well as that of these good people; but you are too considerate to make inquiries.”",
+      "sasaran": [
+        {
+          "kata": "countenance",
+          "offset": 516,
+          "kunci": {
+            "en": "face, facial expression",
+            "id": "raut wajah",
+            "jebakan": "dukungan, restu"
+          },
+          "kemunculan": 1
+        }
+      ]
+    },
+    {
+      "id": "A-curious",
+      "kelompok": "A",
+      "sumber": {
+        "title": "Alice's Adventures in Wonderland",
+        "author": "Lewis Carroll",
+        "gutenberg": 11,
+        "anchor": "What a curious feeling!"
+      },
+      "teks": "However, this bottle was not marked “poison,” so Alice ventured to taste it, and finding it very nice, (it had, in fact, a sort of mixed flavour of cherry-tart, custard, pine-apple, roast turkey, toffee, and hot buttered toast,) she very soon finished it off. * * * * * * * * * * * * * * * * * * * * “What a curious feeling!” said Alice; “I must be shutting up like a telescope.” And so it was indeed: she was now only ten inches high, and her face brightened up at the thought that she was now the right size for going through the little door into that lovely garden. First, however, she waited for a few minutes to see if she was going to shrink any further: she felt a little nervous about this; “for it might end, you know,” said Alice to herself, “in my going out altogether, like a candle. I wonder what I should be like then?”",
+      "sasaran": [
+        {
+          "kata": "curious",
+          "offset": 308,
+          "kunci": {
+            "en": "strange, odd",
+            "id": "aneh",
+            "jebakan": "ingin tahu"
+          },
+          "kemunculan": 1
+        }
+      ]
+    },
+    {
+      "id": "A-hands",
+      "kelompok": "A",
+      "sumber": {
+        "title": "Moby Dick",
+        "author": "Herman Melville",
+        "gutenberg": 2701,
+        "anchor": "Thunder and lightning! so near! Call all hands."
+      },
+      "teks": "October 13. “There she blows,” was sung out from the mast-head. “Where away?” demanded the captain. “Three points off the lee bow, sir.” “Raise up your wheel. Steady!” “Steady, sir.” “Mast-head ahoy! Do you see that whale now?” “Ay ay, sir! A shoal of Sperm Whales! There she blows! There she breaches!” “Sing out! sing out every time!” “Ay Ay, sir! There she blows! there—there—thar she blows—bowes—bo-o-os!” “How far off?” “Two miles and a half.” “Thunder and lightning! so near! Call all hands.” —J. Ross Browne’s Etchings of a Whaling Cruize. 1846. “The Whale-ship Globe, on board of which vessel occurred the horrid transactions we are about to relate, belonged to the island of Nantucket.” —“Narrative of the Globe Mutiny,” by Lay and Hussey survivors. A.D. 1828. Being once pursued by a whale which he had wounded, he parried the assault for some time with a lance; but the furious monster at length rushed on the boat; himself and comrades only being preserved by leaping into the water when they saw the onset was inevitable.” —Missionary Journal of Tyerman and Bennett.",
+      "sasaran": [
+        {
+          "kata": "hands",
+          "offset": 491,
+          "kunci": {
+            "en": "crew members, sailors",
+            "id": "awak kapal",
+            "jebakan": "tangan"
+          },
+          "kemunculan": 1
+        }
+      ]
+    },
+    {
+      "id": "B-lake",
+      "kelompok": "B",
+      "sumber": {
+        "title": "Kalimat buatan untuk uji",
+        "author": "Claude",
+        "gutenberg": null,
+        "anchor": null
+      },
+      "teks": "The lake was perfectly still that morning. Maya had only a spare hour before work, so she walked down to the shore with her coffee. Through the thin mist she could barely make out the far bank, where a few boats were tied to the reeds. Her brother runs a small café near the water, and she had promised to stop by on her way back. She was sure he had been baking since five.",
+      "sasaran": [
+        {
+          "kata": "still",
+          "offset": 23,
+          "kunci": {
+            "en": "calm, motionless",
+            "id": "tenang, tidak bergerak",
+            "jebakan": "masih"
+          },
+          "kemunculan": 1
+        },
+        {
+          "kata": "spare",
+          "offset": 59,
+          "kunci": {
+            "en": "free, available",
+            "id": "luang",
+            "jebakan": "cadangan"
+          },
+          "kemunculan": 1
+        },
+        {
+          "kata": "make out",
+          "offset": 171,
+          "kunci": {
+            "en": "manage to see with difficulty",
+            "id": "melihat samar samar",
+            "jebakan": "berciuman"
+          },
+          "kemunculan": 1
+        },
+        {
+          "kata": "bank",
+          "offset": 188,
+          "kunci": {
+            "en": "land along the edge of a lake or river",
+            "id": "tepi danau",
+            "jebakan": "bank, lembaga keuangan"
+          },
+          "kemunculan": 1
+        },
+        {
+          "kata": "runs",
+          "offset": 248,
+          "kunci": {
+            "en": "manages, operates a business",
+            "id": "mengelola",
+            "jebakan": "berlari"
+          },
+          "kemunculan": 1
+        }
+      ]
+    },
+    {
+      "id": "B-exam",
+      "kelompok": "B",
+      "sumber": {
+        "title": "Kalimat buatan untuk uji",
+        "author": "Claude",
+        "gutenberg": null,
+        "anchor": null
+      },
+      "teks": "I figured the test would be easy, but the mean score in our class was only sixty. My teacher looked at my answers and said my reasoning was sound, even if my arithmetic was not. She told me to put up with the pressure for one more week. Honestly, I can not bear another exam before the holidays.",
+      "sasaran": [
+        {
+          "kata": "figured",
+          "offset": 2,
+          "kunci": {
+            "en": "assumed, thought",
+            "id": "mengira",
+            "jebakan": "menggambar, tokoh"
+          },
+          "kemunculan": 1
+        },
+        {
+          "kata": "mean",
+          "offset": 42,
+          "kunci": {
+            "en": "average",
+            "id": "rata rata",
+            "jebakan": "jahat, berarti"
+          },
+          "kemunculan": 1
+        },
+        {
+          "kata": "sound",
+          "offset": 140,
+          "kunci": {
+            "en": "reliable, logically valid",
+            "id": "masuk akal, kuat",
+            "jebakan": "suara"
+          },
+          "kemunculan": 1
+        },
+        {
+          "kata": "put up with",
+          "offset": 193,
+          "kunci": {
+            "en": "tolerate",
+            "id": "menahan, menoleransi",
+            "jebakan": "memasang"
+          },
+          "kemunculan": 1
+        },
+        {
+          "kata": "bear",
+          "offset": 257,
+          "kunci": {
+            "en": "tolerate, endure",
+            "id": "tahan",
+            "jebakan": "beruang"
+          },
+          "kemunculan": 1
+        }
+      ]
+    },
+    {
+      "id": "B-trip",
+      "kelompok": "B",
+      "sumber": {
+        "title": "Kalimat buatan untuk uji",
+        "author": "Claude",
+        "gutenberg": null,
+        "anchor": null
+      },
+      "teks": "Dad had to pay a fine for parking outside the county fair. Getting to the station afterwards was a close call; he almost missed his train. On the way home he picked up a little Spanish from the other passengers, but he would rather not talk about the whole trip.",
+      "sasaran": [
+        {
+          "kata": "fine",
+          "offset": 17,
+          "kunci": {
+            "en": "money paid as a penalty",
+            "id": "denda",
+            "jebakan": "baik, bagus"
+          },
+          "kemunculan": 1
+        },
+        {
+          "kata": "fair",
+          "offset": 53,
+          "kunci": {
+            "en": "outdoor event with rides, stalls, and exhibits",
+            "id": "pasar malam, pameran",
+            "jebakan": "adil"
+          },
+          "kemunculan": 1
+        },
+        {
+          "kata": "close call",
+          "offset": 99,
+          "kunci": {
+            "en": "narrow escape from trouble",
+            "id": "nyaris celaka",
+            "jebakan": "panggilan dekat"
+          },
+          "kemunculan": 1
+        },
+        {
+          "kata": "picked up",
+          "offset": 158,
+          "kunci": {
+            "en": "learned informally, without studying",
+            "id": "mempelajari tanpa sengaja",
+            "jebakan": "mengambil, menjemput"
+          },
+          "kemunculan": 1
+        },
+        {
+          "kata": "rather",
+          "offset": 225,
+          "kunci": {
+            "en": "prefer to",
+            "id": "lebih suka",
+            "jebakan": "agak"
+          },
+          "kemunculan": 1
+        }
+      ]
+    },
+    {
+      "id": "C-duck",
+      "kelompok": "C",
+      "sumber": {
+        "title": "Kalimat ambigu klasik",
+        "author": null,
+        "gutenberg": null,
+        "anchor": null
+      },
+      "teks": "We walked along the path in silence. I saw her duck near the old pond, and then the rain started again.",
+      "sasaran": [
+        {
+          "kata": "duck",
+          "offset": 47,
+          "kunci": {
+            "en": "AMBIGUOUS: the bird, or the act of lowering her head",
+            "id": "ambigu: bebek, atau menunduk",
+            "jebakan": "memilih satu makna dengan yakin"
+          },
+          "kemunculan": 1
+        }
+      ]
+    }
+  ],
+  "tandai": [
+    {
+      "id": "M-darcy-oval",
+      "halaman": "A-darcy",
+      "tanda": [
+        [
+          "tolerable",
+          "oval"
+        ],
+        [
+          "humour",
+          "oval"
+        ],
+        [
+          "consequence",
+          "oval"
+        ]
+      ]
+    },
+    {
+      "id": "M-holmes-oval",
+      "halaman": "A-holmes-harness",
+      "tanda": [
+        [
+          "fancy",
+          "oval"
+        ],
+        [
+          "practice",
+          "oval"
+        ],
+        [
+          "harness",
+          "oval"
+        ]
+      ]
+    },
+    {
+      "id": "M-lake-pensil",
+      "halaman": "B-lake",
+      "tanda": [
+        [
+          "still",
+          "pensil"
+        ],
+        [
+          "make out",
+          "pensil"
+        ],
+        [
+          "bank",
+          "pensil"
+        ]
+      ]
+    },
+    {
+      "id": "M-want-pensil",
+      "halaman": "A-want",
+      "tanda": [
+        [
+          "want",
+          "pensil"
+        ]
+      ]
+    },
+    {
+      "id": "M-trip-campur",
+      "halaman": "B-trip",
+      "tanda": [
+        [
+          "fine",
+          "pensil"
+        ],
+        [
+          "rather",
+          "oval"
+        ]
+      ]
+    }
+  ]
+}
