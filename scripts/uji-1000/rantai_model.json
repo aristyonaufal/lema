@@ -1,0 +1,5659 @@
+{
+ "sumber": "log server lokal saat uji (satu baris per permintaan /api/lookup)",
+ "permintaan": [
+  {
+   "lookup": "marked",
+   "total_ms": 19408,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 19380,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 15612,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 15605,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 18083,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 18077,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 18428,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 18422,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 18029,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 18024,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 29855,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 20009,
+     "outcome": "timeout"
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 9842,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 36331,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 20004,
+     "outcome": "timeout"
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 4538,
+     "outcome": "next",
+     "status": 503
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 11780,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 19130,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 705,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 4984,
+     "outcome": "next",
+     "status": 503
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 13425,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 19427,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 797,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 5217,
+     "outcome": "next",
+     "status": 503
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 13408,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 15240,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 601,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 3701,
+     "outcome": "next",
+     "status": 503
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 10935,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 15735,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 15729,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 16934,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 16929,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 13684,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 13676,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 14197,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 14190,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 28280,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 20003,
+     "outcome": "timeout"
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 8269,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 12592,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 12589,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 13696,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 499,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 3137,
+     "outcome": "next",
+     "status": 503
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 10053,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 17421,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 673,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 5506,
+     "outcome": "next",
+     "status": 503
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 11235,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 18382,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 610,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 4045,
+     "outcome": "next",
+     "status": 503
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 13720,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 13455,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 13448,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 42579,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 20009,
+     "outcome": "timeout"
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 10143,
+     "outcome": "network"
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 12421,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 31119,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 20007,
+     "outcome": "timeout"
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 11106,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 46776,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 20007,
+     "outcome": "timeout"
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 14943,
+     "outcome": "next",
+     "status": 503
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 11817,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 33003,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 10564,
+     "outcome": "network"
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 10618,
+     "outcome": "network"
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 11815,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 35186,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 10379,
+     "outcome": "network"
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 10611,
+     "outcome": "network"
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 14190,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 34873,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 10386,
+     "outcome": "network"
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 12076,
+     "outcome": "next",
+     "status": 503
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 12403,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 11803,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 11796,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 16341,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 16333,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9974,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 9969,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 15395,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 15387,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 15804,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 711,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 4227,
+     "outcome": "next",
+     "status": 503
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 10859,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 18024,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 649,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 7507,
+     "outcome": "next",
+     "status": 503
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 9860,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 22090,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 620,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 5750,
+     "outcome": "next",
+     "status": 503
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 10238,
+     "outcome": "next",
+     "status": 503
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5473,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 20229,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 783,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 7212,
+     "outcome": "next",
+     "status": 503
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 12225,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8358,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 567,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 7787,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 12446,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 840,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 3743,
+     "outcome": "next",
+     "status": 503
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 7855,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10037,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 700,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 2174,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 721,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6433,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10300,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 797,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 633,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 8866,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 11657,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1043,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 581,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 10027,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9231,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1057,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 897,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 921,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6350,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9927,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 676,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 632,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 896,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7717,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8743,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1011,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1006,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 599,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6122,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8566,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1165,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 7395,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 12835,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 865,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 4735,
+     "outcome": "next",
+     "status": 503
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 744,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6482,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 11505,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 912,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 10572,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9484,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 972,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 702,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 7804,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10205,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1208,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 992,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 849,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7148,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 15731,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 883,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 579,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 14262,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 7680,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 605,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 598,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 526,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5944,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8353,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 573,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1203,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 787,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5783,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 11558,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 677,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 791,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 704,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 9378,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8652,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1369,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 836,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 932,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5508,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9108,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 801,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1027,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 928,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6340,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 7744,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 687,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 720,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 729,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5602,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10996,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 719,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 511,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 636,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 9123,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 11642,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 608,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 626,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 521,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 9881,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 11056,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 600,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 508,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 534,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 9407,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10307,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 763,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1291,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 950,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7295,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 7605,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 788,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 521,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 520,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5770,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 12215,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 890,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 776,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 696,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 9844,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8427,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 700,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 728,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 618,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6374,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 7811,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 687,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 830,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 814,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5471,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 12413,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 639,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 618,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1658,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 9492,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 2364,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 584,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 540,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 638,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 593,
+     "outcome": "next",
+     "status": 429
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 7845,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 779,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 600,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 618,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5841,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9009,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 719,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 722,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 719,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6841,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9112,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 590,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 592,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 902,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7021,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 11701,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 524,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 584,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 646,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 9941,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8337,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 701,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 826,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 792,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6011,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10157,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 564,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 605,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 602,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 8378,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 7597,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 580,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 607,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 592,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5813,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8196,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 779,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 834,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 826,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5737,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 7708,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 628,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 586,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 655,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5832,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8790,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 746,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 734,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 714,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6579,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 13685,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 625,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 586,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 824,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 11643,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8664,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 598,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 615,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 520,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6925,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8453,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 567,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 511,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1046,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6321,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 11195,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1144,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1124,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 821,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 8098,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8902,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 754,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 692,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 680,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6768,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 7513,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 501,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 509,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 514,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5982,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 3659,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1153,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 861,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 778,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 858,
+     "outcome": "next",
+     "status": 429
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 2880,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 800,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 870,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 606,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 597,
+     "outcome": "next",
+     "status": 429
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 12770,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 742,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 788,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 780,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 10454,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9767,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 860,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 811,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1416,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6670,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8719,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 547,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 688,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 582,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6894,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8579,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 989,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 523,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 508,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6552,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9433,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 912,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 606,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 600,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7308,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 12724,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 778,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1383,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 700,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 9854,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9829,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 785,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 922,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 700,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7411,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 7359,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 570,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 527,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 518,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5739,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 22609,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 677,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 876,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1034,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 20014,
+     "outcome": "timeout"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 7250,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 933,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 525,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 520,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5264,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10213,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 923,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 792,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 819,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7671,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 6767,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 626,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 643,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 528,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 4961,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8374,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 762,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 594,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 642,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6369,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8649,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 550,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 643,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 598,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6850,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8277,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 876,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 526,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 511,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6359,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10233,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1098,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 774,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 823,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7528,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9057,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 767,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 903,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 892,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6484,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 19386,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1132,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 3795,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 724,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 13728,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 7911,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 536,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 658,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 566,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6143,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8638,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1361,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 746,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 799,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5725,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10128,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1305,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1016,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 695,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7106,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10087,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 581,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 678,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1109,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7714,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10650,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1855,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1049,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 862,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6877,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10804,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 838,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 897,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1221,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7844,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 11123,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 586,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1430,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1127,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7973,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 11709,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1375,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 944,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 2095,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7289,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9258,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1080,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 761,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 811,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6600,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9095,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1095,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 749,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 704,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6539,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 11765,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1118,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 3055,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 724,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6859,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9276,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1326,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 692,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1043,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6207,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9987,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 555,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 683,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 958,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7784,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9341,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1179,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1005,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 690,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6460,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8848,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 680,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 871,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1058,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6231,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8603,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 754,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1003,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1312,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5527,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 11402,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 860,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 2658,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1259,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6617,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 7944,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 494,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 534,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1043,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5867,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10250,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 599,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 696,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 725,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 8224,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 11254,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1165,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 730,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 700,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 8653,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 7626,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 613,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 570,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 554,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5880,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10327,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 604,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 809,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 582,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 8325,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8458,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 739,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 685,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 776,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6250,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8646,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 657,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 574,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 547,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6862,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8846,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 598,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 671,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 562,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7007,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 15598,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 738,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 811,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 754,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 13287,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8874,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 851,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1492,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 761,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5764,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10353,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 478,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 776,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 480,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 8612,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 2680,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 827,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 588,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 679,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 580,
+     "outcome": "next",
+     "status": 429
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8486,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 607,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 711,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 842,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6320,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10027,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 787,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 743,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 709,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7782,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10601,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 775,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1900,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 995,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6923,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 11242,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 778,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 514,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 611,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 9334,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 12761,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 572,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 564,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1331,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 10289,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8072,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 722,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 684,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 798,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5858,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 11142,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1679,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1049,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 805,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7599,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9041,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 607,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 708,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 531,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7188,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 7969,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 764,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 788,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 717,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5691,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8800,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 565,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 518,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 524,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7189,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8492,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 844,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 747,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 786,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6106,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8094,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 740,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 775,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 751,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5822,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10306,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 658,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 682,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1274,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7684,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 11183,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 947,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1049,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 936,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 8238,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10245,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 680,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 534,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 538,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 8487,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8184,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 742,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 748,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 774,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5910,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 11028,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 595,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 896,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 586,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 8943,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8933,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 757,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 559,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 513,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7098,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 3557,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 756,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1085,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 929,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 781,
+     "outcome": "next",
+     "status": 429
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 2754,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 683,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 589,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 698,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 777,
+     "outcome": "next",
+     "status": 429
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 7436,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 794,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 528,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 518,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5589,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9023,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 894,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 728,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 893,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6501,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10686,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 758,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1032,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 998,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7890,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 7749,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 507,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 607,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 567,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6062,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9911,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 847,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 733,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 934,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7388,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9813,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1289,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1474,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 792,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6249,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 12151,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 741,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 844,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1094,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 9464,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8233,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 881,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 799,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 721,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5823,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10699,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 979,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 685,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 865,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 8160,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10019,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 846,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 747,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 849,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7571,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 6504,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 623,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 599,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 668,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 4606,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 11892,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1074,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 905,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1543,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 8356,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 11279,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1530,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 942,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1099,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7703,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 15151,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 813,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1464,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1220,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 11646,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 3135,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 876,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1110,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 563,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 579,
+     "outcome": "next",
+     "status": 429
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8815,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 600,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 625,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1055,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6528,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10497,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 800,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 779,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1160,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7751,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9947,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 647,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1003,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 789,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7501,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8061,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 662,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 570,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 597,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6227,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10823,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1068,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 881,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 909,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7957,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8354,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 571,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 629,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 773,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6374,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9540,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 2286,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 731,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 610,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5906,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10545,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 521,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 639,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 746,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 8631,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10701,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 925,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1250,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1298,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7223,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9048,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1218,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1311,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 981,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5531,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10712,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 995,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 918,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 2691,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6101,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9573,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 839,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 796,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 804,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7128,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10080,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 2496,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 1100,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 555,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5922,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10980,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 820,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 732,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1319,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 8101,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9369,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 616,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 909,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 1044,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6790,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 11248,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 762,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 654,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 777,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 9049,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 12714,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 1717,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 979,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 780,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 9230,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8408,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 905,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 616,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 577,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6301,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8076,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 712,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 601,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 605,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6152,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8237,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 564,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 631,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 568,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6469,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9313,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 839,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 788,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 859,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6821,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9596,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 536,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 882,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 543,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7625,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9684,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 728,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 926,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 781,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7241,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9071,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 737,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 719,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 707,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6899,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9236,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 868,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 723,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 790,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6842,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8388,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 879,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 850,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 685,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5966,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8457,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 637,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 617,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 606,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6590,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9489,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 607,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 607,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 906,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7360,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8627,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 739,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 908,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 722,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6250,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8372,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 702,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 715,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 687,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6259,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 22042,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 740,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 815,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 733,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 19746,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8827,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 672,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 707,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 686,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6753,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 2274,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 589,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 544,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 594,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 541,
+     "outcome": "next",
+     "status": 429
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 7347,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 565,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 515,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 537,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5722,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 3203,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 810,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 743,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 729,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 914,
+     "outcome": "next",
+     "status": 429
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9740,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 675,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 934,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 652,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7472,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 7900,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 858,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 558,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 571,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5906,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 7925,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 742,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 940,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 740,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5496,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9019,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 802,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 706,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 696,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6806,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9878,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 487,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 731,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 628,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 8027,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10805,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 759,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 780,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 782,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 8476,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8487,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 600,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 848,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 878,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6159,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 8446,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 589,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 602,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 820,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 6431,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 9208,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 638,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 519,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 518,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 7529,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 7479,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 686,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 636,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 724,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 5430,
+     "outcome": "ok"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 21860,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 756,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 588,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 492,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 20020,
+     "outcome": "timeout"
+    }
+   ]
+  },
+  {
+   "lookup": "marked",
+   "total_ms": 10737,
+   "attempts": [
+    {
+     "model": "gemini-3.5-flash",
+     "ms": 829,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.8-flash",
+     "ms": 768,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.6-flash",
+     "ms": 574,
+     "outcome": "next",
+     "status": 429
+    },
+    {
+     "model": "gemini-3.1-flash-lite",
+     "ms": 8563,
+     "outcome": "ok"
+    }
+   ]
+  }
+ ]
+}

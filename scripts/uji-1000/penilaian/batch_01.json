@@ -1,0 +1,5114 @@
+[
+ {
+  "id": "S001-1",
+  "kalimat": "She showed no interest at all in the life he had led back home, and it hurt him a little.",
+  "kata_ditandai": "showed",
+  "kunci": {
+   "no": 6,
+   "definisi": "give expression to",
+   "contoh": "She showed her disappointment"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "give an exhibition of to an interested audience"
+   },
+   {
+    "no": 2,
+    "definisi": "establish the validity of something, as by an example, explanation or experiment"
+   },
+   {
+    "no": 3,
+    "definisi": "provide evidence for"
+   },
+   {
+    "no": 4,
+    "definisi": "make visible or noticeable"
+   },
+   {
+    "no": 5,
+    "definisi": "show in, or as in, a picture"
+   },
+   {
+    "no": 7,
+    "definisi": "indicate a place, direction, person, or thing; either spatially or figuratively"
+   },
+   {
+    "no": 8,
+    "definisi": "be or become visible or noticeable"
+   },
+   {
+    "no": 9,
+    "definisi": "indicate a certain reading; of gauges and instruments"
+   },
+   {
+    "no": 10,
+    "definisi": "give evidence of, as of records"
+   },
+   {
+    "no": 11,
+    "definisi": "take (someone) to their seats, as in theaters or auditoriums"
+   },
+   {
+    "no": 12,
+    "definisi": "finish third or better in a horse or dog race"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "showed",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "To make a feeling or quality obvious; display.",
+     "meaning_id": "menunjukkan atau memperlihatkan sikap/perasaan",
+     "confidence": 0.95,
+     "trigger": "no interest"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S001-2",
+  "kalimat": "She showed no interest at all in the life he had led back home, and it hurt him a little.",
+  "kata_ditandai": "hurt",
+  "kunci": {
+   "no": 5,
+   "definisi": "hurt the feelings of",
+   "contoh": "She hurt me when she did not include me among her guests"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "be the source of pain"
+   },
+   {
+    "no": 2,
+    "definisi": "give trouble or pain to"
+   },
+   {
+    "no": 3,
+    "definisi": "cause emotional anguish or make miserable"
+   },
+   {
+    "no": 4,
+    "definisi": "cause damage or affect negatively"
+   },
+   {
+    "no": 6,
+    "definisi": "feel physical pain"
+   },
+   {
+    "no": 7,
+    "definisi": "feel pain or be in pain"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "it hurt him",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "To cause emotional pain or distress to someone.",
+     "meaning_id": "menyakiti perasaannya",
+     "confidence": 0.95,
+     "trigger": "a little"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S001-3",
+  "kalimat": "When she had wiped some of the lipstick from her mouth, she stared solemnly at her image in the mirror.",
+  "kata_ditandai": "mouth",
+  "kunci": {
+   "no": 2,
+   "definisi": "the externally visible part of the oral cavity on the face and the system of organs surrounding the opening",
+   "contoh": "she wiped lipstick from her mouth"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "the opening through which food is taken in and vocalizations emerge"
+   },
+   {
+    "no": 3,
+    "definisi": "an opening that resembles a mouth (as of a cave or a gorge)"
+   },
+   {
+    "no": 4,
+    "definisi": "the point where a stream issues into a larger body of water"
+   },
+   {
+    "no": 5,
+    "definisi": "a person conceived as a consumer of food"
+   },
+   {
+    "no": 6,
+    "definisi": "a spokesperson (as a lawyer)"
+   },
+   {
+    "no": 7,
+    "definisi": "an impudent or insolent rejoinder"
+   },
+   {
+    "no": 8,
+    "definisi": "the opening of a jar or bottle"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "mouth",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "The opening in the face through which one eats and speaks.",
+     "meaning_id": "mulut (bagian wajah)",
+     "confidence": 0.99,
+     "trigger": "lipstick"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S001-4",
+  "kalimat": "When she had wiped some of the lipstick from her mouth, she stared solemnly at her image in the mirror.",
+  "kata_ditandai": "mirror",
+  "kunci": {
+   "no": 1,
+   "definisi": "polished surface that forms images by reflecting light",
+   "contoh": ""
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "a faithful depiction or reflection"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "mirror",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "A surface of glass which reflects an image.",
+     "meaning_id": "cermin",
+     "confidence": 0.99,
+     "trigger": "image"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S001-5",
+  "kalimat": "he asked, trying to touch a part of her life Alberto hadn't discussed; so he could have something of her for himself.",
+  "kata_ditandai": "trying",
+  "kunci": {
+   "no": 1,
+   "definisi": "make an effort or attempt",
+   "contoh": "He tried to shake off his fears"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "put to the test, as for its quality, or give experimental use to"
+   },
+   {
+    "no": 3,
+    "definisi": "put on trial or hear a case and sit as the judge at the trial of"
+   },
+   {
+    "no": 4,
+    "definisi": "take a sample of"
+   },
+   {
+    "no": 5,
+    "definisi": "examine or hear (evidence or a case) by judicial process"
+   },
+   {
+    "no": 6,
+    "definisi": "give pain or trouble to"
+   },
+   {
+    "no": 7,
+    "definisi": "test the limits of"
+   },
+   {
+    "no": 8,
+    "definisi": "melt (fat or lard) in order to separate out impurities"
+   },
+   {
+    "no": 9,
+    "definisi": "put on a garment in order to see whether it fits and looks nice"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "trying to",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "Attempting to do something; making an effort to achieve something.",
+     "meaning_id": "berusaha atau mencoba untuk",
+     "confidence": 0.95,
+     "trigger": "touch a part of her life"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S002-1",
+  "kalimat": "“The best thing for you to do”, Eddie said, “is go home.",
+  "kata_ditandai": "thing",
+  "kunci": {
+   "no": 2,
+   "definisi": "an action",
+   "contoh": "how could you do such a thing?"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "a special situation"
+   },
+   {
+    "no": 3,
+    "definisi": "a special abstraction"
+   },
+   {
+    "no": 4,
+    "definisi": "an artifact"
+   },
+   {
+    "no": 5,
+    "definisi": "an event"
+   },
+   {
+    "no": 6,
+    "definisi": "a vaguely specified concern"
+   },
+   {
+    "no": 7,
+    "definisi": "a statement regarded as an object"
+   },
+   {
+    "no": 8,
+    "definisi": "an entity that is not named specifically"
+   },
+   {
+    "no": 9,
+    "definisi": "any attribute or quality considered as having its own existence"
+   },
+   {
+    "no": 10,
+    "definisi": "a special objective"
+   },
+   {
+    "no": 11,
+    "definisi": "a persistent illogical feeling of desire or aversion"
+   },
+   {
+    "no": 12,
+    "definisi": "a separate and self-contained entity"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "thing",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "an action, activity, or situation that is preferred or required",
+     "meaning_id": "tindakan atau langkah",
+     "confidence": 0.95,
+     "trigger": "for you to do"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S002-2",
+  "kalimat": "This is the second time”.",
+  "kata_ditandai": "second",
+  "kunci": {
+   "no": 1,
+   "definisi": "coming next after the first in position in space or time or degree or magnitude",
+   "contoh": ""
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "a part or voice or instrument or orchestra section lower in pitch than or subordinate to the first"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "second",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "coming next after the first in position, order, or time",
+     "meaning_id": "kedua",
+     "confidence": 0.99,
+     "trigger": "time"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S002-3",
+  "kalimat": "Eddie Lee leaned forward over the desk.",
+  "kata_ditandai": "leaned",
+  "kunci": {
+   "no": 1,
+   "definisi": "to incline or bend from a vertical position",
+   "contoh": "She leaned over the banister"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "cause to lean or incline"
+   },
+   {
+    "no": 3,
+    "definisi": "have a tendency or disposition to do or be something; be inclined"
+   },
+   {
+    "no": 4,
+    "definisi": "rely on for support"
+   },
+   {
+    "no": 5,
+    "definisi": "cause to lean to the side"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "leaned",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to bend or slant the body in a specified direction",
+     "meaning_id": "condong atau membungkuk",
+     "confidence": 0.98,
+     "trigger": "forward over the desk"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S002-4",
+  "kalimat": "You haven't got the heart for baseball”.",
+  "kata_ditandai": "heart",
+  "kunci": {
+   "no": 3,
+   "definisi": "the courage to carry on",
+   "contoh": "he kept fighting on pure spunk"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "the locus of feelings and intuitions"
+   },
+   {
+    "no": 2,
+    "definisi": "the hollow muscular organ located behind the sternum and between the lungs; its rhythmic contractions move the blood through the body"
+   },
+   {
+    "no": 4,
+    "definisi": "an area that is approximately central within some larger region"
+   },
+   {
+    "no": 5,
+    "definisi": "the choicest or most essential or most vital part of some idea or experience"
+   },
+   {
+    "no": 6,
+    "definisi": "an inclination or tendency of a certain kind"
+   },
+   {
+    "no": 7,
+    "definisi": "a plane figure with rounded sides curving inward at the top and intersecting at the bottom; conventionally used on playing cards and valentines"
+   },
+   {
+    "no": 8,
+    "definisi": "a firm rather dry variety meat (usually beef or veal)"
+   },
+   {
+    "no": 9,
+    "definisi": "a positive feeling of liking"
+   },
+   {
+    "no": 10,
+    "definisi": "a playing card in the major suit that has one or more red hearts on it"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "heart",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "courage, determination, or enthusiasm",
+     "meaning_id": "keberanian atau tekad",
+     "confidence": 0.95,
+     "trigger": "for baseball"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S002-5",
+  "kalimat": "Phil shook his head and Eddie frowned.",
+  "kata_ditandai": "shook",
+  "kunci": {
+   "no": 1,
+   "definisi": "move or cause to move back and forth",
+   "contoh": "The chemist shook the flask vigorously"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "move with or as if with a tremor"
+   },
+   {
+    "no": 3,
+    "definisi": "shake or vibrate rapidly and intensively"
+   },
+   {
+    "no": 4,
+    "definisi": "move back and forth or sideways"
+   },
+   {
+    "no": 5,
+    "definisi": "undermine or cause to waver"
+   },
+   {
+    "no": 6,
+    "definisi": "stir the feelings, emotions, or peace of"
+   },
+   {
+    "no": 7,
+    "definisi": "get rid of"
+   },
+   {
+    "no": 8,
+    "definisi": "bring to a specified condition by or as if by shaking"
+   },
+   {
+    "no": 9,
+    "definisi": "shake (a body part) to communicate a greeting, feeling, or cognitive state"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "shook",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "moved one's head from side to side to express disagreement or refusal",
+     "meaning_id": "menggelengkan",
+     "confidence": 0.99,
+     "trigger": "his head"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S003-3",
+  "kalimat": "He added, “If this doesn't work out, the three of you barricade yourself in the house and talk terms with them”.",
+  "kata_ditandai": "added",
+  "kunci": {
+   "no": 2,
+   "definisi": "state or say further",
+   "contoh": "`It doesn't matter,' he supplied"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "make an addition (to); join or combine or unite with others; increase the quality, quantity, size or scope of"
+   },
+   {
+    "no": 3,
+    "definisi": "bestow a quality on"
+   },
+   {
+    "no": 4,
+    "definisi": "make an addition by combining numbers"
+   },
+   {
+    "no": 5,
+    "definisi": "determine the sum of"
+   },
+   {
+    "no": 6,
+    "definisi": "constitute an addition"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "added",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "say something as a further remark",
+     "meaning_id": "menambahkan (perkataan)",
+     "confidence": 1,
+     "trigger": "He added, \"If this doesn't work out...\""
+    }
+   ]
+  }
+ },
+ {
+  "id": "S003-4",
+  "kalimat": "He added, “If this doesn't work out, the three of you barricade yourself in the house and talk terms with them”.",
+  "kata_ditandai": "barricade",
+  "kunci": {
+   "no": 1,
+   "definisi": "render unsuitable for passage",
+   "contoh": "block the way"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "prevent access to by barricading"
+   },
+   {
+    "no": 3,
+    "definisi": "block off with barricades"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "barricade",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "block or defend with a barrier to prevent entry",
+     "meaning_id": "membarikade atau mengurung diri dengan menghalangi jalan masuk",
+     "confidence": 1,
+     "trigger": "barricade yourself in the house"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S003-5",
+  "kalimat": "He was thinking that the way she had responded to his own kiss hadn't meant what he had believed it had.",
+  "kata_ditandai": "thinking",
+  "kunci": {
+   "no": 2,
+   "definisi": "expect, believe, or suppose",
+   "contoh": "I imagine she earned a lot of money with her new novel"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "judge or regard; look upon; judge"
+   },
+   {
+    "no": 3,
+    "definisi": "use or exercise the mind or one's power of reason in order to make inferences, decisions, or arrive at a solution or judgments"
+   },
+   {
+    "no": 4,
+    "definisi": "recall knowledge from memory; have a recollection"
+   },
+   {
+    "no": 5,
+    "definisi": "imagine or visualize"
+   },
+   {
+    "no": 6,
+    "definisi": "focus one's attention on a certain state"
+   },
+   {
+    "no": 7,
+    "definisi": "have in mind as a purpose"
+   },
+   {
+    "no": 8,
+    "definisi": "decide by pondering, reasoning, or reflecting"
+   },
+   {
+    "no": 9,
+    "definisi": "ponder; reflect on, or reason about"
+   },
+   {
+    "no": 10,
+    "definisi": "dispose the mind in a certain way"
+   },
+   {
+    "no": 11,
+    "definisi": "have or formulate in the mind"
+   },
+   {
+    "no": 12,
+    "definisi": "be capable of conscious thought"
+   },
+   {
+    "no": 13,
+    "definisi": "bring into a given condition by mental preoccupation"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "thinking",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "have a particular opinion, belief, or idea in mind",
+     "meaning_id": "berpikir atau merenungkan",
+     "confidence": 1,
+     "trigger": "thinking that the way she had responded"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S004-1",
+  "kalimat": "At the end of the half-hour, racking his brains, thinking over and over again of Kitti, her friends, her past, he left the bedroom.",
+  "kata_ditandai": "friends",
+  "kunci": {
+   "no": 1,
+   "definisi": "a person you know well and regard with affection and trust",
+   "contoh": "he was my best friend at the university"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "an associate who provides cooperation or assistance"
+   },
+   {
+    "no": 3,
+    "definisi": "a person with whom you are acquainted"
+   },
+   {
+    "no": 4,
+    "definisi": "a person who backs a politician or a team etc."
+   },
+   {
+    "no": 5,
+    "definisi": "a member of the Religious Society of Friends founded by George Fox (the Friends have never called themselves Quakers)"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "friends",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "people whom one knows and with whom one has a bond of mutual affection",
+     "meaning_id": "teman atau kenalan",
+     "confidence": 1,
+     "trigger": "Kitti, her friends, her past"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S004-3",
+  "kalimat": "He knew he would never see it again.",
+  "kata_ditandai": "see",
+  "kunci": {
+   "no": 1,
+   "definisi": "perceive by sight or have the power to perceive by sight",
+   "contoh": "You have to be a good observer to see all the details"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "perceive (an idea or situation) mentally"
+   },
+   {
+    "no": 3,
+    "definisi": "perceive or be contemporaneous with"
+   },
+   {
+    "no": 4,
+    "definisi": "imagine; conceive of; see in one's mind"
+   },
+   {
+    "no": 5,
+    "definisi": "deem to be"
+   },
+   {
+    "no": 6,
+    "definisi": "get to know or become aware of, usually accidentally"
+   },
+   {
+    "no": 7,
+    "definisi": "see or watch"
+   },
+   {
+    "no": 8,
+    "definisi": "come together"
+   },
+   {
+    "no": 9,
+    "definisi": "find out, learn, or determine with certainty, usually by making an inquiry or other effort"
+   },
+   {
+    "no": 10,
+    "definisi": "be careful or certain to do something; make certain of something"
+   },
+   {
+    "no": 11,
+    "definisi": "go to see for professional or business reasons"
+   },
+   {
+    "no": 12,
+    "definisi": "go to see for a social visit"
+   },
+   {
+    "no": 13,
+    "definisi": "go to see a place, as for entertainment"
+   },
+   {
+    "no": 14,
+    "definisi": "take charge of or deal with"
+   },
+   {
+    "no": 15,
+    "definisi": "receive as a specified guest"
+   },
+   {
+    "no": 16,
+    "definisi": "date regularly; have a steady relationship with"
+   },
+   {
+    "no": 17,
+    "definisi": "see and understand, have a good eye"
+   },
+   {
+    "no": 18,
+    "definisi": "deliberate or decide"
+   },
+   {
+    "no": 19,
+    "definisi": "observe as if with an eye"
+   },
+   {
+    "no": 20,
+    "definisi": "observe, check out, and look over carefully or inspect"
+   },
+   {
+    "no": 21,
+    "definisi": "go or live through"
+   },
+   {
+    "no": 22,
+    "definisi": "accompany or escort"
+   },
+   {
+    "no": 23,
+    "definisi": "match or meet"
+   },
+   {
+    "no": 24,
+    "definisi": "make sense of; assign a meaning to"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "never see it again",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "will not look at or visit a place or person ever again in the future",
+     "meaning_id": "tidak akan pernah melihatnya lagi",
+     "confidence": 1,
+     "trigger": "Before leaving, he took one last, lingering look"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S004-4",
+  "kalimat": "In the street, walking as quickly as he could, Stanley Gilborn was a lone figure.",
+  "kata_ditandai": "street",
+  "kunci": {
+   "no": 1,
+   "definisi": "a thoroughfare (usually including sidewalks) that is lined with buildings",
+   "contoh": "they walked the streets of the small town"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "the part of a thoroughfare between the sidewalks; the part of the thoroughfare on which vehicles travel"
+   },
+   {
+    "no": 3,
+    "definisi": "the streets of a city viewed as a depressed environment in which there is poverty and crime and prostitution and dereliction"
+   },
+   {
+    "no": 4,
+    "definisi": "a situation offering opportunities"
+   },
+   {
+    "no": 5,
+    "definisi": "people living or working on the same street"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "In the street",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "outdoors on a public road in a city or town",
+     "meaning_id": "di jalanan",
+     "confidence": 1,
+     "trigger": "walking as quickly as he could"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S004-5",
+  "kalimat": "In the street, walking as quickly as he could, Stanley Gilborn was a lone figure.",
+  "kata_ditandai": "lone",
+  "kunci": {
+   "no": 2,
+   "definisi": "characterized by or preferring solitude",
+   "contoh": "a lone wolf"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "lacking companions or companionship"
+   },
+   {
+    "no": 3,
+    "definisi": "being the only one; single and isolated from others"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "a lone figure",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "a single person who is alone in a particular place, often looking isolated or lonely",
+     "meaning_id": "sosok yang sendirian",
+     "confidence": 1,
+     "trigger": "walking as quickly as he could, Stanley Gilborn was"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S005-1",
+  "kalimat": "Gavin began to nod.",
+  "kata_ditandai": "nod",
+  "kunci": {
+   "no": 1,
+   "definisi": "express or signify by nodding",
+   "contoh": "He nodded his approval"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "lower and raise the head, as to indicate assent or agreement or confirmation"
+   },
+   {
+    "no": 3,
+    "definisi": "let the head fall forward through drowsiness"
+   },
+   {
+    "no": 4,
+    "definisi": "sway gently back and forth, as in a nodding motion"
+   },
+   {
+    "no": 5,
+    "definisi": "be almost asleep"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "nod",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "lower and raise one's head slightly and briefly, especially in greeting, assent, or understanding",
+     "meaning_id": "mengangguk (tanda setuju atau mengerti)",
+     "confidence": 0.98,
+     "trigger": "began to nod"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S005-2",
+  "kalimat": "two men, together like us, we could do somethin fine out there, maybe find a place where no one's ever been.",
+  "kata_ditandai": "find",
+  "kunci": {
+   "no": 8,
+   "definisi": "make a discovery, make a new finding",
+   "contoh": "Roentgen discovered X-rays"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "come upon, as if by accident; meet with"
+   },
+   {
+    "no": 2,
+    "definisi": "discover or determine the existence, presence, or fact of"
+   },
+   {
+    "no": 3,
+    "definisi": "come upon after searching; find the location of something that was missed or lost"
+   },
+   {
+    "no": 4,
+    "definisi": "establish after a calculation, investigation, experiment, survey, or study"
+   },
+   {
+    "no": 5,
+    "definisi": "come to believe on the basis of emotion, intuitions, or indefinite grounds"
+   },
+   {
+    "no": 6,
+    "definisi": "perceive or be contemporaneous with"
+   },
+   {
+    "no": 7,
+    "definisi": "get something or somebody for a specific purpose"
+   },
+   {
+    "no": 9,
+    "definisi": "make a discovery"
+   },
+   {
+    "no": 10,
+    "definisi": "obtain through effort or management"
+   },
+   {
+    "no": 11,
+    "definisi": "decide on and make a declaration about"
+   },
+   {
+    "no": 12,
+    "definisi": "receive a specified treatment (abstract)"
+   },
+   {
+    "no": 13,
+    "definisi": "perceive oneself to be in a certain condition or place"
+   },
+   {
+    "no": 14,
+    "definisi": "get or find back; recover the use of"
+   },
+   {
+    "no": 15,
+    "definisi": "succeed in reaching; arrive at"
+   },
+   {
+    "no": 16,
+    "definisi": "accept and make use of one's personality, abilities, and situation"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "find",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "discover or locate a place to settle or live",
+     "meaning_id": "menemukan atau mencari tempat",
+     "confidence": 0.95,
+     "trigger": "a place where no one's ever been"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S005-3",
+  "kalimat": "He approached the horse and laid a hand on the stallion's quivering neck.",
+  "kata_ditandai": "approached",
+  "kunci": {
+   "no": 1,
+   "definisi": "move towards",
+   "contoh": "We were approaching our destination"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "come near or verge on, resemble, come nearer in quality, or character"
+   },
+   {
+    "no": 3,
+    "definisi": "begin to deal with"
+   },
+   {
+    "no": 4,
+    "definisi": "come near in time"
+   },
+   {
+    "no": 5,
+    "definisi": "make advances to someone, usually with a proposal or suggestion"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "approached",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "come near or nearer to someone or something in distance",
+     "meaning_id": "mendekati atau menghampiri",
+     "confidence": 0.99,
+     "trigger": "the horse and laid a hand"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S005-4",
+  "kalimat": "Help me up, I feel kind of stiff”.",
+  "kata_ditandai": "feel",
+  "kunci": {
+   "no": 4,
+   "definisi": "be conscious of a physical, mental, or emotional state",
+   "contoh": "My cold is gone--I feel fine today"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "undergo an emotional sensation or be in a particular state of mind"
+   },
+   {
+    "no": 2,
+    "definisi": "come to believe on the basis of emotion, intuitions, or indefinite grounds"
+   },
+   {
+    "no": 3,
+    "definisi": "perceive by a physical sensation, e.g., coming from the skin or muscles"
+   },
+   {
+    "no": 5,
+    "definisi": "have a feeling or perception about oneself in reaction to someone's behavior or attitude"
+   },
+   {
+    "no": 6,
+    "definisi": "undergo passive experience of:"
+   },
+   {
+    "no": 7,
+    "definisi": "be felt or perceived in a certain way"
+   },
+   {
+    "no": 8,
+    "definisi": "grope or feel in search of something"
+   },
+   {
+    "no": 9,
+    "definisi": "examine by touch"
+   },
+   {
+    "no": 10,
+    "definisi": "examine (a body part) by palpation"
+   },
+   {
+    "no": 11,
+    "definisi": "find by testing or cautious exploration"
+   },
+   {
+    "no": 12,
+    "definisi": "produce a certain impression"
+   },
+   {
+    "no": 13,
+    "definisi": "pass one's hands over the sexual organs of"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "feel",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "experience a particular physical sensation or bodily condition",
+     "meaning_id": "merasa (kondisi fisik tubuh)",
+     "confidence": 0.97,
+     "trigger": "kind of stiff"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S005-5",
+  "kalimat": "Clayton lifted him gently into the saddle, like a child.",
+  "kata_ditandai": "lifted",
+  "kunci": {
+   "no": 2,
+   "definisi": "take hold of something and move it to a different location",
+   "contoh": "lift the box onto the table"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "raise from a lower to a higher position"
+   },
+   {
+    "no": 3,
+    "definisi": "move upwards"
+   },
+   {
+    "no": 4,
+    "definisi": "move upward"
+   },
+   {
+    "no": 5,
+    "definisi": "make audible"
+   },
+   {
+    "no": 6,
+    "definisi": "cancel officially"
+   },
+   {
+    "no": 7,
+    "definisi": "make off with belongings of others"
+   },
+   {
+    "no": 8,
+    "definisi": "raise or haul up with or as if with mechanical help"
+   },
+   {
+    "no": 9,
+    "definisi": "invigorate or heighten"
+   },
+   {
+    "no": 10,
+    "definisi": "raise in rank or condition"
+   },
+   {
+    "no": 11,
+    "definisi": "take off or away by decreasing"
+   },
+   {
+    "no": 12,
+    "definisi": "rise up"
+   },
+   {
+    "no": 13,
+    "definisi": "pay off (a mortgage)"
+   },
+   {
+    "no": 14,
+    "definisi": "take without referencing from someone else's writing or speech; of intellectual property"
+   },
+   {
+    "no": 15,
+    "definisi": "take illegally"
+   },
+   {
+    "no": 16,
+    "definisi": "fly people or goods to or from places not accessible by other means"
+   },
+   {
+    "no": 17,
+    "definisi": "take (root crops) out of the ground"
+   },
+   {
+    "no": 18,
+    "definisi": "call to stop the hunt or to retire, as of hunting dogs"
+   },
+   {
+    "no": 19,
+    "definisi": "rise upward, as from pressure or moisture"
+   },
+   {
+    "no": 20,
+    "definisi": "put an end to"
+   },
+   {
+    "no": 21,
+    "definisi": "remove (hair) by scalping"
+   },
+   {
+    "no": 22,
+    "definisi": "remove from a seedbed or from a nursery"
+   },
+   {
+    "no": 23,
+    "definisi": "remove from a surface"
+   },
+   {
+    "no": 24,
+    "definisi": "perform cosmetic surgery on someone's face"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "lifted",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "raise to a higher position or level using physical effort",
+     "meaning_id": "mengangkat",
+     "confidence": 0.99,
+     "trigger": "into the saddle, like a child"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S006-1",
+  "kalimat": "Still, he couldn't help thinking, we're all getting old, getting small; the snail is pulling in her horns.",
+  "kata_ditandai": "thinking",
+  "kunci": {
+   "no": 3,
+   "definisi": "use or exercise the mind or one's power of reason in order to make inferences, decisions, or arrive at a solution or judgments",
+   "contoh": "I've been thinking all day and getting nowhere"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "judge or regard; look upon; judge"
+   },
+   {
+    "no": 2,
+    "definisi": "expect, believe, or suppose"
+   },
+   {
+    "no": 4,
+    "definisi": "recall knowledge from memory; have a recollection"
+   },
+   {
+    "no": 5,
+    "definisi": "imagine or visualize"
+   },
+   {
+    "no": 6,
+    "definisi": "focus one's attention on a certain state"
+   },
+   {
+    "no": 7,
+    "definisi": "have in mind as a purpose"
+   },
+   {
+    "no": 8,
+    "definisi": "decide by pondering, reasoning, or reflecting"
+   },
+   {
+    "no": 9,
+    "definisi": "ponder; reflect on, or reason about"
+   },
+   {
+    "no": 10,
+    "definisi": "dispose the mind in a certain way"
+   },
+   {
+    "no": 11,
+    "definisi": "have or formulate in the mind"
+   },
+   {
+    "no": 12,
+    "definisi": "be capable of conscious thought"
+   },
+   {
+    "no": 13,
+    "definisi": "bring into a given condition by mental preoccupation"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "thinking",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "having a particular opinion, belief, or idea in mind",
+     "meaning_id": "berpikir atau merenungkan sesuatu",
+     "confidence": 1,
+     "trigger": "we're all getting old"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S006-2",
+  "kalimat": "In the living room, Miss Ada was standing by the window with a sheaf of lists in her hand.",
+  "kata_ditandai": "hand",
+  "kunci": {
+   "no": 1,
+   "definisi": "the (prehensile) extremity of the superior limb",
+   "contoh": "he had the hands of a surgeon"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "a hired laborer on a farm or ranch"
+   },
+   {
+    "no": 3,
+    "definisi": "something written by hand"
+   },
+   {
+    "no": 4,
+    "definisi": "ability"
+   },
+   {
+    "no": 5,
+    "definisi": "a position given by its location to the side of an object"
+   },
+   {
+    "no": 6,
+    "definisi": "the cards held in a card game by a given player at any given time"
+   },
+   {
+    "no": 7,
+    "definisi": "one of two sides of an issue"
+   },
+   {
+    "no": 8,
+    "definisi": "a rotating pointer on the face of a timepiece"
+   },
+   {
+    "no": 9,
+    "definisi": "a unit of length equal to 4 inches; used in measuring horses"
+   },
+   {
+    "no": 10,
+    "definisi": "a member of the crew of a ship"
+   },
+   {
+    "no": 11,
+    "definisi": "a card player in a game of bridge"
+   },
+   {
+    "no": 12,
+    "definisi": "a round of applause to signify approval"
+   },
+   {
+    "no": 13,
+    "definisi": "terminal part of the forelimb in certain vertebrates (e.g. apes or kangaroos); - Springfield (Mass.) Union"
+   },
+   {
+    "no": 14,
+    "definisi": "physical assistance"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "her hand",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "the end part of a person's arm beyond the wrist, belonging to a female",
+     "meaning_id": "tangannya (milik perempuan)",
+     "confidence": 1,
+     "trigger": "with a sheaf of lists in"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S006-3",
+  "kalimat": "He brought it in and put it down beside her.",
+  "kata_ditandai": "brought",
+  "kunci": {
+   "no": 1,
+   "definisi": "take something or somebody with oneself somewhere",
+   "contoh": "Bring me the box from the other room"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "cause to come into a particular state or condition"
+   },
+   {
+    "no": 3,
+    "definisi": "cause to happen or to occur as a consequence"
+   },
+   {
+    "no": 4,
+    "definisi": "go or come after and bring or take back"
+   },
+   {
+    "no": 5,
+    "definisi": "bring into a different state"
+   },
+   {
+    "no": 6,
+    "definisi": "be accompanied by"
+   },
+   {
+    "no": 7,
+    "definisi": "advance or set forth in court; ,"
+   },
+   {
+    "no": 8,
+    "definisi": "bestow a quality on"
+   },
+   {
+    "no": 9,
+    "definisi": "be sold for a certain price"
+   },
+   {
+    "no": 10,
+    "definisi": "attract the attention of"
+   },
+   {
+    "no": 11,
+    "definisi": "induce or persuade"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "brought",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "carried or accompanied someone or something to a place",
+     "meaning_id": "membawa (ke suatu tempat)",
+     "confidence": 1,
+     "trigger": "it in and put it down"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S006-4",
+  "kalimat": "Miss Ada was looking fine; she had on her Easter suit, blue, with lavender binding.",
+  "kata_ditandai": "fine",
+  "kunci": {
+   "no": 4,
+   "definisi": "characterized by elegance or refinement or accomplishment",
+   "contoh": "fine wine"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "being satisfactory or in satisfactory condition"
+   },
+   {
+    "no": 2,
+    "definisi": "minutely precise especially in differences in meaning"
+   },
+   {
+    "no": 3,
+    "definisi": "thin in thickness or diameter"
+   },
+   {
+    "no": 5,
+    "definisi": "of textures that are smooth to the touch or substances consisting of relatively small particles"
+   },
+   {
+    "no": 6,
+    "definisi": "free from impurities; having a high or specified degree of purity"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "looking fine",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "appearing attractive, well-dressed, or in good health",
+     "meaning_id": "terlihat cantik, rapi, atau sehat",
+     "confidence": 1,
+     "trigger": "she had on her Easter suit"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S006-5",
+  "kalimat": "Halfway across the house, he could have smelled her morning perfume.",
+  "kata_ditandai": "morning",
+  "kunci": {
+   "no": 1,
+   "definisi": "the time period between dawn and noon",
+   "contoh": "I spent the morning running errands"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "a conventional expression of greeting or farewell"
+   },
+   {
+    "no": 3,
+    "definisi": "the first light of day"
+   },
+   {
+    "no": 4,
+    "definisi": "the earliest period"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "morning",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "the period of time between midnight and noon, especially from sunrise to noon",
+     "meaning_id": "pagi hari",
+     "confidence": 1,
+     "trigger": "perfume"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S007-1",
+  "kalimat": "“It was a terrible loss to me”, said Kate quietly, feeling the pain twist again at the mention, knowing now that Juanita must have written to him at Grafton.",
+  "kata_ditandai": "feeling",
+  "kunci": {
+   "no": 1,
+   "definisi": "undergo an emotional sensation or be in a particular state of mind",
+   "contoh": "She felt resentful"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "come to believe on the basis of emotion, intuitions, or indefinite grounds"
+   },
+   {
+    "no": 3,
+    "definisi": "perceive by a physical sensation, e.g., coming from the skin or muscles"
+   },
+   {
+    "no": 4,
+    "definisi": "be conscious of a physical, mental, or emotional state"
+   },
+   {
+    "no": 5,
+    "definisi": "have a feeling or perception about oneself in reaction to someone's behavior or attitude"
+   },
+   {
+    "no": 6,
+    "definisi": "undergo passive experience of:"
+   },
+   {
+    "no": 7,
+    "definisi": "be felt or perceived in a certain way"
+   },
+   {
+    "no": 8,
+    "definisi": "grope or feel in search of something"
+   },
+   {
+    "no": 9,
+    "definisi": "examine by touch"
+   },
+   {
+    "no": 10,
+    "definisi": "examine (a body part) by palpation"
+   },
+   {
+    "no": 11,
+    "definisi": "find by testing or cautious exploration"
+   },
+   {
+    "no": 12,
+    "definisi": "produce a certain impression"
+   },
+   {
+    "no": 13,
+    "definisi": "pass one's hands over the sexual organs of"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "feeling",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "experiencing an emotion or physical sensation",
+     "meaning_id": "merasakan atau mengalami emosi/sensasi fisik",
+     "confidence": 0.98,
+     "trigger": "pain twist again"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S007-2",
+  "kalimat": "“It was a terrible loss to me”, said Kate quietly, feeling the pain twist again at the mention, knowing now that Juanita must have written to him at Grafton.",
+  "kata_ditandai": "written",
+  "kunci": {
+   "no": 4,
+   "definisi": "communicate (with) in writing",
+   "contoh": "Write her soon, please!"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "produce a literary work"
+   },
+   {
+    "no": 2,
+    "definisi": "communicate or express by writing"
+   },
+   {
+    "no": 3,
+    "definisi": "have (one's written work) issued for publication"
+   },
+   {
+    "no": 5,
+    "definisi": "communicate by letter"
+   },
+   {
+    "no": 6,
+    "definisi": "write music"
+   },
+   {
+    "no": 7,
+    "definisi": "mark or trace on a surface"
+   },
+   {
+    "no": 8,
+    "definisi": "record data on a computer"
+   },
+   {
+    "no": 9,
+    "definisi": "write or name the letters that comprise the conventionally accepted form of (a word or part of a word)"
+   },
+   {
+    "no": 10,
+    "definisi": "create code, write a computer program"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "written",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "composed and sent a letter or message",
+     "meaning_id": "mengirim surat atau pesan tertulis",
+     "confidence": 0.98,
+     "trigger": "written to him at Grafton"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S007-3",
+  "kalimat": "“As you know, General McClellan has been occupying Beverly.",
+  "kata_ditandai": "occupying",
+  "kunci": {
+   "no": 5,
+   "definisi": "march aggressively into another's territory by military force for the purposes of conquest and occupation",
+   "contoh": "Hitler invaded Poland on September 1, 1939"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "keep busy with"
+   },
+   {
+    "no": 2,
+    "definisi": "live (in a certain place)"
+   },
+   {
+    "no": 3,
+    "definisi": "occupy the whole of"
+   },
+   {
+    "no": 4,
+    "definisi": "be on the mind of"
+   },
+   {
+    "no": 6,
+    "definisi": "require (time or space)"
+   },
+   {
+    "no": 7,
+    "definisi": "consume all of one's attention or time"
+   },
+   {
+    "no": 8,
+    "definisi": "assume, as of positions or roles"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "occupying",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "holding or controling a area (military forces)",
+     "meaning_id": "menduduki atau menguasai suatu wilayah (pasukan militer)",
+     "confidence": 0.97,
+     "trigger": "General McClellan has been occupying Beverly"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S007-4",
+  "kalimat": "“When are you to leave”?",
+  "kata_ditandai": "leave",
+  "kunci": {
+   "no": 1,
+   "definisi": "go away from a place",
+   "contoh": "At what time does your train leave?"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "go and leave behind, either intentionally or by neglect or forgetfulness"
+   },
+   {
+    "no": 3,
+    "definisi": "act or be so as to become in a specified state"
+   },
+   {
+    "no": 4,
+    "definisi": "leave unchanged or undisturbed or refrain from taking"
+   },
+   {
+    "no": 5,
+    "definisi": "move out of or depart from"
+   },
+   {
+    "no": 6,
+    "definisi": "make a possibility or provide opportunity for; permit to be attainable or cause to remain"
+   },
+   {
+    "no": 7,
+    "definisi": "have as a result or residue"
+   },
+   {
+    "no": 8,
+    "definisi": "remove oneself from an association with or participation in"
+   },
+   {
+    "no": 9,
+    "definisi": "put into the care or protection of someone"
+   },
+   {
+    "no": 10,
+    "definisi": "leave or give by will after one's death"
+   },
+   {
+    "no": 11,
+    "definisi": "have left or have as a remainder"
+   },
+   {
+    "no": 12,
+    "definisi": "be survived by after one's death"
+   },
+   {
+    "no": 13,
+    "definisi": "transmit (knowledge or skills)"
+   },
+   {
+    "no": 14,
+    "definisi": "leave behind unintentionally"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "to leave",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "going away or departing from a place",
+     "meaning_id": "akan berangkat atau pergi meninggalkan suatu tempat",
+     "confidence": 0.98,
+     "trigger": "leaving Parkersburg"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S007-5",
+  "kalimat": "Their eyes betrayed too much of their emotions, she thought sadly.",
+  "kata_ditandai": "thought",
+  "kunci": {
+   "no": 3,
+   "definisi": "use or exercise the mind or one's power of reason in order to make inferences, decisions, or arrive at a solution or judgments",
+   "contoh": "I've been thinking all day and getting nowhere"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "judge or regard; look upon; judge"
+   },
+   {
+    "no": 2,
+    "definisi": "expect, believe, or suppose"
+   },
+   {
+    "no": 4,
+    "definisi": "recall knowledge from memory; have a recollection"
+   },
+   {
+    "no": 5,
+    "definisi": "imagine or visualize"
+   },
+   {
+    "no": 6,
+    "definisi": "focus one's attention on a certain state"
+   },
+   {
+    "no": 7,
+    "definisi": "have in mind as a purpose"
+   },
+   {
+    "no": 8,
+    "definisi": "decide by pondering, reasoning, or reflecting"
+   },
+   {
+    "no": 9,
+    "definisi": "ponder; reflect on, or reason about"
+   },
+   {
+    "no": 10,
+    "definisi": "dispose the mind in a certain way"
+   },
+   {
+    "no": 11,
+    "definisi": "have or formulate in the mind"
+   },
+   {
+    "no": 12,
+    "definisi": "be capable of conscious thought"
+   },
+   {
+    "no": 13,
+    "definisi": "bring into a given condition by mental preoccupation"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "thought",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "considered or reflected internally",
+     "meaning_id": "batin/berpikir dalam hati",
+     "confidence": 0.99,
+     "trigger": "she thought sadly"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S008-1",
+  "kalimat": "He had already become used to Hesperus ' snapping back answers to questions almost before Jack could get them asked.",
+  "kata_ditandai": "asked",
+  "kunci": {
+   "no": 1,
+   "definisi": "inquire about",
+   "contoh": "I asked about their special today"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "make a request or demand for something to somebody"
+   },
+   {
+    "no": 3,
+    "definisi": "direct or put; seek an answer to"
+   },
+   {
+    "no": 4,
+    "definisi": "consider obligatory; request and expect"
+   },
+   {
+    "no": 5,
+    "definisi": "address a question to and expect an answer from"
+   },
+   {
+    "no": 6,
+    "definisi": "require as useful, just, or proper"
+   },
+   {
+    "no": 7,
+    "definisi": "require or ask for as a price or condition"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "asked",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to request information or put a question to someone",
+     "meaning_id": "menanyakan atau mengajukan pertanyaan",
+     "confidence": 0.98,
+     "trigger": "answers to questions"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S008-2",
+  "kalimat": "There was nothing he could do but wait.",
+  "kata_ditandai": "wait",
+  "kunci": {
+   "no": 2,
+   "definisi": "wait before acting",
+   "contoh": "the scientists held off announcing their results until they repeated the experiment"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "stay in one place and anticipate or expect something"
+   },
+   {
+    "no": 3,
+    "definisi": "look forward to the probable occurrence of"
+   },
+   {
+    "no": 4,
+    "definisi": "serve as a waiter or waitress in a restaurant"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "wait",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to stay in a place or remain expectant until something happens",
+     "meaning_id": "menunggu",
+     "confidence": 0.99,
+     "trigger": "nothing he could do but wait"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S008-4",
+  "kalimat": "But they have survived for long periods as races, whereas you are young.",
+  "kata_ditandai": "survived",
+  "kunci": {
+   "no": 1,
+   "definisi": "continue to live through hardship or adversity",
+   "contoh": "We went without water and food for 3 days"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "continue in existence after (an adversity, etc.)"
+   },
+   {
+    "no": 3,
+    "definisi": "support oneself"
+   },
+   {
+    "no": 4,
+    "definisi": "live longer than"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "survived",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to continue to live or exist, especially in spite of danger or hardship",
+     "meaning_id": "bertahan hidup atau bertahan eksis",
+     "confidence": 0.98,
+     "trigger": "survived for long periods as races"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S008-5",
+  "kalimat": "We shall recommend to them that they shorten your trial period by half.",
+  "kata_ditandai": "recommend",
+  "kunci": {
+   "no": 1,
+   "definisi": "push for something",
+   "contoh": "The travel agent recommended strongly that we not travel on Thanksgiving Day"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "express a good opinion of"
+   },
+   {
+    "no": 3,
+    "definisi": "make attractive or acceptable"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "recommend",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to advise or suggest something as a desirable course of action",
+     "meaning_id": "menganjurkan atau merekomendasikan",
+     "confidence": 0.99,
+     "trigger": "recommend to them that they shorten"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S009-1",
+  "kalimat": "At the same time he watched carefully to see how one attached pegboards to stone walls, but Mr.",
+  "kata_ditandai": "watched",
+  "kunci": {
+   "no": 1,
+   "definisi": "look attentively",
+   "contoh": "watch a basketball game"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "follow with the eyes or the mind"
+   },
+   {
+    "no": 3,
+    "definisi": "see or watch"
+   },
+   {
+    "no": 4,
+    "definisi": "observe with attention"
+   },
+   {
+    "no": 5,
+    "definisi": "be vigilant, be on the lookout or be careful"
+   },
+   {
+    "no": 6,
+    "definisi": "observe or determine by looking"
+   },
+   {
+    "no": 7,
+    "definisi": "find out, learn, or determine with certainty, usually by making an inquiry or other effort"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "watched",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to look at someone or something carefully or attentively",
+     "meaning_id": "mengamati atau memperhatikan dengan teliti",
+     "confidence": 0.98,
+     "trigger": "watched carefully to see how one attached"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S009-2",
+  "kalimat": "Blatz was usually standing in his line of vision and it all seemed so simple that he didn't like to disclose his ignorance.",
+  "kata_ditandai": "simple",
+  "kunci": {
+   "no": 2,
+   "definisi": "easy and not involved or complicated",
+   "contoh": "an elementary problem in statistics"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "having few parts; not complex or complicated or involved"
+   },
+   {
+    "no": 3,
+    "definisi": "apart from anything else; without additions or modifications"
+   },
+   {
+    "no": 4,
+    "definisi": "exhibiting childlike simplicity and credulity"
+   },
+   {
+    "no": 5,
+    "definisi": "lacking mental capacity and subtlety"
+   },
+   {
+    "no": 6,
+    "definisi": "(botany) of leaf shapes; of leaves having no divisions or subdivisions"
+   },
+   {
+    "no": 7,
+    "definisi": "unornamented"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "simple",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "easily understood or done; presenting no difficulty",
+     "meaning_id": "mudah dipahami atau dilakukan",
+     "confidence": 0.98,
+     "trigger": "it all seemed so simple that he didn't like to disclose his ignorance"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S009-3",
+  "kalimat": "Crombie told him of this idea about paneling the whole end of the cellar.",
+  "kata_ditandai": "whole",
+  "kunci": {
+   "no": 1,
+   "definisi": "including all components without exception; being one unit or constituting the full amount or extent or duration; complete",
+   "contoh": "gave his whole attention"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "(of siblings) having the same parents"
+   },
+   {
+    "no": 3,
+    "definisi": "not injured"
+   },
+   {
+    "no": 4,
+    "definisi": "exhibiting or restored to vigorous good health"
+   },
+   {
+    "no": 5,
+    "definisi": "acting together as a single undiversified whole"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "whole end of the",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "the entire far section or wall",
+     "meaning_id": "seluruh bagian ujung/dinding paling ujung",
+     "confidence": 0.95,
+     "trigger": "paneling the whole end of the cellar"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S009-4",
+  "kalimat": "Without further discussion he appeared the next morning with a pile of boards sticking over the end of his light truck and proceeded with the paneling, which he then stained and waxed according to his taste.",
+  "kata_ditandai": "discussion",
+  "kunci": {
+   "no": 2,
+   "definisi": "an exchange of views on some topic",
+   "contoh": "we had a good discussion"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "an extended communication (often interactive) dealing with some particular topic"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "discussion",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "the process of talking about something in order to reach a decision",
+     "meaning_id": "pembicaraan atau pembicaraan lebih lanjut",
+     "confidence": 0.98,
+     "trigger": "Without further discussion he appeared the next morning"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S009-5",
+  "kalimat": "Without further discussion he appeared the next morning with a pile of boards sticking over the end of his light truck and proceeded with the paneling, which he then stained and waxed according to his taste.",
+  "kata_ditandai": "boards",
+  "kunci": {
+   "no": 2,
+   "definisi": "a stout length of sawn timber; made in a wide variety of sizes and used for many purposes",
+   "contoh": ""
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "a committee having supervisory powers"
+   },
+   {
+    "no": 3,
+    "definisi": "a flat piece of material designed for a special purpose"
+   },
+   {
+    "no": 4,
+    "definisi": "food or meals in general"
+   },
+   {
+    "no": 5,
+    "definisi": "a vertical surface on which information can be displayed to public view"
+   },
+   {
+    "no": 6,
+    "definisi": "a table at which meals are served"
+   },
+   {
+    "no": 7,
+    "definisi": "electrical device consisting of a flat insulated surface that contains switches and dials and meters for controlling other electrical devices"
+   },
+   {
+    "no": 8,
+    "definisi": "a printed circuit that can be inserted into expansion slots in a computer to increase the computer's capabilities"
+   },
+   {
+    "no": 9,
+    "definisi": "a flat portable surface (usually rectangular) designed for board games"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "boards",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "long, thin, flat pieces of wood used for building",
+     "meaning_id": "papan-papan kayu",
+     "confidence": 0.98,
+     "trigger": "with a pile of boards sticking over the end of his light truck and proceeded with the paneling"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S010-3",
+  "kalimat": "Somewhere birds were sweetly calling, were answered.",
+  "kata_ditandai": "calling",
+  "kunci": {
+   "no": 4,
+   "definisi": "utter a sudden loud cry",
+   "contoh": "she cried with pain when the doctor inserted the needle"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "assign a specified (usually proper) proper name to"
+   },
+   {
+    "no": 2,
+    "definisi": "ascribe a quality to or give a name of a common noun that reflects a quality"
+   },
+   {
+    "no": 3,
+    "definisi": "get or try to get into communication (with someone) by telephone"
+   },
+   {
+    "no": 5,
+    "definisi": "order, request, or command to come"
+   },
+   {
+    "no": 6,
+    "definisi": "pay a brief visit"
+   },
+   {
+    "no": 7,
+    "definisi": "call a meeting; invite or command to meet"
+   },
+   {
+    "no": 8,
+    "definisi": "read aloud to check for omissions or absentees"
+   },
+   {
+    "no": 9,
+    "definisi": "send a message or attempt to reach someone by radio, phone, etc.; make a signal to in order to transmit a message"
+   },
+   {
+    "no": 10,
+    "definisi": "utter a characteristic note or cry"
+   },
+   {
+    "no": 11,
+    "definisi": "stop or postpone because of adverse conditions, such as bad weather"
+   },
+   {
+    "no": 12,
+    "definisi": "greet, as with a prescribed form, title, or name"
+   },
+   {
+    "no": 13,
+    "definisi": "make a stop in a harbour"
+   },
+   {
+    "no": 14,
+    "definisi": "demand payment of (a loan)"
+   },
+   {
+    "no": 15,
+    "definisi": "make a demand, as for a card or a suit or a show of hands"
+   },
+   {
+    "no": 16,
+    "definisi": "give the calls (to the dancers) for a square dance"
+   },
+   {
+    "no": 17,
+    "definisi": "indicate a decision in regard to"
+   },
+   {
+    "no": 18,
+    "definisi": "make a prediction about; tell in advance"
+   },
+   {
+    "no": 19,
+    "definisi": "require the presentation of for redemption before maturation"
+   },
+   {
+    "no": 20,
+    "definisi": "challenge (somebody) to make good on a statement; charge with or censure for an offense"
+   },
+   {
+    "no": 21,
+    "definisi": "declare in the capacity of an umpire or referee"
+   },
+   {
+    "no": 22,
+    "definisi": "lure by imitating the characteristic call of an animal"
+   },
+   {
+    "no": 23,
+    "definisi": "order or request or give a command for"
+   },
+   {
+    "no": 24,
+    "definisi": "order, summon, or request for a specific duty or activity, work, role"
+   },
+   {
+    "no": 25,
+    "definisi": "utter in a loud voice or announce"
+   },
+   {
+    "no": 26,
+    "definisi": "challenge the sincerity or truthfulness of"
+   },
+   {
+    "no": 27,
+    "definisi": "consider or regard as being"
+   },
+   {
+    "no": 28,
+    "definisi": "rouse somebody from sleep with a call"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "calling",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "make a characteristic vocal sound (of a bird or animal)",
+     "meaning_id": "berekicau atau memanggil (suara burung)",
+     "confidence": 0.98,
+     "trigger": "birds were sweetly calling"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S010-4",
+  "kalimat": "Her teeth chattered so that she made three attempts at speech before she became intelligible.",
+  "kata_ditandai": "chattered",
+  "kunci": {
+   "no": 1,
+   "definisi": "click repeatedly or uncontrollably",
+   "contoh": "Chattering teeth"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "cut unevenly with a chattering tool"
+   },
+   {
+    "no": 3,
+    "definisi": "talk socially without exchanging too much information"
+   },
+   {
+    "no": 4,
+    "definisi": "speak (about unimportant matters) rapidly and incessantly"
+   },
+   {
+    "no": 5,
+    "definisi": "make noise as if chattering away"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "chattered",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "click together rapidly, typically from cold or fear",
+     "meaning_id": "gemertak (gigi berbenturan karena kedinginan atau ketakutan)",
+     "confidence": 0.98,
+     "trigger": "Her teeth chattered"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S011-1",
+  "kalimat": "I taught him, dammit, and I'll teach you.",
+  "kata_ditandai": "teach",
+  "kunci": {
+   "no": 1,
+   "definisi": "impart skills or knowledge to",
+   "contoh": "I taught them French"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "accustom gradually to some action or attitude"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "I'll teach you",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "To punish someone for doing something bad so that they do not do it again",
+     "meaning_id": "memberi pelajaran atau menghukum seseorang agar jera",
+     "confidence": 0.95,
+     "trigger": "I taught him, dammit"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S011-2",
+  "kalimat": "He was about to get up so I got out, slamming the door.",
+  "kata_ditandai": "slamming",
+  "kunci": {
+   "no": 1,
+   "definisi": "close violently",
+   "contoh": "He slammed the door shut"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "strike violently"
+   },
+   {
+    "no": 3,
+    "definisi": "dance the slam dance"
+   },
+   {
+    "no": 4,
+    "definisi": "throw violently"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "slamming",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "Shutting a door forcefully and loudly",
+     "meaning_id": "membanting pintu dengan keras dan berisik",
+     "confidence": 0.98,
+     "trigger": "the door"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S011-3",
+  "kalimat": "Then he threw things.",
+  "kata_ditandai": "things",
+  "kunci": {
+   "no": 4,
+   "definisi": "an artifact",
+   "contoh": "how does this thing work?"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "a special situation"
+   },
+   {
+    "no": 2,
+    "definisi": "an action"
+   },
+   {
+    "no": 3,
+    "definisi": "a special abstraction"
+   },
+   {
+    "no": 5,
+    "definisi": "an event"
+   },
+   {
+    "no": 6,
+    "definisi": "a vaguely specified concern"
+   },
+   {
+    "no": 7,
+    "definisi": "a statement regarded as an object"
+   },
+   {
+    "no": 8,
+    "definisi": "an entity that is not named specifically"
+   },
+   {
+    "no": 9,
+    "definisi": "any attribute or quality considered as having its own existence"
+   },
+   {
+    "no": 10,
+    "definisi": "a special objective"
+   },
+   {
+    "no": 11,
+    "definisi": "a persistent illogical feeling of desire or aversion"
+   },
+   {
+    "no": 12,
+    "definisi": "a separate and self-contained entity"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "threw things",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "To hurl objects in anger or frustration",
+     "meaning_id": "melempar barang-barang karena marah",
+     "confidence": 0.95,
+     "trigger": "dumped his pot"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S011-4",
+  "kalimat": "He didn't even bother to wipe himself off and he chopped part of Pa's door down before he stopped.",
+  "kata_ditandai": "part",
+  "kunci": {
+   "no": 2,
+   "definisi": "something less than the whole of a human artifact",
+   "contoh": "the rear part of the house"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "something determined in relation to something that includes it"
+   },
+   {
+    "no": 3,
+    "definisi": "a portion of a natural object"
+   },
+   {
+    "no": 4,
+    "definisi": "that which concerns a person with regard to a particular role or situation"
+   },
+   {
+    "no": 5,
+    "definisi": "the extended spatial location of something"
+   },
+   {
+    "no": 6,
+    "definisi": "the actions and activities assigned to or required or expected of a person or group"
+   },
+   {
+    "no": 7,
+    "definisi": "an actor's portrayal of someone in a play"
+   },
+   {
+    "no": 8,
+    "definisi": "assets belonging to or due to or contributed by an individual person or group"
+   },
+   {
+    "no": 9,
+    "definisi": "one of the portions into which something is regarded as divided and which together constitute a whole"
+   },
+   {
+    "no": 10,
+    "definisi": "a line of scalp that can be seen when sections of hair are combed in opposite directions"
+   },
+   {
+    "no": 11,
+    "definisi": "the melody carried by a particular voice or instrument in polyphonic music"
+   },
+   {
+    "no": 12,
+    "definisi": "the part played by a person in bringing about a result"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "part of",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "Some but not all of something",
+     "meaning_id": "sebagian dari",
+     "confidence": 0.98,
+     "trigger": "chopped"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S011-5",
+  "kalimat": "He might not have gone that far if Pa hadn't been locked in laughing fit to shake the house.",
+  "kata_ditandai": "shake",
+  "kunci": {
+   "no": 4,
+   "definisi": "move back and forth or sideways",
+   "contoh": "the ship was rocking"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "move or cause to move back and forth"
+   },
+   {
+    "no": 2,
+    "definisi": "move with or as if with a tremor"
+   },
+   {
+    "no": 3,
+    "definisi": "shake or vibrate rapidly and intensively"
+   },
+   {
+    "no": 5,
+    "definisi": "undermine or cause to waver"
+   },
+   {
+    "no": 6,
+    "definisi": "stir the feelings, emotions, or peace of"
+   },
+   {
+    "no": 7,
+    "definisi": "get rid of"
+   },
+   {
+    "no": 8,
+    "definisi": "bring to a specified condition by or as if by shaking"
+   },
+   {
+    "no": 9,
+    "definisi": "shake (a body part) to communicate a greeting, feeling, or cognitive state"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "shake",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "To cause to tremble or vibrate",
+     "meaning_id": "mengguncang atau membuat bergetar",
+     "confidence": 0.95,
+     "trigger": "laughing fit to shake the house"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S012-1",
+  "kalimat": "People came in and out all evening to see the baby and hold it.",
+  "kata_ditandai": "see",
+  "kunci": {
+   "no": 1,
+   "definisi": "perceive by sight or have the power to perceive by sight",
+   "contoh": "You have to be a good observer to see all the details"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "perceive (an idea or situation) mentally"
+   },
+   {
+    "no": 3,
+    "definisi": "perceive or be contemporaneous with"
+   },
+   {
+    "no": 4,
+    "definisi": "imagine; conceive of; see in one's mind"
+   },
+   {
+    "no": 5,
+    "definisi": "deem to be"
+   },
+   {
+    "no": 6,
+    "definisi": "get to know or become aware of, usually accidentally"
+   },
+   {
+    "no": 7,
+    "definisi": "see or watch"
+   },
+   {
+    "no": 8,
+    "definisi": "come together"
+   },
+   {
+    "no": 9,
+    "definisi": "find out, learn, or determine with certainty, usually by making an inquiry or other effort"
+   },
+   {
+    "no": 10,
+    "definisi": "be careful or certain to do something; make certain of something"
+   },
+   {
+    "no": 11,
+    "definisi": "go to see for professional or business reasons"
+   },
+   {
+    "no": 12,
+    "definisi": "go to see for a social visit"
+   },
+   {
+    "no": 13,
+    "definisi": "go to see a place, as for entertainment"
+   },
+   {
+    "no": 14,
+    "definisi": "take charge of or deal with"
+   },
+   {
+    "no": 15,
+    "definisi": "receive as a specified guest"
+   },
+   {
+    "no": 16,
+    "definisi": "date regularly; have a steady relationship with"
+   },
+   {
+    "no": 17,
+    "definisi": "see and understand, have a good eye"
+   },
+   {
+    "no": 18,
+    "definisi": "deliberate or decide"
+   },
+   {
+    "no": 19,
+    "definisi": "observe as if with an eye"
+   },
+   {
+    "no": 20,
+    "definisi": "observe, check out, and look over carefully or inspect"
+   },
+   {
+    "no": 21,
+    "definisi": "go or live through"
+   },
+   {
+    "no": 22,
+    "definisi": "accompany or escort"
+   },
+   {
+    "no": 23,
+    "definisi": "match or meet"
+   },
+   {
+    "no": 24,
+    "definisi": "make sense of; assign a meaning to"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "to see the",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to visit someone, especially to check on their well-being or meet a new baby",
+     "meaning_id": "menjenguk atau menengok",
+     "confidence": 0.95,
+     "trigger": "baby and hold it"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S012-2",
+  "kalimat": "The room filled with smoke, and Maggie's head throbbed with excitement and fatigue, but Stuart had such a happy, earnest look of proud possession on his face that Maggie couldn't bear to do anything to quench it.",
+  "kata_ditandai": "bear",
+  "kunci": {
+   "no": 3,
+   "definisi": "put up with something or somebody unpleasant",
+   "contoh": "I cannot bear his constant criticism"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "have"
+   },
+   {
+    "no": 2,
+    "definisi": "cause to be born"
+   },
+   {
+    "no": 4,
+    "definisi": "move while holding up or supporting"
+   },
+   {
+    "no": 5,
+    "definisi": "bring forth,"
+   },
+   {
+    "no": 6,
+    "definisi": "take on as one's own the expenses or debts of another person"
+   },
+   {
+    "no": 7,
+    "definisi": "contain or hold; have within"
+   },
+   {
+    "no": 8,
+    "definisi": "bring in"
+   },
+   {
+    "no": 9,
+    "definisi": "have on one's person"
+   },
+   {
+    "no": 10,
+    "definisi": "behave in a certain manner"
+   },
+   {
+    "no": 11,
+    "definisi": "have rightfully; of rights, titles, and offices"
+   },
+   {
+    "no": 12,
+    "definisi": "support or hold in a certain manner"
+   },
+   {
+    "no": 13,
+    "definisi": "be pregnant with"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "bear to",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to be able to accept or tolerate something painful or unpleasant",
+     "meaning_id": "tahan atau sanggup (melakukan sesuatu yang menyakitkan/tidak menyenangkan)",
+     "confidence": 0.98,
+     "trigger": "couldn't bear to do anything to quench it"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S012-3",
+  "kalimat": "She stopped flying into rages and started digesting her food; she developed a peaches and cream complexion and a sunny disposition, and she asked for nothing more of life than that she be kept dry and comfortable and fed huge amounts of food at stated intervals and be carried to where she could watch activity going on around her.",
+  "kata_ditandai": "started",
+  "kunci": {
+   "no": 1,
+   "definisi": "take the first step or steps in carrying out an action",
+   "contoh": "We began working at dawn"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "set in motion, cause to start"
+   },
+   {
+    "no": 3,
+    "definisi": "leave"
+   },
+   {
+    "no": 4,
+    "definisi": "have a beginning, in a temporal, spatial, or evaluative sense"
+   },
+   {
+    "no": 5,
+    "definisi": "bring into being"
+   },
+   {
+    "no": 6,
+    "definisi": "get off the ground"
+   },
+   {
+    "no": 7,
+    "definisi": "move or jump suddenly, as if in surprise or alarm"
+   },
+   {
+    "no": 8,
+    "definisi": "get going or set in motion"
+   },
+   {
+    "no": 9,
+    "definisi": "begin or set in motion"
+   },
+   {
+    "no": 10,
+    "definisi": "begin work or acting in a certain capacity, office or job"
+   },
+   {
+    "no": 11,
+    "definisi": "play in the starting lineup"
+   },
+   {
+    "no": 12,
+    "definisi": "have a beginning characterized in some specified way"
+   },
+   {
+    "no": 13,
+    "definisi": "begin an event that is implied and limited by the nature or inherent function of the direct object"
+   },
+   {
+    "no": 14,
+    "definisi": "bulge outward"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "started",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to begin doing something",
+     "meaning_id": "mulai",
+     "confidence": 0.99,
+     "trigger": "digesting her food"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S012-4",
+  "kalimat": "She stopped flying into rages and started digesting her food; she developed a peaches and cream complexion and a sunny disposition, and she asked for nothing more of life than that she be kept dry and comfortable and fed huge amounts of food at stated intervals and be carried to where she could watch activity going on around her.",
+  "kata_ditandai": "fed",
+  "kunci": {
+   "no": 1,
+   "definisi": "provide as food",
+   "contoh": "Feed the guests the nuts"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "give food to"
+   },
+   {
+    "no": 3,
+    "definisi": "feed into; supply"
+   },
+   {
+    "no": 4,
+    "definisi": "introduce continuously"
+   },
+   {
+    "no": 5,
+    "definisi": "support or promote"
+   },
+   {
+    "no": 6,
+    "definisi": "take in food; used of animals only"
+   },
+   {
+    "no": 7,
+    "definisi": "serve as food for; be the food for"
+   },
+   {
+    "no": 8,
+    "definisi": "move along, of liquids"
+   },
+   {
+    "no": 9,
+    "definisi": "profit from in an exploitatory manner"
+   },
+   {
+    "no": 10,
+    "definisi": "gratify"
+   },
+   {
+    "no": 11,
+    "definisi": "provide with fertilizers or add nutrients to"
+   },
+   {
+    "no": 12,
+    "definisi": "give a tip or gratuity to in return for a service, beyond the compensation agreed on"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "and fed",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "and given food to eat (passive voice)",
+     "meaning_id": "dan diberi makan / disuapi",
+     "confidence": 0.98,
+     "trigger": "huge amounts of food"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S012-5",
+  "kalimat": "She stopped flying into rages and started digesting her food; she developed a peaches and cream complexion and a sunny disposition, and she asked for nothing more of life than that she be kept dry and comfortable and fed huge amounts of food at stated intervals and be carried to where she could watch activity going on around her.",
+  "kata_ditandai": "watch",
+  "kunci": {
+   "no": 3,
+   "definisi": "see or watch",
+   "contoh": "view a show on television"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "look attentively"
+   },
+   {
+    "no": 2,
+    "definisi": "follow with the eyes or the mind"
+   },
+   {
+    "no": 4,
+    "definisi": "observe with attention"
+   },
+   {
+    "no": 5,
+    "definisi": "be vigilant, be on the lookout or be careful"
+   },
+   {
+    "no": 6,
+    "definisi": "observe or determine by looking"
+   },
+   {
+    "no": 7,
+    "definisi": "find out, learn, or determine with certainty, usually by making an inquiry or other effort"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "watch",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to look at some activity or event for a period of time",
+     "meaning_id": "melihat atau memperhatikan",
+     "confidence": 0.98,
+     "trigger": "activity going on around her"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S013-1",
+  "kalimat": "The battle of the drib-drool continues, but most of New York's knowing sophisticates of Abstract Expressionism are stamping their feet impatiently in expectation of V (for Vindication) Day, September first, when Augustus Quasimodo's first one-man show opens at the Guggenheim.",
+  "kata_ditandai": "battle",
+  "kunci": {
+   "no": 2,
+   "definisi": "an energetic attempt to achieve something",
+   "contoh": "getting through the crowd was a real struggle"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "a hostile meeting of opposing military forces in the course of a war"
+   },
+   {
+    "no": 3,
+    "definisi": "an open clash between two opposing groups (or individuals); --Thomas Paine"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "battle",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "a hard struggle, conflict, or controversy between opposing ideas or groups",
+     "meaning_id": "perdebatan atau pertentangan sengit",
+     "confidence": 0.95,
+     "trigger": "battle of the drib-drool continues"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S013-2",
+  "kalimat": "The battle of the drib-drool continues, but most of New York's knowing sophisticates of Abstract Expressionism are stamping their feet impatiently in expectation of V (for Vindication) Day, September first, when Augustus Quasimodo's first one-man show opens at the Guggenheim.",
+  "kata_ditandai": "expectation",
+  "kunci": {
+   "no": 2,
+   "definisi": "anticipating with confidence of fulfillment",
+   "contoh": ""
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "belief about (or mental picture of) the future"
+   },
+   {
+    "no": 3,
+    "definisi": "the feeling that something is about to happen"
+   },
+   {
+    "no": 4,
+    "definisi": "the sum of the values of a random variable divided by the number of values"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "expectation",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "a state of looking forward to something happening; anticipation",
+     "meaning_id": "penantian atau rasa menunggu sesuatu yang diharapkan tiba",
+     "confidence": 0.95,
+     "trigger": "stamping their feet impatiently in expectation of"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S013-3",
+  "kalimat": "And it is thought by many who think about such things that Quasimodo is the logical culmination of a school that started with Monet, progressed through Kandinsky and the cubist Picasso, and blossomed just recently in Pollock and De Kooning.",
+  "kata_ditandai": "started",
+  "kunci": {
+   "no": 5,
+   "definisi": "bring into being",
+   "contoh": "He initiated a new program"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "take the first step or steps in carrying out an action"
+   },
+   {
+    "no": 2,
+    "definisi": "set in motion, cause to start"
+   },
+   {
+    "no": 3,
+    "definisi": "leave"
+   },
+   {
+    "no": 4,
+    "definisi": "have a beginning, in a temporal, spatial, or evaluative sense"
+   },
+   {
+    "no": 6,
+    "definisi": "get off the ground"
+   },
+   {
+    "no": 7,
+    "definisi": "move or jump suddenly, as if in surprise or alarm"
+   },
+   {
+    "no": 8,
+    "definisi": "get going or set in motion"
+   },
+   {
+    "no": 9,
+    "definisi": "begin or set in motion"
+   },
+   {
+    "no": 10,
+    "definisi": "begin work or acting in a certain capacity, office or job"
+   },
+   {
+    "no": 11,
+    "definisi": "play in the starting lineup"
+   },
+   {
+    "no": 12,
+    "definisi": "have a beginning characterized in some specified way"
+   },
+   {
+    "no": 13,
+    "definisi": "begin an event that is implied and limited by the nature or inherent function of the direct object"
+   },
+   {
+    "no": 14,
+    "definisi": "bulge outward"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "started",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "originated or had its beginnings with",
+     "meaning_id": "bermula atau berawal dari",
+     "confidence": 0.95,
+     "trigger": "started with Monet, progressed through Kandinsky"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S013-4",
+  "kalimat": "“I paint the nothing”, he said once to Franz Kline and myself, “the nothing that is behind the something, the inexpressible, unpaintable ' tick ' in the unconscious, the ' spirit ' of the moment resting forever, suspended like a huge balloon, in non time”.",
+  "kata_ditandai": "tick",
+  "kunci": {
+   "no": 1,
+   "definisi": "a metallic tapping sound",
+   "contoh": "he counted the ticks of the clock"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "any of two families of small parasitic arachnids with barbed proboscis; feed on blood of warm-blooded animals"
+   },
+   {
+    "no": 3,
+    "definisi": "a mark indicating that something has been noted or completed etc."
+   },
+   {
+    "no": 4,
+    "definisi": "a light mattress"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "tick",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "a fleeting moment, impulse, or subtle heartbeat/twitch of existence",
+     "meaning_id": "detik waktu atau getaran kecil yang sekejap",
+     "confidence": 0.9,
+     "trigger": "unpaintable 'tick' in the unconscious, the 'spirit' of the moment"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S013-5",
+  "kalimat": "“I paint the nothing”, he said once to Franz Kline and myself, “the nothing that is behind the something, the inexpressible, unpaintable ' tick ' in the unconscious, the ' spirit ' of the moment resting forever, suspended like a huge balloon, in non time”.",
+  "kata_ditandai": "balloon",
+  "kunci": {
+   "no": 1,
+   "definisi": "large tough nonrigid bag filled with gas or heated air",
+   "contoh": ""
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "small thin inflatable rubber bag with narrow neck"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "balloon",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "a flexible bag inflated with a gas, floating in the air",
+     "meaning_id": "balon",
+     "confidence": 0.95,
+     "trigger": "suspended like a huge balloon"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S014-1",
+  "kalimat": "He had had the need to understand what life lurked behind the mask of flesh, behind the oath, the banter, the sadness.",
+  "kata_ditandai": "need",
+  "kunci": {
+   "no": 3,
+   "definisi": "the psychological feature that arouses an organism to action toward a desired goal; the reason for the action; that which gives purpose and direction to behavior",
+   "contoh": "we did not understand his motivation"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "a condition requiring relief"
+   },
+   {
+    "no": 2,
+    "definisi": "anything that is necessary but lacking"
+   },
+   {
+    "no": 4,
+    "definisi": "a state of extreme poverty or destitution"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "the need to",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "a strong feeling that you must have or do something",
+     "meaning_id": "keharusan atau dorongan kuat untuk melakukan sesuatu",
+     "confidence": 1,
+     "trigger": "understand what life lurked"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S014-2",
+  "kalimat": "He had had the need to understand what life lurked behind the mask of flesh, behind the oath, the banter, the sadness.",
+  "kata_ditandai": "sadness",
+  "kunci": {
+   "no": 1,
+   "definisi": "emotions experienced when not in a state of well-being",
+   "contoh": ""
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "the state of being sad"
+   },
+   {
+    "no": 3,
+    "definisi": "the quality of excessive mournfulness and uncheerfulness"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "sadness",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "the feeling of being sad or unhappy",
+     "meaning_id": "kesedihan atau rasa duka",
+     "confidence": 1,
+     "trigger": "behind the mask of flesh"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S014-3",
+  "kalimat": "Once covertly looking at Simms Purdew, the only man in the world whom he hated, he had seen the heavy, slack, bestubbled jaw open and close to emit the cruel, obscene banter, and had seen the pale blue eyes go watery with whisky and merriment, and suddenly he was not seeing the face of that vile creature.",
+  "kata_ditandai": "open",
+  "kunci": {
+   "no": 1,
+   "definisi": "cause to open or to become open",
+   "contoh": "Mary opened the car door"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "start to operate or function or cause to start operating or functioning"
+   },
+   {
+    "no": 3,
+    "definisi": "become open"
+   },
+   {
+    "no": 4,
+    "definisi": "begin or set in action, of meetings, speeches, recitals, etc."
+   },
+   {
+    "no": 5,
+    "definisi": "spread out or open from a closed or folded state"
+   },
+   {
+    "no": 6,
+    "definisi": "make available"
+   },
+   {
+    "no": 7,
+    "definisi": "become available"
+   },
+   {
+    "no": 8,
+    "definisi": "have an opening or passage or outlet"
+   },
+   {
+    "no": 9,
+    "definisi": "make the opening move"
+   },
+   {
+    "no": 10,
+    "definisi": "afford access to"
+   },
+   {
+    "no": 11,
+    "definisi": "display the contents of a file or start an application as on a computer"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "jaw open and",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "the lower part of the face opening and closing (to speak or move)",
+     "meaning_id": "rahang yang membuka dan (menutup)",
+     "confidence": 1,
+     "trigger": "close to emit the cruel, obscene banter"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S014-4",
+  "kalimat": "Once covertly looking at Simms Purdew, the only man in the world whom he hated, he had seen the heavy, slack, bestubbled jaw open and close to emit the cruel, obscene banter, and had seen the pale blue eyes go watery with whisky and merriment, and suddenly he was not seeing the face of that vile creature.",
+  "kata_ditandai": "creature",
+  "kunci": {
+   "no": 1,
+   "definisi": "a living organism characterized by voluntary movement",
+   "contoh": ""
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "a human being; `wight' is an archaic term"
+   },
+   {
+    "no": 3,
+    "definisi": "a person who is controlled by others and is used to perform unpleasant or dishonest tasks for someone else"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "creature",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "a human being, especially one who is looked upon with pity, contempt, or disgust",
+     "meaning_id": "makhluk atau orang (biasanya dengan konotasi negatif atau kasihan)",
+     "confidence": 1,
+     "trigger": "vile"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S014-5",
+  "kalimat": "In that moment of vision Adam heard the voice within himself saying: I must not hate him, I must not hate him or I shall die.",
+  "kata_ditandai": "voice",
+  "kunci": {
+   "no": 2,
+   "definisi": "the sound made by the vibration of vocal folds modified by the resonance of the vocal tract",
+   "contoh": "a singer takes good care of his voice"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "the distinctive quality or pitch or condition of a person's speech"
+   },
+   {
+    "no": 3,
+    "definisi": "a sound suggestive of a vocal utterance"
+   },
+   {
+    "no": 4,
+    "definisi": "expressing in coherent verbal form"
+   },
+   {
+    "no": 5,
+    "definisi": "a means or agency by which something is expressed or communicated"
+   },
+   {
+    "no": 6,
+    "definisi": "something suggestive of speech in being a medium of expression"
+   },
+   {
+    "no": 7,
+    "definisi": "(metonymy) a singer"
+   },
+   {
+    "no": 8,
+    "definisi": "an advocate who represents someone else's policy or purpose"
+   },
+   {
+    "no": 9,
+    "definisi": "the ability to speak"
+   },
+   {
+    "no": 10,
+    "definisi": "(linguistics) the grammatical relation (active or passive) of the grammatical subject of a verb to the action that the verb denotes"
+   },
+   {
+    "no": 11,
+    "definisi": "the melody carried by a particular voice or instrument in polyphonic music"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "the voice within",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "one's inner thoughts, conscience, or intuition",
+     "meaning_id": "suara hati atau bisikan batin",
+     "confidence": 1,
+     "trigger": "himself saying: I must not hate him"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S015-1",
+  "kalimat": "Why, oh why, doesn't he stick to preaching the Gospel, instead of meddling in civic affairs, politics, economics, and social issues that are no concern of the Church”?",
+  "kata_ditandai": "affairs",
+  "kunci": {
+   "no": 1,
+   "definisi": "a vaguely specified concern",
+   "contoh": "several matters to attend to"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "a usually secretive or illicit sexual relationship"
+   },
+   {
+    "no": 3,
+    "definisi": "a vaguely specified social event"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "affairs",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "matters of public interest or concern",
+     "meaning_id": "urusan atau masalah publik/sosial",
+     "confidence": 0.95,
+     "trigger": "civic, politics, economics, and social issues"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S015-2",
+  "kalimat": "And John's reply was always the same: “Anything that affects souls is the concern of the Church!",
+  "kata_ditandai": "souls",
+  "kunci": {
+   "no": 2,
+   "definisi": "a human being",
+   "contoh": "there was too much for one person to do"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "the immaterial part of a person; the actuating cause of an individual life"
+   },
+   {
+    "no": 3,
+    "definisi": "deep feeling or emotion"
+   },
+   {
+    "no": 4,
+    "definisi": "the human embodiment of something"
+   },
+   {
+    "no": 5,
+    "definisi": "a secular form of gospel that was a major Black musical genre in the 1960s and 1970s"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "souls",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "the spiritual or immaterial part of a human being, regarded as immortal",
+     "meaning_id": "jiwa manusia (aspek spiritual)",
+     "confidence": 0.95,
+     "trigger": "concern of the Church"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S015-3",
+  "kalimat": "Monsieur Favre's threat would become a reality, for he continued to proclaim loudly that the city must rid itself of “that Frenchman”.",
+  "kata_ditandai": "reality",
+  "kunci": {
+   "no": 2,
+   "definisi": "the state of being actual or real",
+   "contoh": "the reality of his situation slowly dawned on him"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "all of your experiences that determine how things appear to you"
+   },
+   {
+    "no": 3,
+    "definisi": "the state of the world as it really is rather than as you might want it to be"
+   },
+   {
+    "no": 4,
+    "definisi": "the quality possessed by something that is real"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "a reality",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "something that actually happens or exists, rather than being imagined or threatened",
+     "meaning_id": "kenyataan atau benar-benar terjadi",
+     "confidence": 0.95,
+     "trigger": "threat would become"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S015-4",
+  "kalimat": "The slow tapping of a cane on the stone steps coming up to the tower interrupted his reverie.",
+  "kata_ditandai": "reverie",
+  "kunci": {
+   "no": 1,
+   "definisi": "absentminded dreaming while awake",
+   "contoh": ""
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "an abstracted state of absorption"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "reverie",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "a state of being pleasantly lost in one's thoughts; a daydream",
+     "meaning_id": "lamunan atau angan-angan",
+     "confidence": 0.95,
+     "trigger": "interrupted, prayed and meditated"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S015-5",
+  "kalimat": "Faint at first, the tapping grew until it sounded loud against the wind.",
+  "kata_ditandai": "sounded",
+  "kunci": {
+   "no": 2,
+   "definisi": "make a certain noise or sound",
+   "contoh": "She went `Mmmmm'"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "appear in a certain way"
+   },
+   {
+    "no": 3,
+    "definisi": "give off a certain sound or sounds"
+   },
+   {
+    "no": 4,
+    "definisi": "announce by means of a sound"
+   },
+   {
+    "no": 5,
+    "definisi": "utter with vibrating vocal chords"
+   },
+   {
+    "no": 6,
+    "definisi": "cause to sound"
+   },
+   {
+    "no": 7,
+    "definisi": "measure the depth of (a body of water) with a sounding line"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "sounded",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "emitted or produced a sound; seemed to the ear",
+     "meaning_id": "terdengar",
+     "confidence": 0.95,
+     "trigger": "tapping grew, loud"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S016-2",
+  "kalimat": "He had lots of friends, then as always.",
+  "kata_ditandai": "lots",
+  "kunci": {
+   "no": 1,
+   "definisi": "a large number or amount",
+   "contoh": "made lots of new friends"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "(often followed by `of') a large number or amount or extent"
+   },
+   {
+    "no": 3,
+    "definisi": "a parcel of land having fixed boundaries"
+   },
+   {
+    "no": 4,
+    "definisi": "an unofficial association of people or groups"
+   },
+   {
+    "no": 5,
+    "definisi": "your overall circumstances or condition in life (including everything that happens to you)"
+   },
+   {
+    "no": 6,
+    "definisi": "anything (straws or pebbles etc.) taken or chosen at random"
+   },
+   {
+    "no": 7,
+    "definisi": "any collection in its entirety"
+   },
+   {
+    "no": 8,
+    "definisi": "(Old Testament) nephew of Abraham; God destroyed Sodom and Gomorrah but chose to spare Lot and his family who were told to flee without looking back at the destruction"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "had lots of",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "possess a large number or amount of something",
+     "meaning_id": "mempunyai banyak",
+     "confidence": 1,
+     "trigger": "friends"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S016-3",
+  "kalimat": "Even as he became widely known as a professional killer, nearly every cowboy and rancher in Wyoming seemed proud to call him a friend.",
+  "kata_ditandai": "widely",
+  "kunci": {
+   "no": 1,
+   "definisi": "to a great degree",
+   "contoh": "her work is widely known"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "to or over a great extent or range; far"
+   },
+   {
+    "no": 3,
+    "definisi": "so as to leave much space or distance between"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "widely",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "by many people or in many places; commonly or generally",
+     "meaning_id": "secara luas atau oleh banyak orang",
+     "confidence": 1,
+     "trigger": "known as a professional killer"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S016-4",
+  "kalimat": "“Yeah, I can see that”, the friend was forced to agree.",
+  "kata_ditandai": "forced",
+  "kunci": {
+   "no": 1,
+   "definisi": "to cause to do through pressure or necessity, by physical, moral or intellectual means :",
+   "contoh": "She forced him to take a job in the city"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "urge or force (a person) to an action; constrain or motivate"
+   },
+   {
+    "no": 3,
+    "definisi": "move with force,"
+   },
+   {
+    "no": 4,
+    "definisi": "impose urgently, importunately, or inexorably"
+   },
+   {
+    "no": 5,
+    "definisi": "squeeze like a wedge into a tight space"
+   },
+   {
+    "no": 6,
+    "definisi": "force into or from an action or state, either physically or metaphorically"
+   },
+   {
+    "no": 7,
+    "definisi": "cause to move by pulling"
+   },
+   {
+    "no": 8,
+    "definisi": "do forcibly; exert force"
+   },
+   {
+    "no": 9,
+    "definisi": "take by force"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "forced to",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "compelled or obliged to do something, even if unwilling",
+     "meaning_id": "terpaksa",
+     "confidence": 1,
+     "trigger": "agree"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S016-5",
+  "kalimat": "“But, well, it just don't seem sportin ' somehow”!",
+  "kata_ditandai": "just",
+  "kunci": {
+   "no": 4,
+   "definisi": "absolutely",
+   "contoh": "I just can't take it anymore"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "and nothing more"
+   },
+   {
+    "no": 2,
+    "definisi": "indicating exactness or preciseness"
+   },
+   {
+    "no": 3,
+    "definisi": "only a moment ago"
+   },
+   {
+    "no": 5,
+    "definisi": "only a very short time before; ; ; ; ; - W.B.Yeats"
+   },
+   {
+    "no": 6,
+    "definisi": "exactly at this moment or the moment described"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "it just don't",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "it simply does not (used for emphasis, with non-standard grammar 'don't' instead of 'doesn't')",
+     "meaning_id": "rasanya sama sekali tidak",
+     "confidence": 1,
+     "trigger": "seem sportin'"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S017-1",
+  "kalimat": "There was a short pause for reflection.",
+  "kata_ditandai": "short",
+  "kunci": {
+   "no": 1,
+   "definisi": "primarily temporal sense; indicating or being or seeming to be limited in duration",
+   "contoh": "a short life"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "(primarily spatial sense) having little length or lacking in length"
+   },
+   {
+    "no": 3,
+    "definisi": "low in stature; not tall"
+   },
+   {
+    "no": 4,
+    "definisi": "not sufficient to meet a need"
+   },
+   {
+    "no": 5,
+    "definisi": "(of memory) deficient in retentiveness or range"
+   },
+   {
+    "no": 6,
+    "definisi": "not holding securities or commodities that one sells in expectation of a fall in prices"
+   },
+   {
+    "no": 7,
+    "definisi": "of speech sounds or syllables of relatively short duration"
+   },
+   {
+    "no": 8,
+    "definisi": "less than the correct or legal or full amount often deliberately so"
+   },
+   {
+    "no": 9,
+    "definisi": "lacking foresight or scope"
+   },
+   {
+    "no": 10,
+    "definisi": "tending to crumble or break into flakes due to a large amount of shortening"
+   },
+   {
+    "no": 11,
+    "definisi": "marked by rude or peremptory shortness"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "short pause",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "a brief stop or interruption in activity",
+     "meaning_id": "jeda singkat",
+     "confidence": 0.98,
+     "trigger": "pause for reflection"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S017-2",
+  "kalimat": "Another brand of indefinite reference arises out of the use of the double verb.",
+  "kata_ditandai": "brand",
+  "kunci": {
+   "no": 2,
+   "definisi": "a recognizable kind",
+   "contoh": "there's a new brand of hero in the movies now"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "a name given to a product or service"
+   },
+   {
+    "no": 3,
+    "definisi": "identification mark on skin, made by burning"
+   },
+   {
+    "no": 4,
+    "definisi": "a piece of wood that has been burned or is burning"
+   },
+   {
+    "no": 5,
+    "definisi": "a symbol of disgrace or infamy; --Genesis"
+   },
+   {
+    "no": 6,
+    "definisi": "a cutting or thrusting weapon that has a long metal blade and a hilt with a hand guard"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "brand",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "a particular type or kind of something",
+     "meaning_id": "jenis atau tipe",
+     "confidence": 0.95,
+     "trigger": "Another brand of indefinite reference"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S017-3",
+  "kalimat": "When a question contains two verbs, the response does not make clear which of them is being answered.",
+  "kata_ditandai": "response",
+  "kunci": {
+   "no": 3,
+   "definisi": "a statement (either spoken or written) that is made to reply to a question or request or criticism or accusation",
+   "contoh": "I waited several days for his answer"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "a result"
+   },
+   {
+    "no": 2,
+    "definisi": "a bodily process occurring due to the effect of some antecedent stimulus or agent"
+   },
+   {
+    "no": 4,
+    "definisi": "the manner in which something is greeted"
+   },
+   {
+    "no": 5,
+    "definisi": "a phrase recited or sung by the congregation following a versicle by the priest or minister"
+   },
+   {
+    "no": 6,
+    "definisi": "the speech act of continuing a conversational exchange"
+   },
+   {
+    "no": 7,
+    "definisi": "the manner in which an electrical or mechanical device responds to an input signal or a range of input signals"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "response",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "an answer or reply in words",
+     "meaning_id": "jawaban atau tanggapan",
+     "confidence": 0.98,
+     "trigger": "When a question contains two verbs"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S017-4",
+  "kalimat": "The moonlit night was made for romance, and he had been looking at her soulfully for some time.",
+  "kata_ditandai": "night",
+  "kunci": {
+   "no": 1,
+   "definisi": "the time after sunset and before sunrise while it is dark outside",
+   "contoh": ""
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "a period of ignorance or backwardness or gloom"
+   },
+   {
+    "no": 3,
+    "definisi": "the period spent sleeping"
+   },
+   {
+    "no": 4,
+    "definisi": "the dark part of the diurnal cycle considered a time unit"
+   },
+   {
+    "no": 5,
+    "definisi": "darkness"
+   },
+   {
+    "no": 6,
+    "definisi": "a shortening of nightfall"
+   },
+   {
+    "no": 7,
+    "definisi": "the time between sunset and midnight"
+   },
+   {
+    "no": 8,
+    "definisi": "Roman goddess of night; daughter of Erebus; counterpart of Greek Nyx"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "night",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "the period of darkness in each 24 hours",
+     "meaning_id": "malam hari",
+     "confidence": 0.99,
+     "trigger": "moonlit night"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S017-5",
+  "kalimat": "It would be hard to find anything more equivocal than: “I cannot recommend him too highly”.",
+  "kata_ditandai": "recommend",
+  "kunci": {
+   "no": 2,
+   "definisi": "express a good opinion of",
+   "contoh": ""
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "push for something"
+   },
+   {
+    "no": 3,
+    "definisi": "make attractive or acceptable"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "recommend",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to advise or suggest as good or suitable",
+     "meaning_id": "merekomendasikan atau memuji",
+     "confidence": 0.98,
+     "trigger": "recommend him too highly"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S018-1",
+  "kalimat": "Greg went up tight against the ceiling and led them back to their pass to home.",
+  "kata_ditandai": "tight",
+  "kunci": {
+   "no": 2,
+   "definisi": "in an attentive manner",
+   "contoh": "he remained close on his guard"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "firmly or closely"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "tight",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "very close or close against a surface/limit",
+     "meaning_id": "sangat dekat atau mepet",
+     "confidence": 0.95,
+     "trigger": "against the ceiling"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S018-2",
+  "kalimat": "Mercifully, it was still open.",
+  "kata_ditandai": "still",
+  "kunci": {
+   "no": 1,
+   "definisi": "with reference to action or condition; without change, interruption, or cessation",
+   "contoh": "it's still warm outside"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "despite anything to the contrary (usually following a concession)"
+   },
+   {
+    "no": 3,
+    "definisi": "to a greater degree or extent; used with comparisons"
+   },
+   {
+    "no": 4,
+    "definisi": "without moving or making a sound"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "still",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "up to and including the present or the time mentioned; even now",
+     "meaning_id": "masih",
+     "confidence": 0.98,
+     "trigger": "still open"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S018-3",
+  "kalimat": "He was about to make a gas check on his flight when Todman's voice broke in: “Sweeneys!",
+  "kata_ditandai": "check",
+  "kunci": {
+   "no": 6,
+   "definisi": "the act of inspecting or verifying",
+   "contoh": "they made a check of their equipment"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "a written order directing a bank to pay money"
+   },
+   {
+    "no": 2,
+    "definisi": "an appraisal of the state of affairs"
+   },
+   {
+    "no": 3,
+    "definisi": "the bill in a restaurant"
+   },
+   {
+    "no": 4,
+    "definisi": "the state of inactivity following an interruption"
+   },
+   {
+    "no": 5,
+    "definisi": "additional proof that something that was believed (some fact or hypothesis or theory) is correct"
+   },
+   {
+    "no": 7,
+    "definisi": "a mark indicating that something has been noted or completed etc."
+   },
+   {
+    "no": 8,
+    "definisi": "something immaterial that interferes with or delays action or progress"
+   },
+   {
+    "no": 9,
+    "definisi": "a mark left after a small piece has been chopped or broken off of something"
+   },
+   {
+    "no": 10,
+    "definisi": "a textile pattern of squares or crossed lines (resembling a checkerboard)"
+   },
+   {
+    "no": 11,
+    "definisi": "the act of restraining power or action or limiting excess"
+   },
+   {
+    "no": 12,
+    "definisi": "obstructing an opponent in ice hockey"
+   },
+   {
+    "no": 13,
+    "definisi": "(chess) a direct attack on an opponent's king"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "check",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "an examination to test or ascertain accuracy, quality, or condition",
+     "meaning_id": "pemeriksaan atau pengecekan",
+     "confidence": 0.95,
+     "trigger": "make a gas check"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S018-4",
+  "kalimat": "He was about to make a gas check on his flight when Todman's voice broke in: “Sweeneys!",
+  "kata_ditandai": "voice",
+  "kunci": {
+   "no": 1,
+   "definisi": "the distinctive quality or pitch or condition of a person's speech",
+   "contoh": "A shrill voice sounded behind us"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "the sound made by the vibration of vocal folds modified by the resonance of the vocal tract"
+   },
+   {
+    "no": 3,
+    "definisi": "a sound suggestive of a vocal utterance"
+   },
+   {
+    "no": 4,
+    "definisi": "expressing in coherent verbal form"
+   },
+   {
+    "no": 5,
+    "definisi": "a means or agency by which something is expressed or communicated"
+   },
+   {
+    "no": 6,
+    "definisi": "something suggestive of speech in being a medium of expression"
+   },
+   {
+    "no": 7,
+    "definisi": "(metonymy) a singer"
+   },
+   {
+    "no": 8,
+    "definisi": "an advocate who represents someone else's policy or purpose"
+   },
+   {
+    "no": 9,
+    "definisi": "the ability to speak"
+   },
+   {
+    "no": 10,
+    "definisi": "(linguistics) the grammatical relation (active or passive) of the grammatical subject of a verb to the action that the verb denotes"
+   },
+   {
+    "no": 11,
+    "definisi": "the melody carried by a particular voice or instrument in polyphonic music"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "voice",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "the sound produced by a person speaking or singing",
+     "meaning_id": "suara (manusia/pesawat radio)",
+     "confidence": 0.98,
+     "trigger": "Todman's voice broke in"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S018-5",
+  "kalimat": "He saw them, specks against the gray, but closing fast.",
+  "kata_ditandai": "gray",
+  "kunci": {
+   "no": 1,
+   "definisi": "a neutral achromatic color midway between white and black",
+   "contoh": ""
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "clothing that is a grey color"
+   },
+   {
+    "no": 3,
+    "definisi": "any organization or party whose uniforms or badges are grey"
+   },
+   {
+    "no": 4,
+    "definisi": "horse of a light gray or whitish color"
+   },
+   {
+    "no": 5,
+    "definisi": "the SI unit of energy absorbed from ionizing radiation; equal to the absorption of one joule of radiation energy by one kilogram of matter; one gray equals 100 rad"
+   },
+   {
+    "no": 6,
+    "definisi": "English radiobiologist in whose honor the gray (the SI unit of energy for the absorbed dose of radiation) was named (1905-1965)"
+   },
+   {
+    "no": 7,
+    "definisi": "English poet best known for his elegy written in a country churchyard (1716-1771)"
+   },
+   {
+    "no": 8,
+    "definisi": "American navigator who twice circumnavigated the globe and who discovered the Columbia River (1755-1806)"
+   },
+   {
+    "no": 9,
+    "definisi": "United States botanist who specialized in North American flora and who was an early supporter of Darwin's theories of evolution (1810-1888)"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "gray",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "the grey background of the sky or clouds",
+     "meaning_id": "warna abu abu (langit/awan)",
+     "confidence": 0.95,
+     "trigger": "specks against the gray"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S019-1",
+  "kalimat": "Shayne noted idly that it carried Miami Beach license plates as he approached, and then saw the flare of a match in the front seat as they passed, indicating that it was occupied.",
+  "kata_ditandai": "noted",
+  "kunci": {
+   "no": 2,
+   "definisi": "notice or perceive",
+   "contoh": "She noted that someone was following her"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "make mention of"
+   },
+   {
+    "no": 3,
+    "definisi": "observe with care or pay close attention to"
+   },
+   {
+    "no": 4,
+    "definisi": "make a written note of"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "noted",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to notice or become aware of something",
+     "meaning_id": "memperhatikan atau menyadari sesuatu",
+     "confidence": 0.95,
+     "trigger": "idly that it carried"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S019-2",
+  "kalimat": "Shayne noted idly that it carried Miami Beach license plates as he approached, and then saw the flare of a match in the front seat as they passed, indicating that it was occupied.",
+  "kata_ditandai": "approached",
+  "kunci": {
+   "no": 1,
+   "definisi": "move towards",
+   "contoh": "We were approaching our destination"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "come near or verge on, resemble, come nearer in quality, or character"
+   },
+   {
+    "no": 3,
+    "definisi": "begin to deal with"
+   },
+   {
+    "no": 4,
+    "definisi": "come near in time"
+   },
+   {
+    "no": 5,
+    "definisi": "make advances to someone, usually with a proposal or suggestion"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "approached",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to come near or nearer to something in distance",
+     "meaning_id": "mendekati suatu lokasi atau objek",
+     "confidence": 0.95,
+     "trigger": "as he approached"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S019-3",
+  "kalimat": "Shayne noted idly that it carried Miami Beach license plates as he approached, and then saw the flare of a match in the front seat as they passed, indicating that it was occupied.",
+  "kata_ditandai": "indicating",
+  "kunci": {
+   "no": 1,
+   "definisi": "be a signal for or a symptom of",
+   "contoh": "These symptoms indicate a serious illness"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "indicate a place, direction, person, or thing; either spatially or figuratively"
+   },
+   {
+    "no": 3,
+    "definisi": "to state or express briefly"
+   },
+   {
+    "no": 4,
+    "definisi": "give evidence of"
+   },
+   {
+    "no": 5,
+    "definisi": "suggest the necessity of an intervention; in medicine"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "indicating",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to show or be a sign of something",
+     "meaning_id": "menandakan atau menunjukkan suatu keadaan",
+     "confidence": 0.95,
+     "trigger": "flare of a match... that it was occupied"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S019-4",
+  "kalimat": "Instead of pulling into the curb, Shayne increased his speed slightly to the corner where he swung left.",
+  "kata_ditandai": "pulling",
+  "kunci": {
+   "no": 3,
+   "definisi": "move into a certain direction",
+   "contoh": "the car pulls to the right"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "cause to move by pulling"
+   },
+   {
+    "no": 2,
+    "definisi": "direct toward itself or oneself by means of some psychological power or physical attributes"
+   },
+   {
+    "no": 4,
+    "definisi": "apply force so as to cause motion towards the source of the motion"
+   },
+   {
+    "no": 5,
+    "definisi": "perform an act, usually with a negative connotation"
+   },
+   {
+    "no": 6,
+    "definisi": "bring, take, or pull out of a container or from under a cover"
+   },
+   {
+    "no": 7,
+    "definisi": "steer into a certain direction"
+   },
+   {
+    "no": 8,
+    "definisi": "strain abnormally"
+   },
+   {
+    "no": 9,
+    "definisi": "cause to move in a certain direction by exerting a force upon, either physically or in an abstract sense"
+   },
+   {
+    "no": 10,
+    "definisi": "operate when rowing a boat"
+   },
+   {
+    "no": 11,
+    "definisi": "rein in to keep from winning a race"
+   },
+   {
+    "no": 12,
+    "definisi": "tear or be torn violently"
+   },
+   {
+    "no": 13,
+    "definisi": "hit in the direction that the player is facing when carrying through the swing"
+   },
+   {
+    "no": 14,
+    "definisi": "strip of feathers"
+   },
+   {
+    "no": 15,
+    "definisi": "remove, usually with some force or effort; also used in an abstract sense"
+   },
+   {
+    "no": 16,
+    "definisi": "take sides with; align oneself with; show strong sympathy for"
+   },
+   {
+    "no": 17,
+    "definisi": "take away"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "pulling",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to move or drive a vehicle in a particular direction",
+     "meaning_id": "mengarahkan atau mengemudikan kendaraan ke tempat tertentu",
+     "confidence": 0.95,
+     "trigger": "into the curb"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S019-5",
+  "kalimat": "“I told you, Mike”, said Rourke in an aggrieved voice.",
+  "kata_ditandai": "told",
+  "kunci": {
+   "no": 2,
+   "definisi": "let something be known",
+   "contoh": "Tell them that you will be late"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "express in words"
+   },
+   {
+    "no": 3,
+    "definisi": "narrate or give a detailed account of"
+   },
+   {
+    "no": 4,
+    "definisi": "give instructions to or direct somebody to do something with authority"
+   },
+   {
+    "no": 5,
+    "definisi": "discern or comprehend"
+   },
+   {
+    "no": 6,
+    "definisi": "inform positively and with certainty and confidence"
+   },
+   {
+    "no": 7,
+    "definisi": "give evidence"
+   },
+   {
+    "no": 8,
+    "definisi": "mark as different"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "told",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to communicate information or a statement to someone",
+     "meaning_id": "memberi tahu atau mengingatkan sesuatu",
+     "confidence": 0.95,
+     "trigger": "I told you"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S020-1",
+  "kalimat": "It was then that I availed myself of the rights of a citizen and declared the income tax unconstitutional.",
+  "kata_ditandai": "availed",
+  "kunci": {
+   "no": 1,
+   "definisi": "use to one's advantage",
+   "contoh": "He availed himself of the available resources"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "be of use to, be useful to"
+   },
+   {
+    "no": 3,
+    "definisi": "take or use"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "availed",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to make use of something useful or helpful (usually used reflexively as 'avail oneself of')",
+     "meaning_id": "memanfaatkan",
+     "confidence": 1,
+     "trigger": "myself of the rights of a citizen"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S020-2",
+  "kalimat": "I fought like a tigress but by the time I appealed my case to the Supreme Court (1937), Mr.",
+  "kata_ditandai": "fought",
+  "kunci": {
+   "no": 2,
+   "definisi": "fight against or resist strongly",
+   "contoh": "The senator said he would oppose the bill"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "be engaged in a fight; carry on a fight"
+   },
+   {
+    "no": 3,
+    "definisi": "make a strenuous or labored effort"
+   },
+   {
+    "no": 4,
+    "definisi": "exert oneself continuously, vigorously, or obtrusively to gain an end or engage in a crusade for a certain cause or person; be an advocate for"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "fought",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to strive vigorously or make a great effort against opposition",
+     "meaning_id": "berjuang dengan gigih",
+     "confidence": 1,
+     "trigger": "like a tigress"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S020-3",
+  "kalimat": "Roosevelt and his “henchmen” had done their “dirty work” all too well, even going so far as to attempt to “pack” the highest tribunal in the land in order to defeat little me.",
+  "kata_ditandai": "attempt",
+  "kunci": {
+   "no": 1,
+   "definisi": "make an effort or attempt",
+   "contoh": "He tried to shake off his fears"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "enter upon an activity or enterprise"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "attempt",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to make an effort to do, achieve, or complete something difficult",
+     "meaning_id": "mencoba",
+     "confidence": 1,
+     "trigger": "to \"pack\" the highest tribunal"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S020-4",
+  "kalimat": "Presidential coercion had succeeded not only in poisoning the courtiers, “toadies” and sycophants of the “bench” against me, but it had been so far-reaching as to discourage any lawyer in the nation from representing me!",
+  "kata_ditandai": "poisoning",
+  "kunci": {
+   "no": 1,
+   "definisi": "spoil as if by poison",
+   "contoh": "poison someone's mind"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "kill with poison"
+   },
+   {
+    "no": 3,
+    "definisi": "add poison to"
+   },
+   {
+    "no": 4,
+    "definisi": "kill by its poison"
+   },
+   {
+    "no": 5,
+    "definisi": "administer poison to"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "poisoning",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to ruin or corrupt someone's mind, attitude, or feelings toward someone else",
+     "meaning_id": "menghasut atau merusak pikiran",
+     "confidence": 1,
+     "trigger": "against me"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S020-5",
+  "kalimat": "Presidential coercion had succeeded not only in poisoning the courtiers, “toadies” and sycophants of the “bench” against me, but it had been so far-reaching as to discourage any lawyer in the nation from representing me!",
+  "kata_ditandai": "discourage",
+  "kunci": {
+   "no": 3,
+   "definisi": "admonish or counsel in terms of someone's behavior",
+   "contoh": "I warned him not to go too far"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "try to prevent; show opposition to"
+   },
+   {
+    "no": 2,
+    "definisi": "deprive of courage or hope; take away hope from; cause to feel discouraged"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "discourage",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "to prevent or show disapproval of an action, or to make someone less enthusiastic about doing something",
+     "meaning_id": "membuat enggan atau menghalangi",
+     "confidence": 1,
+     "trigger": "any lawyer in the nation from representing me"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S021-1",
+  "kalimat": "The O'Dwyers were real religious people except for Kate.",
+  "kata_ditandai": "religious",
+  "kunci": {
+   "no": 2,
+   "definisi": "having or showing belief in and reverence for a deity",
+   "contoh": "a religious man"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "concerned with sacred matters or religion or the church"
+   },
+   {
+    "no": 3,
+    "definisi": "of or relating to clergy bound by monastic vows"
+   },
+   {
+    "no": 4,
+    "definisi": "extremely scrupulous and conscientious"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "religious",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "believing in and practicing a religion",
+     "meaning_id": "religius, taat beragama",
+     "confidence": 0.98,
+     "trigger": "Whom God hath joined"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S021-2",
+  "kalimat": "Pat had been worried as hell ever since she'd lost her job on that fashion magazine.",
+  "kata_ditandai": "worried",
+  "kunci": {
+   "no": 1,
+   "definisi": "be worried, concerned, anxious, troubled, or uneasy",
+   "contoh": "I worry about my job"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "be concerned with"
+   },
+   {
+    "no": 3,
+    "definisi": "disturb the peace of mind of; afflict with mental agitation or distress"
+   },
+   {
+    "no": 4,
+    "definisi": "be on the mind of"
+   },
+   {
+    "no": 5,
+    "definisi": "lacerate by biting"
+   },
+   {
+    "no": 6,
+    "definisi": "touch or rub constantly"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "worried",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "anxious or troubled about actual or potential problems",
+     "meaning_id": "khawatir, cemas",
+     "confidence": 0.99,
+     "trigger": "lost her job"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S021-3",
+  "kalimat": "How about me trying to help her get her job back?",
+  "kata_ditandai": "trying",
+  "kunci": {
+   "no": 1,
+   "definisi": "make an effort or attempt",
+   "contoh": "He tried to shake off his fears"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "put to the test, as for its quality, or give experimental use to"
+   },
+   {
+    "no": 3,
+    "definisi": "put on trial or hear a case and sit as the judge at the trial of"
+   },
+   {
+    "no": 4,
+    "definisi": "take a sample of"
+   },
+   {
+    "no": 5,
+    "definisi": "examine or hear (evidence or a case) by judicial process"
+   },
+   {
+    "no": 6,
+    "definisi": "give pain or trouble to"
+   },
+   {
+    "no": 7,
+    "definisi": "test the limits of"
+   },
+   {
+    "no": 8,
+    "definisi": "melt (fat or lard) in order to separate out impurities"
+   },
+   {
+    "no": 9,
+    "definisi": "put on a garment in order to see whether it fits and looks nice"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "trying to",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "attempting or making an effort to do something",
+     "meaning_id": "mencoba untuk, berusaha",
+     "confidence": 0.98,
+     "trigger": "help her get her job back"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S021-4",
+  "kalimat": "How about me trying to help her get her job back?",
+  "kata_ditandai": "back",
+  "kunci": {
+   "no": 3,
+   "definisi": "in or to or toward an original condition",
+   "contoh": "he went back to sleep"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "in or to or toward a former location"
+   },
+   {
+    "no": 2,
+    "definisi": "at or to or toward the back or rear"
+   },
+   {
+    "no": 4,
+    "definisi": "in or to or toward a past time"
+   },
+   {
+    "no": 5,
+    "definisi": "in reply"
+   },
+   {
+    "no": 6,
+    "definisi": "in repayment or retaliation"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "back",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "in or into a former position or state",
+     "meaning_id": "kembali (ke keadaan semula)",
+     "confidence": 0.98,
+     "trigger": "get her job back"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S021-5",
+  "kalimat": "“But brother I cann't take a job right now”, she said with her eyes on her ice cream, “I'm going to have a baby, Francis Xavier's baby, my own husband's baby”.",
+  "kata_ditandai": "right",
+  "kunci": {
+   "no": 2,
+   "definisi": "immediately",
+   "contoh": "she called right after dinner"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "precisely, exactly"
+   },
+   {
+    "no": 3,
+    "definisi": "exactly"
+   },
+   {
+    "no": 4,
+    "definisi": "toward or on the right; also used figuratively"
+   },
+   {
+    "no": 5,
+    "definisi": "in the right manner"
+   },
+   {
+    "no": 6,
+    "definisi": "an interjection expressing agreement"
+   },
+   {
+    "no": 7,
+    "definisi": "completely"
+   },
+   {
+    "no": 8,
+    "definisi": "(Southern regional intensive) very; to a great degree"
+   },
+   {
+    "no": 9,
+    "definisi": "in accordance with moral or social standards"
+   },
+   {
+    "no": 10,
+    "definisi": "in an accurate manner"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "job right now",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "employment or work at this present moment",
+     "meaning_id": "pekerjaan saat ini / sekarang",
+     "confidence": 0.97,
+     "trigger": "take a job"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S022-1",
+  "kalimat": "“I promised him I wouldn't”.",
+  "kata_ditandai": "promised",
+  "kunci": {
+   "no": 2,
+   "definisi": "promise to undertake or give",
+   "contoh": "I promise you my best effort"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "make a promise or commitment"
+   },
+   {
+    "no": 3,
+    "definisi": "make a prediction about; tell in advance"
+   },
+   {
+    "no": 4,
+    "definisi": "give grounds for expectations"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "promised",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "made a declaration that one will do or not do something specified",
+     "meaning_id": "berjanji untuk melakukan atau tidak melakukan sesuatu",
+     "confidence": 0.98,
+     "trigger": "I promised him I wouldn't"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S022-2",
+  "kalimat": "William, he was called, in honor of the man who was at once Shelley's pensioner and his most bitter detractor.",
+  "kata_ditandai": "bitter",
+  "kunci": {
+   "no": 3,
+   "definisi": "harsh or corrosive in tone",
+   "contoh": "an acerbic tone piercing otherwise flowery prose"
+  },
+  "makna_lain": [
+   {
+    "no": 1,
+    "definisi": "marked by strong resentment or cynicism"
+   },
+   {
+    "no": 2,
+    "definisi": "very difficult to accept or bear"
+   },
+   {
+    "no": 4,
+    "definisi": "expressive of severe grief or regret"
+   },
+   {
+    "no": 5,
+    "definisi": "proceeding from or exhibiting great hostility or animosity"
+   },
+   {
+    "no": 6,
+    "definisi": "causing a sharp and acrid taste experience"
+   },
+   {
+    "no": 7,
+    "definisi": "causing a sharply painful or stinging sensation; used especially of cold"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "most bitter",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "feeling or showing deep anger and animosity",
+     "meaning_id": "paling penuh rasa benci atau permusuhan yang mendalam",
+     "confidence": 0.95,
+     "trigger": "most bitter detractor"
+    }
+   ]
+  }
+ },
+ {
+  "id": "S022-4",
+  "kalimat": "Godwin will probably be glad to hear that Mary has safely recovered from a very favorable confinement, and that her child is well”.",
+  "kata_ditandai": "probably",
+  "kunci": {
+   "no": 1,
+   "definisi": "with considerable certainty; without much doubt",
+   "contoh": "He is probably out of the country"
+  },
+  "makna_lain": [
+   {
+    "no": 2,
+    "definisi": "easy to believe on the basis of available evidence"
+   }
+  ],
+  "jawaban_lema": {
+   "word": "probably",
+   "ambiguous": false,
+   "kandidat": [
+    {
+     "meaning_en": "almost certainly; as far as one knows or can tell",
+     "meaning_id": "mungkin atau kemungkinan besar",
+     "confidence": 0.99,
+     "trigger": "will probably be glad to hear"
+    }
+   ]
+  }
+ }
+]
