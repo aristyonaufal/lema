@@ -1,0 +1,24 @@
+{
+  "dibuat": "2026-09-14, sebelum model dijalankan",
+  "kunci": "Label makna WordNet dari anotator manusia di SemCor (fiksi Brown), disalin apa adanya ke kasus.json. Tidak ada kunci yang ditulis oleh model.",
+  "penilai_makna": "Claude, bukan Gemini, supaya model yang diuji tidak menilai jawabannya sendiri. Penilai membaca kalimat, kata yang ditandai, definisi makna kunci, daftar makna WordNet lain untuk kata itu, dan jawaban Lema (candidates, ambiguous). Semua jawaban mentah disimpan di hasil.json supaya bisa dinilai ulang.",
+  "deteksi": {
+    "tepat": "kata yang ditandai muncul di hasil sebagai word atau lemma, tanpa membedakan huruf besar kecil",
+    "tepat-frasa": "hasil berupa frasa yang memuat kata yang ditandai (misalnya 'leaned forward' untuk 'leaned'); dihitung terdeteksi, dicatat terpisah",
+    "terlewat": "kata ditandai tetapi tidak ada di hasil",
+    "tambahan": "entri di hasil yang tidak cocok dengan kata mana pun yang ditandai"
+  },
+  "makna": {
+    "benar": "makna utama (candidates[0]) sama dengan makna kunci",
+    "benar-ragu": "ambiguous bernilai true dan makna kunci ada di antara kandidat",
+    "dekat": "makna utama sesuai makna WordNet lain dari kata itu yang begitu dekat dengan kunci sehingga pembaca memahami kalimatnya dengan cara yang sama; penilai wajib menyebut nomor makna itu dan alasannya",
+    "salah": "selain tiga di atas"
+  },
+  "metrik_utama": "tepat untuk pembaca = (benar + benar-ragu + dekat) / kata yang terdeteksi",
+  "metrik_ketat": "benar / kata yang terdeteksi",
+  "dilaporkan_terpisah": ["jebakan vs umum", "oval vs pensil", "bersih vs foto"],
+  "pembanding": "Arti pertama kamus (makna WordNet nomor 1): menurut cara kasus dipilih, benar 0% untuk 500 kata jebakan dan 100% untuk 500 kata umum.",
+  "keandalan": "Persentase halaman yang terjawab pada percobaan pertama, dan yang terjawab dalam tiga percobaan. Halaman yang tetap gagal dilaporkan sebagai gagal dan kata kata di dalamnya tidak masuk penyebut akurasi makna.",
+  "selang_kepercayaan": "Wilson 95%",
+  "cek_manusia": "50 kata diambil acak (seed 20260914) setelah penilaian, untuk dicek sendiri oleh pemilik proyek. Hasil cek dilaporkan terpisah, bukan untuk mengubah nilai penilai."
+}
