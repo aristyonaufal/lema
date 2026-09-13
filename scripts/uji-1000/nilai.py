@@ -224,7 +224,7 @@ def rekap():
     L.append("7. **Glos yang menyebut dua makna sekaligus** ('A atau B') setidaknya pada 5 kata dinilai benar atau dekat karena salah satunya cocok. Aturan tidak mengatur kasus ini secara eksplisit; pengaruhnya di bawah 1 poin persentase.")
     L.append("8. **80% jawaban datang dari model cadangan terkecil** (gemini-3.1-flash-lite), karena API gratis mengembalikan 429 untuk tiga model utama sejak permintaan ke-7. Hasil ini terutama menggambarkan model itu.")
     L.append("9. **Lema tidak pernah menandai ragu** (ambiguous) di 938 jawaban, jadi fitur dua makna tidak teruji di sini.")
-    L.insert(3, "## Kesimpulan singkat\n")
+    L.insert(2, "## Kesimpulan singkat\n")
     L.insert(3, (f"Dari 1.000 kata yang ditandai di 200 halaman fiksi berlabel manusia, Lema menemukan {len(detected)} kata dan memberi makna yang tepat "
                  f"untuk pembaca pada {100 * good / len(detected):.1f}% di antaranya ({100 * labels['benar'] / len(detected):.1f}% dengan penilaian paling ketat). "
                  "Pada kata jebakan, yang arti pertama kamusnya salah, Lema tetap tepat untuk pembaca pada sebagian besar kasus, sementara arti pertama kamus salah semua. "

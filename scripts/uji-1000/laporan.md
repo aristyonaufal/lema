@@ -2,11 +2,11 @@
 
 Dijalankan 2026-09-13T20:24 sampai 2026-09-13T20:40 (UTC) lewat `/api/lookup` yang sama dengan produksi, dari server lokal, dalam mode tandai. Kasus, kunci, dan aturan di-commit sebelum model dijalankan: commit `8b0e549`. Laporan ini dibuat otomatis oleh `scripts/uji-1000/nilai.py`.
 
-## Ringkasan
+## Kesimpulan singkat
 
 Dari 1.000 kata yang ditandai di 200 halaman fiksi berlabel manusia, Lema menemukan 938 kata dan memberi makna yang tepat untuk pembaca pada 94.5% di antaranya (78.7% dengan penilaian paling ketat). Pada kata jebakan, yang arti pertama kamusnya salah, Lema tetap tepat untuk pembaca pada sebagian besar kasus, sementara arti pertama kamus salah semua. Pada kata umum, Lema sedikit di bawah kamus. Masalah terbesar yang ditemukan bukan akurasi, melainkan kuota API: tiga model utama menolak sejak permintaan ke-7, sehingga hampir semua jawaban datang dari model cadangan terkecil.
 
-## Kesimpulan singkat
+## Ringkasan
 
 | Yang diukur | Hasil |
 |---|---|
