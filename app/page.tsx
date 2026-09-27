@@ -246,6 +246,22 @@ export default function Beranda() {
           )}
         </aside>
       </div>
+
+      {/* Jalan ke cadangan dari HP. Sidebar cuma ada mulai lebar laptop,
+          sedangkan pengguna Lema justru kebanyakan di HP, dan merekalah yang
+          paling mungkin kehilangan koleksi karena berganti perangkat. */}
+      <Link
+        href="/data"
+        className="text-muted hover:text-foreground border-line flex items-center justify-between gap-3 border-t pt-5 text-sm lg:hidden"
+      >
+        <span>
+          Simpan cadangan koleksi
+          <span className="text-faint block text-xs">
+            Koleksimu cuma ada di browser ini. Satu berkas bikin aman.
+          </span>
+        </span>
+        <span aria-hidden="true" className="text-faint shrink-0">›</span>
+      </Link>
     </main>
   );
 }

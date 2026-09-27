@@ -33,6 +33,24 @@ export type Entry = {
   // yang ditandai di foto dari kata yang diketik.
   batch?: string;
   marked?: boolean;
+  // Makna yang dibetulkan pembaca ketika model salah pilih.
+  //
+  // Sengaja disimpan di samping `result`, bukan menimpanya. Dua alasan.
+  // Pertama, prinsip 3 PRD: jawaban model ditampilkan apa adanya, termasuk
+  // ketika ternyata keliru, dan pembaca harus bisa melihat kembali apa yang
+  // tadinya dijawab. Kedua, koreksi yang menimpa jawaban akan menghapus satu
+  // satunya bukti bahwa model pernah salah di kata itu, padahal justru itu
+  // bahan paling berharga untuk mengukur ketepatan pada buku sungguhan.
+  correction?: {
+    meaning_id: string;
+    meaning_en: string;
+    // 'lain' berarti dipilih dari daftar makna lain yang sudah disediakan model,
+    // 'sendiri' berarti diketik pembaca. Dibedakan karena keduanya menceritakan
+    // kesalahan yang berbeda: salah memilih di antara makna yang ia tahu, atau
+    // tidak punya makna yang benar sama sekali.
+    source: 'lain' | 'sendiri';
+    at: number;
+  };
 };
 
 export type Book = {
@@ -294,6 +312,61 @@ export function markKnown(db: Db, entryId: string): Db {
 
 export function remove(db: Db, entryId: string): Db {
   return { ...db, entries: db.entries.filter((e) => e.id !== entryId) };
+}
+
+// Makna yang berlaku untuk satu kata: koreksi pembaca kalau ada, kalau tidak
+// jawaban model. Satu satunya pintu yang boleh dipakai layar untuk menampilkan
+// makna, supaya tidak ada tempat yang tertinggal masih menunjukkan makna lama
+// setelah dibetulkan.
+export function mainMeaning(entry: Entry): {
+  meaning_id: string;
+  meaning_en: string;
+  corrected: boolean;
+} {
+  const fix = entry.correction;
+  if (fix) return { meaning_id: fix.meaning_id, meaning_en: fix.meaning_en, corrected: true };
+  const main = entry.result?.candidates?.[0];
+  return { meaning_id: main?.meaning_id ?? '', meaning_en: main?.meaning_en ?? '', corrected: false };
+}
+
+// Membetulkan makna yang salah dipilih model. Sebelum ini, satu satunya
+// tanggapan yang tersedia untuk jawaban yang keliru adalah menghapus katanya,
+// yang berarti kehilangan kalimat asal dari buku sekaligus.
+//
+// Makna kosong dianggap pembatalan, bukan koreksi kosong.
+export function correctMeaning(
+  db: Db,
+  entryId: string,
+  meaning: { meaning_id: string; meaning_en?: string; source: 'lain' | 'sendiri' },
+  at = Date.now(),
+): Db {
+  const meaningId = meaning.meaning_id.trim();
+  if (!meaningId) return clearCorrection(db, entryId);
+  return {
+    ...db,
+    entries: db.entries.map((e) => (e.id === entryId
+      ? {
+          ...e,
+          correction: {
+            meaning_id: meaningId,
+            meaning_en: (meaning.meaning_en ?? '').trim(),
+            source: meaning.source,
+            at,
+          },
+        }
+      : e)),
+  };
+}
+
+export function clearCorrection(db: Db, entryId: string): Db {
+  return {
+    ...db,
+    entries: db.entries.map((e) => {
+      if (e.id !== entryId) return e;
+      const { correction: _dropped, ...rest } = e;
+      return rest;
+    }),
+  };
 }
 
 // Naik satu anak tangga kalau ingat, balik ke awal kalau lupa.

@@ -8,7 +8,7 @@ import { findTextRanges, sentenceSegments } from '@/lib/text-matches';
 import { ProgressBar } from '@/components/ui';
 import QuizCard from '@/components/QuizCard';
 import { buildQuestion, type Question } from '@/lib/quiz';
-import { due, grade, markKnown, practicePool, LADDER, type Entry } from '@/lib/store';
+import { LADDER, due, grade, mainMeaning, markKnown, practicePool, type Entry } from '@/lib/store';
 
 export default function Review() {
   return (
@@ -131,7 +131,7 @@ function ReviewSession() {
   }
 
   const r = entry.result!;
-  const main = r.candidates[0];
+  const main = mainMeaning(entry);
   const entryBook = db.books.find((b) => b.id === entry.bookId);
   const target = r.lemma || r.word;
 

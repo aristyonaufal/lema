@@ -1,9 +1,9 @@
 'use client';
 
-import { Fragment, useState } from 'react';
+import { Fragment, useId, useState } from 'react';
 import Link from 'next/link';
-import type { Entry } from '@/lib/store';
-import type { Candidate } from '@/lib/types';
+import { mainMeaning, type Entry } from '@/lib/store';
+import type { Candidate, OtherSense } from '@/lib/types';
 import { findTextRanges, sentenceSegments } from '@/lib/text-matches';
 import QuizCard from '@/components/QuizCard';
 import type { Question } from '@/lib/quiz';
@@ -70,7 +70,96 @@ function Explanation({ candidate, index, inSentence }: {
   );
 }
 
-export default function SenseMap({ entry, onKnown, onRemove, onRetry, quizFor }: {
+export type Correction = { meaning_id: string; meaning_en: string; source: 'lain' | 'sendiri' };
+
+const sameMeaning = (a: string, b: string) => a.trim().toLowerCase() === b.trim().toLowerCase();
+
+// Pilihan makna pengganti ketika model salah.
+//
+// Yang ditawarkan lebih dulu adalah makna yang sudah ada di kartu ini: kandidat
+// lain dan daftar "makna lain". Alasannya sederhana, pada sebagian besar
+// kekeliruan model sebenarnya sudah menyebut makna yang benar, cuma salah
+// memilih mana yang dipakai di halaman itu. Mengetuk satu baris jauh lebih
+// murah daripada mengetik, dan itu prinsip 5 PRD.
+function CorrectionPicker({ choices, onPick, onCancel }: {
+  choices: OtherSense[];
+  onPick: (correction: Correction) => void;
+  onCancel: () => void;
+}) {
+  const [own, setOwn] = useState('');
+  const [ownEn, setOwnEn] = useState('');
+  // Dua kartu bisa terbuka berdampingan di koleksi, jadi id labelnya tidak
+  // boleh ditulis tetap.
+  const fieldId = useId();
+
+  return (
+    <section aria-label="Betulkan makna" className="border-accent/40 bg-accent-soft/40 flex flex-col gap-3.5 rounded-xl border p-3.5">
+      <div>
+        <p className="text-accent eyebrow">Mana yang benar?</p>
+        <p className="text-muted mt-1 text-sm leading-relaxed">
+          Jawaban model tetap disimpan, jadi kamu bisa balikin kapan saja.
+        </p>
+      </div>
+
+      {choices.length > 0 && (
+        <ul className="flex flex-col gap-2">
+          {choices.map((choice, index) => (
+            <li key={index}>
+              <button
+                onClick={() => onPick({ ...choice, source: 'lain' })}
+                className="card hover:border-accent/60 w-full p-3 text-left text-sm leading-relaxed transition-colors"
+              >
+                {choice.meaning_id}
+                {choice.meaning_en && (
+                  <span lang="en" className="text-muted block text-xs">{choice.meaning_en}</span>
+                )}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          if (own.trim()) onPick({ meaning_id: own, meaning_en: ownEn, source: 'sendiri' });
+        }}
+        className="border-line flex flex-col gap-2 border-t pt-3"
+      >
+        <label htmlFor={`koreksi-${fieldId}`} className="eyebrow">
+          {choices.length > 0 ? 'Atau tulis sendiri' : 'Tulis makna yang benar'}
+        </label>
+        <input
+          id={`koreksi-${fieldId}`}
+          value={own}
+          onChange={(event) => setOwn(event.target.value)}
+          placeholder="Makna yang dipakai di halamanmu"
+          maxLength={120}
+          className="border-line bg-surface focus:border-accent min-h-11 rounded-xl border px-3 text-base outline-none"
+        />
+        <input
+          value={ownEn}
+          onChange={(event) => setOwnEn(event.target.value)}
+          placeholder="Versi Inggrisnya (boleh dikosongkan)"
+          aria-label="Makna dalam Bahasa Inggris, boleh dikosongkan"
+          lang="en"
+          maxLength={120}
+          className="border-line bg-surface focus:border-accent min-h-11 rounded-xl border px-3 text-base outline-none"
+        />
+        <div className="flex flex-wrap gap-2 pt-1">
+          <button type="submit" disabled={!own.trim()} className="btn btn-primary text-sm">
+            Simpan makna ini
+          </button>
+          <button type="button" onClick={onCancel} className="btn btn-quiet text-sm">
+            Batal
+          </button>
+        </div>
+      </form>
+    </section>
+  );
+}
+
+export default function SenseMap({ entry, onKnown, onRemove, onRetry, quizFor, onCorrect, onUncorrect }: {
   entry: Entry;
   onKnown?: () => void;
   onRemove?: () => void;
@@ -78,10 +167,15 @@ export default function SenseMap({ entry, onKnown, onRemove, onRetry, quizFor }:
   // Soal untuk membuktikan "Aku udah tahu kata ini". Kalau tidak diberikan,
   // atau kata ini tidak punya pengecoh, tombolnya langsung menandai.
   quizFor?: () => Question | null;
+  // Membetulkan makna yang salah. Kalau tidak diberikan, tombolnya tidak muncul
+  // sama sekali, misalnya pada layar review yang sedang menguji ingatan.
+  onCorrect?: (correction: Correction) => void;
+  onUncorrect?: () => void;
 }) {
   // Kuis gerbang sebelum kata ditandai sudah tahu. Didaftarkan sebelum semua
   // pengembalian awal di bawah, sesuai aturan urutan hook React.
   const [quiz, setQuiz] = useState<Question | null>(null);
+  const [correcting, setCorrecting] = useState(false);
 
   if (entry.status === 'pending') {
     return (
@@ -144,6 +238,39 @@ export default function SenseMap({ entry, onKnown, onRemove, onRetry, quizFor }:
   if (!notFound && targets.length === 0) targets = findTextRanges(sentence, r.lemma);
   const triggers = candidates.map((candidate) => notFound ? [] : findTextRanges(sentence, candidate.trigger));
   const segments = sentenceSegments(sentence, targets, triggers);
+
+  const meaning = mainMeaning(entry);
+  // Yang ditawarkan sebagai pengganti: semua makna yang sudah disebut model di
+  // kartu ini, dikurangi yang sedang dipakai, tanpa kembar.
+  const choices: OtherSense[] = [];
+  for (const option of [...r.candidates, ...r.other_senses]) {
+    const text = option?.meaning_id?.trim();
+    if (!text) continue;
+    if (sameMeaning(text, meaning.meaning_id)) continue;
+    if (choices.some((c) => sameMeaning(c.meaning_id, text))) continue;
+    choices.push({ meaning_id: text, meaning_en: option.meaning_en ?? '' });
+  }
+
+  function pick(correction: Correction) {
+    onCorrect?.(correction);
+    setCorrecting(false);
+  }
+
+  // Tombol pembuka koreksi. Sengaja dituliskan dengan kalimat pembaca ("bukan
+  // ini maknanya"), bukan istilah aplikasi ("sunting"), karena yang dirasakan
+  // pembaca memang ketidakcocokan, bukan keinginan menyunting.
+  const correctionControls = onCorrect && !correcting && (
+    <div className="flex flex-wrap items-center gap-2">
+      <button onClick={() => setCorrecting(true)} className="btn btn-quiet text-muted text-sm">
+        {meaning.corrected ? 'Betulkan lagi' : 'Bukan ini maknanya'}
+      </button>
+      {meaning.corrected && onUncorrect && (
+        <button onClick={onUncorrect} className="btn btn-quiet text-muted text-sm">
+          Kembalikan jawaban model
+        </button>
+      )}
+    </div>
+  );
 
   function tryKnown() {
     const question = quizFor?.() ?? null;
@@ -262,7 +389,10 @@ export default function SenseMap({ entry, onKnown, onRemove, onRetry, quizFor }:
         <p className="text-muted text-sm leading-relaxed">Model masih ragu, tetapi kandidat makna kedua belum tersedia.</p>
       )}
 
-      {alt ? (
+      {/* Kartu ragu berhenti menampilkan dua kandidat begitu pembaca memutuskan
+          sendiri mana yang dipakai di halamannya. Keraguan model tetap dicatat
+          di bawah, tetapi yang dibaca duluan adalah keputusan pembaca. */}
+      {alt && !meaning.corrected ? (
         <div className="flex flex-col gap-3">
           <div className="border-warn/40 bg-warn-soft/50 flex items-start gap-2.5 rounded-xl border p-3">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="text-warn mt-px h-5 w-5 shrink-0">
@@ -294,12 +424,38 @@ export default function SenseMap({ entry, onKnown, onRemove, onRetry, quizFor }:
       ) : (
         <section aria-label={notFound ? 'Arti umum' : incompleteAmbiguity ? 'Makna yang tersedia' : 'Makna di sini'} className="flex flex-col gap-3.5">
           <div>
-            <p className="text-accent eyebrow mb-1.5">{notFound ? 'Arti umum' : incompleteAmbiguity ? 'Makna yang tersedia' : 'Makna di sini'}</p>
-            <h3 className="text-xl leading-snug font-semibold">{main.meaning_id}</h3>
-            <p lang="en" className="text-muted mt-1 text-sm leading-relaxed">{main.meaning_en}</p>
+            <div className="mb-1.5 flex flex-wrap items-center gap-2">
+              <p className="text-accent eyebrow">
+                {meaning.corrected ? 'Makna menurut kamu' : notFound ? 'Arti umum' : incompleteAmbiguity ? 'Makna yang tersedia' : 'Makna di sini'}
+              </p>
+              {meaning.corrected && (
+                <span className="bg-sunken text-muted rounded-full px-2 py-0.5 text-[0.6875rem]">
+                  Kamu betulkan
+                </span>
+              )}
+            </div>
+            <h3 className="text-xl leading-snug font-semibold">{meaning.meaning_id}</h3>
+            {meaning.meaning_en && (
+              <p lang="en" className="text-muted mt-1 text-sm leading-relaxed">{meaning.meaning_en}</p>
+            )}
           </div>
-          {!notFound && <Explanation candidate={main} index={0} inSentence={triggers[0].length > 0} />}
+
+          {/* Jawaban model tidak dibuang saat dibetulkan. Prinsip 3 PRD berlaku
+              dua arah: kalau keraguan model ditampilkan, kekeliruannya juga. */}
+          {meaning.corrected && (
+            <p className="text-muted border-line border-l-2 pl-3 text-sm leading-relaxed">
+              Model tadinya menjawab <q>{main.meaning_id}</q>.
+            </p>
+          )}
+
+          {!notFound && !meaning.corrected && (
+            <Explanation candidate={main} index={0} inSentence={triggers[0].length > 0} />
+          )}
         </section>
+      )}
+
+      {correcting && onCorrect && (
+        <CorrectionPicker choices={choices} onPick={pick} onCancel={() => setCorrecting(false)} />
       )}
 
       {r.caution_id && (
@@ -326,12 +482,19 @@ export default function SenseMap({ entry, onKnown, onRemove, onRetry, quizFor }:
         </section>
       )}
 
-      {onKnown && !entry.known && (
-        <button onClick={tryKnown} className="btn btn-ghost text-muted hover:text-foreground w-fit text-sm">
-          Aku udah tahu kata ini
-        </button>
+      {/* Baris tindakan hanya digambar kalau memang ada isinya, supaya kartu di
+          layar review tidak berakhir dengan garis pemisah yang menggantung. */}
+      {(onKnown || entry.known || correctionControls) && (
+      <div className="border-line flex flex-wrap items-center gap-2 border-t pt-4">
+        {onKnown && !entry.known && (
+          <button onClick={tryKnown} className="btn btn-ghost text-muted hover:text-foreground text-sm">
+            Aku udah tahu kata ini
+          </button>
+        )}
+        {entry.known && <p className="text-muted text-sm">Ditandai sudah tahu, tidak akan direview.</p>}
+        {correctionControls}
+      </div>
       )}
-      {entry.known && <p className="text-muted text-sm">Ditandai sudah tahu, tidak akan direview.</p>}
     </article>
   );
 }
