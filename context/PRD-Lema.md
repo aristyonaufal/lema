@@ -1,8 +1,8 @@
-# PRD Lema v1.1
+# PRD Lema v1.2
 
-Dokumen ini menggambarkan Lema **seperti yang benar benar dibangun dan hidup** di `lema-lemon.vercel.app`, bukan rancangan awalnya. Versi pertama dokumen ini (v1, 7 September 2026) adalah spesifikasi build tiga hari; selama pengerjaan, sebagian keputusannya diubah setelah aplikasinya dicoba. Apa yang berubah dan alasannya dicatat di bagian 17.
+Dokumen ini menggambarkan Lema **seperti yang benar benar dibangun dan hidup** di `lema-lemon.vercel.app`, bukan rancangan awalnya. Versi pertama dokumen ini (v1, 7 September 2026) adalah spesifikasi build tiga hari; selama pengerjaan, sebagian keputusannya diubah setelah aplikasinya dicoba. Apa yang berubah dan alasannya dicatat di bagian 17. Versi 1.2 menambahkan cadangan koleksi dan koreksi makna, keduanya lahir dari perbandingan dengan aplikasi sejenis, bukan dari rancangan awal.
 
-Status: v1 hidup di produksi. Fitur terakhir naik 11 September 2026.
+Status: v1 hidup di produksi. Fitur terakhir naik 27 September 2026.
 Batas kirim portfolio: 12 September 2026
 Versi rancangan awal: riwayat git, misalnya `git show v1-sebelum-tandai-foto:context/PRD-Lema.md`
 
@@ -10,7 +10,7 @@ Versi rancangan awal: riwayat git, misalnya `git show v1-sebelum-tandai-foto:con
 
 ## 1. Ringkasan
 
-Lema membantu orang Indonesia yang belajar bahasa Inggris lewat **buku kertas** memahami kata yang maknanya bergantung pada konteks, tanpa harus mengetik. Pembaca memotret halaman yang sedang dibaca, lalu menandai kata yang membuatnya berhenti: mengetuknya langsung di foto, atau cukup menggaris bawahinya dengan pensil di buku sebelum difoto. Lema menentukan makna yang dipakai **di halaman itu**, menunjukkan petunjuk di kalimat yang menentukannya, menyimpannya ke koleksi per buku, lalu menguji ingatan pembaca lewat review berjarak dan kuis yang pengecohnya adalah makna lain dari kata yang sama.
+Lema membantu orang Indonesia yang belajar bahasa Inggris lewat **buku kertas** memahami kata yang maknanya bergantung pada konteks, tanpa harus mengetik. Pembaca memotret halaman yang sedang dibaca, lalu menandai kata yang membuatnya berhenti: mengetuknya langsung di foto, atau cukup menggaris bawahinya dengan pensil di buku sebelum difoto. Lema menentukan makna yang dipakai **di halaman itu**, menunjukkan petunjuk di kalimat yang menentukannya, menyimpannya ke koleksi per buku, lalu menguji ingatan pembaca lewat review berjarak dan kuis yang pengecohnya adalah makna lain dari kata yang sama. Kalau modelnya salah pilih, pembaca yang memegang buku berhak membetulkannya, dan seluruh koleksi bisa dibawa keluar sebagai satu berkas.
 
 Kalimat pembeda: **kamus memberimu semua arti; Lema memberimu arti yang dipakai di halamanmu, lalu memastikan kamu tidak perlu mencarinya dua kali.**
 
@@ -51,7 +51,9 @@ Lapis pertama yang membuat orang membuka aplikasi. Lapis kedua yang membuat apli
 | Google Translate | Makna kamus, cepat, gratis | Lepas konteks, sering salah pilih makna, tidak menyimpan apa apa |
 | ChatGPT atau Claude | Penjelasan kontekstual yang bagus | Butuh prompt tiap kali, dan chat adalah aliran yang tidak pernah dibuka lagi. Tidak ada yang menagih balik |
 | Readlang, LingQ | Klik kata di teks digital, penjelasan sadar konteks, spaced repetition | Wajib teks digital. Pembaca buku kertas tidak punya jalan |
-| Kindle Vocabulary Builder | Tap kata sambil baca, tersimpan otomatis, jadi flashcard | Hanya di dalam ekosistem Kindle, dan reviewnya memakai kalimat asli yang sama |
+| Kindle Vocabulary Builder | Tap kata sambil baca, tersimpan otomatis, jadi flashcard | Hanya di dalam ekosistem Kindle, reviewnya memakai kalimat asli yang sama, dan **tidak ada ekspor sama sekali**. Keluhan itu yang paling sering muncul di ulasannya, dan jadi alasan Lema punya ekspor sejak awal |
+
+Satu catatan yang perlu diperiksa sendiri sebelum dipakai di forum: sumber tentang Kindle saling bertentangan. Good e-Reader mengutip pengumuman Amazon bahwa fitur Flashcards dihapus pada November 2024 dan menyebut Vocabulary Builder sebagai nama lain fitur yang sama, sementara artikel perbandingan September 2026 masih menuliskannya sebagai fitur hidup. Kemungkinan besar yang dihapus hanya Flashcards buatan sendiri. Jangan mengklaim Kindle sudah kehilangan fiturnya tanpa membuktikannya di perangkat sungguhan.
 
 Klaim Lema tetap satu, dan jangan diperlebar: **buku kertas, dan bahasa Indonesia sebagai bahasa penjelas.** Menandai kata dengan pensil lalu memotretnya belakangan memperkuat klaim itu, karena tidak ada alat di atas yang bisa membaca coretan di buku.
 
@@ -63,7 +65,7 @@ Enam aturan ini yang dipakai untuk menyelesaikan perdebatan desain. Prinsip 1 di
 
 1. **Pembaca yang memilih kapan jawabannya muncul.** Tombol utama membuka makna saat itu juga, karena di uji pertama pembaca justru ingin langsung paham. Jalan tunda tetap ada dan tetap setara: "Simpan, lanjut baca", atau menggaris bawahi dengan pensil dan memotretnya di akhir bab. *Rancangan awal berbunyi "baca dulu, jawab belakangan", dengan jawaban ditunda sebagai bawaan.*
 2. **Ajari cara menebak, bukan cuma kasih jawaban.** Setiap jawaban wajib menunjukkan kata pemicu di kalimat yang menentukan makna itu. Kuis melanjutkan prinsip ini: pengecohnya makna lain dari kata yang sama, jadi yang dilatih adalah memilih makna sesuai konteks.
-3. **Ragu itu ditampilkan, bukan disembunyikan.** Percaya diri palsu adalah penyebab kebingungan yang mau dihilangkan. Kalau model tidak yakin, dua kandidat ditampilkan sejajar. Kata yang ditandai ragu tidak dijadikan soal kuis, karena memang tidak punya satu jawaban benar.
+3. **Ragu itu ditampilkan, bukan disembunyikan, dan begitu juga keliru.** Percaya diri palsu adalah penyebab kebingungan yang mau dihilangkan. Kalau model tidak yakin, dua kandidat ditampilkan sejajar. Kata yang ditandai ragu tidak dijadikan soal kuis, karena memang tidak punya satu jawaban benar. Prinsip ini berlaku dua arah: ketika pembaca membetulkan makna yang salah, jawaban model tidak dihapus melainkan turun menjadi catatan, dan koreksinya bisa dibatalkan kapan saja. Yang memegang bukunya adalah pembaca, jadi keputusan terakhir memang miliknya.
 4. **Nol setup.** Tidak ada akun, tidak ada onboarding, tidak ada pemilihan level. Satu pertanyaan saja di awal: judul buku yang sedang dibaca.
 5. **Jangan suruh pembaca mengetik kata yang sedang dilihatnya.** Foto sudah memuat katanya. Mengetik tetap tersedia sebagai jalan cadangan, bukan jalan utama.
 6. **Klaim "sudah ingat" harus dibuktikan.** Tombol yang menaikkan jadwal review atau mengeluarkan kata dari review harus lolos kuis dulu. Jadwal berjarak hanya jujur kalau dasarnya jawaban yang diuji, bukan tombol yang ditekan.
@@ -85,15 +87,20 @@ Enam aturan ini yang dipakai untuk menyelesaikan perdebatan desain. Prinsip 1 di
 - **Kuis** dengan dua fungsi: gerbang sebelum klaim "sudah ingat", dan tab sendiri dari semua buku
 - Mode latihan kapan saja, tanpa menggeser jadwal
 - Tampilan responsif: bilah bawah di HP, sidebar kiri di laptop
+- **Cadangan koleksi**: seluruh koleksi keluar sebagai satu berkas dan bisa masuk lagi, plus ekspor CSV untuk Anki atau spreadsheet
+- **Koreksi makna**: makna yang salah dipilih model bisa dibetulkan dengan satu ketukan atau ditulis sendiri, tanpa menghapus jawaban model
 
 ### Keluar, dan jangan diributkan lagi
 
 Akun dan login, sinkron antar perangkat, audio dan pelafalan, mode sosial atau papan peringkat, penjelasan kalimat utuh, dukungan bahasa selain Inggris ke Indonesia, aplikasi native iOS.
 
+Cadangan lewat berkas bukan sinkronisasi, dan sengaja tidak dipasarkan sebagai itu. Yang dijanjikannya cuma satu: koleksi punya jalan keluar, dan pemindahan antar perangkat dilakukan pengguna sendiri.
+
 ### Yang pindah dari "keluar" ke "masuk", dan kenapa
 
 - **Kuis pilihan ganda.** Rancangan awal mengeluarkannya karena takut lingkup melebar. Masuk kembali setelah jelas bentuknya bisa melayani prinsip 2: pengecoh diambil dari makna lain kata yang sama, tanpa panggilan model tambahan, jadi yang dilatih tetap pemilihan makna sesuai konteks, bukan hafalan arti.
 - **Menandai langsung di atas gambar.** Rancangan awal mengeluarkannya karena membayangkan pengenalan teks dengan kotak koordinat per kata. Yang dibangun tidak memakai itu sama sekali: aplikasi menggambar oval magenta di titik yang diketuk, dan model yang membaca kata di dalam oval.
+- **Cadangan lewat berkas.** Rancangan awal tidak menyebutnya karena menganggap penyimpanan tanpa akun sudah cukup sederhana. Yang terlewat: sederhana bukan berarti aman. Tanpa jalan keluar, satu kali membersihkan data browser menghapus seluruh hasil sebulan membaca, dan itu melanggar hierarki masalah di bagian 2, yang menyebut penyimpanan sebagai hal terakhir yang boleh dikorbankan.
 
 ---
 
@@ -140,10 +147,15 @@ Layar paling penting, dan yang jadi tangkapan layar utama di portfolio. Urutan d
 - Kalau model ragu: dua kandidat sejajar, masing masing dengan pemicu, alasan, dan keyakinannya sendiri
 - Kalau kata tidak ditemukan di halaman: dikatakan terang terangan, disertai potongan teks yang terbaca dari foto
 - Tombol "Aku udah tahu kata ini", dijaga kuis
+- Tombol "Bukan ini maknanya", yang membuka pemilih makna pengganti
+
+Pemilih itu menawarkan lebih dulu makna yang sudah ada di kartu, yaitu kandidat lain dan daftar makna lain, karena pada sebagian besar kekeliruan model sebenarnya sudah menyebut makna yang benar dan cuma salah memilih mana yang dipakai di halaman itu. Mengetuk satu baris lebih murah daripada mengetik, sesuai prinsip 5. Kolom teks tetap ada untuk kasus model tidak menyebutnya sama sekali.
+
+Setelah dibetulkan, makna pembaca yang tampil besar di atas, jawaban model turun menjadi satu baris catatan, dan ada tombol "Kembalikan jawaban model". Kartu ragu berhenti menampilkan dua kandidat sejajar begitu pembaca memutuskan, karena keraguannya sudah terjawab oleh orang yang memegang bukunya. Layar review tidak menampilkan tombol koreksi sama sekali: di sana yang sedang diuji adalah ingatan, dan menyunting jawaban di tengah ujian mengaburkan keduanya.
 
 ### 8.4 Koleksi (`/kata`)
 
-Daftar ringkas per buku: satu baris berisi kata dan arti singkatnya, dengan penanda "Ragu", "Tidak ketemu di halaman", atau "Sudah tahu". Kartu makna penuh baru digambar setelah barisnya diketuk. Penyaring: semua, siap dibaca, diproses, gagal, sudah tahu. `?buku=<id>` menyaring ke satu buku, dibuka dari rak buku di beranda atau sidebar. `?entry=<id>` membuka kata tertentu dalam keadaan terbuka, termasuk semua kata hasil satu foto mode tandai.
+Daftar ringkas per buku: satu baris berisi kata dan arti singkatnya, dengan penanda "Ragu", "Tidak ketemu di halaman", "Sudah tahu", atau "Kamu betulkan". Arti singkat yang ditampilkan selalu makna yang berlaku, jadi kata yang sudah dibetulkan tidak pernah lagi menunjukkan jawaban lama model di layar mana pun. Kartu makna penuh baru digambar setelah barisnya diketuk. Penyaring: semua, siap dibaca, diproses, gagal, sudah tahu. `?buku=<id>` menyaring ke satu buku, dibuka dari rak buku di beranda atau sidebar. `?entry=<id>` membuka kata tertentu dalam keadaan terbuka, termasuk semua kata hasil satu foto mode tandai.
 
 ### 8.5 Review (`/review`)
 
@@ -160,6 +172,24 @@ Tangga tetap 1, 3, 7, 21 hari. Riwayat "pernah lolos review" hanya pernah beruba
 ### 8.6 Kuis (`/kuis`)
 
 Satu sesi paling banyak sepuluh soal dari semua buku dan semua jadwal, termasuk kata yang sudah ditandai tahu. Soal berupa kalimat baru dengan empat pilihan makna; pengecoh diambil lebih dulu dari makna lain kata yang sama, sisanya dari arti kata lain di koleksi. Setelah menjawab: jawaban benar hijau, pilihan salah merah, lalu makna dalam bahasa Inggris dan kalimat asal dari buku. Akhir sesi menampilkan skor dan kata yang terlewat, masing masing bertaut ke kartunya. Tab ini tidak mengubah jadwal.
+
+### 8.7 Cadangan (`/data`)
+
+Ada karena satu konsekuensi dari pilihan tanpa akun: koleksi hanya hidup di satu browser, dan membersihkan data situs atau berganti HP sama saja dengan kehilangan semuanya.
+
+- Tiga angka isi koleksi: jumlah buku, jumlah kata, jumlah yang pernah dibetulkan
+- "Simpan cadangan" mengunduh satu berkas JSON bernama `lema-<tanggal>.json`, berisi semua buku, kata, makna, jadwal review, dan koreksi
+- "Ekspor buat Anki (.csv)" mengunduh tabel mendatar untuk aplikasi kartu hafalan atau spreadsheet, diawali BOM supaya Excel membaca UTF-8 dengan benar
+- "Pilih berkas cadangan" menampilkan isi berkas lebih dulu, dan belum mengubah apa pun sampai pengguna memilih tindakan
+
+Dua tindakan tersedia setelah berkas dibaca:
+
+- **Gabung** menambahkan yang belum ada. Buku dicocokkan lewat judul yang dinormalkan, aturan yang sama dengan `addBook`, sehingga "Sapiens" dari HP lama menyatu dengan "sapiens" di HP baru dan tidak menjadi dua rak. Kata yang id-nya sudah ada dilewati, dan yang menang adalah yang sudah ada di perangkat ini, jadi kemajuan review yang sudah berjalan tidak tertimpa cadangan yang lebih tua. Mengimpor berkas yang sama dua kali karena itu tidak menggandakan apa pun.
+- **Ganti semua** membuang koleksi yang sekarang, dan butuh konfirmasi kedua yang menyebut jumlah kata yang akan dibuang.
+
+Sesudahnya ditampilkan laporan: berapa kata masuk, berapa dilewati karena sudah ada, dan berapa yang tidak punya tempat karena bukunya tidak ikut di berkas. Angka terakhir ditampilkan, bukan disembunyikan.
+
+Jalannya sengaja tidak menjadi tab keenam. Bilah bawah di HP sudah penuh dengan lima tujuan, dan menyimpan berkas bukan pekerjaan harian. Tautannya ada di kaki sidebar pada laptop dan di kaki beranda pada HP. Semua pemrosesan berkas terjadi di perangkat pengguna; tidak ada yang dikirim ke server.
 
 ---
 
@@ -226,13 +256,29 @@ Satu kunci `lema.v1` di `localStorage`. Tidak ada basis data server dan tidak ad
       "createdAt": 0,
       "passedReview": true,
       "batch": "e0",
-      "marked": true
+      "marked": true,
+      "correction": {
+        "meaning_id": "kekurangan atau ketiadaan",
+        "meaning_en": "lack or absence",
+        "source": "lain",
+        "at": 0
+      }
     }
   ]
 }
 ```
 
-`status` bernilai `pending`, `done`, atau `error`. `stage` adalah indeks tangga review. `passedReview` dicatat sejak 9 September; entri lama tanpa kolom ini dihitung belum pernah lolos, bukan ditebak. `batch` dan `marked` hanya ada pada kata dari mode tandai: semua kata dari satu foto berbagi `batch`. Entri yang masih `pending` saat aplikasi dimuat ulang diubah menjadi `error` yang bisa dikirim ulang, karena fotonya tidak ikut disimpan.
+`status` bernilai `pending`, `done`, atau `error`. `stage` adalah indeks tangga review. `passedReview` dicatat sejak 9 September; entri lama tanpa kolom ini dihitung belum pernah lolos, bukan ditebak. `batch` dan `marked` hanya ada pada kata dari mode tandai: semua kata dari satu foto berbagi `batch`. `correction` hanya ada pada kata yang maknanya dibetulkan pembaca, dan ia berdampingan dengan `result`, tidak menimpanya; `source` bernilai `lain` kalau dipilih dari makna yang sudah disebut model, atau `sendiri` kalau diketik. Satu fungsi, `mainMeaning`, adalah satu satunya pintu yang dipakai semua layar untuk membaca makna yang berlaku, supaya tidak ada tempat yang tertinggal menampilkan makna lama. Entri yang masih `pending` saat aplikasi dimuat ulang diubah menjadi `error` yang bisa dikirim ulang, karena fotonya tidak ikut disimpan.
+
+### 9.4 Berkas cadangan
+
+```json
+{ "lema": 1, "exportedAt": 0, "db": { "books": [], "entries": [], "activeBookId": null } }
+```
+
+`lema` adalah versi format berkas, bukan versi aplikasi, dan hanya dinaikkan kalau bentuk datanya berubah sampai berkas lama perlu diterjemahkan. Berkas dengan format lebih tinggi daripada yang dikenal aplikasi ditolak dengan pesan yang menyuruh membuka Lema terbaru, bukan dibaca setengah setengah.
+
+Impor juga menerima isi mentah `lema.v1` tanpa amplop. Bentuk itu diterima karena justru itulah yang bisa diselamatkan pengguna dari browser yang sudah bermasalah, dan menolaknya tidak menolong siapa pun. Buku atau kata yang bentuknya rusak dibuang satu per satu, sedangkan yang sehat tetap masuk; isi `result` sengaja tidak diperiksa lapis demi lapis, karena layar sudah menangani hasil tidak lengkap sejak awal.
 
 ---
 
@@ -262,7 +308,7 @@ Tingkat berpikir model diatur `low`. Pada pengukuran 10 September, tingkat bawaa
 - **Batas pemakaian.** Dihitung per kata, bukan per permintaan: 60 kata per alamat per hari. Mode tandai memesan lima lalu mengembalikan sisanya; foto tanpa tanda tetap dihitung satu. Kegagalan total mengembalikan jatah. Penghitung bersama lewat Upstash tersedia tetapi belum diuji terhadap layanan sungguhan; tanpa itu, hitungannya per proses server.
 - **Waktu tanggap.** Model utama dan tiga model cadangan dicoba berurutan. Setiap model paling lama 20 detik, seluruh rantai paling lama 50 detik, di bawah batas fungsi 60 detik. Hasil pengukuran ada di bagian 13. Pindah layar tidak menunggu model: peta makna terbuka seketika dan terisi sendiri.
 - **Ukuran foto.** Dikecilkan di browser, sisi terpanjang paling besar 1.600 piksel.
-- **Privasi.** Layar foto menyatakan bahwa foto dikirim ke Google agar model bisa membaca halaman, bahwa Lema tidak menyimpan foto itu, dan bahwa koleksi hanya ada di browser. Perlakuan data di sisi penyedia model sengaja tidak diklaim.
+- **Privasi.** Layar foto menyatakan bahwa foto dikirim ke Google agar model bisa membaca halaman, bahwa Lema tidak menyimpan foto itu, dan bahwa koleksi hanya ada di browser. Perlakuan data di sisi penyedia model sengaja tidak diklaim. Berkas cadangan dibaca dan ditulis sepenuhnya di perangkat pengguna, tanpa melewati server mana pun.
 - **Safari iOS.** Wajib, dan **belum diuji di perangkat sungguhan**. Seluruh pemeriksaan tampilan memakai Chromium yang meniru lebar HP.
 
 ---
@@ -278,8 +324,9 @@ Tingkat berpikir model diatur `low`. Pada pengukuran 10 September, tingkat bawaa
 | 5 | Tidak ada kunci API di bundle browser | Terpenuhi. Diperiksa pada bundle produksi 8 September |
 | 6 | Berjalan di Safari iOS dengan kamera sungguhan | **Belum diuji** |
 | 7 | Batas pemakaian aktif dan sudah diuji | Terpenuhi untuk hitungan per proses. Penghitung bersama belum diuji ke layanan sungguhan |
+| 8 | Koleksi punya jalan keluar dari satu browser | Terpenuhi sejak 27 September. Ekspor JSON dan CSV, impor dengan penggabungan yang tidak menimpa. Ditambahkan setelah kriteria awal disusun, karena tanpa ini penyimpanan yang jadi alasan Lema pantas ada justru yang paling rapuh |
 
-Di luar tabel: 71 pengujian browser otomatis lulus pada build produksi, mencakup alur penyimpanan, peta makna, mode tandai, kuis, dan batas waktu rantai model.
+Di luar tabel: 102 pengujian otomatis lulus pada build produksi, mencakup alur penyimpanan, peta makna, mode tandai, kuis, batas waktu rantai model, aturan penggabungan cadangan, dan koreksi makna.
 
 ---
 
@@ -313,7 +360,8 @@ Aplikasi tidak mengumpulkan data kunjungan dan tidak punya server basis data, ja
 
 | Risiko | Kemungkinan | Penanganan |
 |---|---|---|
-| Model salah pilih makna pada kata yang jarang | Tinggi, dan ini memang temuan riset | Tidak disembunyikan. Keraguan ditampilkan; hasil uji akurasi ditulis apa adanya |
+| Model salah pilih makna pada kata yang jarang | Tinggi, dan ini memang temuan riset | Tidak disembunyikan. Keraguan ditampilkan; hasil uji akurasi ditulis apa adanya. Sejak 27 September pembaca bisa membetulkannya sendiri, dan koreksinya tersimpan berdampingan dengan jawaban model, jadi kekeliruan tercatat alih alih terhapus |
+| **Koleksi hilang karena hanya ada di satu browser** | **Tinggi selama tidak ada akun.** Membersihkan data situs, berganti HP, atau membuka dari peramban lain sudah cukup | Cadangan berkas di `/data`, dengan jalannya terlihat dari beranda dan sidebar sebelum kehilangan terjadi, bukan sesudahnya. Belum tertangani: pengguna yang tidak pernah menyimpan cadangan. Pengingat otomatis belum ada dan masih di peta jalan |
 | Model kelebihan beban dan menggantung | **Terjadi.** Pada uji 11 September, 6 dari 20 permintaan gagal pada percobaan pertama | Batas waktu per model dan rantai cadangan. Model utama diarahkan ke yang terbukti paling andal lewat `GEMINI_MODEL`. Susunan rantai perlu diperbaiki: model paling ringan sering tidak kebagian giliran sebelum anggaran 50 detik habis (bagian 15) |
 | Mengetuk kata di foto satu halaman penuh sulit di HP | Sedang; huruf tinggal 5 sampai 10 piksel di layar 390 piksel | Petunjuk memotret dari dekat. Jalur pensil tidak punya masalah ini. Perbesaran foto ada di peta jalan |
 | Coretan yang menyentuh dua kata dibaca tidak konsisten | Sedang; pada uji tiruan satu garis dibaca "Still" dua kali dan "heather" sekali | Dicatat. Petunjuk di layar meminta menggaris bawahi satu kata atau frasa |
@@ -334,6 +382,11 @@ Aplikasi tidak mengumpulkan data kunjungan dan tidak punya server basis data, ja
 - **Peringatan halaman sulit**: sebelum membaca satu bab, tunjukkan kata yang kemungkinan di atas level pembacanya
 - **Kartu kosakata buku**: saat buku selesai, satu kartu berisi semua kata dari buku itu, dirancang untuk dibagikan
 - **Set uji publik**: kumpulan kata yang membuat pembaca Indonesia berhenti, dibuka untuk umum sebagai kontribusi kecil ke riset pemilihan makna kata
+- **Pengingat menyimpan cadangan**, muncul sekali setelah koleksi melewati ambang tertentu. Cadangan yang tidak pernah dibuat tidak menolong siapa pun, dan sekarang pembuatannya sepenuhnya bergantung pada pengguna yang kebetulan menemukan halamannya
+- **Audio pelafalan** lewat Web Speech API yang sudah ada di browser, tanpa panggilan API dan tanpa biaya. Dikeluarkan dari lingkup v1 waktu masih diperkirakan mahal; perkiraan itu ternyata salah. Pembaca buku kertas justru yang paling tidak pernah mendengar kata itu diucapkan
+- **Tangga review yang belajar dari jawaban.** Tangga 1, 3, 7, 21 memperlakukan kata yang selalu terlupa sama dengan kata yang sekali lihat langsung menempel. FSRS sudah menjadi bawaan Anki dan terbukti butuh 20 sampai 30 persen lebih sedikit review, tetapi memasangnya utuh terlalu berat untuk v1. Langkah kecilnya: kata yang gagal dua kali berturut turut ditahan, bukan dikembalikan ke anak tangga pertama
+- **Kata lain di halaman yang mungkin bikin berhenti.** Model sudah membaca seluruh halaman, lalu sembilan puluh persen bacaannya dibuang. Meminta dua sampai tiga kata sulit lain di panggilan yang sama hampir tidak menambah biaya
+- **Foto beberapa halaman sekaligus.** Coret pensil sepanjang satu bab, lalu kirim lima halaman dalam sekali jalan. Ini juga satu satunya jalan yang terlihat untuk benar benar memenuhi kriteria 3, karena targetnya tercapai bukan dengan mengurangi ketukan per halaman, melainkan dengan menaikkan jumlah halaman per ketukan
 - Sinkron antar perangkat dan versi iOS native
 
 ---
@@ -362,5 +415,7 @@ Aplikasi tidak mengumpulkan data kunjungan dan tidak punya server basis data, ja
 | 10 September | Batas waktu per model dan tingkat berpikir `low` | Satu permintaan memakan 58,8 detik, nyaris terputus batas fungsi 60 detik |
 | 11 September | **Kuis** sebagai gerbang dan sebagai tab sendiri; alur review dibalik | Prinsip 6 ditambahkan. Kuis pilihan ganda pindah dari "keluar" ke "masuk" dalam bentuk yang melayani prinsip 2 |
 | 11 September | Uji akurasi otomatis dengan teks buku asli: 15 dari 15 kata buku asli, 12 dari 12 kata bertanda ditemukan, 70% permintaan terjawab pada percobaan pertama | Kriteria 1 dan 2 tidak bisa menunggu uji manual sebelum batas kirim. Temuannya menggeser fokus dari ketepatan makna ke keandalan model |
+| 27 September | **Cadangan koleksi** lewat berkas JSON dan ekspor CSV | Perbandingan dengan Readlang, LingQ, Migaku, dan Kindle menunjukkan Lema kena dua batasan sekaligus: tidak sinkron dan tidak bisa diekspor. Kriteria 8 ditambahkan |
+| 27 September | **Koreksi makna** yang berdampingan dengan jawaban model, bukan menimpanya | Satu satunya tanggapan untuk jawaban keliru sebelumnya adalah menghapus katanya, dan itu ikut membuang kalimat asal dari buku. Prinsip 3 diperluas menjadi dua arah, dan kata ragu yang sudah diputuskan pembaca kini boleh dikuiskan |
 
-Setiap perubahan besar punya titik pulih di git: tag `v1-sebelum-tandai-foto` dan `v2-sebelum-kuis`, dengan langkah kembali di `context/cara_kembali_ke_versi_lama.md`.
+Setiap perubahan besar punya titik pulih di git: tag `v1-sebelum-tandai-foto`, `v2-sebelum-kuis`, dan `v3-sebelum-cadangan`, dengan langkah kembali di `context/cara_kembali_ke_versi_lama.md`.

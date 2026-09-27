@@ -11,12 +11,23 @@ Dibuat 10 September 2026, bersamaan dengan fitur tandai kata tanpa mengetik. Dok
 | Cabang `fitur/tandai-di-foto` | Seluruh pekerjaan fitur baru, dua commit: `1631bae` dan `9e97596`. |
 | Tag `v2-sebelum-kuis` | Commit `75827b8`. Mode tandai sudah hidup, kuis belum ada. Dipasang 11 September sebelum fitur kuis dikerjakan di cabang `fitur/kuis`. Kalau hanya kuisnya yang bermasalah, kembali ke sini, bukan ke `v1`. |
 | Commit `944b2fd` | **Penggabungan kuis ke `main` pada 11 September 2026.** Membatalkan kuis saja, mode tandai tetap: `git revert -m 1 944b2fd`. |
+| Tag `v3-sebelum-cadangan` | Commit `9b017f8`. Mode tandai dan kuis sudah hidup, uji akurasi 1.000 kata sudah selesai, cadangan dan koreksi makna belum ada. Dipasang 27 September sebelum keduanya dikerjakan di cabang `fitur/cadangan-dan-koreksi`. |
+| Commit `534d9ea` | **Penggabungan cadangan dan koreksi makna ke `main` pada 27 September 2026.** Membatalkan keduanya saja, sisanya tetap: `git revert -m 1 534d9ea`. |
 
-**Keadaan sekarang: mode tandai dan kuis sama sama sudah digabung dan hidup di produksi.** Jadi yang berlaku adalah jalan nomor 2 atau 3 di bawah.
+**Keadaan sekarang: mode tandai, kuis, cadangan koleksi, dan koreksi makna semuanya sudah digabung dan hidup di produksi.** Jadi yang berlaku adalah jalan nomor 2 atau 3 di bawah.
 
-Pilih yang dibatalkan sesuai masalahnya. Kalau yang bermasalah cuma kuis, batalkan `944b2fd` saja. Kalau mode tandai juga, batalkan `944b2fd` lebih dulu, baru `6dac711`. Membatalkan dengan urutan terbalik bisa menimbulkan konflik, karena kuis dibangun di atas mode tandai.
+Pilih yang dibatalkan sesuai masalahnya, dan batalkan dari yang paling baru ke yang paling lama: `534d9ea`, lalu `944b2fd`, lalu `6dac711`. Membatalkan dengan urutan terbalik bisa menimbulkan konflik, karena kuis dibangun di atas mode tandai dan koreksi makna menyentuh kuis.
 
-Data koleksi pengguna aman di semua jalan di bawah. Kata yang dibuat lewat mode tandai hanya membawa dua kolom tambahan, `batch` dan `marked`, dan versi lama mengabaikan kolom yang tidak dikenalnya.
+Ketiganya berdiri sendiri, jadi tidak ada keharusan membatalkan semuanya. Kalau yang bermasalah cuma cadangan dan koreksi, `git revert -m 1 534d9ea` sudah cukup.
+
+Data koleksi pengguna aman di semua jalan di bawah, dan ini yang dijaga paling ketat:
+
+- Kata dari mode tandai membawa dua kolom tambahan, `batch` dan `marked`.
+- Kata yang maknanya dibetulkan membawa satu kolom tambahan, `correction`.
+
+Versi lama mengabaikan kolom yang tidak dikenalnya, jadi mundur tidak merusak apa pun. Yang terjadi cuma satu: koreksi makna berhenti terlihat dan kartunya kembali menampilkan jawaban model. Koreksinya tidak hilang dan akan muncul lagi kalau fiturnya dinaikkan ulang, karena jawaban model memang sengaja tidak pernah ditimpa.
+
+**Satu catatan khusus untuk cadangan.** Berkas cadangan yang sudah diunduh pengguna tetap bisa diimpor setelah pembatalan, kecuali kalau halaman `/data` itu sendiri yang dibuang. Kalau fitur ini dibatalkan sementara, sebaiknya sampaikan lebih dulu ke pengguna yang sudah memakainya, karena satu satunya jalan keluar dari localStorage akan ikut hilang.
 
 ## Pilih sesuai keadaannya
 
