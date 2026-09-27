@@ -8,7 +8,7 @@
 // kemampuan inti yang diajarkan Lema. Kalau makna lainnya kurang, sisanya diisi
 // dengan arti kata lain dari koleksi.
 
-import type { Db, Entry } from './store';
+import { mainMeaning, type Db, type Entry } from './store';
 
 export type Question = {
   entryId: string;
@@ -41,12 +41,16 @@ const key = (text: string) => text.trim().toLowerCase();
 // Kata yang bisa dijadikan soal: maknanya sudah ada dan punya kalimat baru.
 // Kata yang ditandai ragu sengaja dikeluarkan. Model sendiri bilang dua makna
 // sama masuk akalnya, jadi memang tidak ada satu jawaban benar untuk diuji.
+//
+// Kecualinya satu: kata ragu yang sudah dibetulkan pembaca. Di situ pembacanya
+// sendiri yang memutuskan makna mana yang dipakai di halamannya, dan dialah
+// yang memegang bukunya. Setelah ada keputusan itu, jawaban benarnya ada.
 export function quizzable(entry: Entry): boolean {
   const r = entry.result;
   return entry.status === 'done'
-    && Boolean(r?.candidates?.[0]?.meaning_id?.trim())
+    && Boolean(mainMeaning(entry).meaning_id.trim())
     && Boolean(r?.new_sentence?.trim())
-    && !r?.ambiguous;
+    && (!r?.ambiguous || Boolean(entry.correction));
 }
 
 // Satu soal untuk satu kata. Mengembalikan null kalau tidak ada satu pun
@@ -55,7 +59,9 @@ export function quizzable(entry: Entry): boolean {
 export function buildQuestion(entry: Entry, pool: Entry[], rng: Rng = Math.random): Question | null {
   if (!quizzable(entry)) return null;
   const r = entry.result!;
-  const correct = r.candidates[0].meaning_id.trim();
+  // Kalau pembaca sudah membetulkan maknanya, jawaban benarnya yang itu.
+  const meaning = mainMeaning(entry);
+  const correct = meaning.meaning_id.trim();
 
   const taken = new Set([key(correct)]);
   const distractors: string[] = [];
@@ -67,8 +73,11 @@ export function buildQuestion(entry: Entry, pool: Entry[], rng: Rng = Math.rando
   };
 
   shuffle(r.other_senses ?? [], rng).forEach((sense) => add(sense.meaning_id));
+  // Kalau makna model dibetulkan, jawabannya yang lama justru pengecoh terbaik
+  // untuk kata ini: itu makna yang memang mirip dan memang sempat menipu.
+  if (meaning.corrected) add(r.candidates?.[0]?.meaning_id);
   shuffle(pool.filter((other) => other.id !== entry.id), rng)
-    .forEach((other) => add(other.result?.candidates?.[0]?.meaning_id));
+    .forEach((other) => add(mainMeaning(other).meaning_id));
 
   if (distractors.length === 0) return null;
 
@@ -81,7 +90,7 @@ export function buildQuestion(entry: Entry, pool: Entry[], rng: Rng = Math.rando
     sentence: r.new_sentence,
     options,
     answer: options.indexOf(correct),
-    meaningEn: r.candidates[0].meaning_en,
+    meaningEn: meaning.meaning_en,
     source: r.sentence,
   };
 }

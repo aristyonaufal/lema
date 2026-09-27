@@ -260,6 +260,22 @@ export default function Nav() {
           </ul>
         </div>
       )}
+
+      {/* Cadangan sengaja tidak menjadi tab keenam. Bilah bawah di HP sudah
+          penuh dengan lima tujuan, dan menyimpan berkas bukan pekerjaan harian.
+          Yang penting jalannya ada sebelum koleksinya hilang, bukan menonjol. */}
+      {shelf.length > 0 && (
+        <Link
+          href="/data"
+          className="text-muted hover:text-foreground mt-3 hidden items-center gap-2 rounded-xl px-2 py-2 text-sm transition-colors lg:flex"
+        >
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-4 w-4 shrink-0">
+            <path d="M12 4v10m0 0 3.5-3.5M12 14l-3.5-3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M4.5 16.5v1.8c0 .94.76 1.7 1.7 1.7h11.6c.94 0 1.7-.76 1.7-1.7v-1.8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+          </svg>
+          Cadangan koleksi
+        </Link>
+      )}
     </nav>
   );
 }

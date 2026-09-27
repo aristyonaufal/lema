@@ -6,7 +6,16 @@ import { useSearchParams } from 'next/navigation';
 import SenseMap from '@/components/SenseMap';
 import BookSpine, { spineColor } from '@/components/BookSpine';
 import { useDb } from '@/lib/useDb';
-import { byBook, due, markKnown, remove, type Entry } from '@/lib/store';
+import {
+  byBook,
+  clearCorrection,
+  correctMeaning,
+  due,
+  mainMeaning,
+  markKnown,
+  remove,
+  type Entry,
+} from '@/lib/store';
 import { buildQuestion } from '@/lib/quiz';
 
 export default function Kata() {
@@ -43,7 +52,7 @@ function WordRow({ entry, open, onToggle, children }: {
   children: React.ReactNode;
 }) {
   const r = entry.result!;
-  const main = r.candidates[0];
+  const meaning = mainMeaning(entry);
 
   return (
     <li className="flex flex-col">
@@ -72,10 +81,15 @@ function WordRow({ entry, open, onToggle, children }: {
                 Sudah tahu
               </span>
             )}
+            {meaning.corrected && (
+              <span className="bg-sunken text-muted rounded-full px-2 py-0.5 text-[0.6875rem]">
+                Kamu betulkan
+              </span>
+            )}
           </span>
           {/* Saat terbuka, arti singkatnya dilepas: kartu di bawahnya sudah
               menuliskannya dengan lengkap, jadi baris ini tinggal jadi kepala. */}
-          {!open && <span className="text-muted truncate text-sm">{main.meaning_id}</span>}
+          {!open && <span className="text-muted truncate text-sm">{meaning.meaning_id}</span>}
         </span>
         <svg
           viewBox="0 0 24 24"
@@ -287,6 +301,8 @@ function KataContent() {
                         quizFor={() => buildQuestion(e, db.entries)}
                         onRemove={() => update((current) => remove(current, e.id))}
                         onRetry={() => update((current) => ({ ...current, activeBookId: e.bookId }))}
+                        onCorrect={(fix) => update((current) => correctMeaning(current, e.id, fix))}
+                        onUncorrect={() => update((current) => clearCorrection(current, e.id))}
                       />
                     );
                     // Kata yang masih diproses atau gagal sudah pendek dengan
