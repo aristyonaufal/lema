@@ -226,6 +226,17 @@ function KataContent() {
                 <Link href="/kata" className="text-accent text-sm font-medium">
                   Lihat semua buku
                 </Link>
+                {/* Kata dari pustaka dikumpulkan sambil membaca, jadi jalan
+                    kembali ke bacaannya harus ada di sini, bukan cuma di beranda.
+                    Bunyinya sengaja bukan "Lanjut baca": layar ini sudah punya
+                    tautan bernama itu, dan yang itu menuju layar foto. Dua
+                    tautan sebunyi dengan tujuan berbeda menyesatkan, terutama
+                    buat yang memakai pembaca layar. */}
+                {book.pustaka && (
+                  <Link href={`/pustaka/${book.pustaka}`} className="text-accent text-sm font-medium">
+                    Balik ke bacaan ›
+                  </Link>
+                )}
                 <span className="text-faint text-sm tabular-nums">{scoped.length} kata di buku ini</span>
               </div>
             )}
