@@ -8,7 +8,7 @@ const normalize = (word: string) => word.trim().toLowerCase();
 // Mengirim satu permintaan ke /api/lookup dan selalu mengembalikan jawaban
 // yang bisa dibaca, tidak pernah melempar. Dipakai kedua mode, supaya batas
 // waktu dan pesan kegagalannya tidak berbeda antara mengetik dan menandai.
-async function send(form: FormData): Promise<LookupResponse> {
+async function send(form: FormData, ulangi = 'Pilih ulang foto dan coba lagi.'): Promise<LookupResponse> {
   // Lebih panjang dari batas 60 detik endpoint. Permintaan macet tidak boleh
   // meninggalkan status pending tanpa akhir selama aplikasi masih terbuka.
   const controller = new AbortController();
@@ -27,14 +27,14 @@ async function send(form: FormData): Promise<LookupResponse> {
           ok: false,
           error: typeof json?.error === 'string'
             ? json.error
-            : 'Balasan server tidak lengkap. Pilih ulang foto dan coba lagi.',
+            : `Balasan server tidak lengkap. ${ulangi}`,
         };
   } catch {
     return {
       ok: false,
       error: controller.signal.aborted
-        ? 'Proses terlalu lama. Pilih ulang foto dan coba lagi.'
-        : 'Gagal menghubungi server. Pilih ulang foto dan coba lagi.',
+        ? `Proses terlalu lama. ${ulangi}`
+        : `Gagal menghubungi server. ${ulangi}`,
     };
   } finally {
     clearTimeout(timeout);
@@ -129,4 +129,52 @@ async function processMarked(store: ClientDb, file: File, markers: Marker[], pla
   store.complete((current) => resolveMarked(current, placeholderId, response.ok
     ? { results: response.results, error: MARKED_EMPTY }
     : { error: response.error }));
+}
+
+// Mode teks: kata dipilih dari pustaka di dalam Lema, jadi tidak ada foto.
+//
+// Entri penampung disimpan lebih dulu, sama seperti dua mode lain, dan itu
+// bukan sekadar kebiasaan. Pengukuran 28 September memberi median 14 detik
+// untuk mode ini. Terlalu lama untuk ditunggu sambil menatap layar kosong,
+// jadi panel maknanya terbuka seketika lalu terisi sendiri.
+export function startTextLookup(store: ClientDb, bookId: string, word: string, context: string) {
+  const clean = word.trim();
+  if (!clean || !context.trim()) return null;
+
+  let id = '';
+  const saved = store.update((current) => {
+    if (!current.books.some((book) => book.id === bookId)) return current;
+    const pending = addPending(current, bookId, [clean]);
+    id = pending.ids[0] ?? '';
+    return pending.db;
+  });
+  if (!saved || !id) return null;
+
+  void processText(store, clean, context, id);
+  return id;
+}
+
+const ULANGI_TEKS = 'Ketuk lagi katanya.';
+
+async function processText(store: ClientDb, word: string, context: string, entryId: string) {
+  const form = new FormData();
+  form.append('mode', 'text');
+  form.append('word', word);
+  form.append('context', context);
+  const response = await send(form, ULANGI_TEKS);
+
+  store.complete((current) => {
+    // Kata yang diminta dan kata yang dijawab dicocokkan, sama seperti mode
+    // ketik. Model diminta menyalin word apa adanya, tetapi jawaban yang
+    // menyimpang tidak boleh dipasang diam diam ke entri yang salah.
+    const result = response.ok
+      ? response.results.find((r) => r && typeof r.word === 'string' && normalize(r.word) === normalize(word))
+      : undefined;
+    return resolveEntry(current, entryId, {
+      result,
+      error: result ? undefined : response.ok
+        ? `Hasil untuk kata ini belum tersedia. ${ULANGI_TEKS}`
+        : response.error,
+    });
+  });
 }

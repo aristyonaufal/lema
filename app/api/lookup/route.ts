@@ -1,4 +1,12 @@
-import { MARKED_SYSTEM_PROMPT, markedUserPrompt, SYSTEM_PROMPT, userPrompt, RESPONSE_SCHEMA } from '@/lib/prompt';
+import {
+  MARKED_SYSTEM_PROMPT,
+  markedUserPrompt,
+  SYSTEM_PROMPT,
+  TEXT_SYSTEM_PROMPT,
+  textUserPrompt,
+  userPrompt,
+  RESPONSE_SCHEMA,
+} from '@/lib/prompt';
 import type { LookupResult } from '@/lib/types';
 import { clientIp, consume, refund } from '@/lib/rate-limit';
 import { runChain, type Attempt } from '@/lib/model-chain';
@@ -35,6 +43,14 @@ const CHAIN_BUDGET_MS = 50_000;
 // lipat untuk jawaban sehat, dan tetap menyisakan waktu untuk model cadangan.
 const ATTEMPT_MS = 20_000;
 
+// Mode teks diberi jatah lebih pendek, dan angkanya dari pengukuran 28
+// September. Tanpa gambar, jawaban sehat datang dalam 6 sampai 13 detik.
+// Sisanya habis menunggu model yang menggantung: 7 dari 10 permintaan jatuh ke
+// cadangan, dan masing masing membayar 20 detik penuh lebih dulu. Dua belas
+// detik memberi ruang hampir dua kali lipat untuk jawaban sehat, dan membuat
+// seluruh rantai empat model muat di dalam anggaran 50 detik.
+const TEXT_ATTEMPT_MS = 12_000;
+
 // Seberapa lama model "berpikir" sebelum menjawab. Bawaan model Flash generasi
 // ini adalah "medium", dan pada pengukuran yang sama 83% token keluarannya
 // habis untuk berpikir: 3.234 token berpikir untuk 677 token jawaban, 21 detik.
@@ -55,6 +71,13 @@ const MIN_ATTEMPT_MS = 6_000;
 // Batas kata per foto pada mode tandai. Sama dengan batas mode ketik, supaya
 // satu foto tidak pernah lebih mahal dari yang sudah dijanjikan ke pengguna.
 const MARKED_MAX = 5;
+
+// Batas panjang untuk mode teks. Satu kata atau frasa, dan satu paragraf
+// sebagai konteks. Paragraf terpanjang di pustaka sekarang di bawah 4.000
+// karakter; batas ini memberi ruang lebih tanpa membuka jalan bagi permintaan
+// yang isinya sebuah buku utuh.
+const TEXT_WORD_MAX = 80;
+const TEXT_CONTEXT_MAX = 8_000;
 
 // Pesan yang dibaca pengguna, bukan JSON mentah dari Google.
 function friendly(status: number): string {
@@ -117,18 +140,31 @@ export async function POST(req: Request) {
 
   const image = form.get('image');
   const rawWords = form.get('words');
-  // Dua mode. "typed" adalah alur lama: pembaca mengetik katanya. "marked"
+  // Tiga mode. "typed" adalah alur lama: pembaca mengetik katanya. "marked"
   // adalah alur tandai: tidak ada daftar kata, model mencari sendiri coretan
-  // pembaca dan penanda magenta yang digambar aplikasi di foto.
-  const marked = form.get('mode') === 'marked';
+  // pembaca dan penanda magenta yang digambar aplikasi di foto. "text" adalah
+  // alur pustaka: teksnya sudah digital, jadi tidak ada foto sama sekali.
+  const mode = String(form.get('mode') ?? '');
+  const marked = mode === 'marked';
+  const isText = mode === 'text';
   const markers = Math.max(0, Math.min(MARKED_MAX, Math.floor(Number(form.get('markers')) || 0)));
 
-  if (!(image instanceof File)) {
+  const word = String(form.get('word') ?? '').trim().slice(0, TEXT_WORD_MAX);
+  const context = String(form.get('context') ?? '').trim().slice(0, TEXT_CONTEXT_MAX);
+
+  if (isText) {
+    if (!word) {
+      return Response.json({ ok: false, error: 'Belum ada kata yang dipilih.' }, { status: 400 });
+    }
+    if (!context) {
+      return Response.json({ ok: false, error: 'Paragraf asal kata ini tidak ikut terkirim.' }, { status: 400 });
+    }
+  } else if (!(image instanceof File)) {
     return Response.json({ ok: false, error: 'Foto halaman belum ada.' }, { status: 400 });
   }
 
   let words: string[] = [];
-  if (!marked) {
+  if (!marked && !isText) {
     try {
       words = JSON.parse(String(rawWords ?? '[]'));
     } catch {
@@ -141,7 +177,7 @@ export async function POST(req: Request) {
     }
   }
 
-  if (image.size > 4 * 1024 * 1024) {
+  if (image instanceof File && image.size > 4 * 1024 * 1024) {
     return Response.json(
       { ok: false, error: 'Foto terlalu besar. Harusnya sudah dikecilkan di browser.' },
       { status: 413 }
@@ -154,7 +190,7 @@ export async function POST(req: Request) {
   // Mode tandai belum tahu jumlah katanya sebelum model menjawab, jadi jatah
   // penuh dipesan dulu dan sisanya dikembalikan di bawah. Memesan belakangan
   // berarti memanggil model tanpa tahu apakah pengguna masih punya jatah.
-  const cost = marked ? MARKED_MAX : words.length;
+  const cost = marked ? MARKED_MAX : isText ? 1 : words.length;
   const quota = await consume(ip, cost);
   if (!quota.allowed) {
     return Response.json(
@@ -163,7 +199,11 @@ export async function POST(req: Request) {
     );
   }
 
-  const base64 = Buffer.from(await image.arrayBuffer()).toString('base64');
+  // Mode teks tidak mengirim gambar sama sekali, dan di situlah penghematannya:
+  // tanpa token gambar, dan tanpa langkah membaca halaman sebelum memilih makna.
+  const base64 = image instanceof File
+    ? Buffer.from(await image.arrayBuffer()).toString('base64')
+    : '';
 
   const asked = String(form.get('model') ?? '').trim();
   const model =
@@ -171,17 +211,22 @@ export async function POST(req: Request) {
       ? asked
       : process.env.GEMINI_MODEL ?? 'gemini-3.8-flash';
 
+  const systemPrompt = isText ? TEXT_SYSTEM_PROMPT : marked ? MARKED_SYSTEM_PROMPT : SYSTEM_PROMPT;
+  const userText = isText
+    ? textUserPrompt(word, context)
+    : marked
+      ? markedUserPrompt(markers)
+      : userPrompt(words);
+  const parts = isText
+    ? [{ text: userText }]
+    : [
+        { inlineData: { mimeType: (image as File).type || 'image/jpeg', data: base64 } },
+        { text: userText },
+      ];
+
   const body = {
-    systemInstruction: { parts: [{ text: marked ? MARKED_SYSTEM_PROMPT : SYSTEM_PROMPT }] },
-    contents: [
-      {
-        role: 'user',
-        parts: [
-          { inlineData: { mimeType: image.type || 'image/jpeg', data: base64 } },
-          { text: marked ? markedUserPrompt(markers) : userPrompt(words) },
-        ],
-      },
-    ],
+    systemInstruction: { parts: [{ text: systemPrompt }] },
+    contents: [{ role: 'user', parts }],
     generationConfig: {
       temperature: 0.2,
       responseMimeType: 'application/json',
@@ -261,7 +306,7 @@ export async function POST(req: Request) {
     chain,
     attempt: tryModel,
     budgetMs: CHAIN_BUDGET_MS,
-    perAttemptMs: ATTEMPT_MS,
+    perAttemptMs: isText ? TEXT_ATTEMPT_MS : ATTEMPT_MS,
     minAttemptMs: MIN_ATTEMPT_MS,
   });
 
@@ -269,7 +314,7 @@ export async function POST(req: Request) {
   // lama, dan bagaimana hasilnya. Tanpa foto, tanpa kata, tanpa kunci. Inilah
   // yang dipakai untuk tahu apakah model utama sedang menggantung atau gagal.
   console.log(JSON.stringify({
-    lookup: marked ? 'marked' : 'typed',
+    lookup: mode || 'typed',
     total_ms: Date.now() - started,
     attempts: outcome.log,
   }));
@@ -277,6 +322,10 @@ export async function POST(req: Request) {
   if (outcome.ok) {
     let results = outcome.value;
     let used = quota.used;
+    // Mode teks menanyakan satu kata, jadi satu jawaban. Model sudah diminta
+    // begitu, tetapi batasnya dijaga di sini juga supaya jatah yang dipesan
+    // satu tidak pernah menghasilkan lebih dari satu entri.
+    if (isText) results = results.slice(0, 1);
     if (marked) {
       // Model diminta paling banyak lima, tetapi batas itu dijaga di sini juga.
       // Kata yang sama ditandai dua kali dihitung sekali.
