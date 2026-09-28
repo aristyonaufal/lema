@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Instrument_Serif } from "next/font/google";
+import DaftarSw from "@/components/DaftarSw";
 import DbProvider from "@/components/DbProvider";
 import Shell from "@/components/Shell";
 import "./globals.css";
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${sans.variable} ${display.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <DaftarSw />
         <DbProvider>
           <Shell>{children}</Shell>
         </DbProvider>

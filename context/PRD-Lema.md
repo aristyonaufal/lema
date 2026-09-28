@@ -1,10 +1,10 @@
-# PRD Lema v1.5
+# PRD Lema v1.6
 
 Dokumen ini menggambarkan Lema **seperti yang benar benar dibangun dan hidup** di `lema-lemon.vercel.app`, bukan rancangan awalnya. Versi pertama dokumen ini (v1, 7 September 2026) adalah spesifikasi build tiga hari; selama pengerjaan, sebagian keputusannya diubah setelah aplikasinya dicoba. Apa yang berubah dan alasannya dicatat di bagian 17.
 
-Versi 1.5 menyatukan pustaka dengan rak buku (Tahap C). Versi 1.4 menambahkan ketuk kata di dalam pustaka (Tahap B). Versi 1.3 menulis ulang bagian 1 sampai 6. Dua sebabnya: pustaka ebook masuk, dan riset pembanding 28 September membatalkan dua klaim yang selama ini dipakai membenarkan Lema. Rinciannya di bagian 4.
+Versi 1.6 menambahkan membaca tanpa koneksi (Tahap D). Versi 1.5 menyatukan pustaka dengan rak buku (Tahap C). Versi 1.4 menambahkan ketuk kata di dalam pustaka (Tahap B). Versi 1.3 menulis ulang bagian 1 sampai 6. Dua sebabnya: pustaka ebook masuk, dan riset pembanding 28 September membatalkan dua klaim yang selama ini dipakai membenarkan Lema. Rinciannya di bagian 4.
 
-Status: v1 hidup di produksi. Fitur terakhir naik 30 September 2026.
+Status: v1 hidup di produksi. Fitur terakhir naik 1 Oktober 2026.
 Batas kirim portfolio: 12 September 2026
 Versi rancangan awal: riwayat git, misalnya `git show v1-sebelum-tandai-foto:context/PRD-Lema.md`
 
@@ -143,6 +143,7 @@ Tujuh aturan ini yang dipakai untuk menyelesaikan perdebatan desain. Prinsip 1 d
 - Buku pustaka masuk rak buku yang sama dengan buku kertas, hanya beda penanda
 - **Ketuk kata, sapu frasa** *(Tahap B, naik 29 September)*: maknanya terbuka di panel yang muncul dari bawah, tanpa meninggalkan halaman yang sedang dibaca, lalu masuk koleksi seperti kata dari foto
 - **Menyatu dengan rak buku** *(Tahap C, naik 30 September)*: beranda menawarkan lanjut baca dari buku terakhir, rak buku menyebut sampai bab berapa, dan koleksi kata satu buku punya jalan balik ke bacaannya
+- **Membaca tanpa koneksi** *(Tahap D, naik 1 Oktober)*: buku diunduh per buku atas permintaan, lalu bisa dibaca saat luring. Pengelolaan dan tombol mematikannya ada di layar Cadangan
 
 **Umum**
 
@@ -151,7 +152,6 @@ Tujuh aturan ini yang dipakai untuk menyelesaikan perdebatan desain. Prinsip 1 d
 
 ### Belum masuk, tetapi sudah direncanakan
 
-- Membaca pustaka tanpa koneksi
 - Unggah EPUB sendiri
 
 ### Keluar, dan jangan diributkan lagi
@@ -283,6 +283,23 @@ Gerakan yang jauh lebih dari 10 piksel atau lebih lama dari 600 milidetik bukan 
 **Panelnya terbuka seketika, tidak menunggu jawaban.** Pengukuran 29 September memberi median 14 detik untuk mode teks (bagian 13). Menahan panel sampai jawabannya datang berarti pembaca menatap layar diam selama itu, jadi panel muncul segera dengan keadaan sedang diproses, lalu terisi sendiri. Isinya peta makna yang sama persis dengan alur foto, termasuk tombol membetulkan makna. Latar gelapnya sengaja tipis supaya kalimat yang sedang dibaca tetap terlihat di atas panel, karena maknanya cuma masuk akal bersama kalimatnya.
 
 Pustaka sengaja tidak menjadi tab keenam. Bilah bawah di HP sudah penuh dengan lima tujuan. Jalannya ada di rak buku pada beranda, di kaki sidebar pada laptop, dan di layar pemilihan buku untuk pengguna yang belum punya buku sama sekali.
+
+### 8.9 Membaca tanpa koneksi
+
+Unduhan bersifat **per buku dan atas permintaan**, tidak pernah otomatis di latar. Tombolnya ada di bawah tiap kartu pustaka, dengan tiga keadaan: belum diunduh, sedang diunduh dengan hitungan berkas, dan sudah lengkap. Unduhan yang terputus bisa dilanjutkan, karena yang sudah masuk tetap tersimpan.
+
+Layar Cadangan memuat daftar buku yang sudah diunduh beserta jumlah babnya, perkiraan pemakaian penyimpanan dari peramban, tombol menghapus semua unduhan, dan tombol mematikan mode luring.
+
+**Empat pagar, dan semuanya ada karena satu alasan.** Service worker adalah satu satunya bagian Lema yang bisa merusak situs yang sudah hidup dengan cara yang sulit dipulihkan: kalau ia menyimpan HTML lama lalu menyajikannya terus, pengguna terjebak di versi lama walaupun perbaikannya sudah naik, dan mereka tidak punya cara membersihkannya sendiri.
+
+1. **Halaman selalu diambil dari jaringan dulu.** Selama ada koneksi, pengguna selalu mendapat versi terbaru; simpanan cuma dipakai ketika jaringannya benar benar tidak ada. Ini pagar utamanya, dan diuji dengan mengubah isi yang dilayani server lalu memastikan yang tampil isi yang baru.
+2. **Yang disimpan selamanya cuma berkas ber-hash.** `/_next/static/` memuat hash isi di dalam namanya, jadi nama yang sama tidak pernah berubah isinya.
+3. **Katalog dan daftar bab juga jaringan dulu.** Kalau teks buku diperbaiki dan disusun ulang, nama berkasnya tetap sama; katalog yang selalu segar membuat perubahannya tetap terlihat.
+4. **Ada tombol mematikan di layar Cadangan.** Pengguna bisa melepas service worker sendiri tanpa perlu tahu cara membuka alat pengembang, dan **pilihannya diingat**. Tanpa diingat, tombolnya tidak ada gunanya: melepas service worker memicu pemuatan ulang, dan pemuatan ulang itu mendaftarkannya kembali.
+
+Jawaban `/api/` tidak pernah disimpan sama sekali. Menyimpannya berarti menyajikan makna lama untuk kata yang berbeda.
+
+Service worker hanya didaftarkan pada build produksi. Di mode pengembangan, berkas di `/_next/static/` belum ber-hash dengan cara yang sama, dan menyimpannya akan menyembunyikan perubahan kode.
 
 ---
 
@@ -420,6 +437,7 @@ Tingkat berpikir model diatur `low`. Pada pengukuran 10 September, tingkat bawaa
 - **Waktu tanggap.** Model utama dan tiga model cadangan dicoba berurutan. Setiap model paling lama 20 detik untuk mode foto dan **12 detik untuk mode teks**, seluruh rantai paling lama 50 detik, di bawah batas fungsi 60 detik. Jatah mode teks lebih pendek karena tanpa gambar jawaban sehat datang dalam 6 sampai 13 detik; angkanya dari pengukuran 29 September (bagian 13). Hasil pengukuran ada di bagian 13. Pindah layar tidak menunggu model: peta makna terbuka seketika dan terisi sendiri.
 - **Ukuran foto.** Dikecilkan di browser, sisi terpanjang paling besar 1.600 piksel.
 - **Privasi.** Layar foto menyatakan bahwa foto dikirim ke Google agar model bisa membaca halaman, bahwa Lema tidak menyimpan foto itu, dan bahwa koleksi hanya ada di browser. Perlakuan data di sisi penyedia model sengaja tidak diklaim. Berkas cadangan dibaca dan ditulis sepenuhnya di perangkat pengguna, tanpa melewati server mana pun.
+- **Luring.** Service worker di `public/sw.js`, dengan empat pagar di bagian 8.9. Simpanan diberi versi (`lema-app-v1`, `lema-buku-v1`) dan versi lama dibuang saat pemasangan berikutnya. Peramban tanpa dukungan service worker atau Cache API tetap menjalankan Lema penuh; yang hilang cuma kemampuan membaca tanpa koneksi.
 - **Safari iOS.** Wajib, dan **belum diuji di perangkat sungguhan**. Seluruh pemeriksaan tampilan memakai Chromium yang meniru lebar HP.
 
 ---
@@ -437,7 +455,7 @@ Tingkat berpikir model diatur `low`. Pada pengukuran 10 September, tingkat bawaa
 | 7 | Batas pemakaian aktif dan sudah diuji | Terpenuhi untuk hitungan per proses. Penghitung bersama belum diuji ke layanan sungguhan |
 | 8 | Koleksi punya jalan keluar dari satu browser | Terpenuhi sejak 27 September. Ekspor JSON dan CSV, impor dengan penggabungan yang tidak menimpa. Ditambahkan setelah kriteria awal disusun, karena tanpa ini penyimpanan yang jadi alasan Lema pantas ada justru yang paling rapuh |
 
-Di luar tabel: **147 pengujian otomatis lulus pada build produksi**, mencakup alur penyimpanan, peta makna, mode tandai, kuis, batas waktu rantai model, aturan penggabungan cadangan, koreksi makna, serta pustaka, pembacanya, dan pencarian makna dari teks.
+Di luar tabel: **157 pengujian otomatis lulus pada build produksi**, mencakup alur penyimpanan, peta makna, mode tandai, kuis, batas waktu rantai model, aturan penggabungan cadangan, koreksi makna, serta pustaka, pembacanya, pencarian makna dari teks, dan keempat pagar service worker. Sepuluh pengujian luring hanya berjalan pada build produksi, dan dilewati dengan keterangan saat dijalankan di mode pengembangan.
 
 ---
 
@@ -544,6 +562,7 @@ Aplikasi tidak mengumpulkan data kunjungan dan tidak punya server basis data, ja
 | 11 September | **Kuis** sebagai gerbang dan sebagai tab sendiri; alur review dibalik | Prinsip 6 ditambahkan. Kuis pilihan ganda pindah dari "keluar" ke "masuk" dalam bentuk yang melayani prinsip 2 |
 | 11 September | Uji akurasi otomatis dengan teks buku asli: 15 dari 15 kata buku asli, 12 dari 12 kata bertanda ditemukan, 70% permintaan terjawab pada percobaan pertama | Kriteria 1 dan 2 tidak bisa menunggu uji manual sebelum batas kirim. Temuannya menggeser fokus dari ketepatan makna ke keandalan model |
 | 27 September | **Cadangan koleksi** lewat berkas JSON dan ekspor CSV | Perbandingan dengan Readlang, LingQ, Migaku, dan Kindle menunjukkan Lema kena dua batasan sekaligus: tidak sinkron dan tidak bisa diekspor. Kriteria 8 ditambahkan |
+| 1 Oktober | **Membaca tanpa koneksi** lewat service worker, unduhan per buku | Tahap D. Dibangun dengan empat pagar karena ini satu satunya bagian Lema yang bisa merusak situs hidup dengan cara yang sulit dipulihkan. Dua cacat pada pagar keempat ditemukan lewat pengujian: pilihan mematikan tidak diingat, dan simpanan hidup lagi karena `caches.open` membuat yang belum ada |
 | 30 September | **Pustaka menyatu dengan rak buku**: tawaran lanjut baca di beranda, nomor bab di rak dan sidebar, jalan balik dari koleksi | Tahap C. Kemajuan membaca dan kemajuan hafalan dibedakan, karena artinya berbeda dan menggabungkannya menghasilkan angka yang tidak berarti |
 | 29 September | **Ketuk kata di pustaka** lewat `mode=text`, tanpa gambar | Tahap B. Jatah per model dipendekkan ke 12 detik setelah pengukuran menunjukkan waktu tunggu didominasi model utama yang menggantung, bukan besarnya permintaan |
 | 28 September | **Pustaka ebook**: lima novel domain publik, pembaca dengan posisi baca, rak buku bersama | Lapis masalah keempat: Lema tidak bisa dicoba sama sekali tanpa buku Inggris di tangan. Prinsip 7 ditambahkan, dan bagian 1 sampai 6 ditulis ulang |

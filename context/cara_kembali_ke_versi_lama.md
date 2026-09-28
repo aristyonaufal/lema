@@ -40,6 +40,32 @@ Versi lama mengabaikan kolom yang tidak dikenalnya, jadi mundur tidak merusak ap
 
 **Satu catatan khusus untuk cadangan.** Berkas cadangan yang sudah diunduh pengguna tetap bisa diimpor setelah pembatalan, kecuali kalau halaman `/data` itu sendiri yang dibuang. Kalau fitur ini dibatalkan sementara, sebaiknya sampaikan lebih dulu ke pengguna yang sudah memakainya, karena satu satunya jalan keluar dari localStorage akan ikut hilang.
 
+## PERINGATAN KHUSUS: service worker tidak bisa dibatalkan dengan menghapusnya
+
+Berlaku sejak 1 Oktober 2026, saat `public/sw.js` masuk.
+
+Semua fitur lain bisa dibatalkan dengan `git revert`. Service worker tidak, dan kalau diperlakukan begitu justru menjadi lebih buruk.
+
+**Kenapa.** Service worker hidup di peramban pengguna, bukan di server. Membatalkan commit-nya menghapus `/sw.js` dari server, sehingga alamat itu membalas 404. Peramban yang gagal mengambil berkas pembaruan **tetap menjalankan versi lama yang sudah terpasang**, selamanya, dan tidak ada cara memperbaikinya dari sisi server.
+
+**Cara yang benar.** Jangan hapus berkasnya. Ganti isinya dengan versi yang membuang dirinya sendiri, lalu deploy:
+
+```js
+// public/sw.js
+self.addEventListener('install', () => self.skipWaiting());
+self.addEventListener('activate', (event) => {
+  event.waitUntil((async () => {
+    for (const nama of await caches.keys()) await caches.delete(nama);
+    await self.registration.unregister();
+    for (const client of await self.clients.matchAll()) client.navigate(client.url);
+  })());
+});
+```
+
+Juga hapus pemanggilan `daftarkanSw()` di `components/DaftarSw.tsx`, supaya tidak ada yang mendaftarkannya lagi. Biarkan berkas bunuh diri itu hidup di server beberapa minggu, sampai hampir semua pengguna pernah membukanya. Baru sesudah itu ia boleh dihapus.
+
+**Kalau yang bermasalah cuma satu pengguna**, dia bisa mematikannya sendiri lewat layar Cadangan, tombol "Matikan mode luring". Pilihannya diingat, jadi tidak menyala lagi saat halaman dibuka berikutnya.
+
 ## Pilih sesuai keadaannya
 
 ### 1. Fiturnya belum digabung ke `main`

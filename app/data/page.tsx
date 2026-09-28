@@ -1,10 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDb } from '@/lib/useDb';
 import { countWords, fileName, merge, parseBackup, toCsv, toJson, type MergeReport } from '@/lib/transfer';
 import type { Db } from '@/lib/store';
+import {
+  babTersimpan, dukungLuring, hapusBuku, lepasSw, luringDimatikan, nyalakanSw, pemakaian, ukuranTerbaca,
+} from '@/lib/offline';
+import { muatKatalog, type KatalogBuku } from '@/lib/pustaka';
 
 // Cadangan koleksi.
 //
@@ -37,6 +41,30 @@ export default function Data() {
   const [error, setError] = useState<string | null>(null);
   const [report, setReport] = useState<(MergeReport & { mode: 'gabung' | 'ganti' }) | null>(null);
   const [confirmReplace, setConfirmReplace] = useState(false);
+  const [unduhan, setUnduhan] = useState<Map<string, number>>(new Map());
+  const [katalog, setKatalog] = useState<KatalogBuku[]>([]);
+  const [byte, setByte] = useState<number | null>(null);
+  const [lepasSiap, setLepasSiap] = useState(false);
+  // Dibaca sekali saat state dibuat, pola yang sama dengan ukuran huruf di
+  // pembaca dan pilihan cara menandai di layar Baca.
+  const [mati, setMati] = useState(luringDimatikan);
+  const bisaLuring = dukungLuring();
+
+  const segarkanLuring = () => {
+    void babTersimpan().then(setUnduhan);
+    void pemakaian().then(setByte);
+  };
+
+  useEffect(() => {
+    void babTersimpan().then(setUnduhan);
+    void pemakaian().then(setByte);
+    void muatKatalog().then((k) => setKatalog(k.buku)).catch(() => {});
+  }, []);
+
+  async function hapusSemuaUnduhan() {
+    for (const slug of unduhan.keys()) await hapusBuku(slug).catch(() => {});
+    segarkanLuring();
+  }
 
   const words = countWords(db);
   const corrected = db.entries.filter((e) => e.correction).length;
@@ -245,6 +273,80 @@ export default function Data() {
           </div>
         )}
       </section>
+
+      {bisaLuring && (
+        <section aria-label="Penyimpanan luring" className="card flex flex-col gap-3.5 p-5">
+          <div>
+            <h2 className="text-lg font-semibold">Buku yang diunduh</h2>
+            <p className="text-muted mt-1 text-sm leading-relaxed">
+              Buku dari pustaka yang sudah kamu unduh bisa dibaca tanpa koneksi. Unduhnya dari
+              halaman Pustaka, per buku.
+            </p>
+          </div>
+
+          {unduhan.size === 0 ? (
+            <p className="text-muted text-sm">Belum ada buku yang diunduh.</p>
+          ) : (
+            <ul className="flex flex-col gap-2 text-sm">
+              {[...unduhan.entries()].map(([slug, bab]) => {
+                const buku = katalog.find((b) => b.slug === slug);
+                return (
+                  <li key={slug} className="flex items-baseline justify-between gap-3">
+                    <span lang="en" className="min-w-0 flex-1 truncate">{buku?.judul ?? slug}</span>
+                    <span className="text-muted shrink-0 text-xs tabular-nums">
+                      {bab} dari {buku?.bab ?? bab} bab
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+
+          {byte !== null && (
+            <p className="text-faint text-xs">
+              Seluruh data Lema di peramban ini sekitar {ukuranTerbaca(byte)}.
+            </p>
+          )}
+
+          <div className="flex flex-wrap gap-2">
+            {unduhan.size > 0 && (
+              <button onClick={hapusSemuaUnduhan} className="btn btn-quiet text-sm">
+                Hapus semua unduhan
+              </button>
+            )}
+          </div>
+
+          {/* Pagar terakhir. Service worker adalah satu satunya bagian Lema
+              yang bisa menyajikan versi lama kalau ada yang salah, dan pengguna
+              tidak boleh dipaksa membuka alat pengembang untuk membuangnya. */}
+          <div className="border-line flex flex-col gap-2 border-t pt-3.5">
+            <p className="text-muted text-xs leading-relaxed">
+              {mati
+                ? 'Mode luring lagi mati. Buku nggak bisa diunduh, dan Lema selalu ngambil versi terbaru dari server.'
+                : 'Kalau Lema terasa menampilkan versi lama dan nggak mau berubah walau sudah dimuat ulang, matikan mode luring. Koleksi katamu nggak ikut terhapus, dan pilihan ini diingat.'}
+            </p>
+            {mati ? (
+              <button
+                onClick={() => { setMati(false); void nyalakanSw(); }}
+                className="btn btn-ghost w-fit text-sm"
+              >
+                Nyalakan lagi mode luring
+              </button>
+            ) : lepasSiap ? (
+              <button
+                onClick={() => { setMati(true); void lepasSw(); }}
+                className="btn btn-ghost border-danger/50 text-danger w-fit text-sm"
+              >
+                Ya, matikan dan muat ulang
+              </button>
+            ) : (
+              <button onClick={() => setLepasSiap(true)} className="btn btn-quiet w-fit text-sm">
+                Matikan mode luring
+              </button>
+            )}
+          </div>
+        </section>
+      )}
 
       <p className="text-faint text-xs leading-relaxed">
         Berkas cadangan nggak pernah dikirim ke mana mana. Semua pemrosesannya terjadi di HP atau
