@@ -3,7 +3,7 @@
 import { useCallback, useContext, useSyncExternalStore } from 'react';
 import { DbContext } from '@/components/DbProvider';
 import type { Marker } from './image';
-import { startLookup, startMarkedLookup } from './lookup-client';
+import { startLookup, startMarkedLookup, startTextLookup } from './lookup-client';
 
 export function useDb() {
   const store = useContext(DbContext);
@@ -17,5 +17,9 @@ export function useDb() {
     (file: File, bookId: string, markers: Marker[]) => startMarkedLookup(store, file, bookId, markers),
     [store],
   );
-  return { ...snapshot, update: store.update, lookup, lookupMarked };
+  const lookupText = useCallback(
+    (bookId: string, word: string, context: string) => startTextLookup(store, bookId, word, context),
+    [store],
+  );
+  return { ...snapshot, update: store.update, lookup, lookupMarked, lookupText };
 }

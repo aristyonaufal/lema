@@ -1,10 +1,10 @@
-# PRD Lema v1.3
+# PRD Lema v1.4
 
 Dokumen ini menggambarkan Lema **seperti yang benar benar dibangun dan hidup** di `lema-lemon.vercel.app`, bukan rancangan awalnya. Versi pertama dokumen ini (v1, 7 September 2026) adalah spesifikasi build tiga hari; selama pengerjaan, sebagian keputusannya diubah setelah aplikasinya dicoba. Apa yang berubah dan alasannya dicatat di bagian 17.
 
-Versi 1.3 menulis ulang bagian 1 sampai 6. Dua sebabnya: pustaka ebook masuk, dan riset pembanding 28 September membatalkan dua klaim yang selama ini dipakai membenarkan Lema. Rinciannya di bagian 4.
+Versi 1.4 menambahkan ketuk kata di dalam pustaka (Tahap B). Versi 1.3 menulis ulang bagian 1 sampai 6. Dua sebabnya: pustaka ebook masuk, dan riset pembanding 28 September membatalkan dua klaim yang selama ini dipakai membenarkan Lema. Rinciannya di bagian 4.
 
-Status: v1 hidup di produksi. Fitur terakhir naik 28 September 2026.
+Status: v1 hidup di produksi. Fitur terakhir naik 29 September 2026.
 Batas kirim portfolio: 12 September 2026
 Versi rancangan awal: riwayat git, misalnya `git show v1-sebelum-tandai-foto:context/PRD-Lema.md`
 
@@ -14,7 +14,7 @@ Versi rancangan awal: riwayat git, misalnya `git show v1-sebelum-tandai-foto:con
 
 Lema membantu orang Indonesia yang belajar bahasa Inggris memahami kata yang maknanya bergantung pada konteks, lalu memastikan kata itu tidak perlu dicari untuk kedua kalinya.
 
-Ada dua jalan masuk, dan keduanya tanpa mengetik. **Dari buku kertas:** pembaca memotret halaman, lalu mengetuk kata yang membuatnya berhenti langsung di foto, atau cukup menggaris bawahinya dengan pensil sebelum difoto. **Dari pustaka di dalam Lema:** lima novel Inggris yang hak ciptanya sudah habis, dibaca langsung di aplikasi, dengan posisi baca yang tersimpan sendiri.
+Ada dua jalan masuk, dan keduanya tanpa mengetik. **Dari buku kertas:** pembaca memotret halaman, lalu mengetuk kata yang membuatnya berhenti langsung di foto, atau cukup menggaris bawahinya dengan pensil sebelum difoto. **Dari pustaka di dalam Lema:** lima novel Inggris yang hak ciptanya sudah habis, dibaca langsung di aplikasi, dengan posisi baca yang tersimpan sendiri. Kata yang membuat berhenti cukup diketuk di layar, dan frasa cukup disapu.
 
 Apa pun jalan masuknya, yang keluar sama: makna yang dipakai **di tempat itu**, kata pemicu yang menentukannya, alasannya, catatan hati hati, dan makna lain kata tersebut. Semuanya tersimpan ke koleksi per buku, lalu ditagih balik lewat review berjarak dan kuis yang pengecohnya adalah makna lain dari kata yang sama. Kalau modelnya salah pilih, pembaca berhak membetulkannya, dan seluruh koleksi bisa dibawa keluar sebagai satu berkas.
 
@@ -141,6 +141,7 @@ Tujuh aturan ini yang dipakai untuk menyelesaikan perdebatan desain. Prinsip 1 d
 - Pembaca dengan daftar bab, tiga ukuran huruf, dan batang kemajuan
 - Posisi baca tersimpan sendiri dan ikut terbawa berkas cadangan
 - Buku pustaka masuk rak buku yang sama dengan buku kertas, hanya beda penanda
+- **Ketuk kata, sapu frasa** *(Tahap B, naik 29 September)*: maknanya terbuka di panel yang muncul dari bawah, tanpa meninggalkan halaman yang sedang dibaca, lalu masuk koleksi seperti kata dari foto
 
 **Umum**
 
@@ -149,7 +150,6 @@ Tujuh aturan ini yang dipakai untuk menyelesaikan perdebatan desain. Prinsip 1 d
 
 ### Belum masuk, tetapi sudah direncanakan
 
-- **Ketuk kata di dalam pustaka** untuk membuka maknanya. Ini Tahap B, dan sampai itu naik, pustaka masih murni tempat membaca
 - Membaca pustaka tanpa koneksi
 - Unggah EPUB sendiri
 
@@ -267,6 +267,12 @@ Tiga hal yang menentukan bentuk layar ini:
 - **Teks buku tidak pernah masuk `localStorage`.** Jatahnya sekitar 5 MB per origin dan dipakai bersama koleksi kata, sedangkan Moby-Dick saja 1,6 MB. Teks diambil per bab sebagai berkas statis saat dibaca, lalu dilepas.
 - **Buku pustaka masuk rak buku yang sama** dengan buku kertas begitu benar benar dibuka, dengan penanda `pustaka` berisi slug-nya. Rak yang terpisah akan membuat pengguna bertanya kenapa bukunya tidak ada di salah satunya.
 
+**Ketuk kata, sapu frasa.** Satu ketukan pada sebuah kata langsung membuka maknanya. Menyapu beberapa kata memunculkan tombol "Cari makna" lebih dulu, karena di HP pegangan sapuan masih bisa digeser setelah jari diangkat, dan mencari terlalu dini berarti mencari frasa yang belum selesai dipilih. Sapuan dibatasi enam kata dan tidak boleh melewati batas paragraf; lebih dari itu bukan permintaan makna kata, dan prompt Lema dirancang memilih makna, bukan menjelaskan kalimat.
+
+Gerakan yang jauh lebih dari 10 piksel atau lebih lama dari 600 milidetik bukan ketukan melainkan gulir, dan diabaikan. Kata yang diketuk dicari lewat caret peramban, bukan dengan membungkus tiap kata dalam elemen sendiri: satu bab bisa berisi belasan ribu kata, dan membungkus semuanya berarti belasan ribu elemen yang digambar cuma untuk berjaga jaga.
+
+**Panelnya terbuka seketika, tidak menunggu jawaban.** Pengukuran 29 September memberi median 14 detik untuk mode teks (bagian 13). Menahan panel sampai jawabannya datang berarti pembaca menatap layar diam selama itu, jadi panel muncul segera dengan keadaan sedang diproses, lalu terisi sendiri. Isinya peta makna yang sama persis dengan alur foto, termasuk tombol membetulkan makna. Latar gelapnya sengaja tipis supaya kalimat yang sedang dibaca tetap terlihat di atas panel, karena maknanya cuma masuk akal bersama kalimatnya.
+
 Pustaka sengaja tidak menjadi tab keenam. Bilah bawah di HP sudah penuh dengan lima tujuan. Jalannya ada di rak buku pada beranda, di kaki sidebar pada laptop, dan di layar pemilihan buku untuk pengguna yang belum punya buku sama sekali.
 
 ---
@@ -275,10 +281,11 @@ Pustaka sengaja tidak menjadi tab keenam. Bilah bawah di HP sudah penuh dengan l
 
 ### 9.1 Permintaan ke `POST /api/lookup`
 
-Multipart form. Dua bentuk:
+Multipart form. Tiga bentuk:
 
 - Mode ketik: `image` (JPEG), `words` (JSON array, 1 sampai 5 kata atau frasa)
 - Mode tandai: `image` (JPEG, sudah digambari oval kalau ada), `mode=marked`, `markers` (jumlah oval, 0 sampai 5; 0 berarti cari coretan pensil saja)
+- Mode teks: `mode=text`, `word` (paling panjang 80 karakter), `context` (satu paragraf, paling panjang 8.000 karakter). **Tanpa gambar sama sekali.** Dihitung satu kata terhadap batas harian
 
 Balasan berhasil: `{ ok: true, model, fellBack, results, used, limit, ms }`. Balasan gagal: `{ ok: false, error, status }` dengan pesan yang bisa dibaca pengguna.
 
@@ -389,6 +396,8 @@ Aturan bersama:
 - Kalau kata tidak ada di halaman, katakan; jangan berpura pura
 - Balas hanya JSON sesuai skema
 
+Mode teks memakai aturan makna yang sama persis, dan yang dibuang cuma yang memang tidak berlaku: aturan `page_excerpt` dipakai untuk memeriksa apakah fotonya sampai dengan baik, dan seluruh blok "kalau katanya tidak ada di halaman" mustahil terjadi ketika katanya diambil dari teks yang dikirim pembaca. Sebagai gantinya: `found` selalu true, `page_excerpt` selalu kosong, dan `results` berisi tepat satu entri. Ada pengujian yang mengunci panjang prompt dua mode foto, supaya pemecahan ini tidak menggeser perilaku yang sudah teruji.
+
 Mode tandai menambahkan: temukan kata yang ditandai pembaca, baik coretan tangan (garis bawah, lingkaran, stabilo) maupun oval magenta bernomor dari aplikasi; jangan menambahkan kata yang tidak ditandai; urutkan sesuai urutan baca, paling banyak lima; daftar kosong adalah jawaban sah kalau tidak ada tanda.
 
 Tingkat berpikir model diatur `low`. Pada pengukuran 10 September, tingkat bawaan membuat 83% keluaran habis untuk berpikir: 3.234 token berpikir untuk 677 token jawaban, 21 detik. Bisa dinaikkan lewat `GEMINI_THINKING_LEVEL` tanpa mengubah kode.
@@ -399,7 +408,7 @@ Tingkat berpikir model diatur `low`. Pada pengukuran 10 September, tingkat bawaa
 
 - **Kunci API hanya di server.** Semua panggilan lewat satu route handler. Diperiksa pada bundle produksi: nol kemunculan kunci maupun alamat API di berkas yang dikirim ke browser. Alat internal `/lab` dan `/api/models` membalas 404 di produksi.
 - **Batas pemakaian.** Dihitung per kata, bukan per permintaan: 60 kata per alamat per hari. Mode tandai memesan lima lalu mengembalikan sisanya; foto tanpa tanda tetap dihitung satu. Kegagalan total mengembalikan jatah. Penghitung bersama lewat Upstash tersedia tetapi belum diuji terhadap layanan sungguhan; tanpa itu, hitungannya per proses server.
-- **Waktu tanggap.** Model utama dan tiga model cadangan dicoba berurutan. Setiap model paling lama 20 detik, seluruh rantai paling lama 50 detik, di bawah batas fungsi 60 detik. Hasil pengukuran ada di bagian 13. Pindah layar tidak menunggu model: peta makna terbuka seketika dan terisi sendiri.
+- **Waktu tanggap.** Model utama dan tiga model cadangan dicoba berurutan. Setiap model paling lama 20 detik untuk mode foto dan **12 detik untuk mode teks**, seluruh rantai paling lama 50 detik, di bawah batas fungsi 60 detik. Jatah mode teks lebih pendek karena tanpa gambar jawaban sehat datang dalam 6 sampai 13 detik; angkanya dari pengukuran 29 September (bagian 13). Hasil pengukuran ada di bagian 13. Pindah layar tidak menunggu model: peta makna terbuka seketika dan terisi sendiri.
 - **Ukuran foto.** Dikecilkan di browser, sisi terpanjang paling besar 1.600 piksel.
 - **Privasi.** Layar foto menyatakan bahwa foto dikirim ke Google agar model bisa membaca halaman, bahwa Lema tidak menyimpan foto itu, dan bahwa koleksi hanya ada di browser. Perlakuan data di sisi penyedia model sengaja tidak diklaim. Berkas cadangan dibaca dan ditulis sepenuhnya di perangkat pengguna, tanpa melewati server mana pun.
 - **Safari iOS.** Wajib, dan **belum diuji di perangkat sungguhan**. Seluruh pemeriksaan tampilan memakai Chromium yang meniru lebar HP.
@@ -419,7 +428,7 @@ Tingkat berpikir model diatur `low`. Pada pengukuran 10 September, tingkat bawaa
 | 7 | Batas pemakaian aktif dan sudah diuji | Terpenuhi untuk hitungan per proses. Penghitung bersama belum diuji ke layanan sungguhan |
 | 8 | Koleksi punya jalan keluar dari satu browser | Terpenuhi sejak 27 September. Ekspor JSON dan CSV, impor dengan penggabungan yang tidak menimpa. Ditambahkan setelah kriteria awal disusun, karena tanpa ini penyimpanan yang jadi alasan Lema pantas ada justru yang paling rapuh |
 
-Di luar tabel: **121 pengujian otomatis lulus pada build produksi**, mencakup alur penyimpanan, peta makna, mode tandai, kuis, batas waktu rantai model, aturan penggabungan cadangan, koreksi makna, serta pustaka dan pembacanya.
+Di luar tabel: **137 pengujian otomatis lulus pada build produksi**, mencakup alur penyimpanan, peta makna, mode tandai, kuis, batas waktu rantai model, aturan penggabungan cadangan, koreksi makna, serta pustaka, pembacanya, dan pencarian makna dari teks.
 
 ---
 
@@ -442,6 +451,22 @@ Uji akurasi otomatis 11 September, lewat `/api/lookup` yang sama dengan produksi
 Membaca angka ini: **ketepatan makna bukan masalahnya; ketersediaan model yang masalah.** Pada sore yang sama, `gemini-3.6-flash` hanya berhasil 4 dari 26 percobaan dan `gemini-3.8-flash` 3 dari 22, sedangkan `gemini-3.5-flash` berhasil 12 dari 19. Percobaan yang berhasil sendiri memakan 6 sampai 19 detik; sisa waktunya habis menunggu model yang menggantung.
 
 Ketepatan 100% di atas adalah batas atas. Teks buku yang dipakai sangat terkenal dan kemungkinan ada di data latih model, dan halaman dirender tanpa buram, pantulan cahaya, atau lengkungan kertas. Uji dengan foto buku modern dari HP masih diperlukan sebelum angka ini dipakai sebagai klaim umum.
+
+### Mode teks, diukur 29 September
+
+Sepuluh kata yang maknanya bergantung konteks, diambil dari paragraf asli di pustaka, lewat `/api/lookup` yang sama dengan produksi. Bisa diulang dengan `node scripts/uji-teks/ukur.mjs`; jawaban lengkapnya di `scripts/uji-teks/hasil.json`.
+
+| Metrik | Mode foto | Mode teks |
+|---|---|---|
+| Terjawab pada percobaan pertama | 14 dari 20 (70%) | **10 dari 10** |
+| Median waktu tunggu | 28,2 detik | **14,0 detik** |
+| Tercepat sampai terlama | — | 6,7 sampai 43,7 detik |
+
+**Perkiraan awal meleset, dan ini dicatat supaya tidak diulang.** Peta jalan Tahap B memperkirakan 3 sampai 6 detik, dengan alasan tanpa gambar berarti tanpa token gambar. Pengukuran pertama memberi median 20,9 detik. Sebabnya ketahuan dari catatan model yang menjawab: **7 dari 10 permintaan jatuh ke model cadangan**, dan masing masing membayar 20 detik penuh lebih dulu. Jadi yang menahan bukan besarnya permintaan, melainkan ketersediaan model utama, persis temuan uji 11 September.
+
+Setelah jatah per model untuk mode teks dipendekkan ke 12 detik, mediannya turun ke 14,0 detik dengan keberhasilan tetap 10 dari 10. Ekornya justru memanjang, dari 32,9 ke 43,7 detik, karena satu permintaan kini bisa melewati tiga model sebelum ada yang menjawab. Pertukaran itu diterima: yang dirasakan pembaca setiap hari adalah mediannya.
+
+Angka keberhasilan 10 dari 10 berasal dari sepuluh permintaan, bukan ratusan, jadi bacalah sebagai tanda bagus, bukan sebagai jaminan.
 
 ### Yang belum bisa diukur
 
@@ -510,6 +535,7 @@ Aplikasi tidak mengumpulkan data kunjungan dan tidak punya server basis data, ja
 | 11 September | **Kuis** sebagai gerbang dan sebagai tab sendiri; alur review dibalik | Prinsip 6 ditambahkan. Kuis pilihan ganda pindah dari "keluar" ke "masuk" dalam bentuk yang melayani prinsip 2 |
 | 11 September | Uji akurasi otomatis dengan teks buku asli: 15 dari 15 kata buku asli, 12 dari 12 kata bertanda ditemukan, 70% permintaan terjawab pada percobaan pertama | Kriteria 1 dan 2 tidak bisa menunggu uji manual sebelum batas kirim. Temuannya menggeser fokus dari ketepatan makna ke keandalan model |
 | 27 September | **Cadangan koleksi** lewat berkas JSON dan ekspor CSV | Perbandingan dengan Readlang, LingQ, Migaku, dan Kindle menunjukkan Lema kena dua batasan sekaligus: tidak sinkron dan tidak bisa diekspor. Kriteria 8 ditambahkan |
+| 29 September | **Ketuk kata di pustaka** lewat `mode=text`, tanpa gambar | Tahap B. Jatah per model dipendekkan ke 12 detik setelah pengukuran menunjukkan waktu tunggu didominasi model utama yang menggantung, bukan besarnya permintaan |
 | 28 September | **Pustaka ebook**: lima novel domain publik, pembaca dengan posisi baca, rak buku bersama | Lapis masalah keempat: Lema tidak bisa dicoba sama sekali tanpa buku Inggris di tangan. Prinsip 7 ditambahkan, dan bagian 1 sampai 6 ditulis ulang |
 | 28 September | **Kalimat pembeda diganti** dan bagian 4 ditulis ulang | Riset pembanding membatalkan dua klaim: Readlang punya penjelasan kontekstual berbasis AI, dan mendukung 119 bahasa termasuk Indonesia |
 | 27 September | **Koreksi makna** yang berdampingan dengan jawaban model, bukan menimpanya | Satu satunya tanggapan untuk jawaban keliru sebelumnya adalah menghapus katanya, dan itu ikut membuang kalimat asal dari buku. Prinsip 3 diperluas menjadi dua arah, dan kata ragu yang sudah diputuskan pembaca kini boleh dikuiskan |

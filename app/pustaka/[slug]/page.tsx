@@ -2,8 +2,16 @@
 
 import Link from 'next/link';
 import { use, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import PanelMakna from '@/components/PanelMakna';
 import { useDb } from '@/lib/useDb';
-import { bacaanFor, bookForPustaka, simpanBacaan } from '@/lib/store';
+import {
+  bacaanFor,
+  bookForPustaka,
+  clearCorrection,
+  correctMeaning,
+  simpanBacaan,
+} from '@/lib/store';
+import { frasaTerpilih, kataDiTitik, type Pilihan } from '@/lib/pilih-kata';
 import {
   bacaUkuran,
   KELAS_UKURAN,
@@ -27,7 +35,7 @@ const JEDA_SIMPAN = 800;
 
 export default function BacaBuku({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
-  const { db, update, ready } = useDb();
+  const { db, update, ready, lookupText } = useDb();
 
   const [buku, setBuku] = useState<Buku | null>(null);
   const [bab, setBab] = useState(1);
@@ -51,6 +59,11 @@ export default function BacaBuku({ params }: { params: Promise<{ slug: string }>
   // ikut menjadi kebergantungan efek, jadi efeknya berjalan tepat saat wadahnya
   // benar benar muncul.
   const [artikel, setArtikel] = useState<HTMLElement | null>(null);
+  // Entri yang sedang dibuka panelnya, dan frasa yang sedang disapu.
+  const [panelId, setPanelId] = useState<string | null>(null);
+  const [frasa, setFrasa] = useState<{ pilihan: Pilihan; x: number; y: number } | null>(null);
+  // Titik dan waktu sentuhan dimulai, untuk membedakan ketukan dari gulir.
+  const mulaiSentuh = useRef<{ x: number; y: number; pada: number } | null>(null);
   const paragrafKe = (index: number) =>
     artikel?.querySelector<HTMLElement>(`[data-paragraf="${index}"]`) ?? null;
 
@@ -166,6 +179,43 @@ export default function BacaBuku({ params }: { params: Promise<{ slug: string }>
 
   useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
 
+  // Buku pustaka ini di rak. Diturunkan dari penyimpanan, bukan disimpan
+  // sebagai state tersendiri, supaya tidak ada dua sumber kebenaran.
+  const bookId = db.books.find((b) => b.pustaka === slug)?.id ?? null;
+  const entriPanel = panelId ? db.entries.find((e) => e.id === panelId) ?? null : null;
+
+  function cari(pilihan: Pilihan) {
+    if (!bookId) return;
+    const id = lookupText(bookId, pilihan.kata, pilihan.konteks);
+    if (id) setPanelId(id);
+    setFrasa(null);
+    window.getSelection()?.removeAllRanges();
+  }
+
+  // Ketukan pada satu kata langsung membuka maknanya. Gerakan yang jauh atau
+  // lama bukan ketukan melainkan gulir atau awal sapuan, jadi diabaikan.
+  function selesaiSentuh(event: React.PointerEvent<HTMLElement>) {
+    const awal = mulaiSentuh.current;
+    mulaiSentuh.current = null;
+
+    const disapu = frasaTerpilih();
+    if (disapu) {
+      // Sapuan tidak langsung dicari. Di HP, sapuan masih bisa digeser pegangannya
+      // setelah jari diangkat, dan mencari terlalu dini berarti mencari frasa
+      // yang belum selesai dipilih.
+      setFrasa({ pilihan: disapu, x: event.clientX, y: event.clientY });
+      return;
+    }
+    setFrasa(null);
+
+    if (!awal) return;
+    const jauh = Math.hypot(event.clientX - awal.x, event.clientY - awal.y);
+    if (jauh > 10 || Date.now() - awal.pada > 600) return;
+
+    const pilihan = kataDiTitik(event.clientX, event.clientY);
+    if (pilihan) cari(pilihan);
+  }
+
   function pindahBab(ke: number) {
     if (!buku || ke < 1 || ke > buku.bab.length) return;
     tujuan.current = 0;
@@ -240,6 +290,14 @@ export default function BacaBuku({ params }: { params: Promise<{ slug: string }>
           </h1>
         </div>
 
+        {/* Ketuk kata itu gerakan yang tidak kelihatan kalau tidak disebut.
+            Barisnya tetap ada supaya pembaca baru menemukannya di bab mana pun
+            ia mulai, bukan cuma di bab pertama. */}
+        <p className="text-muted text-sm leading-relaxed">
+          Ketuk kata yang bikin kamu berhenti buat lihat maknanya. Sapu beberapa kata kalau yang
+          bikin bingung satu frasa.
+        </p>
+
         <div className="flex flex-col gap-1.5">
           <div aria-hidden="true" className="bg-sunken h-1 w-full overflow-hidden rounded-full">
             <div className="bg-accent h-full rounded-full transition-[width] duration-500" style={{ width: `${persen}%` }} />
@@ -268,6 +326,8 @@ export default function BacaBuku({ params }: { params: Promise<{ slug: string }>
         <article
           ref={setArtikel}
           lang="en"
+          onPointerDown={(e) => { mulaiSentuh.current = { x: e.clientX, y: e.clientY, pada: Date.now() }; }}
+          onPointerUp={selesaiSentuh}
           className={`flex flex-col gap-4 ${KELAS_UKURAN[ukuran]}`}
           style={{ textWrap: 'pretty' }}
         >
@@ -294,6 +354,25 @@ export default function BacaBuku({ params }: { params: Promise<{ slug: string }>
           Bab berikutnya ›
         </button>
       </nav>
+
+      {frasa && (
+        <button
+          onClick={() => cari(frasa.pilihan)}
+          style={{ left: frasa.x, top: frasa.y }}
+          className="btn btn-primary fixed z-50 -translate-x-1/2 -translate-y-[calc(100%+0.75rem)] text-sm shadow-[var(--shadow-sm)]"
+        >
+          Cari makna “{frasa.pilihan.kata}”
+        </button>
+      )}
+
+      {entriPanel && (
+        <PanelMakna
+          entry={entriPanel}
+          onClose={() => setPanelId(null)}
+          onCorrect={(fix) => update((current) => correctMeaning(current, entriPanel.id, fix))}
+          onUncorrect={() => update((current) => clearCorrection(current, entriPanel.id))}
+        />
+      )}
 
       <p className="text-faint text-xs leading-relaxed">
         <a href={buku.sumber} target="_blank" rel="noreferrer" className="underline">Standard Ebooks</a>
