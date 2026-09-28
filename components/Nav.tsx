@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useDb } from '@/lib/useDb';
 import BookSpine from '@/components/BookSpine';
-import { booksByRecent, due } from '@/lib/store';
+import { bacaanFor, booksByRecent, due } from '@/lib/store';
 
 // Navigasi utama.
 //
@@ -238,6 +238,7 @@ export default function Nav() {
             {shelf.map((b) => {
               const words = db.entries.filter((e) => e.bookId === b.id).length;
               const reading = b.id === db.activeBookId;
+              const lanjut = b.pustaka ? bacaanFor(db, b.pustaka) : null;
               return (
                 <li key={b.id}>
                   <Link
@@ -250,7 +251,7 @@ export default function Nav() {
                       <span className="block truncate text-sm font-medium">{b.title}</span>
                       <span className="text-faint block text-xs">
                         {words === 0 ? 'Belum ada kata' : `${words} kata`}
-                        {reading ? ' · lagi dibaca' : ''}
+                        {lanjut ? ` · bab ${lanjut.bab}` : reading ? ' · lagi dibaca' : ''}
                       </span>
                     </span>
                   </Link>

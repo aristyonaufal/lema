@@ -174,6 +174,15 @@ export function bacaanFor(db: Db, slug: string): Bacaan | null {
   return db.bacaan?.find((b) => b.slug === slug) ?? null;
 }
 
+// Buku pustaka yang paling terakhir dibaca, untuk tawaran "lanjut baca".
+// Satu saja yang ditawarkan: menawarkan semua buku yang pernah dibuka bukan
+// tawaran, melainkan daftar kedua yang menyalin rak buku.
+export function bacaanTerakhir(db: Db): Bacaan | null {
+  const semua = db.bacaan ?? [];
+  if (semua.length === 0) return null;
+  return semua.reduce((paling, b) => (b.at > paling.at ? b : paling));
+}
+
 // Satu catatan per buku, selalu ditimpa. Riwayat posisi baca tidak disimpan:
 // yang dibutuhkan pembaca cuma "lanjut dari mana", bukan ke mana saja ia pernah.
 export function simpanBacaan(db: Db, slug: string, bab: number, paragraf: number): Db {

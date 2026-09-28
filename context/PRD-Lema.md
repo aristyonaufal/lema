@@ -1,10 +1,10 @@
-# PRD Lema v1.4
+# PRD Lema v1.5
 
 Dokumen ini menggambarkan Lema **seperti yang benar benar dibangun dan hidup** di `lema-lemon.vercel.app`, bukan rancangan awalnya. Versi pertama dokumen ini (v1, 7 September 2026) adalah spesifikasi build tiga hari; selama pengerjaan, sebagian keputusannya diubah setelah aplikasinya dicoba. Apa yang berubah dan alasannya dicatat di bagian 17.
 
-Versi 1.4 menambahkan ketuk kata di dalam pustaka (Tahap B). Versi 1.3 menulis ulang bagian 1 sampai 6. Dua sebabnya: pustaka ebook masuk, dan riset pembanding 28 September membatalkan dua klaim yang selama ini dipakai membenarkan Lema. Rinciannya di bagian 4.
+Versi 1.5 menyatukan pustaka dengan rak buku (Tahap C). Versi 1.4 menambahkan ketuk kata di dalam pustaka (Tahap B). Versi 1.3 menulis ulang bagian 1 sampai 6. Dua sebabnya: pustaka ebook masuk, dan riset pembanding 28 September membatalkan dua klaim yang selama ini dipakai membenarkan Lema. Rinciannya di bagian 4.
 
-Status: v1 hidup di produksi. Fitur terakhir naik 29 September 2026.
+Status: v1 hidup di produksi. Fitur terakhir naik 30 September 2026.
 Batas kirim portfolio: 12 September 2026
 Versi rancangan awal: riwayat git, misalnya `git show v1-sebelum-tandai-foto:context/PRD-Lema.md`
 
@@ -142,6 +142,7 @@ Tujuh aturan ini yang dipakai untuk menyelesaikan perdebatan desain. Prinsip 1 d
 - Posisi baca tersimpan sendiri dan ikut terbawa berkas cadangan
 - Buku pustaka masuk rak buku yang sama dengan buku kertas, hanya beda penanda
 - **Ketuk kata, sapu frasa** *(Tahap B, naik 29 September)*: maknanya terbuka di panel yang muncul dari bawah, tanpa meninggalkan halaman yang sedang dibaca, lalu masuk koleksi seperti kata dari foto
+- **Menyatu dengan rak buku** *(Tahap C, naik 30 September)*: beranda menawarkan lanjut baca dari buku terakhir, rak buku menyebut sampai bab berapa, dan koleksi kata satu buku punya jalan balik ke bacaannya
 
 **Umum**
 
@@ -188,7 +189,13 @@ Navigasi utama punya lima tujuan: Beranda, Baca, Kata, Review, Kuis. Di HP berup
 
 ### 8.1 Beranda (`/`)
 
-Pengguna baru langsung ditanya judul buku. Sesudahnya: empat angka ringkasan (kata terkumpul, siap dibaca, jatuh tempo, lolos review), tombol besar ke layar foto, pintasan review saat ada yang jatuh tempo, pintasan latihan, keterangan kata yang sedang diproses atau gagal, rak buku dengan persen kemajuan, dan kata terbaru. Kemajuan buku diukur dari kata yang pernah lolos review, bukan dari kata yang maknanya sudah ada.
+Pengguna baru langsung ditanya judul buku. Sesudahnya: empat angka ringkasan (kata terkumpul, siap dibaca, jatuh tempo, lolos review), tombol besar ke layar foto, pintasan review saat ada yang jatuh tempo, **tawaran lanjut baca**, pintasan latihan, keterangan kata yang sedang diproses atau gagal, rak buku, dan kata terbaru.
+
+**Dua kemajuan yang berbeda artinya, dan sengaja tidak digabung.** Kemajuan hafalan diukur dari kata yang pernah lolos review, bukan dari kata yang maknanya sudah ada; punya arti belum berarti hafal. Kemajuan membaca hanya dimiliki buku pustaka, dan diukur dari nomor bab. Menjumlahkan keduanya menjadi satu angka akan menghasilkan angka yang tidak berarti apa apa.
+
+**Tawaran lanjut baca** muncul kalau ada posisi baca tersimpan, dan hanya satu: buku yang paling terakhir dibaca. Menawarkan semua buku yang pernah dibuka bukan tawaran, melainkan daftar kedua yang menyalin rak buku tepat di bawahnya. Satu ketukan membawa pembaca kembali ke paragraf terakhirnya.
+
+Kemajuan membaca ditulis sebagai **"Bab 12 dari 136"**, tidak pernah sebagai persen. Angkanya dihitung dari jumlah bab, bukan jumlah kata, karena beranda cuma punya katalog dan menarik lima manifes buku cuma untuk menggambar satu batang kemajuan itu boros. Menuliskannya sebagai persen akan terdengar lebih teliti daripada yang benar. Di dalam pembaca, batangnya dihitung dari jumlah kata, karena di sana manifesnya memang sudah ada.
 
 ### 8.2 Baca (`/baca`)
 
@@ -218,6 +225,8 @@ Pemilih itu menawarkan lebih dulu makna yang sudah ada di kartu, yaitu kandidat 
 Setelah dibetulkan, makna pembaca yang tampil besar di atas, jawaban model turun menjadi satu baris catatan, dan ada tombol "Kembalikan jawaban model". Kartu ragu berhenti menampilkan dua kandidat sejajar begitu pembaca memutuskan, karena keraguannya sudah terjawab oleh orang yang memegang bukunya. Layar review tidak menampilkan tombol koreksi sama sekali: di sana yang sedang diuji adalah ingatan, dan menyunting jawaban di tengah ujian mengaburkan keduanya.
 
 ### 8.4 Koleksi (`/kata`)
+
+Koleksi satu buku pustaka punya tautan **"Balik ke bacaan"**. Bunyinya sengaja bukan "Lanjut baca": layar ini sudah punya tautan bernama itu, dan yang itu menuju layar foto. Dua tautan sebunyi dengan tujuan berbeda menyesatkan, terutama bagi yang memakai pembaca layar.
 
 Daftar ringkas per buku: satu baris berisi kata dan arti singkatnya, dengan penanda "Ragu", "Tidak ketemu di halaman", "Sudah tahu", atau "Kamu betulkan". Arti singkat yang ditampilkan selalu makna yang berlaku, jadi kata yang sudah dibetulkan tidak pernah lagi menunjukkan jawaban lama model di layar mana pun. Kartu makna penuh baru digambar setelah barisnya diketuk. Penyaring: semua, siap dibaca, diproses, gagal, sudah tahu. `?buku=<id>` menyaring ke satu buku, dibuka dari rak buku di beranda atau sidebar. `?entry=<id>` membuka kata tertentu dalam keadaan terbuka, termasuk semua kata hasil satu foto mode tandai.
 
@@ -428,7 +437,7 @@ Tingkat berpikir model diatur `low`. Pada pengukuran 10 September, tingkat bawaa
 | 7 | Batas pemakaian aktif dan sudah diuji | Terpenuhi untuk hitungan per proses. Penghitung bersama belum diuji ke layanan sungguhan |
 | 8 | Koleksi punya jalan keluar dari satu browser | Terpenuhi sejak 27 September. Ekspor JSON dan CSV, impor dengan penggabungan yang tidak menimpa. Ditambahkan setelah kriteria awal disusun, karena tanpa ini penyimpanan yang jadi alasan Lema pantas ada justru yang paling rapuh |
 
-Di luar tabel: **137 pengujian otomatis lulus pada build produksi**, mencakup alur penyimpanan, peta makna, mode tandai, kuis, batas waktu rantai model, aturan penggabungan cadangan, koreksi makna, serta pustaka, pembacanya, dan pencarian makna dari teks.
+Di luar tabel: **147 pengujian otomatis lulus pada build produksi**, mencakup alur penyimpanan, peta makna, mode tandai, kuis, batas waktu rantai model, aturan penggabungan cadangan, koreksi makna, serta pustaka, pembacanya, dan pencarian makna dari teks.
 
 ---
 
@@ -535,6 +544,7 @@ Aplikasi tidak mengumpulkan data kunjungan dan tidak punya server basis data, ja
 | 11 September | **Kuis** sebagai gerbang dan sebagai tab sendiri; alur review dibalik | Prinsip 6 ditambahkan. Kuis pilihan ganda pindah dari "keluar" ke "masuk" dalam bentuk yang melayani prinsip 2 |
 | 11 September | Uji akurasi otomatis dengan teks buku asli: 15 dari 15 kata buku asli, 12 dari 12 kata bertanda ditemukan, 70% permintaan terjawab pada percobaan pertama | Kriteria 1 dan 2 tidak bisa menunggu uji manual sebelum batas kirim. Temuannya menggeser fokus dari ketepatan makna ke keandalan model |
 | 27 September | **Cadangan koleksi** lewat berkas JSON dan ekspor CSV | Perbandingan dengan Readlang, LingQ, Migaku, dan Kindle menunjukkan Lema kena dua batasan sekaligus: tidak sinkron dan tidak bisa diekspor. Kriteria 8 ditambahkan |
+| 30 September | **Pustaka menyatu dengan rak buku**: tawaran lanjut baca di beranda, nomor bab di rak dan sidebar, jalan balik dari koleksi | Tahap C. Kemajuan membaca dan kemajuan hafalan dibedakan, karena artinya berbeda dan menggabungkannya menghasilkan angka yang tidak berarti |
 | 29 September | **Ketuk kata di pustaka** lewat `mode=text`, tanpa gambar | Tahap B. Jatah per model dipendekkan ke 12 detik setelah pengukuran menunjukkan waktu tunggu didominasi model utama yang menggantung, bukan besarnya permintaan |
 | 28 September | **Pustaka ebook**: lima novel domain publik, pembaca dengan posisi baca, rak buku bersama | Lapis masalah keempat: Lema tidak bisa dicoba sama sekali tanpa buku Inggris di tangan. Prinsip 7 ditambahkan, dan bagian 1 sampai 6 ditulis ulang |
 | 28 September | **Kalimat pembeda diganti** dan bagian 4 ditulis ulang | Riset pembanding membatalkan dua klaim: Readlang punya penjelasan kontekstual berbasis AI, dan mendukung 119 bahasa termasuk Indonesia |

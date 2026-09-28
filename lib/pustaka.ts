@@ -100,3 +100,17 @@ export function simpanUkuran(ukuran: Ukuran): void {
     // Tidak apa apa. Ukurannya tetap berlaku sampai tab ditutup.
   }
 }
+
+// Kemajuan membaca sebuah buku, dihitung dari nomor bab.
+//
+// Sengaja bab, bukan kata, walaupun pembaca punya angka yang lebih halus.
+// Alasannya bukan kemalasan: beranda cuma punya katalog, yang menyimpan jumlah
+// bab per buku, sedangkan jumlah kata per bab ada di manifes tiap buku. Menarik
+// lima manifes cuma untuk menggambar satu batang kemajuan itu boros.
+//
+// Supaya tidak ada presisi palsu, layar yang memakai angka ini menulis "Bab 12
+// dari 136" dan tidak pernah menampilkan persennya sebagai angka.
+export function kemajuanBab(bab: number, totalBab: number): number {
+  if (totalBab <= 0) return 0;
+  return Math.round((Math.min(Math.max(bab, 1), totalBab) / totalBab) * 100);
+}

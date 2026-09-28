@@ -6,7 +6,11 @@ import { useDb } from '@/lib/useDb';
 import BookSpine, { spineColor } from '@/components/BookSpine';
 import BookPicker from '@/components/BookPicker';
 import { StatusChip, SectionHeader, type EntryTone } from '@/components/ui';
-import { booksByRecent, bookSummary, practicePool, stats, type Entry } from '@/lib/store';
+import {
+  bacaanFor, bacaanTerakhir, booksByRecent, bookSummary, practicePool, stats, type Entry,
+} from '@/lib/store';
+import { kemajuanBab } from '@/lib/pustaka';
+import { useKatalog } from '@/lib/useKatalog';
 
 // Beranda. Sebelumnya alamat ini langsung berupa layar foto, sehingga seluruh
 // aplikasi hanya terlihat sebagai satu kotak unggah dan tidak ada tempat yang
@@ -40,6 +44,7 @@ function Stat({ value, label, hint, tone }: {
 
 export default function Beranda() {
   const { db, ready } = useDb();
+  const katalog = useKatalog();
   const [choosing, setChoosing] = useState(false);
 
   if (!ready) {
@@ -136,6 +141,47 @@ export default function Beranda() {
               </Link>
             )}
 
+            {/* Melanjutkan bacaan, bukan memulai dari rak. Satu ketukan membawa
+                pembaca kembali ke paragraf terakhirnya. Yang ditawarkan cuma buku
+                yang paling terakhir dibaca; menawarkan semuanya berarti membuat
+                daftar kedua yang menyalin rak buku di bawah. */}
+            {(() => {
+              const lanjut = bacaanTerakhir(db);
+              const buku = lanjut ? katalog.get(lanjut.slug) : undefined;
+              if (!lanjut) return null;
+              return (
+                <Link
+                  href={`/pustaka/${lanjut.slug}`}
+                  className="card hover:border-muted flex flex-col gap-2.5 p-4 transition-colors"
+                >
+                  <span className="flex items-center gap-3.5">
+                    <BookSpine title={buku?.judul ?? lanjut.slug} />
+                    <span className="flex min-w-0 flex-1 flex-col gap-0.5">
+                      <span className="block font-semibold">Lanjut baca</span>
+                      <span lang="en" className="text-muted block truncate text-sm">
+                        {buku?.judul ?? lanjut.slug}
+                      </span>
+                      {/* Ditulis sebagai nomor bab, bukan persen. Kemajuannya
+                          dihitung dari jumlah bab, dan menuliskannya sebagai
+                          persen akan terdengar lebih teliti daripada yang benar. */}
+                      <span className="text-faint block text-xs tabular-nums">
+                        {buku ? `Bab ${lanjut.bab} dari ${buku.bab}` : `Bab ${lanjut.bab}`}
+                      </span>
+                    </span>
+                    <span aria-hidden="true" className="text-faint shrink-0">›</span>
+                  </span>
+                  {buku && (
+                    <span aria-hidden="true" className="bg-sunken block h-1.5 w-full overflow-hidden rounded-full">
+                      <span
+                        className="bg-accent block h-full rounded-full transition-[width] duration-500"
+                        style={{ width: `${kemajuanBab(lanjut.bab, buku.bab)}%` }}
+                      />
+                    </span>
+                  )}
+                </Link>
+              );
+            })()}
+
             {s.pending > 0 && (
               <p role="status" className="border-line bg-surface text-muted flex items-center gap-2 rounded-xl border p-3 text-sm">
                 <span aria-hidden="true" className="bg-warn h-2 w-2 shrink-0 animate-pulse rounded-full" />
@@ -195,8 +241,13 @@ export default function Beranda() {
                 // Kemajuan diukur dari kata yang pernah lolos review, bukan dari
                 // kata yang maknanya sudah ada. Punya arti belum berarti hafal.
                 const percent = sum.total > 0 ? Math.round((sum.passed / sum.total) * 100) : 0;
+                // Buku pustaka punya kemajuan kedua yang tidak dimiliki buku
+                // kertas: sampai bab berapa dibaca. Keduanya berbeda arti, jadi
+                // ditampilkan terpisah, bukan digabung jadi satu angka.
+                const lanjut = b.pustaka ? bacaanFor(db, b.pustaka) : null;
+                const terbit = b.pustaka ? katalog.get(b.pustaka) : undefined;
                 return (
-                  <li key={b.id}>
+                  <li key={b.id} className="flex flex-col">
                     {/* Menuju koleksi buku ini saja. Di HP tidak ada sidebar,
                         jadi kartu inilah satu satunya jalan ke sana. */}
                     <Link
@@ -231,6 +282,21 @@ export default function Beranda() {
                         />
                       </span>
                     </Link>
+
+                    {/* Tautan kedua, bukan tombol di dalam kartu: kartunya
+                        sendiri sudah sebuah tautan, dan tautan di dalam tautan
+                        bukan HTML yang sah. */}
+                    {b.pustaka && (
+                      <Link
+                        href={`/pustaka/${b.pustaka}`}
+                        className="text-accent hover:text-foreground mt-1.5 flex items-center gap-1.5 self-start px-1 text-xs font-medium transition-colors"
+                      >
+                        {lanjut
+                          ? `Lanjut baca · bab ${lanjut.bab}${terbit ? ` dari ${terbit.bab}` : ''}`
+                          : 'Mulai baca'}
+                        <span aria-hidden="true">›</span>
+                      </Link>
+                    )}
                   </li>
                 );
               })}
