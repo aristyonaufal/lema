@@ -6,6 +6,7 @@ import BookSpine from '@/components/BookSpine';
 import { useDb } from '@/lib/useDb';
 import { bacaanFor } from '@/lib/store';
 import { muatKatalog, perkiraanJam, TINGKAT, type KatalogBuku } from '@/lib/pustaka';
+import { babTersimpan, dukungLuring, hapusBuku, unduhBuku } from '@/lib/offline';
 
 // Pustaka: buku Inggris domain publik yang bisa dibaca langsung di dalam Lema.
 //
@@ -23,6 +24,30 @@ export default function Pustaka() {
   const { db, ready } = useDb();
   const [buku, setBuku] = useState<KatalogBuku[] | null>(null);
   const [galat, setGalat] = useState<string | null>(null);
+  // Berapa bab tiap buku yang sudah tersimpan di peramban ini.
+  const [tersimpan, setTersimpan] = useState<Map<string, number>>(new Map());
+  // Buku yang sedang diunduh, beserta kemajuannya.
+  const [sedang, setSedang] = useState<{ slug: string; selesai: number; total: number } | null>(null);
+  const bisaLuring = dukungLuring();
+
+  const segarkanSimpanan = () => { void babTersimpan().then(setTersimpan); };
+  useEffect(() => { void babTersimpan().then(setTersimpan); }, []);
+
+  async function unduh(b: KatalogBuku) {
+    setSedang({ slug: b.slug, selesai: 0, total: b.bab + 1 });
+    try {
+      await unduhBuku(b.slug, b.bab, (k) => setSedang({ slug: b.slug, ...k }));
+    } catch {
+      setGalat('Unduhan gagal. Coba lagi saat koneksinya lebih stabil.');
+    }
+    setSedang(null);
+    segarkanSimpanan();
+  }
+
+  async function hapus(slug: string) {
+    await hapusBuku(slug).catch(() => {});
+    segarkanSimpanan();
+  }
 
   useEffect(() => {
     let batal = false;
@@ -63,8 +88,10 @@ export default function Pustaka() {
             // Posisi baca baru boleh dibaca setelah penyimpanan siap, supaya
             // render di server dan di browser tidak berbeda.
             const bacaan = ready ? bacaanFor(db, b.slug) : null;
+            const sudah = tersimpan.get(b.slug) ?? 0;
+            const lengkap = sudah >= b.bab;
             return (
-              <li key={b.slug}>
+              <li key={b.slug} className="flex flex-col">
                 <Link
                   href={`/pustaka/${b.slug}`}
                   className="card hover:border-muted flex h-full items-start gap-3.5 p-4 transition-colors"
@@ -88,6 +115,42 @@ export default function Pustaka() {
                     </span>
                   </span>
                 </Link>
+
+                {/* Unduhan ditaruh di luar kartu, bukan di dalamnya: kartunya
+                    sendiri sudah sebuah tautan, dan tombol di dalam tautan
+                    bukan HTML yang sah. */}
+                {bisaLuring && (
+                  <div className="mt-1.5 flex items-center gap-3 px-1">
+                    {sedang?.slug === b.slug ? (
+                      <span role="status" className="text-muted text-xs tabular-nums">
+                        Mengunduh {sedang.selesai} dari {sedang.total} berkas…
+                      </span>
+                    ) : lengkap ? (
+                      <>
+                        <span className="text-accent flex items-center gap-1 text-xs font-medium">
+                          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-3.5 w-3.5">
+                            <path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                          Bisa dibaca tanpa koneksi
+                        </span>
+                        <button
+                          onClick={() => hapus(b.slug)}
+                          className="text-muted hover:text-foreground text-xs underline"
+                        >
+                          Hapus unduhan
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        onClick={() => unduh(b)}
+                        disabled={sedang !== null}
+                        className="text-accent hover:text-foreground text-xs font-medium disabled:opacity-40"
+                      >
+                        {sudah > 0 ? `Lanjutkan unduhan (${sudah} dari ${b.bab} bab)` : 'Unduh buat dibaca luring'}
+                      </button>
+                    )}
+                  </div>
+                )}
               </li>
             );
           })}
