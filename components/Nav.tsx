@@ -264,6 +264,17 @@ export default function Nav() {
       {/* Cadangan sengaja tidak menjadi tab keenam. Bilah bawah di HP sudah
           penuh dengan lima tujuan, dan menyimpan berkas bukan pekerjaan harian.
           Yang penting jalannya ada sebelum koleksinya hilang, bukan menonjol. */}
+      <Link
+        href="/pustaka"
+        className="text-muted hover:text-foreground mt-3 hidden items-center gap-2 rounded-xl px-2 py-2 text-sm transition-colors lg:flex"
+      >
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-4 w-4 shrink-0">
+          <path d="M4 5.5h6a2 2 0 0 1 2 2v11a1.6 1.6 0 0 0-1.6-1.6H4z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+          <path d="M20 5.5h-6a2 2 0 0 0-2 2v11a1.6 1.6 0 0 1 1.6-1.6H20z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+        </svg>
+        Pustaka
+      </Link>
+
       {shelf.length > 0 && (
         <Link
           href="/data"

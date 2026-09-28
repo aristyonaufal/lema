@@ -1,0 +1,58 @@
+{
+  "slug": "alice",
+  "judul": "Alice’s Adventures in Wonderland",
+  "penulis": "Lewis Carroll",
+  "tingkat": "ringan",
+  "sumber": "https://standardebooks.org/ebooks/lewis-carroll/alices-adventures-in-wonderland",
+  "kata": 26613,
+  "bab": [
+    {
+      "judul": "I: Down the Rabbit-Hole",
+      "kata": 2157
+    },
+    {
+      "judul": "II: The Pool of Tears",
+      "kata": 2117
+    },
+    {
+      "judul": "III: A Caucus-Race and a Long Tale",
+      "kata": 1709
+    },
+    {
+      "judul": "IV: The Rabbit Sends in a Little Bill",
+      "kata": 2660
+    },
+    {
+      "judul": "V: Advice from a Caterpillar",
+      "kata": 2174
+    },
+    {
+      "judul": "VI: Pig and Pepper",
+      "kata": 2609
+    },
+    {
+      "judul": "VII: A Mad Tea-Party",
+      "kata": 2310
+    },
+    {
+      "judul": "VIII: The Queen’s Croquet-Ground",
+      "kata": 2495
+    },
+    {
+      "judul": "IX: The Mock Turtle’s Story",
+      "kata": 2302
+    },
+    {
+      "judul": "X: The Lobster Quadrille",
+      "kata": 2049
+    },
+    {
+      "judul": "XI: Who Stole the Tarts?",
+      "kata": 1899
+    },
+    {
+      "judul": "XII: Alice’s Evidence",
+      "kata": 2132
+    }
+  ]
+}

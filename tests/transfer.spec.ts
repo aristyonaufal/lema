@@ -251,3 +251,77 @@ test('nama berkas memuat tanggal supaya cadangan lama tidak tertimpa', () => {
   expect(fileName(at)).toBe('lema-2026-09-27.json');
   expect(fileName(at, 'csv')).toBe('lema-2026-09-27.csv');
 });
+
+test('posisi baca ikut terbawa di berkas cadangan', () => {
+  const dengan = db({ bacaan: [{ slug: 'alice', bab: 4, paragraf: 12, at: 5 }] });
+  const parsed = parseBackup(toJson(dengan));
+  expect(parsed.ok).toBe(true);
+  if (!parsed.ok) return;
+  expect(parsed.db.bacaan).toEqual([{ slug: 'alice', bab: 4, paragraf: 12, at: 5 }]);
+});
+
+test('gabung: posisi baca yang paling baru yang menang', () => {
+  // Beda dengan aturan untuk kata. Kemajuan review adalah hasil kerja yang bisa
+  // hilang, jadi perangkat ini menang. Posisi baca cuma penunjuk, dan yang benar
+  // memang yang terakhir dibaca, di perangkat mana pun itu.
+  const current = db({ bacaan: [{ slug: 'alice', bab: 2, paragraf: 3, at: 100 }] });
+  const incoming: Db = {
+    books: [{ id: 'b1', title: 'Sapiens', createdAt: 1 }],
+    entries: [],
+    activeBookId: 'b1',
+    bacaan: [
+      { slug: 'alice', bab: 9, paragraf: 1, at: 900 },
+      { slug: 'moby-dick', bab: 3, paragraf: 7, at: 50 },
+    ],
+  };
+
+  const report = merge(current, incoming, ids);
+  const alice = report.db.bacaan!.find((b) => b.slug === 'alice')!;
+  expect(alice.bab).toBe(9);
+  // Buku yang belum pernah dibaca di sini tetap ikut masuk.
+  expect(report.db.bacaan).toHaveLength(2);
+});
+
+test('gabung: cadangan yang lebih tua tidak memundurkan posisi baca', () => {
+  const current = db({ bacaan: [{ slug: 'alice', bab: 9, paragraf: 1, at: 900 }] });
+  const incoming: Db = {
+    books: [], entries: [], activeBookId: null,
+    bacaan: [{ slug: 'alice', bab: 2, paragraf: 3, at: 100 }],
+  };
+  expect(merge(current, incoming, ids).db.bacaan![0].bab).toBe(9);
+});
+
+test('gabung: buku pustaka dicocokkan lewat slug, bukan judul', () => {
+  const current: Db = {
+    books: [{ id: 'b1', title: 'Alice in Wonderland', createdAt: 1, pustaka: 'alice' }],
+    entries: [],
+    activeBookId: 'b1',
+  };
+  const incoming: Db = {
+    // Judul berbeda karena katalognya sempat disunting, slug tetap sama.
+    books: [{ id: 'lain', title: 'Alice’s Adventures in Wonderland', createdAt: 2, pustaka: 'alice' }],
+    entries: [entry({ id: 'e9', bookId: 'lain', word: 'curious' })],
+    activeBookId: 'lain',
+  };
+
+  const report = merge(current, incoming, ids);
+  expect(report.addedBooks).toBe(0);
+  expect(report.db.books).toHaveLength(1);
+  expect(report.db.entries[0].bookId).toBe('b1');
+});
+
+test('bentuk posisi baca yang rusak dibuang, yang sehat tetap masuk', () => {
+  const parsed = parseBackup(JSON.stringify({
+    books: [{ id: 'b1', title: 'Sapiens' }],
+    entries: [],
+    bacaan: [
+      { slug: 'alice', bab: 3, paragraf: 0, at: 1 },
+      { slug: 'tanpa-bab' },
+      { bab: 2, paragraf: 1 },
+    ],
+  }));
+  expect(parsed.ok).toBe(true);
+  if (!parsed.ok) return;
+  expect(parsed.db.bacaan).toHaveLength(1);
+  expect(parsed.db.bacaan![0].slug).toBe('alice');
+});

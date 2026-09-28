@@ -1,8 +1,10 @@
-# PRD Lema v1.2
+# PRD Lema v1.3
 
-Dokumen ini menggambarkan Lema **seperti yang benar benar dibangun dan hidup** di `lema-lemon.vercel.app`, bukan rancangan awalnya. Versi pertama dokumen ini (v1, 7 September 2026) adalah spesifikasi build tiga hari; selama pengerjaan, sebagian keputusannya diubah setelah aplikasinya dicoba. Apa yang berubah dan alasannya dicatat di bagian 17. Versi 1.2 menambahkan cadangan koleksi dan koreksi makna, keduanya lahir dari perbandingan dengan aplikasi sejenis, bukan dari rancangan awal.
+Dokumen ini menggambarkan Lema **seperti yang benar benar dibangun dan hidup** di `lema-lemon.vercel.app`, bukan rancangan awalnya. Versi pertama dokumen ini (v1, 7 September 2026) adalah spesifikasi build tiga hari; selama pengerjaan, sebagian keputusannya diubah setelah aplikasinya dicoba. Apa yang berubah dan alasannya dicatat di bagian 17.
 
-Status: v1 hidup di produksi. Fitur terakhir naik 27 September 2026.
+Versi 1.3 menulis ulang bagian 1 sampai 6. Dua sebabnya: pustaka ebook masuk, dan riset pembanding 28 September membatalkan dua klaim yang selama ini dipakai membenarkan Lema. Rinciannya di bagian 4.
+
+Status: v1 hidup di produksi. Fitur terakhir naik 28 September 2026.
 Batas kirim portfolio: 12 September 2026
 Versi rancangan awal: riwayat git, misalnya `git show v1-sebelum-tandai-foto:context/PRD-Lema.md`
 
@@ -10,9 +12,15 @@ Versi rancangan awal: riwayat git, misalnya `git show v1-sebelum-tandai-foto:con
 
 ## 1. Ringkasan
 
-Lema membantu orang Indonesia yang belajar bahasa Inggris lewat **buku kertas** memahami kata yang maknanya bergantung pada konteks, tanpa harus mengetik. Pembaca memotret halaman yang sedang dibaca, lalu menandai kata yang membuatnya berhenti: mengetuknya langsung di foto, atau cukup menggaris bawahinya dengan pensil di buku sebelum difoto. Lema menentukan makna yang dipakai **di halaman itu**, menunjukkan petunjuk di kalimat yang menentukannya, menyimpannya ke koleksi per buku, lalu menguji ingatan pembaca lewat review berjarak dan kuis yang pengecohnya adalah makna lain dari kata yang sama. Kalau modelnya salah pilih, pembaca yang memegang buku berhak membetulkannya, dan seluruh koleksi bisa dibawa keluar sebagai satu berkas.
+Lema membantu orang Indonesia yang belajar bahasa Inggris memahami kata yang maknanya bergantung pada konteks, lalu memastikan kata itu tidak perlu dicari untuk kedua kalinya.
 
-Kalimat pembeda: **kamus memberimu semua arti; Lema memberimu arti yang dipakai di halamanmu, lalu memastikan kamu tidak perlu mencarinya dua kali.**
+Ada dua jalan masuk, dan keduanya tanpa mengetik. **Dari buku kertas:** pembaca memotret halaman, lalu mengetuk kata yang membuatnya berhenti langsung di foto, atau cukup menggaris bawahinya dengan pensil sebelum difoto. **Dari pustaka di dalam Lema:** lima novel Inggris yang hak ciptanya sudah habis, dibaca langsung di aplikasi, dengan posisi baca yang tersimpan sendiri.
+
+Apa pun jalan masuknya, yang keluar sama: makna yang dipakai **di tempat itu**, kata pemicu yang menentukannya, alasannya, catatan hati hati, dan makna lain kata tersebut. Semuanya tersimpan ke koleksi per buku, lalu ditagih balik lewat review berjarak dan kuis yang pengecohnya adalah makna lain dari kata yang sama. Kalau modelnya salah pilih, pembaca berhak membetulkannya, dan seluruh koleksi bisa dibawa keluar sebagai satu berkas.
+
+Kalimat pembeda: **Readlang bikin kamu paham kalimat ini. Lema bikin kamu nggak perlu nanya lagi.**
+
+*Kalimat pembeda lama berbunyi "kamus memberimu semua arti; Lema memberimu arti yang dipakai di halamanmu". Kalimat itu dibuang karena tidak lagi membedakan apa pun: Readlang melakukan hal yang sama sejak fitur Explain mereka. Lihat bagian 4.*
 
 ---
 
@@ -30,15 +38,21 @@ Tidak ada yang menumpuk. Kata yang dicari hari ini hilang begitu saja, dan tiga 
 
 Mengetik itu sendiri mahal. Pembaca sedang melihat katanya di kertas, lalu harus mengetiknya ulang huruf demi huruf, dan salah eja berujung pada jawaban "kata tidak ketemu di halaman". Padahal foto yang dikirim sudah memuat kata itu. Lapis ini tidak ada di rancangan awal; ditemukan saat aplikasinya dicoba di HP.
 
+### Lapis keempat, yang ditemukan dari aplikasinya sendiri
+
+Lema tidak bisa dicoba tanpa buku Inggris di tangan. Siapa pun yang membuka tautannya karena penasaran cuma melihat satu layar yang menanyakan judul buku, lalu berhenti di situ. Masalah ini tidak dirasakan pengguna sasaran, karena mereka memang sedang memegang buku; yang merasakannya adalah semua orang lain, dan merekalah calon pengguna yang tidak pernah jadi pengguna. Lapis ini yang dijawab pustaka.
+
 ### Hierarki
 
-Lapis pertama yang membuat orang membuka aplikasi. Lapis kedua yang membuat aplikasi ini pantas ada. Lapis ketiga yang menentukan apakah orang mau membukanya lagi besok. Kalau harus memilih satu untuk dikorbankan, korbankan kecepatan, jangan korbankan penyimpanan.
+Lapis pertama yang membuat orang membuka aplikasi. Lapis kedua yang membuat aplikasi ini pantas ada. Lapis ketiga yang menentukan apakah orang mau membukanya lagi besok. Lapis keempat yang menentukan apakah mereka sempat mencobanya sama sekali. Kalau harus memilih satu untuk dikorbankan, korbankan kecepatan, jangan korbankan penyimpanan.
 
 ---
 
 ## 3. Pengguna sasaran
 
-**Utama.** Mahasiswa atau pekerja muda Indonesia, umur 18 sampai 27, level Inggris menengah. Sudah bisa baca tapi pelan. Membaca buku fisik atau PDF karena pilihan sendiri, bukan tugas. Motivasi tinggi di awal, angka berhenti juga tinggi.
+**Utama.** Mahasiswa atau pekerja muda Indonesia, umur 18 sampai 27, level Inggris menengah. Sudah bisa baca tapi pelan. Membaca karena pilihan sendiri, bukan tugas. Motivasi tinggi di awal, angka berhenti juga tinggi. Hampir semuanya memakai HP: 98,3% akses internet di Indonesia lewat ponsel, dan Lema memang dirancang mobile-first.
+
+Sejak pustaka masuk, syarat "sedang memegang buku kertas" tidak lagi berlaku di awal. Buku kertas tetap jalan masuk yang membedakan Lema, tetapi bukan lagi satu satunya pintu.
 
 **Bukan sasaran v1.** Pemula total yang belum bisa baca kalimat sederhana, penerjemah profesional, dan pelajar yang butuh persiapan tes terstruktur.
 
@@ -46,22 +60,46 @@ Lapis pertama yang membuat orang membuka aplikasi. Lapis kedua yang membuat apli
 
 ## 4. Kenapa bukan yang sudah ada
 
+Bagian ini ditulis ulang 28 September setelah riset pembanding. **Dua klaim yang sebelumnya dipakai membenarkan Lema ternyata salah**, dan lebih baik dicatat di sini daripada dibantah orang lain di forum.
+
+### Yang gugur
+
+| Klaim lama | Kenyataannya |
+|---|---|
+| "Readlang tidak menjelaskan secara kontekstual" | Readlang punya fitur Explain berbasis AI yang sadar konteks, tersedia untuk seluruh bahasanya sejak Juni 2024 |
+| "Bahasa Indonesia sebagai bahasa penjelas belum digarap" | Readlang mendukung 119 bahasa, termasuk Bahasa Indonesia |
+
+Satu klaim lain, yang datang dari ulasan pihak ketiga, juga keliru: beberapa situs menulis Readlang tidak punya aplikasi HP. Halaman fitur resminya menyebut aplikasi iOS dan Android. Jangan dipakai.
+
+### Peta pembanding
+
 | Alat | Yang dia lakukan | Batasnya |
 |---|---|---|
 | Google Translate | Makna kamus, cepat, gratis | Lepas konteks, sering salah pilih makna, tidak menyimpan apa apa |
 | ChatGPT atau Claude | Penjelasan kontekstual yang bagus | Butuh prompt tiap kali, dan chat adalah aliran yang tidak pernah dibuka lagi. Tidak ada yang menagih balik |
-| Readlang, LingQ | Klik kata di teks digital, penjelasan sadar konteks, spaced repetition | Wajib teks digital. Pembaca buku kertas tidak punya jalan |
-| Kindle Vocabulary Builder | Tap kata sambil baca, tersimpan otomatis, jadi flashcard | Hanya di dalam ekosistem Kindle, reviewnya memakai kalimat asli yang sama, dan **tidak ada ekspor sama sekali**. Keluhan itu yang paling sering muncul di ulasannya, dan jadi alasan Lema punya ekspor sejak awal |
+| Readlang | 119 bahasa, Explain sadar konteks, impor EPUB, aplikasi iOS dan Android, spaced repetition | $5 per bulan; pengguna gratis dibatasi 10 terjemahan frasa dan Explain per hari. Wajib teks digital |
+| LingQ | Status kata berwarna, sinkron, pustaka besar, definisi bisa disunting | Berbayar, wajib teks digital |
+| Migaku | Skor keterpahaman konten sebelum dibaca | Wajib teks digital, berorientasi Anki |
+| Kindle Vocabulary Builder | Tap kata sambil baca, tersimpan otomatis | Terkunci ekosistem Kindle, **tanpa ekspor sama sekali**, mentok di ratusan kata |
 
-Satu catatan yang perlu diperiksa sendiri sebelum dipakai di forum: sumber tentang Kindle saling bertentangan. Good e-Reader mengutip pengumuman Amazon bahwa fitur Flashcards dihapus pada November 2024 dan menyebut Vocabulary Builder sebagai nama lain fitur yang sama, sementara artikel perbandingan September 2026 masih menuliskannya sebagai fitur hidup. Kemungkinan besar yang dihapus hanya Flashcards buatan sendiri. Jangan mengklaim Kindle sudah kehilangan fiturnya tanpa membuktikannya di perangkat sungguhan.
+Sumber tentang Kindle saling bertentangan soal apakah fitur itu masih hidup. Jangan mengklaim Kindle sudah kehilangan fiturnya tanpa membuktikannya di perangkat sungguhan.
 
-Klaim Lema tetap satu, dan jangan diperlebar: **buku kertas, dan bahasa Indonesia sebagai bahasa penjelas.** Menandai kata dengan pensil lalu memotretnya belakangan memperkuat klaim itu, karena tidak ada alat di atas yang bisa membaca coretan di buku.
+### Yang benar benar tersisa sebagai pembeda
+
+Diurutkan dari yang paling sulit ditiru.
+
+1. **Struktur, bukan prosa.** Explain milik Readlang mengembalikan paragraf penjelasan. Lema mengembalikan objek: makna terpakai, kata pemicu, alasan, keyakinan, catatan hati hati, daftar makna lain, penanda ragu. Perbedaan ini terdengar teknis, padahal inilah akarnya. **Prosa tidak bisa dijadikan soal; struktur bisa.** Kuis, review, koreksi, dan semua turunannya berdiri di atas bentuk data itu tanpa panggilan model tambahan. Menirunya berarti mengubah bentuk data dan memigrasikan seluruh riwayat pengguna.
+2. **Kuis dengan pengecoh dari kata yang sama.** Kartu hafalan pembanding berbentuk kata ke terjemahan, dan itu menguji ingatan. Kuis Lema menguji pemilihan makna sesuai konteks. Bentuk ini tidak ditemukan di satu pun pembanding.
+3. **Buku kertas lewat foto dan coretan pensil.** Satu satunya pembeda yang bersifat struktural: tidak ada pembanding yang bisa membaca halaman kertas, apalagi coretan di dalamnya. *Catatan jujur: kalau pustaka berhasil dan menjadi jalur utama, pembeda ini menjadi tidak relevan bagi mayoritas pengguna.*
+4. **Gratis, tanpa akun.** Readlang mengunci kemampuan intinya di balik langganan. Ini keunggulan, bukan benteng: gratis karena belum ada yang membayar biaya API.
+
+**Klaim Lema yang boleh dipakai:** pembacanya diajari cara menebak, bukan cuma diberi jawaban, lalu ditagih balik sampai katanya menempel. Jangan lagi mengklaim penjelasan kontekstual atau bahasa Indonesia sebagai pembeda.
 
 ---
 
 ## 5. Prinsip produk
 
-Enam aturan ini yang dipakai untuk menyelesaikan perdebatan desain. Prinsip 1 diubah dari rancangan awal, prinsip 5 dan 6 ditambahkan selama pengerjaan.
+Tujuh aturan ini yang dipakai untuk menyelesaikan perdebatan desain. Prinsip 1 diubah dari rancangan awal; prinsip 5 dan 6 ditambahkan selama pengerjaan; prinsip 7 ditambahkan bersama pustaka.
 
 1. **Pembaca yang memilih kapan jawabannya muncul.** Tombol utama membuka makna saat itu juga, karena di uji pertama pembaca justru ingin langsung paham. Jalan tunda tetap ada dan tetap setara: "Simpan, lanjut baca", atau menggaris bawahi dengan pensil dan memotretnya di akhir bab. *Rancangan awal berbunyi "baca dulu, jawab belakangan", dengan jawaban ditunda sebagai bawaan.*
 2. **Ajari cara menebak, bukan cuma kasih jawaban.** Setiap jawaban wajib menunjukkan kata pemicu di kalimat yang menentukan makna itu. Kuis melanjutkan prinsip ini: pengecohnya makna lain dari kata yang sama, jadi yang dilatih adalah memilih makna sesuai konteks.
@@ -69,6 +107,7 @@ Enam aturan ini yang dipakai untuk menyelesaikan perdebatan desain. Prinsip 1 di
 4. **Nol setup.** Tidak ada akun, tidak ada onboarding, tidak ada pemilihan level. Satu pertanyaan saja di awal: judul buku yang sedang dibaca.
 5. **Jangan suruh pembaca mengetik kata yang sedang dilihatnya.** Foto sudah memuat katanya. Mengetik tetap tersedia sebagai jalan cadangan, bukan jalan utama.
 6. **Klaim "sudah ingat" harus dibuktikan.** Tombol yang menaikkan jadwal review atau mengeluarkan kata dari review harus lolos kuis dulu. Jadwal berjarak hanya jujur kalau dasarnya jawaban yang diuji, bukan tombol yang ditekan.
+7. **Jangan sampai pembaca kehilangan tempatnya.** Berlaku untuk pustaka. Posisi baca disimpan sebagai nomor bab dan nomor paragraf, bukan posisi piksel, supaya selamat dari ganti ukuran huruf, putar layar, dan ganti perangkat. Kendali yang bisa menggeser teks harus bisa dijangkau tanpa meninggalkan tempat baca; itu sebabnya baris kendali di pembaca menempel di atas layar.
 
 ---
 
@@ -76,19 +115,43 @@ Enam aturan ini yang dipakai untuk menyelesaikan perdebatan desain. Prinsip 1 di
 
 ### Masuk, dan sudah hidup
 
+**Menandai kata dari buku kertas**
+
 - Foto halaman dari kamera atau galeri, dikecilkan di browser sebelum dikirim
 - **Tandai tanpa mengetik**: ketuk kata di foto (oval bernomor, paling banyak lima), atau garis bawahi pakai pensil di buku dan biarkan Lema mencari coretannya
 - Ketik kata atau frasa sebagai jalan cadangan, paling banyak lima per halaman, frasa utuh seperti "in the long run" diperlakukan sebagai satu tandaan
+
+**Memahami dan menyimpan**
+
 - Makna langsung dibuka sebagai bawaan, jalan tunda tetap ada
 - Peta makna: kalimat asal dengan kata ditebalkan, kata pemicu, alasan, makna lain, catatan hati hati, angka keyakinan, dan dua kandidat sejajar saat ragu
-- Beranda berisi ringkasan progres, rak buku, dan kata terbaru
+- **Koreksi makna**: makna yang salah dipilih model bisa dibetulkan dengan satu ketukan atau ditulis sendiri, tanpa menghapus jawaban model
 - Koleksi kata per buku sebagai daftar ringkas yang dibuka satu per satu
+- **Cadangan koleksi**: seluruh koleksi keluar sebagai satu berkas dan bisa masuk lagi, plus ekspor CSV untuk Anki atau spreadsheet
+
+**Menagih balik**
+
 - Review berjarak dengan kalimat baru buatan model, tangga 1, 3, 7, 21 hari
 - **Kuis** dengan dua fungsi: gerbang sebelum klaim "sudah ingat", dan tab sendiri dari semua buku
 - Mode latihan kapan saja, tanpa menggeser jadwal
+
+**Pustaka** *(Tahap A, naik 28 September)*
+
+- Lima novel Inggris domain publik, dibaca langsung di dalam Lema
+- Pembaca dengan daftar bab, tiga ukuran huruf, dan batang kemajuan
+- Posisi baca tersimpan sendiri dan ikut terbawa berkas cadangan
+- Buku pustaka masuk rak buku yang sama dengan buku kertas, hanya beda penanda
+
+**Umum**
+
+- Beranda berisi ringkasan progres, rak buku, dan kata terbaru
 - Tampilan responsif: bilah bawah di HP, sidebar kiri di laptop
-- **Cadangan koleksi**: seluruh koleksi keluar sebagai satu berkas dan bisa masuk lagi, plus ekspor CSV untuk Anki atau spreadsheet
-- **Koreksi makna**: makna yang salah dipilih model bisa dibetulkan dengan satu ketukan atau ditulis sendiri, tanpa menghapus jawaban model
+
+### Belum masuk, tetapi sudah direncanakan
+
+- **Ketuk kata di dalam pustaka** untuk membuka maknanya. Ini Tahap B, dan sampai itu naik, pustaka masih murni tempat membaca
+- Membaca pustaka tanpa koneksi
+- Unggah EPUB sendiri
 
 ### Keluar, dan jangan diributkan lagi
 
@@ -98,9 +161,10 @@ Cadangan lewat berkas bukan sinkronisasi, dan sengaja tidak dipasarkan sebagai i
 
 ### Yang pindah dari "keluar" ke "masuk", dan kenapa
 
-- **Kuis pilihan ganda.** Rancangan awal mengeluarkannya karena takut lingkup melebar. Masuk kembali setelah jelas bentuknya bisa melayani prinsip 2: pengecoh diambil dari makna lain kata yang sama, tanpa panggilan model tambahan, jadi yang dilatih tetap pemilihan makna sesuai konteks, bukan hafalan arti.
+- **Kuis pilihan ganda.** Rancangan awal mengeluarkannya karena takut lingkup melebar. Masuk kembali setelah jelas bentuknya bisa melayani prinsip 2: pengecoh diambil dari makna lain kata yang sama, tanpa panggilan model tambahan.
 - **Menandai langsung di atas gambar.** Rancangan awal mengeluarkannya karena membayangkan pengenalan teks dengan kotak koordinat per kata. Yang dibangun tidak memakai itu sama sekali: aplikasi menggambar oval magenta di titik yang diketuk, dan model yang membaca kata di dalam oval.
-- **Cadangan lewat berkas.** Rancangan awal tidak menyebutnya karena menganggap penyimpanan tanpa akun sudah cukup sederhana. Yang terlewat: sederhana bukan berarti aman. Tanpa jalan keluar, satu kali membersihkan data browser menghapus seluruh hasil sebulan membaca, dan itu melanggar hierarki masalah di bagian 2, yang menyebut penyimpanan sebagai hal terakhir yang boleh dikorbankan.
+- **Cadangan lewat berkas.** Rancangan awal menganggap penyimpanan tanpa akun sudah cukup sederhana. Yang terlewat: sederhana bukan berarti aman.
+- **Pustaka ebook.** Rancangan awal menegaskan "buku kertas, titik", karena di situlah pembedanya. Yang terlewat: pembeda itu tidak ada gunanya kalau aplikasinya tidak bisa dicoba sama sekali tanpa buku kertas di tangan (lapis keempat di bagian 2). Pustaka menghapus syarat masuk tanpa menghapus pembedanya, karena jalur kertas tetap ada dan tetap satu satunya yang bisa membaca coretan pensil.
 
 ---
 
@@ -191,6 +255,20 @@ Sesudahnya ditampilkan laporan: berapa kata masuk, berapa dilewati karena sudah 
 
 Jalannya sengaja tidak menjadi tab keenam. Bilah bawah di HP sudah penuh dengan lima tujuan, dan menyimpan berkas bukan pekerjaan harian. Tautannya ada di kaki sidebar pada laptop dan di kaki beranda pada HP. Semua pemrosesan berkas terjadi di perangkat pengguna; tidak ada yang dikirim ke server.
 
+### 8.8 Pustaka (`/pustaka` dan `/pustaka/<slug>`)
+
+Katalog berisi lima novel Inggris domain publik: judul, penulis, tingkat kesulitan, jumlah bab dan kata, perkiraan waktu baca, dan tombol "Mulai baca" atau "Lanjut baca · bab N" kalau bukunya pernah dibuka.
+
+Pembacanya menampilkan teks bersih dengan lebar baca terbatas. Baris kendali di atas berisi jalan balik ke katalog dan tiga ukuran huruf, dan **menempel di atas layar selama menggulir**. Itu bukan hiasan: tanpa menempel, pembaca harus naik ke puncak halaman cuma untuk membesarkan huruf, dan perjalanan naik itu sendiri sudah menghilangkan tempatnya (prinsip 7). Di bawahnya ada judul bab, batang kemajuan, daftar bab yang bisa dilompati, dan tombol bab sebelumnya dan berikutnya.
+
+Tiga hal yang menentukan bentuk layar ini:
+
+- **Posisi baca disimpan sebagai nomor bab dan nomor paragraf**, bukan nomor halaman maupun posisi piksel. Halaman dan piksel bergeser begitu ukuran huruf diubah atau layar diputar; paragraf ke-47 tetap paragraf ke-47. Kindle memakai "location" karena masalah yang sama.
+- **Teks buku tidak pernah masuk `localStorage`.** Jatahnya sekitar 5 MB per origin dan dipakai bersama koleksi kata, sedangkan Moby-Dick saja 1,6 MB. Teks diambil per bab sebagai berkas statis saat dibaca, lalu dilepas.
+- **Buku pustaka masuk rak buku yang sama** dengan buku kertas begitu benar benar dibuka, dengan penanda `pustaka` berisi slug-nya. Rak yang terpisah akan membuat pengguna bertanya kenapa bukunya tidak ada di salah satunya.
+
+Pustaka sengaja tidak menjadi tab keenam. Bilah bawah di HP sudah penuh dengan lima tujuan. Jalannya ada di rak buku pada beranda, di kaki sidebar pada laptop, dan di layar pemilihan buku untuk pengguna yang belum punya buku sama sekali.
+
 ---
 
 ## 9. Kontrak data
@@ -241,8 +319,9 @@ Satu kunci `lema.v1` di `localStorage`. Tidak ada basis data server dan tidak ad
 
 ```json
 {
-  "books": [{ "id": "b1", "title": "Sapiens", "createdAt": 0 }],
+  "books": [{ "id": "b1", "title": "Sapiens", "createdAt": 0, "pustaka": "alice" }],
   "activeBookId": "b1",
+  "bacaan": [{ "slug": "alice", "bab": 12, "paragraf": 47, "at": 0 }],
   "entries": [
     {
       "id": "e1",
@@ -268,9 +347,23 @@ Satu kunci `lema.v1` di `localStorage`. Tidak ada basis data server dan tidak ad
 }
 ```
 
-`status` bernilai `pending`, `done`, atau `error`. `stage` adalah indeks tangga review. `passedReview` dicatat sejak 9 September; entri lama tanpa kolom ini dihitung belum pernah lolos, bukan ditebak. `batch` dan `marked` hanya ada pada kata dari mode tandai: semua kata dari satu foto berbagi `batch`. `correction` hanya ada pada kata yang maknanya dibetulkan pembaca, dan ia berdampingan dengan `result`, tidak menimpanya; `source` bernilai `lain` kalau dipilih dari makna yang sudah disebut model, atau `sendiri` kalau diketik. Satu fungsi, `mainMeaning`, adalah satu satunya pintu yang dipakai semua layar untuk membaca makna yang berlaku, supaya tidak ada tempat yang tertinggal menampilkan makna lama. Entri yang masih `pending` saat aplikasi dimuat ulang diubah menjadi `error` yang bisa dikirim ulang, karena fotonya tidak ikut disimpan.
+`status` bernilai `pending`, `done`, atau `error`. `stage` adalah indeks tangga review. `passedReview` dicatat sejak 9 September; entri lama tanpa kolom ini dihitung belum pernah lolos, bukan ditebak. `batch` dan `marked` hanya ada pada kata dari mode tandai: semua kata dari satu foto berbagi `batch`. `correction` hanya ada pada kata yang maknanya dibetulkan pembaca, dan ia berdampingan dengan `result`, tidak menimpanya; `source` bernilai `lain` kalau dipilih dari makna yang sudah disebut model, atau `sendiri` kalau diketik. Satu fungsi, `mainMeaning`, adalah satu satunya pintu yang dipakai semua layar untuk membaca makna yang berlaku, supaya tidak ada tempat yang tertinggal menampilkan makna lama. `pustaka` pada buku berisi slug buku pustaka, dan hanya ada kalau bukunya dibaca di dalam Lema. `bacaan` berisi satu catatan posisi baca per buku pustaka, selalu ditimpa, dan ikut terbawa berkas cadangan; saat digabung, yang menang adalah yang paling baru dibaca, berbeda dengan aturan untuk kata. Entri yang masih `pending` saat aplikasi dimuat ulang diubah menjadi `error` yang bisa dikirim ulang, karena fotonya tidak ikut disimpan.
 
-### 9.4 Berkas cadangan
+### 9.4 Berkas pustaka
+
+Disiapkan sekali oleh `scripts/pustaka/susun.mjs` dan di-commit sebagai berkas statis. Aplikasi tidak pernah mengurai EPUB saat berjalan.
+
+```
+public/pustaka/index.json          katalog lima buku
+public/pustaka/<slug>/buku.json    judul, penulis, sumber, daftar bab
+public/pustaka/<slug>/<n>.json     { judul, paragraf: string[] } untuk bab ke-n
+```
+
+Bab dipilih secara semantik, bukan lewat daftar nama berkas: Standard Ebooks menandai badan karya dengan `epub:type="bodymatter"` pada `<body>`, sedangkan halaman judul, imprint, colophon, dan uncopyright ditandai frontmatter atau backmatter. Aturan itu ikut benar pada buku yang susunannya tidak biasa. Konsekuensi yang perlu diketahui: Etymology dan Extracts di Moby-Dick ditandai frontmatter oleh sumbernya sendiri, jadi tidak ikut masuk.
+
+Pindah baris di dalam paragraf dipertahankan karena puisi memakainya, dan ditampilkan dengan `white-space: pre-line`.
+
+### 9.5 Berkas cadangan
 
 ```json
 { "lema": 1, "exportedAt": 0, "db": { "books": [], "entries": [], "activeBookId": null } }
@@ -326,7 +419,7 @@ Tingkat berpikir model diatur `low`. Pada pengukuran 10 September, tingkat bawaa
 | 7 | Batas pemakaian aktif dan sudah diuji | Terpenuhi untuk hitungan per proses. Penghitung bersama belum diuji ke layanan sungguhan |
 | 8 | Koleksi punya jalan keluar dari satu browser | Terpenuhi sejak 27 September. Ekspor JSON dan CSV, impor dengan penggabungan yang tidak menimpa. Ditambahkan setelah kriteria awal disusun, karena tanpa ini penyimpanan yang jadi alasan Lema pantas ada justru yang paling rapuh |
 
-Di luar tabel: 102 pengujian otomatis lulus pada build produksi, mencakup alur penyimpanan, peta makna, mode tandai, kuis, batas waktu rantai model, aturan penggabungan cadangan, dan koreksi makna.
+Di luar tabel: **121 pengujian otomatis lulus pada build produksi**, mencakup alur penyimpanan, peta makna, mode tandai, kuis, batas waktu rantai model, aturan penggabungan cadangan, koreksi makna, serta pustaka dan pembacanya.
 
 ---
 
@@ -400,6 +493,7 @@ Aplikasi tidak mengumpulkan data kunjungan dan tidak punya server basis data, ja
 - Upstash Redis REST, opsional, untuk penghitung batas pemakaian bersama
 - Playwright untuk pengujian browser dan untuk uji akurasi otomatis (`scripts/uji-akurasi/`)
 - Tanpa pustaka pengenalan teks terpisah; model yang membaca gambar
+- `scripts/pustaka/susun.mjs` mengubah EPUB Standard Ebooks menjadi JSON per bab. Pembaca ZIP-nya ditulis sendiri di `scripts/pustaka/zip.mjs` memakai `DecompressionStream('deflate-raw')` bawaan Node, jadi tidak ada dependensi baru di proyek
 
 ---
 
@@ -416,6 +510,8 @@ Aplikasi tidak mengumpulkan data kunjungan dan tidak punya server basis data, ja
 | 11 September | **Kuis** sebagai gerbang dan sebagai tab sendiri; alur review dibalik | Prinsip 6 ditambahkan. Kuis pilihan ganda pindah dari "keluar" ke "masuk" dalam bentuk yang melayani prinsip 2 |
 | 11 September | Uji akurasi otomatis dengan teks buku asli: 15 dari 15 kata buku asli, 12 dari 12 kata bertanda ditemukan, 70% permintaan terjawab pada percobaan pertama | Kriteria 1 dan 2 tidak bisa menunggu uji manual sebelum batas kirim. Temuannya menggeser fokus dari ketepatan makna ke keandalan model |
 | 27 September | **Cadangan koleksi** lewat berkas JSON dan ekspor CSV | Perbandingan dengan Readlang, LingQ, Migaku, dan Kindle menunjukkan Lema kena dua batasan sekaligus: tidak sinkron dan tidak bisa diekspor. Kriteria 8 ditambahkan |
+| 28 September | **Pustaka ebook**: lima novel domain publik, pembaca dengan posisi baca, rak buku bersama | Lapis masalah keempat: Lema tidak bisa dicoba sama sekali tanpa buku Inggris di tangan. Prinsip 7 ditambahkan, dan bagian 1 sampai 6 ditulis ulang |
+| 28 September | **Kalimat pembeda diganti** dan bagian 4 ditulis ulang | Riset pembanding membatalkan dua klaim: Readlang punya penjelasan kontekstual berbasis AI, dan mendukung 119 bahasa termasuk Indonesia |
 | 27 September | **Koreksi makna** yang berdampingan dengan jawaban model, bukan menimpanya | Satu satunya tanggapan untuk jawaban keliru sebelumnya adalah menghapus katanya, dan itu ikut membuang kalimat asal dari buku. Prinsip 3 diperluas menjadi dua arah, dan kata ragu yang sudah diputuskan pembaca kini boleh dikuiskan |
 
-Setiap perubahan besar punya titik pulih di git: tag `v1-sebelum-tandai-foto`, `v2-sebelum-kuis`, dan `v3-sebelum-cadangan`, dengan langkah kembali di `context/cara_kembali_ke_versi_lama.md`.
+Setiap perubahan besar punya titik pulih di git: tag `v1-sebelum-tandai-foto`, `v2-sebelum-kuis`, `v3-sebelum-cadangan`, dan `v4-sebelum-pustaka`, dengan langkah kembali di `context/cara_kembali_ke_versi_lama.md`.

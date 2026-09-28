@@ -167,6 +167,27 @@ export default function Beranda() {
                 </button>
               }
             />
+            {/* Pustaka ditaruh di rak buku, bukan jadi tab keenam. Rak adalah
+                tempat orang mencari "aku mau baca apa", dan buku pustaka memang
+                masuk rak yang sama begitu mulai dibaca. */}
+            <Link
+              href="/pustaka"
+              className="card hover:border-muted flex items-center gap-3 p-3.5 transition-colors"
+            >
+              <span aria-hidden="true" className="bg-accent-soft text-accent flex h-9 w-9 shrink-0 items-center justify-center rounded-xl">
+                <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+                  <path d="M4 5.5h6a2 2 0 0 1 2 2v11a1.6 1.6 0 0 0-1.6-1.6H4z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                  <path d="M20 5.5h-6a2 2 0 0 0-2 2v11a1.6 1.6 0 0 1 1.6-1.6H20z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                </svg>
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-sm font-medium">Pustaka</span>
+                <span className="text-muted block text-xs leading-relaxed">
+                  Lima novel klasik yang bisa dibaca langsung di sini
+                </span>
+              </span>
+              <span aria-hidden="true" className="text-faint shrink-0">›</span>
+            </Link>
             <ul className="flex flex-col gap-2.5">
               {shelf.map((b) => {
                 const sum = bookSummary(db, b.id);

@@ -1,0 +1,122 @@
+{
+  "slug": "frankenstein",
+  "judul": "Frankenstein",
+  "penulis": "Mary Shelley",
+  "tingkat": "menengah",
+  "sumber": "https://standardebooks.org/ebooks/mary-shelley/frankenstein",
+  "kata": 75195,
+  "bab": [
+    {
+      "judul": "Letter I",
+      "kata": 1206
+    },
+    {
+      "judul": "Letter II",
+      "kata": 1318
+    },
+    {
+      "judul": "Letter III",
+      "kata": 304
+    },
+    {
+      "judul": "Letter IV",
+      "kata": 2737
+    },
+    {
+      "judul": "Chapter I",
+      "kata": 1782
+    },
+    {
+      "judul": "Chapter II",
+      "kata": 2211
+    },
+    {
+      "judul": "Chapter III",
+      "kata": 2686
+    },
+    {
+      "judul": "Chapter IV",
+      "kata": 2541
+    },
+    {
+      "judul": "Chapter V",
+      "kata": 2358
+    },
+    {
+      "judul": "Chapter VI",
+      "kata": 2728
+    },
+    {
+      "judul": "Chapter VII",
+      "kata": 3572
+    },
+    {
+      "judul": "Chapter VIII",
+      "kata": 3103
+    },
+    {
+      "judul": "Chapter IX",
+      "kata": 2223
+    },
+    {
+      "judul": "Chapter X",
+      "kata": 2362
+    },
+    {
+      "judul": "Chapter XI",
+      "kata": 2905
+    },
+    {
+      "judul": "Chapter XII",
+      "kata": 2086
+    },
+    {
+      "judul": "Chapter XIII",
+      "kata": 2040
+    },
+    {
+      "judul": "Chapter XIV",
+      "kata": 1856
+    },
+    {
+      "judul": "Chapter XV",
+      "kata": 3037
+    },
+    {
+      "judul": "Chapter XVI",
+      "kata": 3219
+    },
+    {
+      "judul": "Chapter XVII",
+      "kata": 1922
+    },
+    {
+      "judul": "Chapter XVIII",
+      "kata": 2844
+    },
+    {
+      "judul": "Chapter XIX",
+      "kata": 2612
+    },
+    {
+      "judul": "Chapter XX",
+      "kata": 3527
+    },
+    {
+      "judul": "Chapter XXI",
+      "kata": 3743
+    },
+    {
+      "judul": "Chapter XXII",
+      "kata": 3421
+    },
+    {
+      "judul": "Chapter XXIII",
+      "kata": 2598
+    },
+    {
+      "judul": "Chapter XXIV",
+      "kata": 8254
+    }
+  ]
+}
