@@ -57,11 +57,33 @@ export type Book = {
   id: string;
   title: string;
   createdAt: number;
+  // Slug buku pustaka, kalau buku ini dibaca di dalam Lema dan bukan di kertas.
+  // Rak bukunya tetap satu; penanda ini cuma membedakan asalnya.
+  pustaka?: string;
 };
 
-export type Db = { books: Book[]; entries: Entry[]; activeBookId: string | null };
+// Sampai mana sebuah buku pustaka sudah dibaca.
+//
+// Disimpan sebagai nomor bab dan nomor paragraf, bukan nomor halaman maupun
+// posisi piksel. Halaman dan piksel bergeser begitu pembaca mengubah ukuran
+// huruf atau memutar HP-nya, sedangkan paragraf ke-47 tetap paragraf ke-47 di
+// layar mana pun. Kindle memakai "location" justru karena masalah yang sama.
+export type Bacaan = {
+  slug: string;
+  bab: number;       // dimulai dari 1
+  paragraf: number;  // dimulai dari 0
+  at: number;
+};
 
-const EMPTY: Db = { books: [], entries: [], activeBookId: null };
+export type Db = {
+  books: Book[];
+  entries: Entry[];
+  activeBookId: string | null;
+  // Opsional supaya koleksi yang disimpan sebelum ada pustaka tetap terbaca.
+  bacaan?: Bacaan[];
+};
+
+const EMPTY: Db = { books: [], entries: [], activeBookId: null, bacaan: [] };
 
 export function load(): Db {
   if (typeof window === 'undefined') return EMPTY;
@@ -75,6 +97,7 @@ export function load(): Db {
     books: parsed.books,
     entries: parsed.entries,
     activeBookId: parsed.activeBookId ?? null,
+    bacaan: Array.isArray(parsed.bacaan) ? parsed.bacaan : [],
   };
 }
 
@@ -131,6 +154,31 @@ export function addBook(db: Db, title: string): Db {
 // supaya data lama atau tautan usang tidak mengosongkan buku aktif.
 export function selectBook(db: Db, bookId: string): Db {
   return db.books.some((b) => b.id === bookId) ? { ...db, activeBookId: bookId } : db;
+}
+
+// Buku pustaka memakai rak yang sama dengan buku kertas. Dicocokkan lewat slug,
+// bukan judul, supaya judul yang mirip tidak saling menempel dan supaya buku
+// yang sama tidak pernah menjadi dua rak.
+export function bookForPustaka(db: Db, slug: string, title: string): { db: Db; bookId: string } {
+  const existing = db.books.find((b) => b.pustaka === slug);
+  if (existing) return { db: { ...db, activeBookId: existing.id }, bookId: existing.id };
+
+  const book: Book = { id: id(), title: cleanTitle(title), createdAt: Date.now(), pustaka: slug };
+  return {
+    db: { ...db, books: [...db.books, book], activeBookId: book.id },
+    bookId: book.id,
+  };
+}
+
+export function bacaanFor(db: Db, slug: string): Bacaan | null {
+  return db.bacaan?.find((b) => b.slug === slug) ?? null;
+}
+
+// Satu catatan per buku, selalu ditimpa. Riwayat posisi baca tidak disimpan:
+// yang dibutuhkan pembaca cuma "lanjut dari mana", bukan ke mana saja ia pernah.
+export function simpanBacaan(db: Db, slug: string, bab: number, paragraf: number): Db {
+  const lain = (db.bacaan ?? []).filter((b) => b.slug !== slug);
+  return { ...db, bacaan: [...lain, { slug, bab, paragraf, at: Date.now() }] };
 }
 
 export type BookSummary = {

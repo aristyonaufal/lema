@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 import { useDb } from '@/lib/useDb';
 import BookSpine from '@/components/BookSpine';
@@ -114,6 +115,25 @@ export default function BookPicker({ onPicked, onCancel }: {
           {match ? 'Lanjutkan buku ini' : 'Mulai'}
         </button>
       </div>
+
+      {/* Jalan keluar dari satu satunya layar buntu yang tersisa. Sebelum ada
+          pustaka, pengguna yang membuka Lema tanpa buku Inggris di tangan tidak
+          bisa melakukan apa apa di sini selain menutup tabnya. */}
+      <Link href="/pustaka" className="card hover:border-muted flex items-center gap-3 p-3.5 transition-colors">
+        <span aria-hidden="true" className="bg-accent-soft text-accent flex h-10 w-10 shrink-0 items-center justify-center rounded-xl">
+          <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+            <path d="M4 5.5h6a2 2 0 0 1 2 2v11a1.6 1.6 0 0 0-1.6-1.6H4z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+            <path d="M20 5.5h-6a2 2 0 0 0-2 2v11a1.6 1.6 0 0 1 1.6-1.6H20z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+          </svg>
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-sm font-medium">Belum pegang buku Inggris?</span>
+          <span className="text-muted block text-xs leading-relaxed">
+            Baca langsung di Lema. Ada lima novel klasik yang gratis.
+          </span>
+        </span>
+        <span aria-hidden="true" className="text-faint shrink-0">›</span>
+      </Link>
 
       {onCancel && active && (
         <button onClick={() => { setTitle(''); onCancel(); }} className="btn btn-quiet mx-auto text-sm">

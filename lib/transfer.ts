@@ -15,6 +15,7 @@ import {
   mainMeaning,
   normalizeTitle,
   id as newId,
+  type Bacaan,
   type Book,
   type Db,
   type Entry,
@@ -91,6 +92,19 @@ const STATUSES = new Set(['pending', 'done', 'error']);
 
 const isText = (value: unknown): value is string => typeof value === 'string' && value.length > 0;
 
+function readBacaan(value: unknown): Bacaan | null {
+  if (!value || typeof value !== 'object') return null;
+  const b = value as Record<string, unknown>;
+  if (!isText(b.slug)) return null;
+  if (typeof b.bab !== 'number' || typeof b.paragraf !== 'number') return null;
+  return {
+    slug: b.slug,
+    bab: b.bab,
+    paragraf: b.paragraf,
+    at: typeof b.at === 'number' ? b.at : Date.now(),
+  };
+}
+
 function readBook(value: unknown): Book | null {
   if (!value || typeof value !== 'object') return null;
   const b = value as Record<string, unknown>;
@@ -153,6 +167,9 @@ export function parseBackup(text: string): ParseResult {
 
   const books = body.books.map(readBook).filter((b): b is Book => b !== null);
   const entries = body.entries.map(readEntry).filter((e): e is Entry => e !== null);
+  const bacaan = Array.isArray(body.bacaan)
+    ? body.bacaan.map(readBacaan).filter((b): b is Bacaan => b !== null)
+    : [];
 
   if (books.length === 0 && entries.length === 0) {
     return { ok: false, error: 'Berkas terbaca, tetapi tidak ada satu pun buku atau kata di dalamnya.' };
@@ -161,7 +178,7 @@ export function parseBackup(text: string): ParseResult {
   const activeBookId = isText(body.activeBookId) ? body.activeBookId : null;
   return {
     ok: true,
-    db: { books, entries, activeBookId },
+    db: { books, entries, activeBookId, bacaan },
     exportedAt: typeof envelope.exportedAt === 'number' ? envelope.exportedAt : null,
   };
 }
@@ -193,6 +210,12 @@ export function merge(current: Db, incoming: Db, makeId: () => string = newId): 
   const books = [...current.books];
   const usedIds = new Set(books.map((b) => b.id));
   const byTitle = new Map(books.map((b) => [normalizeTitle(b.title), b.id]));
+  // Buku pustaka dicocokkan lewat slug lebih dulu. Judulnya berasal dari berkas
+  // yang sama di kedua perangkat, jadi judul saja sebenarnya sudah cukup, tetapi
+  // slug tidak ikut berubah kalau judul di katalog nanti disunting.
+  const bySlug = new Map(
+    books.filter((b) => b.pustaka).map((b) => [b.pustaka as string, b.id]),
+  );
 
   // Peta dari id buku di berkas ke id buku di koleksi ini.
   const bookMap = new Map<string, string>();
@@ -200,7 +223,7 @@ export function merge(current: Db, incoming: Db, makeId: () => string = newId): 
 
   for (const book of incoming.books) {
     const key = normalizeTitle(book.title);
-    const existing = byTitle.get(key);
+    const existing = (book.pustaka ? bySlug.get(book.pustaka) : undefined) ?? byTitle.get(key);
     if (existing) {
       bookMap.set(book.id, existing);
       continue;
@@ -212,6 +235,7 @@ export function merge(current: Db, incoming: Db, makeId: () => string = newId): 
     books.push(added);
     usedIds.add(id);
     byTitle.set(key, id);
+    if (added.pustaka) bySlug.set(added.pustaka, id);
     bookMap.set(book.id, id);
     addedBooks += 1;
   }
@@ -244,7 +268,24 @@ export function merge(current: Db, incoming: Db, makeId: () => string = newId): 
     ? current.activeBookId
     : incomingActive ?? books[0]?.id ?? null;
 
-  return { db: { books, entries, activeBookId }, addedBooks, addedEntries, duplicates, orphans };
+  // Posisi baca: satu per buku, dan yang menang yang paling baru dibaca. Di sini
+  // cadangan boleh mengalahkan perangkat ini, berbeda dengan aturan untuk kata.
+  // Alasannya beda: kemajuan review adalah hasil kerja yang bisa hilang, sedangkan
+  // posisi baca cuma penunjuk, dan yang benar memang yang terakhir dibaca.
+  const bacaan = [...(current.bacaan ?? [])];
+  for (const masuk of incoming.bacaan ?? []) {
+    const at = bacaan.findIndex((b) => b.slug === masuk.slug);
+    if (at === -1) bacaan.push(masuk);
+    else if (masuk.at > bacaan[at].at) bacaan[at] = masuk;
+  }
+
+  return {
+    db: { books, entries, activeBookId, bacaan },
+    addedBooks,
+    addedEntries,
+    duplicates,
+    orphans,
+  };
 }
 
 export function countWords(db: Db): number {

@@ -1,0 +1,554 @@
+{
+  "slug": "moby-dick",
+  "judul": "Moby Dick",
+  "penulis": "Herman Melville",
+  "tingkat": "berat",
+  "sumber": "https://standardebooks.org/ebooks/herman-melville/moby-dick",
+  "kata": 208827,
+  "bab": [
+    {
+      "judul": "I: Loomings",
+      "kata": 2226
+    },
+    {
+      "judul": "II: The Carpetbag",
+      "kata": 1443
+    },
+    {
+      "judul": "III: The Spouter-Inn",
+      "kata": 5884
+    },
+    {
+      "judul": "IV: The Counterpane",
+      "kata": 1661
+    },
+    {
+      "judul": "V: Breakfast",
+      "kata": 744
+    },
+    {
+      "judul": "VI: The Street",
+      "kata": 827
+    },
+    {
+      "judul": "VII: The Chapel",
+      "kata": 944
+    },
+    {
+      "judul": "VIII: The Pulpit",
+      "kata": 958
+    },
+    {
+      "judul": "IX: The Sermon",
+      "kata": 3618
+    },
+    {
+      "judul": "X: A Bosom Friend",
+      "kata": 1561
+    },
+    {
+      "judul": "XI: Nightgown",
+      "kata": 727
+    },
+    {
+      "judul": "XII: Biographical",
+      "kata": 882
+    },
+    {
+      "judul": "XIII: Wheelbarrow",
+      "kata": 1711
+    },
+    {
+      "judul": "XIV: Nantucket",
+      "kata": 756
+    },
+    {
+      "judul": "XV: Chowder",
+      "kata": 1188
+    },
+    {
+      "judul": "XVI: The Ship",
+      "kata": 5526
+    },
+    {
+      "judul": "XVII: The Ramadan",
+      "kata": 2288
+    },
+    {
+      "judul": "XVIII: His Mark",
+      "kata": 1356
+    },
+    {
+      "judul": "XIX: The Prophet",
+      "kata": 1211
+    },
+    {
+      "judul": "XX: All Astir",
+      "kata": 919
+    },
+    {
+      "judul": "XXI: Going Aboard",
+      "kata": 1077
+    },
+    {
+      "judul": "XXII: Merry Christmas",
+      "kata": 1644
+    },
+    {
+      "judul": "XXIII: The Lee Shore",
+      "kata": 365
+    },
+    {
+      "judul": "XXIV: The Advocate",
+      "kata": 1651
+    },
+    {
+      "judul": "XXV: Postscript",
+      "kata": 282
+    },
+    {
+      "judul": "XXVI: Knights and Squires",
+      "kata": 1221
+    },
+    {
+      "judul": "XXVII: Knights and Squires",
+      "kata": 1682
+    },
+    {
+      "judul": "XXVIII: Ahab",
+      "kata": 1411
+    },
+    {
+      "judul": "XXIX: Enter Ahab; To Him, Stubb",
+      "kata": 1206
+    },
+    {
+      "judul": "XXX: The Pipe",
+      "kata": 290
+    },
+    {
+      "judul": "XXXI: Queen Mab",
+      "kata": 885
+    },
+    {
+      "judul": "XXXII: Cetology",
+      "kata": 5034
+    },
+    {
+      "judul": "XXXIII: The Specksnyder",
+      "kata": 969
+    },
+    {
+      "judul": "XXXIV: The Cabin-Table",
+      "kata": 2222
+    },
+    {
+      "judul": "XXXV: The Masthead",
+      "kata": 2573
+    },
+    {
+      "judul": "XXXVI: The Quarterdeck",
+      "kata": 2813
+    },
+    {
+      "judul": "XXXVII: Sunset",
+      "kata": 509
+    },
+    {
+      "judul": "XXXVIII: Dusk",
+      "kata": 394
+    },
+    {
+      "judul": "XXXIX: First Night-Watch",
+      "kata": 265
+    },
+    {
+      "judul": "XL: Midnight, Forecastle",
+      "kata": 1571
+    },
+    {
+      "judul": "XLI: Moby Dick",
+      "kata": 3789
+    },
+    {
+      "judul": "XLII: The Whiteness of the Whale",
+      "kata": 3010
+    },
+    {
+      "judul": "XLIII: Hark!",
+      "kata": 306
+    },
+    {
+      "judul": "XLIV: The Chart",
+      "kata": 1920
+    },
+    {
+      "judul": "XLV: The Affidavit",
+      "kata": 3269
+    },
+    {
+      "judul": "XLVI: Surmises",
+      "kata": 994
+    },
+    {
+      "judul": "XLVII: The Mat-Maker",
+      "kata": 930
+    },
+    {
+      "judul": "XLVIII: The First Lowering",
+      "kata": 3975
+    },
+    {
+      "judul": "XLIX: The Hyena",
+      "kata": 835
+    },
+    {
+      "judul": "L: Ahab’s Boat and Crew. Fedallah",
+      "kata": 1007
+    },
+    {
+      "judul": "LI: The Spirit-Spout",
+      "kata": 1485
+    },
+    {
+      "judul": "LII: The Albatross",
+      "kata": 715
+    },
+    {
+      "judul": "LIII: The Gam",
+      "kata": 1637
+    },
+    {
+      "judul": "LIV: The Town-Ho’s Story",
+      "kata": 8073
+    },
+    {
+      "judul": "LV: Of the Monstrous Pictures of Whales",
+      "kata": 1894
+    },
+    {
+      "judul": "LVI: Of the Less Erroneous Pictures of Whales, and the True Pictures of Whaling Scenes",
+      "kata": 1303
+    },
+    {
+      "judul": "LVII: Of Whales in Paint; in Teeth; in Wood; in Sheet-Iron; in Stone; in Mountains; in Stars",
+      "kata": 944
+    },
+    {
+      "judul": "LVIII: Brit",
+      "kata": 946
+    },
+    {
+      "judul": "LIX: Squid",
+      "kata": 926
+    },
+    {
+      "judul": "LX: The Line",
+      "kata": 1484
+    },
+    {
+      "judul": "LXI: Stubb Kills a Whale",
+      "kata": 1812
+    },
+    {
+      "judul": "LXII: The Dart",
+      "kata": 568
+    },
+    {
+      "judul": "LXIII: The Crotch",
+      "kata": 474
+    },
+    {
+      "judul": "LXIV: Stubb’s Supper",
+      "kata": 2831
+    },
+    {
+      "judul": "LXV: The Whale as a Dish",
+      "kata": 994
+    },
+    {
+      "judul": "LXVI: The Shark Massacre",
+      "kata": 541
+    },
+    {
+      "judul": "LXVII: Cutting In",
+      "kata": 737
+    },
+    {
+      "judul": "LXVIII: The Blanket",
+      "kata": 1202
+    },
+    {
+      "judul": "LXIX: The Funeral",
+      "kata": 436
+    },
+    {
+      "judul": "LXX: The Sphynx",
+      "kata": 874
+    },
+    {
+      "judul": "LXXI: The Jeroboam’s Story",
+      "kata": 2268
+    },
+    {
+      "judul": "LXXII: The Monkey-Rope",
+      "kata": 1594
+    },
+    {
+      "judul": "LXXIII: Stubb and Flask Kill a Right Whale; and Then Have a Talk Over Him",
+      "kata": 2162
+    },
+    {
+      "judul": "LXXIV: The Sperm Whale’s Head—Contrasted View",
+      "kata": 1639
+    },
+    {
+      "judul": "LXXV: The Right Whale’s Head—Contrasted View",
+      "kata": 1179
+    },
+    {
+      "judul": "LXXVI: The Battering-Ram",
+      "kata": 870
+    },
+    {
+      "judul": "LXXVII: The Great Heidelburgh Tun",
+      "kata": 584
+    },
+    {
+      "judul": "LXXVIII: Cistern and Buckets",
+      "kata": 1660
+    },
+    {
+      "judul": "LXXIX: The Prairie",
+      "kata": 933
+    },
+    {
+      "judul": "LXXX: The Nut",
+      "kata": 904
+    },
+    {
+      "judul": "LXXXI: The Pequod Meets the Virgin",
+      "kata": 4366
+    },
+    {
+      "judul": "LXXXII: The Honor and Glory of Whaling",
+      "kata": 1149
+    },
+    {
+      "judul": "LXXXIII: Jonah Historically Regarded",
+      "kata": 779
+    },
+    {
+      "judul": "LXXXIV: Pitchpoling",
+      "kata": 806
+    },
+    {
+      "judul": "LXXXV: The Fountain",
+      "kata": 2072
+    },
+    {
+      "judul": "LXXXVI: The Tail",
+      "kata": 1765
+    },
+    {
+      "judul": "LXXXVII: The Grand Armada",
+      "kata": 4645
+    },
+    {
+      "judul": "LXXXVIII: Schools and Schoolmasters",
+      "kata": 1195
+    },
+    {
+      "judul": "LXXXIX: Fast-Fish and Loose-Fish",
+      "kata": 1421
+    },
+    {
+      "judul": "XC: Heads or Tails",
+      "kata": 1043
+    },
+    {
+      "judul": "XCI: The Pequod Meets the Rose-Bud",
+      "kata": 2519
+    },
+    {
+      "judul": "XCII: Ambergris",
+      "kata": 972
+    },
+    {
+      "judul": "XCIII: The Castaway",
+      "kata": 1619
+    },
+    {
+      "judul": "XCIV: A Squeeze of the Hand",
+      "kata": 1277
+    },
+    {
+      "judul": "XCV: The Cassock",
+      "kata": 441
+    },
+    {
+      "judul": "XCVI: The Try-Works",
+      "kata": 1827
+    },
+    {
+      "judul": "XCVII: The Lamp",
+      "kata": 242
+    },
+    {
+      "judul": "XCVIII: Stowing Down and Clearing Up",
+      "kata": 1024
+    },
+    {
+      "judul": "XCIX: The Doubloon",
+      "kata": 2440
+    },
+    {
+      "judul": "C: Leg and Arm",
+      "kata": 2729
+    },
+    {
+      "judul": "CI: The Decanter",
+      "kata": 1712
+    },
+    {
+      "judul": "CII: A Bower in the Arsacides",
+      "kata": 1564
+    },
+    {
+      "judul": "CIII: Measurement of the Whale’s Skeleton",
+      "kata": 923
+    },
+    {
+      "judul": "CIV: The Fossil Whale",
+      "kata": 1420
+    },
+    {
+      "judul": "CV: Does the Whale’s Magnitude Diminish?—Will He Perish?",
+      "kata": 1555
+    },
+    {
+      "judul": "CVI: Ahab’s Leg",
+      "kata": 931
+    },
+    {
+      "judul": "CVII: The Carpenter",
+      "kata": 1052
+    },
+    {
+      "judul": "CVIII: Ahab and the Carpenter",
+      "kata": 1582
+    },
+    {
+      "judul": "CIX: Ahab and Starbuck in the Cabin",
+      "kata": 843
+    },
+    {
+      "judul": "CX: Queequeg in His Coffin",
+      "kata": 2256
+    },
+    {
+      "judul": "CXI: The Pacific",
+      "kata": 423
+    },
+    {
+      "judul": "CXII: The Blacksmith",
+      "kata": 936
+    },
+    {
+      "judul": "CXIII: The Forge",
+      "kata": 1232
+    },
+    {
+      "judul": "CXIV: The Gilder",
+      "kata": 642
+    },
+    {
+      "judul": "CXV: The Pequod Meets the Bachelor",
+      "kata": 884
+    },
+    {
+      "judul": "CXVI: The Dying Whale",
+      "kata": 519
+    },
+    {
+      "judul": "CXVII: The Whale Watch",
+      "kata": 471
+    },
+    {
+      "judul": "CXVIII: The Quadrant",
+      "kata": 897
+    },
+    {
+      "judul": "CXIX: The Candles",
+      "kata": 2539
+    },
+    {
+      "judul": "CXX: The Deck Towards the End of the First Night Watch",
+      "kata": 178
+    },
+    {
+      "judul": "CXXI: Midnight.—The Forecastle Bulwarks",
+      "kata": 626
+    },
+    {
+      "judul": "CXXII: Midnight Aloft.—Thunder and Lightning",
+      "kata": 47
+    },
+    {
+      "judul": "CXXIII: The Musket",
+      "kata": 1243
+    },
+    {
+      "judul": "CXXIV: The Needle",
+      "kata": 1207
+    },
+    {
+      "judul": "CXXV: The Log and Line",
+      "kata": 1105
+    },
+    {
+      "judul": "CXXVI: The Life-Buoy",
+      "kata": 1387
+    },
+    {
+      "judul": "CXXVII: The Deck",
+      "kata": 717
+    },
+    {
+      "judul": "CXXVIII: The Pequod Meets the Rachel",
+      "kata": 1407
+    },
+    {
+      "judul": "CXXIX: The Cabin",
+      "kata": 581
+    },
+    {
+      "judul": "CXXX: The Hat",
+      "kata": 1701
+    },
+    {
+      "judul": "CXXXI: The Pequod Meets the Delight",
+      "kata": 428
+    },
+    {
+      "judul": "CXXXII: The Symphony",
+      "kata": 1624
+    },
+    {
+      "judul": "CXXXIII: The Chase—First Day",
+      "kata": 3517
+    },
+    {
+      "judul": "CXXXIV: The Chase—Second Day",
+      "kata": 3329
+    },
+    {
+      "judul": "CXXXV: The Chase—Third Day",
+      "kata": 4550
+    },
+    {
+      "judul": "Epilogue",
+      "kata": 270
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "catatan": [
+    "Buku pustaka Lema. Semuanya bebas hak cipta DI INDONESIA MAUPUN AMERIKA:",
+    "terbit 1930 atau sebelumnya, dan penulisnya meninggal 1955 atau sebelumnya.",
+    "Aturan ini sengaja lebih ketat daripada yang diperlukan salah satu negara,",
+    "karena Lema dibuka dari mana saja.",
+    "",
+    "Sumbernya Standard Ebooks, yang mendedikasikan hasil kerjanya ke domain",
+    "publik lewat CC0 1.0, jadi tidak ada syarat atribusi maupun pembersihan",
+    "header seperti pada Project Gutenberg.",
+    "",
+    "'halaman' adalah alamat buku di standardebooks.org tanpa awalan /ebooks/.",
+    "Alamat unduhannya tidak ditulis di sini karena memuat slug ilustrator dan",
+    "bisa berubah; skrip mencarinya sendiri dari halaman bukunya."
+  ],
+  "buku": [
+    {
+      "slug": "alice",
+      "halaman": "lewis-carroll/alices-adventures-in-wonderland",
+      "tingkat": "ringan"
+    },
+    {
+      "slug": "sherlock",
+      "halaman": "arthur-conan-doyle/the-adventures-of-sherlock-holmes",
+      "tingkat": "ringan"
+    },
+    {
+      "slug": "pride-and-prejudice",
+      "halaman": "jane-austen/pride-and-prejudice",
+      "tingkat": "menengah"
+    },
+    {
+      "slug": "frankenstein",
+      "halaman": "mary-shelley/frankenstein",
+      "tingkat": "menengah"
+    },
+    {
+      "slug": "moby-dick",
+      "halaman": "herman-melville/moby-dick",
+      "tingkat": "berat"
+    }
+  ]
+}

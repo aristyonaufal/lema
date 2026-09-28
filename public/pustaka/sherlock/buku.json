@@ -1,0 +1,58 @@
+{
+  "slug": "sherlock",
+  "judul": "The Adventures of Sherlock Holmes",
+  "penulis": "Arthur Conan Doyle",
+  "tingkat": "ringan",
+  "sumber": "https://standardebooks.org/ebooks/arthur-conan-doyle/the-adventures-of-sherlock-holmes",
+  "kata": 105422,
+  "bab": [
+    {
+      "judul": "A Scandal in Bohemia",
+      "kata": 8614
+    },
+    {
+      "judul": "The Redheaded League",
+      "kata": 9216
+    },
+    {
+      "judul": "A Case of Identity",
+      "kata": 7013
+    },
+    {
+      "judul": "The Boscombe Valley Mystery",
+      "kata": 9689
+    },
+    {
+      "judul": "The Five Orange Pips",
+      "kata": 7396
+    },
+    {
+      "judul": "The Man with the Twisted Lip",
+      "kata": 9263
+    },
+    {
+      "judul": "The Adventure of the Blue Carbuncle",
+      "kata": 7901
+    },
+    {
+      "judul": "The Adventure of the Speckled Band",
+      "kata": 9880
+    },
+    {
+      "judul": "The Adventure of the Engineer’s Thumb",
+      "kata": 8420
+    },
+    {
+      "judul": "The Adventure of the Noble Bachelor",
+      "kata": 8180
+    },
+    {
+      "judul": "The Adventure of the Beryl Coronet",
+      "kata": 9791
+    },
+    {
+      "judul": "The Adventure of the Copper Beeches",
+      "kata": 10059
+    }
+  ]
+}

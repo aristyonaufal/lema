@@ -1,0 +1,45 @@
+{
+  "disusun": "2026-09-28",
+  "buku": [
+    {
+      "slug": "alice",
+      "judul": "Alice’s Adventures in Wonderland",
+      "penulis": "Lewis Carroll",
+      "tingkat": "ringan",
+      "bab": 12,
+      "kata": 26613
+    },
+    {
+      "slug": "sherlock",
+      "judul": "The Adventures of Sherlock Holmes",
+      "penulis": "Arthur Conan Doyle",
+      "tingkat": "ringan",
+      "bab": 12,
+      "kata": 105422
+    },
+    {
+      "slug": "pride-and-prejudice",
+      "judul": "Pride and Prejudice",
+      "penulis": "Jane Austen",
+      "tingkat": "menengah",
+      "bab": 61,
+      "kata": 122183
+    },
+    {
+      "slug": "frankenstein",
+      "judul": "Frankenstein",
+      "penulis": "Mary Shelley",
+      "tingkat": "menengah",
+      "bab": 28,
+      "kata": 75195
+    },
+    {
+      "slug": "moby-dick",
+      "judul": "Moby Dick",
+      "penulis": "Herman Melville",
+      "tingkat": "berat",
+      "bab": 136,
+      "kata": 208827
+    }
+  ]
+}
