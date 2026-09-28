@@ -15,10 +15,12 @@ Dibuat 10 September 2026, bersamaan dengan fitur tandai kata tanpa mengetik. Dok
 | Commit `534d9ea` | **Penggabungan cadangan dan koreksi makna ke `main` pada 27 September 2026.** Membatalkan keduanya saja, sisanya tetap: `git revert -m 1 534d9ea`. |
 | Tag `v4-sebelum-pustaka` | Commit `9b017f8`. Cadangan dan koreksi makna sudah hidup, pustaka ebook belum ada. Dipasang 28 September sebelum Tahap A dikerjakan di cabang `fitur/pustaka`. |
 | Commit `a9db562` | **Penggabungan pustaka ebook ke `main` pada 28 September 2026.** Membatalkan pustaka saja: `git revert -m 1 a9db562`. |
+| Tag `v5-sebelum-teks` | Commit `354c175`. Pustaka sudah hidup, tetapi masih murni tempat membaca. Dipasang 29 September sebelum Tahap B dikerjakan di cabang `fitur/lookup-teks`. |
+| Commit `94edc9b` | **Penggabungan ketuk kata di pustaka ke `main` pada 29 September 2026.** Membatalkan ini saja mengembalikan pustaka menjadi tempat membaca tanpa pencarian makna: `git revert -m 1 94edc9b`. |
 
-**Keadaan sekarang: mode tandai, kuis, cadangan koleksi, koreksi makna, dan pustaka ebook semuanya sudah digabung dan hidup di produksi.** Jadi yang berlaku adalah jalan nomor 2 atau 3 di bawah.
+**Keadaan sekarang: mode tandai, kuis, cadangan koleksi, koreksi makna, pustaka ebook, dan ketuk kata di pustaka semuanya sudah digabung dan hidup di produksi.** Jadi yang berlaku adalah jalan nomor 2 atau 3 di bawah.
 
-Pilih yang dibatalkan sesuai masalahnya, dan batalkan dari yang paling baru ke yang paling lama: `a9db562`, lalu `534d9ea`, lalu `944b2fd`, lalu `6dac711`. Membatalkan dengan urutan terbalik bisa menimbulkan konflik, karena kuis dibangun di atas mode tandai dan koreksi makna menyentuh kuis.
+Pilih yang dibatalkan sesuai masalahnya, dan batalkan dari yang paling baru ke yang paling lama: `94edc9b`, lalu `a9db562`, lalu `534d9ea`, lalu `944b2fd`, lalu `6dac711`. Membatalkan dengan urutan terbalik bisa menimbulkan konflik, karena kuis dibangun di atas mode tandai dan koreksi makna menyentuh kuis.
 
 Ketiganya berdiri sendiri, jadi tidak ada keharusan membatalkan semuanya. Kalau yang bermasalah cuma cadangan dan koreksi, `git revert -m 1 534d9ea` sudah cukup.
 
@@ -29,6 +31,8 @@ Data koleksi pengguna aman di semua jalan di bawah, dan ini yang dijaga paling k
 - Buku yang dibaca dari pustaka membawa kolom `pustaka`, dan posisi bacanya ada di larik `bacaan` di akar penyimpanan.
 
 Versi lama mengabaikan kolom yang tidak dikenalnya, jadi mundur tidak merusak apa pun. Yang terjadi cuma satu: koreksi makna berhenti terlihat dan kartunya kembali menampilkan jawaban model. Koreksinya tidak hilang dan akan muncul lagi kalau fiturnya dinaikkan ulang, karena jawaban model memang sengaja tidak pernah ditimpa.
+
+**Satu catatan khusus untuk ketuk kata.** Membatalkan `94edc9b` menghapus `mode=text` dari API, tetapi kata yang sudah telanjur dikumpulkan lewat jalur itu tetap utuh di koleksi. Bentuknya sama persis dengan kata dari foto, jadi review dan kuisnya jalan terus. Yang hilang cuma cara menambah kata baru dari dalam pembaca.
 
 **Satu catatan khusus untuk pustaka.** Membatalkan `a9db562` juga menghapus berkas di `public/pustaka/`, jadi buku bukunya ikut hilang dari produksi. Buku itu bisa disusun ulang kapan saja dengan `node scripts/pustaka/susun.mjs`, selama skripnya ikut dikembalikan. Koleksi kata pengguna tidak terpengaruh: kolom `pustaka` dan larik `bacaan` cuma diabaikan versi lama, dan akan terbaca lagi kalau fiturnya dinaikkan ulang.
 
