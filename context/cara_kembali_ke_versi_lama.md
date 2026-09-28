@@ -19,10 +19,12 @@ Dibuat 10 September 2026, bersamaan dengan fitur tandai kata tanpa mengetik. Dok
 | Commit `94edc9b` | **Penggabungan ketuk kata di pustaka ke `main` pada 29 September 2026.** Membatalkan ini saja mengembalikan pustaka menjadi tempat membaca tanpa pencarian makna: `git revert -m 1 94edc9b`. |
 | Tag `v6-sebelum-tahap-c` | Commit `73f83e5`. Pustaka dan ketuk kata sudah hidup, tetapi pustaka masih terpisah dari rak buku. Dipasang 30 September sebelum Tahap C dikerjakan di cabang `fitur/pustaka-menyatu`. |
 | Commit `67a506d` | **Penggabungan penyatuan rak buku ke `main` pada 30 September 2026.** Membatalkan ini saja menghapus tawaran lanjut baca dan keterangan bab, tanpa menyentuh pustaka maupun ketuk kata: `git revert -m 1 67a506d`. |
+| Tag `v7-sebelum-offline` | Commit `89bc4ae`. Belum ada service worker sama sekali. Dipasang 1 Oktober sebelum Tahap D dikerjakan di cabang `fitur/offline`. |
+| Commit `d4c111b` | **Penggabungan membaca tanpa koneksi ke `main` pada 1 Oktober 2026.** **Jangan dibatalkan dengan `git revert`.** Baca peringatan khusus di bawah. |
 
-**Keadaan sekarang: mode tandai, kuis, cadangan koleksi, koreksi makna, pustaka ebook, ketuk kata di pustaka, dan penyatuan rak buku semuanya sudah digabung dan hidup di produksi.** Jadi yang berlaku adalah jalan nomor 2 atau 3 di bawah.
+**Keadaan sekarang: mode tandai, kuis, cadangan koleksi, koreksi makna, pustaka ebook, ketuk kata di pustaka, penyatuan rak buku, dan membaca tanpa koneksi semuanya sudah digabung dan hidup di produksi.** Jadi yang berlaku adalah jalan nomor 2 atau 3 di bawah.
 
-Pilih yang dibatalkan sesuai masalahnya, dan batalkan dari yang paling baru ke yang paling lama: `67a506d`, lalu `94edc9b`, lalu `a9db562`, lalu `534d9ea`, lalu `944b2fd`, lalu `6dac711`. Membatalkan dengan urutan terbalik bisa menimbulkan konflik, karena kuis dibangun di atas mode tandai dan koreksi makna menyentuh kuis.
+Pilih yang dibatalkan sesuai masalahnya, dan batalkan dari yang paling baru ke yang paling lama: `67a506d`, lalu `94edc9b`, lalu `a9db562`, lalu `534d9ea`, lalu `944b2fd`, lalu `6dac711`. **`d4c111b` tidak ikut daftar ini**, karena service worker punya cara pembatalannya sendiri. Membatalkan dengan urutan terbalik bisa menimbulkan konflik, karena kuis dibangun di atas mode tandai dan koreksi makna menyentuh kuis.
 
 Ketiganya berdiri sendiri, jadi tidak ada keharusan membatalkan semuanya. Kalau yang bermasalah cuma cadangan dan koreksi, `git revert -m 1 534d9ea` sudah cukup.
 
